@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 	"unicode"
 	"unicode/utf8"
 )
@@ -43,6 +44,11 @@ func (p Preferences) Validate() error {
 	}
 	return nil
 }
+
+// Stores can be opened independently by different handlers. Coordinate all
+// in-process config file handles, including inspection of a target before
+// replacing it. Windows can deny replacement while a reader holds the file.
+var fileIO sync.RWMutex
 
 type Store struct{ dir string }
 
@@ -92,6 +98,8 @@ func (s Store) path(name string) (string, error) {
 }
 
 func (s Store) read(name string) ([]byte, error) {
+	fileIO.RLock()
+	defer fileIO.RUnlock()
 	path, err := s.path(name)
 	if err != nil {
 		return nil, err
@@ -115,10 +123,6 @@ func (s Store) read(name string) ([]byte, error) {
 }
 
 func (s Store) save(name string, value any) error {
-	path, err := s.path(name)
-	if err != nil {
-		return err
-	}
 	b, err := json.MarshalIndent(value, "", "  ")
 	if err != nil {
 		return err
@@ -126,6 +130,12 @@ func (s Store) save(name string, value any) error {
 	b = append(b, '\n')
 	if len(b) > maxFileSize {
 		return errors.New("配置文件过大")
+	}
+	fileIO.Lock()
+	defer fileIO.Unlock()
+	path, err := s.path(name)
+	if err != nil {
+		return err
 	}
 	if err = os.MkdirAll(s.dir, 0700); err != nil {
 		return err
@@ -147,7 +157,7 @@ func (s Store) save(name string, value any) error {
 	if closeErr != nil {
 		return closeErr
 	}
-	return os.Rename(tmpName, path)
+	return replaceConfig(tmpName, path)
 }
 
 // object handles flat, typed config objects, including duplicate-key rejection.
