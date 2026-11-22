@@ -96,7 +96,9 @@
     // need to be visited to restore our presentation.
     const touched = new WeakSet();
     const blocked = Symbol("blocked subtree");
-    const shadows = new WeakMap(); // host -> root, including same-world closed roots
+    // Keep previously observed closed roots reachable by host on reinstall.
+    // The weak key allows a detached host and its root to be collected together.
+    const shadows = installTranslator.shadows ??= new WeakMap();
     const observed = new WeakSet();
     const pending = new Set();    // drained once per microtask
     let active = true;
@@ -106,6 +108,12 @@
 
     function parent(node) {
         return node.assignedSlot || node.parentElement || node.parentNode?.host || node.host || null;
+    }
+    function closedLightChild(node) {
+        // assignedSlot is hidden for a slot inside a closed root. Even with a
+        // handle to that root, a new render can rearrange its projection. Treat
+        // every light child at this physical boundary as protected.
+        return node.parentElement && shadows.get(node.parentElement)?.mode === "closed";
     }
     function markAncestors(node) {
         touched.add(node);
@@ -127,7 +135,7 @@
         const input = fixedInput(element);
         for (let p = element; p; p = parent(p)) {
             if (p.nodeType !== 1) continue;
-            if (inProtectedSurface(p, input && p === element)) return blocked;
+            if (closedLightChild(p) || inProtectedSurface(p, input && p === element)) return blocked;
             const id = p.getAttribute("data-testid");
             if (id === "sidecar-row" && p.hasAttribute("data-sidecar-id")) row = true;
             if (!selected && (id || p.matches("button,select,[role=button],[role=menuitem]"))) {
@@ -281,7 +289,7 @@
             if (visited.has(node)) continue;
             visited.add(node);
             if (node.nodeType === 3) {
-                const ctx = context(parent(node));
+                const ctx = closedLightChild(node) ? blocked : context(parent(node));
                 textNode(node, ctx === blocked || ctx?.input ? null : ctx);
                 continue;
             }
@@ -324,7 +332,7 @@
         if (active && this.ownerDocument === doc) {
             shadows.set(this, root);
             observe(root);
-            enqueue(root);
+            enqueue(this);
         }
         return root;
     }

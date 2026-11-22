@@ -210,6 +210,36 @@ test('existing, late and nested Shadow DOM honor the composed content boundary',
   equal(separateLabel.textContent,'Close','separately created root restored');
 });
 
+test('closed root terminal slot protects a translated light-DOM label when assignedSlot is hidden', async () => {
+  const host = element('div'); const light = button('Save'); light.title = 'Close';
+  host.append(light); root.append(host); const api = mount(); await tick();
+  equal(light.textContent, '保存', 'known light-DOM control before projection');
+  const closed = host.attachShadow({mode:'closed'});
+  const terminal = element('div', {class:'terminal'}); const slot = element('slot');
+  terminal.append(slot); closed.append(terminal); await tick();
+  equal(host.shadowRoot, null, 'closed host'); equal(light.assignedSlot, null, 'closed slot is hidden');
+  equal(slot.assignedElements()[0], light, 'label actually projected into terminal');
+  for (const mode of ['zh', 'en', 'zh']) {
+    api.setMode(mode); await tick();
+    equal(light.textContent,'Save','closed terminal protects projected text');
+    equal(light.title,'Close','closed terminal protects projected title');
+  }
+});
+
+test('reinstall rediscovers roots captured by this installer before their host became opaque', async () => {
+  const host = element('div'); root.append(host); const previous = mount();
+  const closed = host.attachShadow({mode:'closed'}); const b = button('Save'); b.title = 'Close';
+  closed.append(b); await tick();
+  equal(b.textContent,'保存','first install captures same-world closed root');
+  const current = mount(); await tick();
+  equal(host.shadowRoot, null, 'closed root stays opaque');
+  equal(b.textContent,'保存','second install keeps authorized translation'); equal(b.title,'关闭','title after reinstallation');
+  previous.dispose();
+  current.setMode('en'); await tick(); equal(b.textContent,'Save','English recovered'); equal(b.title,'Close','title recovered');
+  current.setMode('zh'); await tick(); equal(b.textContent,'保存','Chinese recovered');
+  current.dispose(); equal(b.textContent,'Save','closed text after disposal');
+});
+
 test('Windows and macOS shortcuts have precise modifiers, suppress one action and persist mode', async () => {
   const b = button('Save'); root.append(b);
   for (const platform of ['darwin','win32']) {
