@@ -1,0 +1,520 @@
+{
+  "schema": 1,
+  "module": "menus_dialogs",
+  "version": "2.34.0",
+  "sources": {
+    "asar:dist/main.js": "383fcb66595c57b4d9efacdc7b11e3a2a334cb825b254d922cd4fe40455831bd",
+    "asar:dist/menu.js": "a6cde959efd16f0c99bdcb66d2228445bb7b2f00d0cb5a51aa1df6a8d933db13",
+    "asar:dist/updater.js": "6f8dbba51f45894e06903f9a030ff6c292df6563573750fc1f777bed4238a429",
+    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+  },
+  "exact": [],
+  "scoped": [
+    {
+      "scope": "application",
+      "en": "View",
+      "zh": "视图",
+      "source": "asar:dist/menu.js",
+      "offset": 2785
+    },
+    {
+      "scope": "application",
+      "en": "File",
+      "zh": "文件",
+      "source": "asar:dist/menu.js",
+      "offset": 6078
+    },
+    {
+      "scope": "application",
+      "en": "Help",
+      "zh": "帮助",
+      "source": "asar:dist/menu.js",
+      "offset": 7353
+    },
+    {
+      "scope": "application",
+      "en": "Actual Size",
+      "zh": "实际大小",
+      "source": "asar:dist/menu.js",
+      "offset": 3457
+    },
+    {
+      "scope": "application",
+      "en": "Zoom In",
+      "zh": "放大",
+      "source": "asar:dist/menu.js",
+      "offset": 3835
+    },
+    {
+      "scope": "application",
+      "en": "Zoom Out",
+      "zh": "缩小",
+      "source": "asar:dist/menu.js",
+      "offset": 4786
+    },
+    {
+      "scope": "application",
+      "en": "New Window",
+      "zh": "新建窗口",
+      "source": "asar:dist/menu.js",
+      "offset": 6130
+    },
+    {
+      "scope": "application",
+      "en": "Docs",
+      "zh": "使用文档",
+      "source": "asar:dist/menu.js",
+      "offset": 7405
+    },
+    {
+      "scope": "application",
+      "en": "Connect to WSL",
+      "zh": "连接到 WSL",
+      "source": "asar:dist/menu.js",
+      "offset": 8623
+    },
+    {
+      "scope": "application",
+      "en": "Reopen Locally",
+      "zh": "在本机重开",
+      "source": "asar:dist/menu.js",
+      "offset": 8858
+    },
+    {
+      "scope": "application",
+      "en": "Check for Updates",
+      "zh": "检查更新",
+      "source": "asar:dist/updater.js",
+      "offset": 2263
+    },
+    {
+      "scope": "application",
+      "en": "Checking for Updates...",
+      "zh": "正在检查更新…",
+      "source": "asar:dist/updater.js",
+      "offset": 2327
+    },
+    {
+      "scope": "application",
+      "en": "Downloading Update...",
+      "zh": "正在下载更新…",
+      "source": "asar:dist/updater.js",
+      "offset": 2396
+    },
+    {
+      "scope": "application",
+      "en": "Restart to Update",
+      "zh": "重启并更新",
+      "source": "asar:dist/updater.js",
+      "offset": 2461
+    },
+    {
+      "scope": "application",
+      "en": "No updates available",
+      "zh": "已是最新版本",
+      "source": "asar:dist/updater.js",
+      "offset": 8333
+    },
+    {
+      "scope": "application",
+      "en": "OK",
+      "zh": "确定",
+      "source": "asar:dist/updater.js",
+      "offset": 8383
+    },
+    {
+      "scope": "application",
+      "en": "Binary not found",
+      "zh": "找不到程序文件",
+      "source": "asar:dist/main.js",
+      "offset": 22098
+    },
+    {
+      "scope": "application",
+      "en": "WSL distro not found",
+      "zh": "找不到 WSL 发行版",
+      "source": "asar:dist/main.js",
+      "offset": 22860
+    },
+    {
+      "scope": "application",
+      "en": "Antigravity opened on Windows instead.",
+      "zh": "已改用 Windows 打开 Antigravity。",
+      "source": "asar:dist/main.js",
+      "offset": 22991
+    },
+    {
+      "scope": "application",
+      "en": "WSL setup failed",
+      "zh": "WSL 初始化失败",
+      "source": "asar:dist/main.js",
+      "offset": 24241
+    },
+    {
+      "scope": "application",
+      "en": "Startup failed",
+      "zh": "启动失败",
+      "source": "asar:dist/main.js",
+      "offset": 28004
+    },
+    {
+      "scope": "application",
+      "en": "Cancel",
+      "zh": "取消",
+      "source": "asar:dist/main.js",
+      "offset": 38195
+    },
+    {
+      "scope": "application",
+      "en": "Quit",
+      "zh": "退出",
+      "source": "asar:dist/main.js",
+      "offset": 38205
+    },
+    {
+      "scope": "application",
+      "en": "Confirm Quit",
+      "zh": "确认退出",
+      "source": "asar:dist/main.js",
+      "offset": 38272
+    },
+    {
+      "scope": "application",
+      "en": "Are you sure you want to quit?",
+      "zh": "确定要退出吗？",
+      "source": "asar:dist/main.js",
+      "offset": 38305
+    },
+    {
+      "scope": "application",
+      "en": "There may be agents or background tasks running.",
+      "zh": "可能还有 AI 助手或后台任务正在运行。",
+      "source": "asar:dist/main.js",
+      "offset": 38355
+    },
+    {
+      "scope": "dock",
+      "en": "New Window",
+      "zh": "新建窗口",
+      "source": "asar:dist/main.js",
+      "offset": 31379
+    },
+    {
+      "scope": "tray",
+      "en": "Quit",
+      "zh": "退出",
+      "source": "asar:dist/main.js",
+      "offset": 32275
+    },
+    {
+      "scope": "context",
+      "en": "Copy",
+      "zh": "复制",
+      "source": "hub:main.js",
+      "offset": 3819022
+    },
+    {
+      "scope": "context",
+      "en": "Cut",
+      "zh": "剪切",
+      "source": "hub:main.js",
+      "offset": 4476984
+    },
+    {
+      "scope": "context",
+      "en": "Paste",
+      "zh": "粘贴",
+      "source": "hub:main.js",
+      "offset": 4477327
+    },
+    {
+      "scope": "context",
+      "en": "Copy Link",
+      "zh": "复制链接",
+      "source": "hub:main.js",
+      "offset": 3598388
+    },
+    {
+      "scope": "context",
+      "en": "Copy Message",
+      "zh": "复制消息",
+      "source": "hub:main.js",
+      "offset": 7258898
+    },
+    {
+      "scope": "context",
+      "en": "Rename",
+      "zh": "重命名",
+      "source": "hub:main.js",
+      "offset": 8696013
+    },
+    {
+      "scope": "context",
+      "en": "Copy Image",
+      "zh": "复制图片",
+      "source": "hub:main.js",
+      "offset": 3472592
+    },
+    {
+      "scope": "context",
+      "en": "Copy Image Address",
+      "zh": "复制图片地址",
+      "source": "hub:main.js",
+      "offset": 5014093
+    },
+    {
+      "scope": "context",
+      "en": "Copy Link Address",
+      "zh": "复制链接地址",
+      "source": "hub:main.js",
+      "offset": 5013705
+    },
+    {
+      "scope": "context",
+      "en": "Select All",
+      "zh": "全选",
+      "source": "hub:main.js",
+      "offset": 4477919
+    },
+    {
+      "scope": "context",
+      "en": "Open Image in New Tab",
+      "zh": "在新标签页打开图片",
+      "source": "hub:main.js",
+      "offset": 5013938
+    },
+    {
+      "scope": "context",
+      "en": "Open in Built-in Browser",
+      "zh": "用内置浏览器打开",
+      "source": "hub:main.js",
+      "offset": 5063951
+    },
+    {
+      "scope": "context",
+      "en": "Open in External Browser",
+      "zh": "用外部浏览器打开",
+      "source": "hub:main.js",
+      "offset": 5016565
+    },
+    {
+      "scope": "context",
+      "en": "Open in New Tab",
+      "zh": "在新标签页打开",
+      "source": "hub:main.js",
+      "offset": 3472812
+    },
+    {
+      "scope": "context",
+      "en": "Open in Side Panel",
+      "zh": "在侧栏打开",
+      "source": "hub:main.js",
+      "offset": 5056140
+    },
+    {
+      "scope": "context",
+      "en": "Open in Tab",
+      "zh": "在标签页打开",
+      "source": "hub:main.js",
+      "offset": 3472717
+    },
+    {
+      "scope": "context",
+      "en": "Open Link in External Browser",
+      "zh": "用外部浏览器打开链接",
+      "source": "hub:main.js",
+      "offset": 5013552
+    },
+    {
+      "scope": "context",
+      "en": "Open Link in New Tab",
+      "zh": "在新标签页打开链接",
+      "source": "hub:main.js",
+      "offset": 5013397
+    },
+    {
+      "scope": "context",
+      "en": "Back",
+      "zh": "后退",
+      "source": "hub:main.js",
+      "offset": 5016218
+    },
+    {
+      "scope": "context",
+      "en": "Forward",
+      "zh": "前进",
+      "source": "hub:main.js",
+      "offset": 5016324
+    },
+    {
+      "scope": "context",
+      "en": "Reload",
+      "zh": "重新加载",
+      "source": "hub:main.js",
+      "offset": 5016438
+    },
+    {
+      "scope": "context",
+      "en": "Stop",
+      "zh": "停止",
+      "source": "hub:main.js",
+      "offset": 8697277
+    },
+    {
+      "scope": "context",
+      "en": "Archive",
+      "zh": "归档",
+      "source": "hub:main.js",
+      "offset": 8697386
+    },
+    {
+      "scope": "context",
+      "en": "Restore",
+      "zh": "恢复",
+      "source": "hub:main.js",
+      "offset": 8695783
+    },
+    {
+      "scope": "context",
+      "en": "Share",
+      "zh": "分享",
+      "source": "hub:main.js",
+      "offset": 8697148
+    },
+    {
+      "scope": "context",
+      "en": "New Group",
+      "zh": "新建分组",
+      "source": "hub:main.js",
+      "offset": 8688843
+    },
+    {
+      "scope": "context",
+      "en": "Remove from Group",
+      "zh": "移出分组",
+      "source": "hub:main.js",
+      "offset": 8688951
+    },
+    {
+      "scope": "context",
+      "en": "Delete Permanently",
+      "zh": "永久删除",
+      "source": "hub:main.js",
+      "offset": 8695892
+    },
+    {
+      "scope": "context",
+      "en": "Delete",
+      "zh": "删除",
+      "source": "hub:main.js",
+      "offset": 8697516
+    },
+    {
+      "scope": "context",
+      "en": "Reply",
+      "zh": "回复",
+      "source": "hub:main.js",
+      "offset": 8186665
+    },
+    {
+      "scope": "context",
+      "en": "Undo to Here",
+      "zh": "撤销到这里",
+      "source": "hub:main.js",
+      "offset": 7259047
+    },
+    {
+      "scope": "context",
+      "en": "Quote",
+      "zh": "引用",
+      "source": "hub:main.js",
+      "offset": 5015705
+    },
+    {
+      "scope": "context",
+      "en": "Comment",
+      "zh": "评论",
+      "source": "hub:main.js",
+      "offset": 5015502
+    },
+    {
+      "scope": "context",
+      "en": "Add Shortcut",
+      "zh": "添加快捷键",
+      "source": "hub:main.js",
+      "offset": 5460901
+    },
+    {
+      "scope": "context",
+      "en": "Edit Shortcut",
+      "zh": "修改快捷键",
+      "source": "hub:main.js",
+      "offset": 5460803
+    },
+    {
+      "scope": "context",
+      "en": "Remove Shortcut",
+      "zh": "移除快捷键",
+      "source": "hub:main.js",
+      "offset": 5461003
+    },
+    {
+      "scope": "context",
+      "en": "Reset to Default",
+      "zh": "恢复默认",
+      "source": "hub:main.js",
+      "offset": 5461132
+    },
+    {
+      "scope": "context",
+      "en": "Bad Response",
+      "zh": "回答不好",
+      "source": "hub:main.js",
+      "offset": 8244986
+    },
+    {
+      "scope": "context",
+      "en": "Good Response",
+      "zh": "回答不错",
+      "source": "hub:main.js",
+      "offset": 8244835
+    },
+    {
+      "scope": "context",
+      "en": "Move Up",
+      "zh": "上移",
+      "source": "hub:main.js",
+      "offset": 9480010
+    },
+    {
+      "scope": "context",
+      "en": "Move Down",
+      "zh": "下移",
+      "source": "hub:main.js",
+      "offset": 9480125
+    },
+    {
+      "scope": "context",
+      "en": "Hide",
+      "zh": "隐藏",
+      "source": "hub:main.js",
+      "offset": 9479846
+    },
+    {
+      "scope": "context",
+      "en": "View Debug",
+      "zh": "查看调试信息",
+      "source": "hub:main.js",
+      "offset": 8696680
+    }
+  ],
+  "templates": [
+    {
+      "id": "agentsRunning",
+      "en": "No agents running",
+      "zh": "{n} 个 AI 助手运行中",
+      "source": "asar:dist/main.js",
+      "offset": 31950
+    }
+  ]
+}

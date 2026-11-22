@@ -38,6 +38,389 @@ function key(target, options) {
 const cases = [];
 function test(name, run) { cases.push({name, run}); }
 
+const seenReleaseTerms = new Set();
+function withChildren(node, ...children) { node.append(...children); return node; }
+function box(attrs, ...children) { return withChildren(element('div', attrs), ...children); }
+
+// Each row names the official control and the rendered property that supplied
+// its English. Expected Chinese comes from the shipped five-module dictionary.
+test('release dictionary covers fixed control captions and accessible names', async () => {
+  const controls = [
+    ["toolbar", "new-conversation-button", "a", "caption", "New Conversation"],
+    ["toolbar", "settings-button", "button", "caption", "Settings"],
+    ["toolbar", "app-update-button", "div", "text", "Updating…"],
+    ["toolbar", "manual-update-button", "div", "text", "Update Available"],
+    ["toolbar", "open-editor-empty", "button", "text", "Open IDE"],
+    ["toolbar", "plugins-button", "button", "caption", "Plugins"],
+    ["toolbar", "plugins-nav-more-button", "button", "aria-label", "Plugins Options"],
+    ["toolbar", "overview-panel-customize-trigger", "button", "aria-label", "Customize Sections"],
+    ["toolbar", "media-modal-zoom-out", "button", "aria-label", "Zoom out (-)"],
+    ["toolbar", "media-modal-zoom-in", "button", "aria-label", "Zoom in (+)"],
+    ["toolbar", "media-modal-zoom-reset", "button", "title", "Reset zoom (0)"],
+    ["toolbar", "media-modal-download", "button", "aria-label", "Download video", "Download image"],
+    ["toolbar", "media-modal-close", "button", "aria-label", "Close (Esc)"],
+    ["toolbar", "media-modal-previous", "button", "aria-label", "Previous (←)", "Previous"],
+    ["toolbar", "media-modal-next", "button", "aria-label", "Next (→)", "Next"],
+    ["toolbar", "webview-prompt-cancel", "button", "text", "Cancel"],
+    ["toolbar", "webview-prompt-ok", "button", "text", "OK"],
+    ["onboarding", "onboarding-back", "button", "aria-label", "Back"],
+    ["onboarding", "onboarding-switch-to-auth-code", "button", "text", "Trouble signing in? Enter authorization code"],
+    ["onboarding", "onboarding-auth-code-submit", "button", "text", "Submit code"],
+    ["onboarding", "onboarding-copy-sign-in-link", "button", "text", "Copied!", "Copy sign-in link"],
+    ["onboarding", "onboarding-last-used-badge", "span", "text", "Last Used"],
+    ["onboarding", "onboarding-other-options-toggle", "button", "text", "Other sign-in options"],
+    ["workspace", "customize-sidebar-button", "button", "aria-label", "Customize Sidebar"],
+    ["workspace", "filter-sort-button", "button", "aria-label", "Filter and Sort"],
+    ["workspace", "filter-environment-all", "button", "text", "All"],
+    ["workspace", "filter-mark-all-read", "button", "text", "Mark All as Read"],
+    ["workspace", "group-by-submenu-trigger", "span", "text", "Group By"],
+    ["workspace", "sort-by-submenu-trigger", "span", "text", "Sort Conversations"],
+    ["workspace", "filter-submenu-trigger", "span", "text", "Filter"],
+    ["workspace", "display-submenu-trigger", "span", "text", "Display"],
+    ["workspace", "view-option-auto-pin", "span", "text", "Auto Pin"],
+    ["workspace", "view-option-archived", "span", "text", "Archived Only"],
+    ["workspace", "filter-option-scheduled", "span", "text", "Automations"],
+    ["workspace", "filter-option-plugins", "span", "text", "Plugins"],
+    ["workspace", "palette-filter-unread", "span", "text", "Only Unread"],
+    ["workspace", "palette-filter-archived", "span", "text", "Only Archived"],
+    ["workspace", "palette-filter-scheduled", "span", "text", "Only Automations"],
+    ["workspace", "conversations-palette-filter-trigger", "button", "aria-label", "Sort and filter conversations"],
+    ["workspace", "palette-sort-last_user_prompt", "span", "text", "Last Prompt"],
+    ["workspace", "conversation-kebab", "button", "aria-label", "More options"],
+    ["workspace", "conversation-archive-button", "button", "aria-label", "Archive conversation"],
+    ["workspace", "conversation-pin-button", "button", "aria-label", "Unpin conversation", "Pin conversation"],
+    ["workspace", "rename-conversation-submit", "button", "text", "Rename"],
+    ["workspace", "confirm-delete-conversation", "button", "text", "Delete"],
+    ["workspace", "project-selector-connect-ssh-host", "button", "text", "Connect to SSH Host…"],
+    ["workspace", "project-selector-connect-github", "button", "text", "Connect GitHub"],
+    ["workspace", "project-selector-create-project-trigger", "button", "text", "Create Project"],
+    ["workspace", "project-selector-github-loading", "button", "text", "Loading Repositories…"],
+    ["workspace", "project-folder-selection-next", "button", "text", "Creating...", "Next"],
+    ["workspace", "empty-file-open-button", "button", "text", "Open File"],
+    ["workspace", "file-tree-filter-error", "div", "text", "Couldn't search files"],
+    ["workspace", "file-tree-filter-empty", "div", "text", "No matching files"],
+    ["workspace", "file-tree-filter-clear", "button", "aria-label", "Clear file filter"],
+    ["workspace", "file-tree-filter-clear", "button", "title", "Searching...", "Clear filter"],
+    ["workspace", "voice-dock-send", "button", "aria-label", "Send"],
+    ["settings", "open-vscode-keybindings-btn", "button", "text", "Open Keyboard Shortcuts"],
+    ["settings", "settings-upload-debug-bundle-button", "button", "aria-label", "Upload Debug Bundle"],
+    ["settings", "browser-clear-data-cancel", "button", "text", "Cancel"],
+    ["settings", "browser-clear-data-confirm", "button", "text", "Clear"],
+    ["settings", "browser-site-data-loading", "div", "text", "Loading cookies…"],
+    ["settings", "browser-site-data-empty", "p", "text", "No sites have cookies in the built-in browser."],
+    ["settings", "browser-site-data-error", "p", "text", "Couldn't load cookies."],
+    ["settings", "browser-clear-data-error", "p", "text", "Couldn't clear browsing data. Try again."],
+    ["settings", "builtin-browser-download-dir-change", "button", "text", "Change…"],
+    ["settings", "builtin-browser-download-dir-reset", "button", "text", "Reset"],
+    ["settings", "browser-site-data-manage-button", "button", "text", "Manage"],
+    ["settings", "wsl-reopen-locally", "button", "text", "Reopen Locally"],
+    ["settings", "setup-script-save-button", "button", "text", "Save"],
+    ["settings", "setup-script-validate-button", "button", "text", "Validate"],
+    ["settings", "setup-script-copy-button", "button", "aria-label", "Copied", "Copy output"],
+    ["settings", "voice-settings-change", "button", "text", "Change"],
+    ["settings", "voice-settings-delete-recordings", "button", "text", "Delete all"],
+    ["settings", "voice-delete-recordings-confirm", "button", "text", "Delete"],
+    ["permissions", "inline-permission-badge", "span", "text", "Runtime permission"],
+    ["permissions", "permissions-advanced-toggle", "button", "text", "Advanced"],
+    ["permissions", "computer-permissions-relaunch", "button", "text", "Relaunch ↻"],
+    ["permissions", "computer-permissions-continue", "button", "text", "Continue Task →"],
+    ["permissions", "declared-permissions-arg-folder", "button", "text", "Change", "Browse"],
+    ["permissions", "declared-permissions-next", "button", "text", "Resolving...", "Next: Review Permissions"],
+    ["permissions", "declared-permissions-confirm", "button", "text", "Saving..."],
+    ["permissions", "permissions-use-global-settings", "button", "text", "Use Global Settings"],
+    ["permissions", "inline-permission-add-note", "button", "text", "Deny with note"],
+    ["permissions", "inline-permission-deny", "button", "text", "Deny"],
+    ["permissions", "inline-permission-unsandboxed-warning", "div", "text", "Confirm the command is safe to run outside of the sandbox with full network and disk access."],
+    ["permissions", "inline-permission-in-chat", "button", "text", "In chat"],
+    ["model", "model-selector-header", "div", "text", "Best of N Models", "Model"],
+    ["model", "model-selector-refresh", "button", "text", "Refresh"],
+    ["model", "model-selector-loading", "div", "text", "Loading models..."],
+    ["model", "model-selector-empty", "div", "text", "No models available"],
+    ["model", "model-selector-effort-header", "div", "text", "Thinking effort"],
+    ["model", "model-selector-effort-info", "span", "aria-label", "Controls how much time and quota the model spends reasoning before responding. Higher effort improves accuracy on hard problems, at the cost of slower responses and higher quota use."],
+    ["model", "model-quota-refreshing", "div", "text", "Refreshing..."],
+    ["agents", "webview-download-agent-badge", "span", "text", "Agent"],
+    ["agents", "mcp-server-fix-with-agent", "button", "text", "Fix with Agent"],
+    ["agents", "mcp-server-configure", "button", "text", "Configure"],
+    ["agents", "mcp-server-restart", "button", "text", "Restart"],
+    ["agents", "mcp-server-paste-code-instead", "button", "text", "Paste a code instead"],
+    ["agents", "add-mcp-button", "button", "text", "Add MCP"],
+    ["agents", "add-mcp-button", "button", "aria-label", "Add MCP Server"],
+    ["agents", "mcp-config-confirm", "button", "text", "Enabling...", "Installing...", "Saving..."],
+    ["agents", "cancel-delete-mcp", "button", "text", "Cancel"],
+    ["agents", "confirm-delete-mcp", "button", "text", "Deleting...", "Delete"],
+    ["agents", "mcp-app-open-in-side-pane", "button", "aria-label", "Open in side pane"],
+    ["agents", "delete-skill-reinstall-note", "div", "text", "This skill came from the marketplace, so you can add it again whenever you need it."],
+    ["agents", "delete-skill-permanent-warning", "div", "text", "This cannot be undone."],
+    ["agents", "subagent-stop", "button", "aria-label", "Stop subagent"],
+    ["agents", "subagent-expand", "button", "aria-label", "Collapse subagents", "Expand subagents"],
+    ["agents", "subagent-approve", "button", "text", "Approve"],
+    ["agents", "subagent-deny", "button", "text", "Deny"],
+    ["agents", "subagent-node-children-toggle", "button", "text", "Show less"],
+    ["agents", "subagent-tab-loading", "div", "text", "Loading subagent..."],
+    ["agents", "subagent-tab-ended", "div", "text", "Subagent ended"],
+    ["agents", "subagent-tab-open-full-view", "button", "text", "Full View"],
+    ["agents", "new-coordinator-button", "button", "aria-label", "New coordinator"],
+    ["agents", "create-coordinator-submit", "button", "text", "Create Coordinator"],
+    ["agents", "coordinator-settings-save", "button", "text", "Save"],
+    ["agents", "marketplace-filter-button", "button", "aria-label", "Filter plugins"],
+    ["agents", "review-plugin-source-caution", "button", "text", "Review contents"],
+    ["agents", "confirm-plugin-source-caution", "button", "text", "Add anyway"],
+    ["sidecar", "automation-untrusted-warning", "span", "aria-label", "Untrusted sidecar"],
+    ["sidecar", "sidecar-action-delete", "button", "text", "Delete"],
+    ["sidecar", "sidecar-action-run-now", "button", "text", "Run Now"],
+    ["sidecar", "sidecar-action-restart", "button", "text", "Restart"],
+    ["sidecar", "sidecar-action-manage-permissions", "button", "text", "Manage Permissions"],
+    ["sidecar", "sidecar-action-view-logs", "button", "text", "View Logs"],
+    ["sidecar", "new-sidecar-back", "button", "text", "Back"],
+    ["sidecar", "new-sidecar-submit", "button", "text", "Creating…", "Create"],
+    ["sidecar", "new-sidecar-trigger-scheduled", "button", "text", "Scheduled"],
+    ["sidecar", "new-sidecar-remove-trigger", "button", "aria-label", "Remove trigger"],
+    ["sidecar", "new-sidecar-add-trigger", "button", "text", "Add schedule", "Add trigger"],
+    ["sidecar", "sidecar-new-button", "button", "text", "New"],
+    ["sidecar", "cancel-delete-sidecar", "button", "text", "Cancel"],
+    ["sidecar", "sidecar-detail-close", "button", "aria-label", "Close"],
+    ["sidecar", "new-sidecar-no-project", "span", "text", "Create a project first."],
+    ["sidecar", "automation-settings-save", "button", "text", "Save"],
+  ];
+  const probes = [];
+  for (const [scope,id,tag,prop,...terms] of controls) {
+    const entries = releaseLocale.scoped.find(group => group.scope === scope).entries;
+    for (const en of terms) {
+      if (!Object.hasOwn(entries,en)) throw Error('Missing release entry ' + scope + ' / ' + en);
+      const owner = element(tag, {'data-testid':id});
+      let label = owner;
+      if (prop === 'caption') {
+        if (tag === 'a') owner.setAttribute('href','/local/new');
+        label = element('span',{class:'truncate'},en); owner.append(label);
+      } else if (prop === 'text') {
+        label.append(document.createTextNode(en));
+      } else {
+        owner.setAttribute(prop,en);
+      }
+      root.append(owner);
+      probes.push({label,prop,en,zh:entries[en],id,scope});
+    }
+  }
+  const api = mount(releaseLocale);
+  for (const mode of ['zh','en']) {
+    api.setMode(mode); await tick();
+    for (const {label,prop,en,zh,id,scope} of probes) {
+      equal(prop === 'text' || prop === 'caption' ? label.textContent : label.getAttribute(prop),
+        mode === 'zh' ? zh : en, id + ' / ' + en);
+      if (mode === 'zh') seenReleaseTerms.add(scope+'|'+en);
+    }
+  }
+});
+
+test('release dictionary translates mixed panels only at their fixed display leaves', async () => {
+  const probes = [];
+  const entries = scope => releaseLocale.scoped.find(group => group.scope === scope).entries;
+  function leaf(scope, en, tag = 'span', attrs = {}, prop = 'text') {
+    if (!Object.hasOwn(entries(scope),en)) throw Error('Missing shipped entry ' + en);
+    const el = prop === 'text' ? element(tag,attrs,en) : element(tag,{...attrs,[prop]:en});
+    probes.push({el,prop,scope,en});
+    return el;
+  }
+  const owner = (id,...children) => box({'data-testid':id},...children);
+  const span = (scope,en,attrs) => leaf(scope,en,'span',attrs);
+  for (const [scope,id,en,attrs] of [
+    ['toolbar','overview-panel-row-review','Review',{class:'agy-hover-label'}],
+    ['toolbar','overview-panel-row-files','Files',{class:'agy-hover-label'}],
+    ['toolbar','overview-panel-row-terminal','Terminal',{class:'agy-hover-label'}],
+    ['workspace','aux-pane-terminals-section','Terminals',{class:'agy-hover-label'}],
+    ['workspace','aux-pane-background-tasks-section','Background Tasks',{class:'agy-hover-label'}],
+    ['workspace','pane-selection-add-to-chat','Add to Chat',{}],
+    ['workspace','filter-environment','Environment',{}],
+    ['workspace','filter-last-activity','Last Activity',{}],
+    ['workspace','filter-sort-by','Sort By',{}],
+    ['workspace','artifact-pdf-fallback','Inline PDF preview is not available in this environment.',{}],
+    ['workspace','artifact-no-preview','Preview is not available for this file type.',{}],
+    ['model','model-selector-orchestrator','Orchestrator',{}],
+  ]) root.append(owner(id,span(scope,en,attrs)));
+  root.append(owner('comments-modal-section-artifact',leaf('workspace','Artifact Comments','h3')));
+  root.append(owner('artifact-update-notice',span('workspace','Artifact updated by agent'),
+    leaf('workspace','Dismiss artifact update notice','button',{},'aria-label')));
+  root.append(owner('project-selector-new-workspace',span('workspace','New Workspace',{class:'truncate min-w-0',title:'folder'})));
+  const nav = box({});
+  root.append(owner('settings-sidebar',box({},box({},leaf('settings','Settings','h1')),nav)));
+  for (const screen of ['General','Projects','Agents','Environments','App','Appearance','Shortcuts',
+    'Notifications','Models','Customizations','Browser','Developer','Running']) {
+    nav.append(box({},withChildren(element('button',{'data-testid':'settings-nav-item-'+screen}),
+      span('settings',screen === 'App' ? 'Application' : screen))));
+  }
+  root.append(owner('onboarding-auth-code-panel',
+    leaf('onboarding','Sign in in your browser, then paste the authorization code shown on the callback page.','p'),
+    box({},leaf('onboarding','Authorization code','label',{for:'onboarding-auth-code-input'}))));
+  const steps = element('ol');
+  root.append(owner('post-onboarding-welcome-modal',leaf('onboarding',"Here's how you and your agents work together",'p'),
+    steps,box({},leaf('onboarding','Get started','button',{'data-autofocus':'true'}))));
+  for (const [id,title,description] of [
+    ['agents','Build with one agent or a team','Describe what you want. Your agent plans and builds it, and brings in other agents when needed.'],
+    ['plans','Review plans and walkthroughs','Comment on the plan before your agent starts, and get a walkthrough when it finishes.'],
+    ['safety','Set the rules, define the boundaries.','By default, agents work in folders you choose and ask before sensitive changes. Adjust this anytime in Settings.']
+  ]) {
+    steps.append(withChildren(element('li',{'data-testid':'post-onboarding-welcome-step-'+id}),element('span',{},'1'),
+      withChildren(element('span'),span('onboarding',title),span('onboarding',description))));
+  }
+  for (const label of ['Enable macOS Permissions','macOS Permissions Ready']) {
+    root.append(owner('computer-permissions-card',box({},span('permissions',label))));
+  }
+  for (const [id,label] of [['command-permissions-row','Terminal commands'],['tool-permissions-row','Tool permissions']]) {
+    const left = box({},box({},span('permissions',label)));
+    if (id === 'command-permissions-row') left.append(span('permissions','Configure allowed terminal commands.',{class:'whitespace-pre-wrap'}));
+    root.append(owner(id,left));
+  }
+  root.append(leaf('permissions','Confirm & Save','button',{'data-testid':'declared-permissions-confirm'}));
+  for (const en of ['All','Skills','Rules','Built In','Global']) {
+    root.append(leaf('agents',en,'button',{'data-testid':'skills-rules-filter'}));
+  }
+  const banner = span('agents','Workflows are changing on October 19th—stay tuned for updates. You can use the agent to migrate your workflows.');
+  // This same span contains both a text node and a nested call to action.
+  banner.append(leaf('agents','Migrate with Agent','button'));
+  root.append(owner('workflow-deprecation-banner',box({},banner)));
+  const service = button('Fix with Agent','mcp-server-fix-with-agent');
+  service.setAttribute('aria-describedby','mcp-advice');root.append(service);
+  root.append(leaf('agents','Ask the agent to diagnose and fix this server','div',{id:'mcp-advice',role:'tooltip',class:'compact-tooltip'}));
+  // These are the only two field metadata values eligible on this named input.
+  for (const [attr,en] of [['placeholder','Untitled'],['aria-label','Name']]) {
+    root.append(leaf('sidecar',en,'input',{'data-testid':'new-sidecar-name'},attr));
+  }
+  const api = mount(releaseLocale);
+  for (const mode of ['zh','en']) {
+    api.setMode(mode); await tick();
+    for (const {el,prop,scope,en} of probes) {
+      const shown = prop === 'text' ? el.firstChild.nodeValue : el.getAttribute(prop);
+      equal(shown,mode === 'zh' ? entries(scope)[en] : en,scope+' / '+en);
+      if (mode === 'zh') seenReleaseTerms.add(scope+'|'+en);
+    }
+  }
+});
+
+test('release dictionary translates audited Hub navigation, permissions, onboarding, models and MCP leaves', async () => {
+  const nav = element('span', {class:'truncate'}, 'New Conversation');
+  const link = withChildren(element('a', {href:'/local/route', 'data-testid':'new-conversation-button'}), nav);
+  const iconButton = element('button', {'data-testid':'customize-sidebar-button','aria-label':'Customize Sidebar'});
+  const icon = element('span', {class:'google-symbols'}, 'tune'); iconButton.append(icon);
+  const checked = [
+    [nav, null, 'New Conversation', '新建对话'],
+    [iconButton, 'aria-label', 'Customize Sidebar', '自定义侧栏'],
+  ];
+  const primary = [
+    ['declared-permissions-next', 'Next: Review Permissions', '下一步：核对权限'],
+    ['onboarding-auth-code-submit','Submit code','提交授权码'],
+    ['model-selector-header','Model','模型'],
+    ['mcp-server-configure','Configure','配置'],
+    ['skills-rules-filter','Skills','技能'],
+    ['sidecar-action-run-now','Run Now','立即运行'],
+    ['subagent-tab-ended','Subagent ended','子助手已结束'],
+  ];
+  root.append(link, iconButton);
+  for (const [id,en,zh] of primary) {
+    const control = button(en,id); root.append(control); checked.push([control,null,en,zh]);
+  }
+  const workspaceLabel = element('span', {class:'truncate min-w-0',title:'New Workspace'}, 'New Workspace');
+  root.append(box({'data-testid':'project-selector-new-workspace'},box({},workspaceLabel)));
+  checked.push([workspaceLabel,null,'New Workspace','新建工作目录']);
+  const makeItem = () => withChildren(button('','settings-nav-item-Agents'), element('span',{},'Agents'));
+  const fixed = makeItem(), project = makeItem();
+  root.append(box({'data-testid':'settings-sidebar'}, box({},box({}),box({},box({},fixed)),box({}),box({},box({},project)))));
+  checked.push([fixed.lastElementChild,null,'Agents','AI 助手']);
+  const fileCaption = element('span',{},'Preview is not available for this file type.');
+  const filename = element('span',{},'Add to Chat');
+  root.append(box({'data-testid':'artifact-no-preview'},fileCaption, filename));
+  checked.push([fileCaption,null,'Preview is not available for this file type.','这种文件暂时无法预览。']);
+  const transcript = box({'data-testid':'agent-response'}, button('Configure','mcp-server-configure'));
+  const customModel = box({'data-testid':'model-selector-custom-item'}, button('Model','model-selector-header'));
+  root.append(transcript, customModel);
+  const mcp = checked.find(row => row[2] === 'Configure')[0];
+  mcp.setAttribute('aria-label','Configure Atlas');
+  const api = mount({...releaseLocale, custom:{tune:'不应替换图标', 'Configure Atlas':'不应替换服务名'}});
+  for (const mode of ['zh','en','zh','en']) {
+    api.setMode(mode); await tick();
+    for (const [el,attr,en,zh] of checked) equal(attr ? el.getAttribute(attr) : el.textContent,mode === 'zh' ? zh : en,en);
+    equal(icon.textContent,'tune','icon-font ligature');
+    equal(mcp.getAttribute('aria-label'),'Configure Atlas','dynamic MCP service name');
+    equal(project.textContent,'Agents','same name in workspace list');
+    equal(workspaceLabel.title,'New Workspace','user-controlled workspace hint');
+    equal(transcript.textContent,'Configure','assistant response'); equal(customModel.textContent,'Model','model name');
+    equal(filename.textContent,'Add to Chat','file name in mixed preview panel');
+  }
+});
+
+test('release dictionary resolves a shared tooltip only with one eligible owner', async () => {
+  const hint = box({id:'shared-model-tip',role:'tooltip',class:'compact-tooltip'});
+  const label = element('span',{},'Select Model'), shortcut = element('span',{},'Select Model');
+  hint.append(box({},label,shortcut));
+  const owner = button('My model','model-selector-trigger'); owner.setAttribute('aria-describedby',hint.id);
+  root.append(owner,hint);
+  const api = mount(releaseLocale); await tick();
+  equal(label.textContent,'选择模型','trigger tooltip'); equal(shortcut.textContent,'Select Model','shortcut');
+  const other = button('Select Model','model-selector-custom-item'); other.setAttribute('aria-describedby',hint.id);
+  root.append(other); await tick(); equal(label.textContent,'Select Model','ambiguity revokes translation');
+  other.remove(); await tick(); equal(label.textContent,'选择模型','one owner');
+  const chat = box({'data-testid':'user-message'}); root.append(chat); chat.append(owner); await tick();
+  equal(label.textContent,'Select Model','portal with owner moved into transcript');
+  root.append(owner); await tick(); equal(label.textContent,'选择模型','owner returned');
+  hint.textContent='Add Model'; owner.setAttribute('data-testid','model-selector-add-custom-model'); await tick();
+  equal(hint.textContent,'添加模型','shared tooltip reassigned');
+  api.setMode('en'); await tick(); equal(hint.textContent,'Add Model','restored actual latest source');
+  for (const en of ['Add Model','Select Model']) seenReleaseTerms.add('model|'+en);
+});
+
+test('release dictionary limits permission and quota headings to identifiable settings cards', async () => {
+  const heading = element('h2',{},'File Permissions');
+  const title = box({class:'mb-2'},box({class:'justify-between'},box({class:'flex-1'}, heading)));
+  const card = box({class:'agy-card'}), content = box({class:'gap-8'},card);
+  const page = box({class:'max-w-2xl gap-4'},title,content);
+  root.append(box({class:'settings-modal-container'},page));
+  const row = (value, label) => box({class:'gap-1'},box({class:'justify-between'},box({},box({},element('span',{},label)),element('span',{class:'whitespace-pre-wrap'},value))));
+  const rd = row('Allow/deny agent read access to specific files or directories.','File reads');
+  const wr = row('Allow/deny agent write access to specific files or directories.','File writes');
+  card.append(rd,wr);
+  const api = mount(releaseLocale); await tick(); equal(heading.textContent,'文件权限','file grants');
+  equal(rd.querySelector('span').textContent,'读取文件','grant label');
+  equal(wr.querySelector('span').textContent,'写入文件','write grant label');
+  equal(rd.querySelector('.whitespace-pre-wrap').textContent,'设置 AI 助手可以读取或禁止读取的文件和目录。','read grant explanation');
+  equal(wr.querySelector('.whitespace-pre-wrap').textContent,'设置 AI 助手可以写入或禁止写入的文件和目录。','grant explanation');
+  api.setMode('en'); await tick(); equal(rd.querySelector('span').textContent,'File reads','grant label restored');
+  equal(wr.querySelector('.whitespace-pre-wrap').textContent,'Allow/deny agent write access to specific files or directories.','grant description restored');
+  api.setMode('zh'); await tick(); wr.remove(); await tick(); equal(heading.textContent,'File Permissions','missing companion');
+  card.replaceChildren(row('Allow/deny agent read access to specific URLs or domains.','Read URLs'));
+  heading.textContent='Network Permissions'; await tick(); equal(heading.textContent,'网络权限','URL grants');
+  equal(card.querySelector('span').textContent,'读取网址','URL grant label');
+  equal(card.querySelector('.whitespace-pre-wrap').textContent,'设置 AI 助手可以访问或禁止访问的网址和域名。','URL grant explanation');
+  const command = box({'data-testid':'command-permissions-row'}); card.replaceChildren(command);
+  heading.textContent='Tool Permissions'; await tick(); equal(heading.textContent,'工具权限','terminal grants');
+  const sub = element('h3',{},'Local Permissions');
+  const subtitle = box({class:'gap-1'},box({class:'justify-between'},box({class:'gap-1.5'},sub)));
+  const localCard = box({class:'agy-card'},command.cloneNode());
+  const section = box({class:'space-y-2'},subtitle,box({},localCard)); content.append(section);
+  await tick(); equal(sub.textContent,'本地权限','local section');
+  const empty = box({class:'text-secondary-foreground'}); empty.textContent='No quota information available.';
+  localCard.replaceChildren(empty); sub.textContent='Model Quota'; await tick(); equal(sub.textContent,'模型配额','known quota state');
+  equal(empty.textContent,'暂无配额信息。','quota status');
+  empty.textContent='project note'; await tick(); equal(sub.textContent,'Model Quota','unverified card');
+  // A model group's displayName is a nested dynamic span inside the heading.
+  empty.textContent='No quota information available.'; sub.replaceChildren(element('span',{},'Model Quota'));
+  await tick(); equal(sub.textContent,'Model Quota','custom model group');
+  api.setMode('en'); await tick(); equal(heading.textContent,'Tool Permissions','heading restoration');
+  for (const en of ['File Permissions','Network Permissions','Tool Permissions','Local Permissions','File reads',
+    'File writes','Read URLs','Allow/deny agent read access to specific files or directories.',
+    'Allow/deny agent write access to specific files or directories.','Allow/deny agent read access to specific URLs or domains.']) {
+    seenReleaseTerms.add('permissions|'+en);
+  }
+  for (const en of ['Model Quota','No quota information available.']) seenReleaseTerms.add('model|'+en);
+});
+
+test('all shipped Hub translations have an exercised display path', () => {
+  const scopes = new Set(['toolbar','workspace','settings','permissions','onboarding','model','agents','sidecar']);
+  const missing = releaseLocale.scoped.filter(group => scopes.has(group.scope))
+    .flatMap(({scope,entries}) => Object.keys(entries).filter(en => !seenReleaseTerms.has(scope+'|'+en))
+      .map(en => scope+' / '+en));
+  equal(missing.join(', '),'','unexercised release translation');
+});
+
 test('original nodes, whitespace and all three display attributes survive repeated switches', async () => {
   const el = button('  Save\n');
   for (const attr of ['placeholder', 'title', 'aria-label']) el.setAttribute(attr, 'Close');

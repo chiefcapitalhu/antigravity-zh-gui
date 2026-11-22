@@ -1,0 +1,516 @@
+{
+  "schema": 1,
+  "module": "agents",
+  "version": "2.34.0",
+  "sources": {
+    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+  },
+  "exact": [],
+  "scoped": [
+    {
+      "scope": "agents",
+      "en": "Add MCP",
+      "zh": "添加 MCP",
+      "source": "hub:main.js",
+      "offset": 5590618
+    },
+    {
+      "scope": "agents",
+      "en": "Add MCP Server",
+      "zh": "添加 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 9180421
+    },
+    {
+      "scope": "agents",
+      "en": "Add anyway",
+      "zh": "仍要添加",
+      "source": "hub:main.js",
+      "offset": 8319460
+    },
+    {
+      "scope": "agents",
+      "en": "Agent",
+      "zh": "AI 助手",
+      "source": "hub:main.js",
+      "offset": 4942065
+    },
+    {
+      "scope": "agents",
+      "en": "All",
+      "zh": "全部",
+      "source": "hub:main.js",
+      "offset": 9168893
+    },
+    {
+      "scope": "agents",
+      "en": "Approve",
+      "zh": "允许",
+      "source": "hub:main.js",
+      "offset": 8154833
+    },
+    {
+      "scope": "agents",
+      "en": "Ask the agent to diagnose and fix this server",
+      "zh": "请 AI 助手诊断并修复此服务",
+      "source": "hub:main.js",
+      "offset": 8342424
+    },
+    {
+      "scope": "agents",
+      "en": "Built In",
+      "zh": "内置",
+      "source": "hub:main.js",
+      "offset": 9168937
+    },
+    {
+      "scope": "agents",
+      "en": "Cancel",
+      "zh": "取消",
+      "source": "hub:main.js",
+      "offset": 9164597
+    },
+    {
+      "scope": "agents",
+      "en": "Collapse subagents",
+      "zh": "收起子助手",
+      "source": "hub:main.js",
+      "offset": 8152691
+    },
+    {
+      "scope": "agents",
+      "en": "Configure",
+      "zh": "配置",
+      "source": "hub:main.js",
+      "offset": 8345269
+    },
+    {
+      "scope": "agents",
+      "en": "Create Coordinator",
+      "zh": "创建协调器",
+      "source": "hub:main.js",
+      "offset": 9316351
+    },
+    {
+      "scope": "agents",
+      "en": "Delete",
+      "zh": "删除",
+      "source": "hub:main.js",
+      "offset": 9164768
+    },
+    {
+      "scope": "agents",
+      "en": "Deleting...",
+      "zh": "正在删除…",
+      "source": "hub:main.js",
+      "offset": 9164754
+    },
+    {
+      "scope": "agents",
+      "en": "Deny",
+      "zh": "拒绝",
+      "source": "hub:main.js",
+      "offset": 8155125
+    },
+    {
+      "scope": "agents",
+      "en": "Enabling...",
+      "zh": "正在启用…",
+      "source": "hub:main.js",
+      "offset": 5610446
+    },
+    {
+      "scope": "agents",
+      "en": "Expand subagents",
+      "zh": "展开子助手",
+      "source": "hub:main.js",
+      "offset": 8152712
+    },
+    {
+      "scope": "agents",
+      "en": "Filter plugins",
+      "zh": "筛选插件",
+      "source": "hub:main.js",
+      "offset": 9224882
+    },
+    {
+      "scope": "agents",
+      "en": "Fix with Agent",
+      "zh": "请助手修复",
+      "source": "hub:main.js",
+      "offset": 8342574
+    },
+    {
+      "scope": "agents",
+      "en": "Full View",
+      "zh": "完整视图",
+      "source": "hub:main.js",
+      "offset": 9653652
+    },
+    {
+      "scope": "agents",
+      "en": "Global",
+      "zh": "全局",
+      "source": "hub:main.js",
+      "offset": 9168955
+    },
+    {
+      "scope": "agents",
+      "en": "Installing...",
+      "zh": "正在安装…",
+      "source": "hub:main.js",
+      "offset": 5610474
+    },
+    {
+      "scope": "agents",
+      "en": "Loading subagent...",
+      "zh": "正在加载子助手…",
+      "source": "hub:main.js",
+      "offset": 9652668
+    },
+    {
+      "scope": "agents",
+      "en": "Migrate with Agent",
+      "zh": "请助手迁移",
+      "source": "hub:main.js",
+      "offset": 8823401
+    },
+    {
+      "scope": "agents",
+      "en": "New coordinator",
+      "zh": "新建协调器",
+      "source": "hub:main.js",
+      "offset": 9581336
+    },
+    {
+      "scope": "agents",
+      "en": "Open in side pane",
+      "zh": "在侧栏打开",
+      "source": "hub:main.js",
+      "offset": 7498086
+    },
+    {
+      "scope": "agents",
+      "en": "Paste a code instead",
+      "zh": "改为粘贴授权码",
+      "source": "hub:main.js",
+      "offset": 8348075
+    },
+    {
+      "scope": "agents",
+      "en": "Restart",
+      "zh": "重启",
+      "source": "hub:main.js",
+      "offset": 8346780
+    },
+    {
+      "scope": "agents",
+      "en": "Review contents",
+      "zh": "查看内容",
+      "source": "hub:main.js",
+      "offset": 8318956
+    },
+    {
+      "scope": "agents",
+      "en": "Rules",
+      "zh": "规则",
+      "source": "hub:main.js",
+      "offset": 9168921
+    },
+    {
+      "scope": "agents",
+      "en": "Save",
+      "zh": "保存",
+      "source": "hub:main.js",
+      "offset": 9318153
+    },
+    {
+      "scope": "agents",
+      "en": "Saving...",
+      "zh": "正在保存…",
+      "source": "hub:main.js",
+      "offset": 5610490
+    },
+    {
+      "scope": "agents",
+      "en": "Show less",
+      "zh": "收起",
+      "source": "hub:main.js",
+      "offset": 8155877
+    },
+    {
+      "scope": "agents",
+      "en": "Skills",
+      "zh": "技能",
+      "source": "hub:main.js",
+      "offset": 9168906
+    },
+    {
+      "scope": "agents",
+      "en": "Stop subagent",
+      "zh": "停止子助手",
+      "source": "hub:main.js",
+      "offset": 8153431
+    },
+    {
+      "scope": "agents",
+      "en": "Subagent ended",
+      "zh": "子助手已结束",
+      "source": "hub:main.js",
+      "offset": 9652796
+    },
+    {
+      "scope": "agents",
+      "en": "This cannot be undone.",
+      "zh": "此操作无法撤销。",
+      "source": "hub:main.js",
+      "offset": 9166271
+    },
+    {
+      "scope": "agents",
+      "en": "This skill came from the marketplace, so you can add it again whenever you need it.",
+      "zh": "此技能来自市场，需要时可以重新添加。",
+      "source": "hub:main.js",
+      "offset": 9165816
+    },
+    {
+      "scope": "agents",
+      "en": "Workflows are changing on October 19th—stay tuned for updates. You can use the agent to migrate your workflows.",
+      "zh": "工作流将于 10 月 19 日调整，请留意后续更新。你可以请 AI 助手迁移现有工作流。",
+      "source": "hub:main.js",
+      "offset": 8823218
+    },
+    {
+      "scope": "model",
+      "en": "Add Model",
+      "zh": "添加模型",
+      "source": "hub:main.js",
+      "offset": 8903760
+    },
+    {
+      "scope": "model",
+      "en": "Best of N Models",
+      "zh": "多模型择优",
+      "source": "hub:main.js",
+      "offset": 8910003
+    },
+    {
+      "scope": "model",
+      "en": "Controls how much time and quota the model spends reasoning before responding. Higher effort improves accuracy on hard problems, at the cost of slower responses and higher quota use.",
+      "zh": "决定模型回答前要花多少时间和配额思考。提高强度有助于答对难题，但回复会变慢，也会消耗更多配额。",
+      "source": "hub:main.js",
+      "offset": 8907982
+    },
+    {
+      "scope": "model",
+      "en": "Loading models...",
+      "zh": "正在加载模型…",
+      "source": "hub:main.js",
+      "offset": 8904457
+    },
+    {
+      "scope": "model",
+      "en": "Model",
+      "zh": "模型",
+      "source": "hub:main.js",
+      "offset": 8910022
+    },
+    {
+      "scope": "model",
+      "en": "Model Quota",
+      "zh": "模型配额",
+      "source": "hub:main.js",
+      "offset": 5409815
+    },
+    {
+      "scope": "model",
+      "en": "No models available",
+      "zh": "暂无可用模型",
+      "source": "hub:main.js",
+      "offset": 8910283
+    },
+    {
+      "scope": "model",
+      "en": "No quota information available.",
+      "zh": "暂无配额信息。",
+      "source": "hub:main.js",
+      "offset": 5410205
+    },
+    {
+      "scope": "model",
+      "en": "Orchestrator",
+      "zh": "协调器",
+      "source": "hub:main.js",
+      "offset": 8906551
+    },
+    {
+      "scope": "model",
+      "en": "Refresh",
+      "zh": "刷新",
+      "source": "hub:main.js",
+      "offset": 8904866
+    },
+    {
+      "scope": "model",
+      "en": "Refreshing...",
+      "zh": "正在刷新…",
+      "source": "hub:main.js",
+      "offset": 8894888
+    },
+    {
+      "scope": "model",
+      "en": "Select Model",
+      "zh": "选择模型",
+      "source": "hub:main.js",
+      "offset": 6397881
+    },
+    {
+      "scope": "model",
+      "en": "Thinking effort",
+      "zh": "思考强度",
+      "source": "hub:main.js",
+      "offset": 8907852
+    },
+    {
+      "scope": "sidecar",
+      "en": "Add schedule",
+      "zh": "添加定时计划",
+      "source": "hub:main.js",
+      "offset": 9922245
+    },
+    {
+      "scope": "sidecar",
+      "en": "Add trigger",
+      "zh": "添加触发条件",
+      "source": "hub:main.js",
+      "offset": 9922526
+    },
+    {
+      "scope": "sidecar",
+      "en": "Back",
+      "zh": "返回",
+      "source": "hub:main.js",
+      "offset": 9929534
+    },
+    {
+      "scope": "sidecar",
+      "en": "Cancel",
+      "zh": "取消",
+      "source": "hub:main.js",
+      "offset": 7593818
+    },
+    {
+      "scope": "sidecar",
+      "en": "Close",
+      "zh": "关闭",
+      "source": "hub:main.js",
+      "offset": 9893199
+    },
+    {
+      "scope": "sidecar",
+      "en": "Create",
+      "zh": "创建",
+      "source": "hub:main.js",
+      "offset": 9920930
+    },
+    {
+      "scope": "sidecar",
+      "en": "Create a project first.",
+      "zh": "请先创建一个项目。",
+      "source": "hub:main.js",
+      "offset": 9920544
+    },
+    {
+      "scope": "sidecar",
+      "en": "Creating…",
+      "zh": "正在创建…",
+      "source": "hub:main.js",
+      "offset": 9920913
+    },
+    {
+      "scope": "sidecar",
+      "en": "Delete",
+      "zh": "删除",
+      "source": "hub:main.js",
+      "offset": 7596209
+    },
+    {
+      "scope": "sidecar",
+      "en": "Manage Permissions",
+      "zh": "管理权限",
+      "source": "hub:main.js",
+      "offset": 7595518
+    },
+    {
+      "scope": "sidecar",
+      "en": "Name",
+      "zh": "名称",
+      "source": "hub:main.js",
+      "offset": 9919353
+    },
+    {
+      "scope": "sidecar",
+      "en": "New",
+      "zh": "新建",
+      "source": "hub:main.js",
+      "offset": 9935381
+    },
+    {
+      "scope": "sidecar",
+      "en": "Remove trigger",
+      "zh": "移除触发条件",
+      "source": "hub:main.js",
+      "offset": 9921690
+    },
+    {
+      "scope": "sidecar",
+      "en": "Restart",
+      "zh": "重启",
+      "source": "hub:main.js",
+      "offset": 7595862
+    },
+    {
+      "scope": "sidecar",
+      "en": "Run Now",
+      "zh": "立即运行",
+      "source": "hub:main.js",
+      "offset": 7595682
+    },
+    {
+      "scope": "sidecar",
+      "en": "Save",
+      "zh": "保存",
+      "source": "hub:main.js",
+      "offset": 9818429
+    },
+    {
+      "scope": "sidecar",
+      "en": "Scheduled",
+      "zh": "定时",
+      "source": "hub:main.js",
+      "offset": 9922822
+    },
+    {
+      "scope": "sidecar",
+      "en": "Untitled",
+      "zh": "未命名",
+      "source": "hub:main.js",
+      "offset": 9919329
+    },
+    {
+      "scope": "sidecar",
+      "en": "Untrusted sidecar",
+      "zh": "未受信任的伴生侧栏",
+      "source": "hub:main.js",
+      "offset": 9899427
+    },
+    {
+      "scope": "sidecar",
+      "en": "View Logs",
+      "zh": "查看日志",
+      "source": "hub:main.js",
+      "offset": 7595991
+    }
+  ],
+  "templates": []
+}

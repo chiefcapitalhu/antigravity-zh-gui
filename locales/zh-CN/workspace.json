@@ -1,0 +1,348 @@
+{
+  "schema": 1,
+  "module": "workspace",
+  "version": "2.34.0",
+  "sources": {
+    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+  },
+  "exact": [],
+  "scoped": [
+    {
+      "scope": "workspace",
+      "en": "Add to Chat",
+      "zh": "添加到对话",
+      "source": "hub:main.js",
+      "offset": 9619967
+    },
+    {
+      "scope": "workspace",
+      "en": "All",
+      "zh": "全部",
+      "source": "hub:main.js",
+      "offset": 9519706
+    },
+    {
+      "scope": "workspace",
+      "en": "Archive conversation",
+      "zh": "归档对话",
+      "source": "hub:main.js",
+      "offset": 8714149
+    },
+    {
+      "scope": "workspace",
+      "en": "Archived Only",
+      "zh": "只看已归档",
+      "source": "hub:main.js",
+      "offset": 9499604
+    },
+    {
+      "scope": "workspace",
+      "en": "Artifact Comments",
+      "zh": "生成文档评论",
+      "source": "hub:main.js",
+      "offset": 7242249
+    },
+    {
+      "scope": "workspace",
+      "en": "Artifact updated by agent",
+      "zh": "AI 助手已更新生成文档",
+      "source": "hub:main.js",
+      "offset": 7978693
+    },
+    {
+      "scope": "workspace",
+      "en": "Auto Pin",
+      "zh": "自动置顶",
+      "source": "hub:main.js",
+      "offset": 9499470
+    },
+    {
+      "scope": "workspace",
+      "en": "Automations",
+      "zh": "自动化",
+      "source": "hub:main.js",
+      "offset": 9498150
+    },
+    {
+      "scope": "workspace",
+      "en": "Background Tasks",
+      "zh": "后台任务",
+      "source": "hub:main.js",
+      "offset": 9641016
+    },
+    {
+      "scope": "workspace",
+      "en": "Clear file filter",
+      "zh": "清除文件筛选",
+      "source": "hub:main.js",
+      "offset": 8518581
+    },
+    {
+      "scope": "workspace",
+      "en": "Clear filter",
+      "zh": "清除筛选",
+      "source": "hub:main.js",
+      "offset": 8518664
+    },
+    {
+      "scope": "workspace",
+      "en": "Connect GitHub",
+      "zh": "连接 GitHub",
+      "source": "hub:main.js",
+      "offset": 8739674
+    },
+    {
+      "scope": "workspace",
+      "en": "Connect to SSH Host…",
+      "zh": "连接 SSH 主机…",
+      "source": "hub:main.js",
+      "offset": 8756320
+    },
+    {
+      "scope": "workspace",
+      "en": "Couldn't search files",
+      "zh": "无法搜索文件",
+      "source": "hub:main.js",
+      "offset": 8519024
+    },
+    {
+      "scope": "workspace",
+      "en": "Create Project",
+      "zh": "创建项目",
+      "source": "hub:main.js",
+      "offset": 8757026
+    },
+    {
+      "scope": "workspace",
+      "en": "Creating...",
+      "zh": "正在创建…",
+      "source": "hub:main.js",
+      "offset": 9487611
+    },
+    {
+      "scope": "workspace",
+      "en": "Customize Sidebar",
+      "zh": "自定义侧栏",
+      "source": "hub:main.js",
+      "offset": 9573081
+    },
+    {
+      "scope": "workspace",
+      "en": "Delete",
+      "zh": "删除",
+      "source": "hub:main.js",
+      "offset": 7649089
+    },
+    {
+      "scope": "workspace",
+      "en": "Dismiss artifact update notice",
+      "zh": "关闭文档更新提示",
+      "source": "hub:main.js",
+      "offset": 7978802
+    },
+    {
+      "scope": "workspace",
+      "en": "Display",
+      "zh": "显示",
+      "source": "hub:main.js",
+      "offset": 9498884
+    },
+    {
+      "scope": "workspace",
+      "en": "Environment",
+      "zh": "环境",
+      "source": "hub:main.js",
+      "offset": 9519424
+    },
+    {
+      "scope": "workspace",
+      "en": "Filter",
+      "zh": "筛选",
+      "source": "hub:main.js",
+      "offset": 9497746
+    },
+    {
+      "scope": "workspace",
+      "en": "Filter and Sort",
+      "zh": "筛选与排序",
+      "source": "hub:main.js",
+      "offset": 9518133
+    },
+    {
+      "scope": "workspace",
+      "en": "Group By",
+      "zh": "分组方式",
+      "source": "hub:main.js",
+      "offset": 9495942
+    },
+    {
+      "scope": "workspace",
+      "en": "Inline PDF preview is not available in this environment.",
+      "zh": "当前环境无法直接预览 PDF。",
+      "source": "hub:main.js",
+      "offset": 8057294
+    },
+    {
+      "scope": "workspace",
+      "en": "Last Activity",
+      "zh": "最近活动",
+      "source": "hub:main.js",
+      "offset": 9518726
+    },
+    {
+      "scope": "workspace",
+      "en": "Last Prompt",
+      "zh": "最近的提示词",
+      "source": "hub:main.js",
+      "offset": 7657122
+    },
+    {
+      "scope": "workspace",
+      "en": "Loading Repositories…",
+      "zh": "正在加载仓库…",
+      "source": "hub:main.js",
+      "offset": 8739352
+    },
+    {
+      "scope": "workspace",
+      "en": "Mark All as Read",
+      "zh": "全部标为已读",
+      "source": "hub:main.js",
+      "offset": 9520816
+    },
+    {
+      "scope": "workspace",
+      "en": "More options",
+      "zh": "更多选项",
+      "source": "hub:main.js",
+      "offset": 8699249
+    },
+    {
+      "scope": "workspace",
+      "en": "New Workspace",
+      "zh": "新建工作目录",
+      "source": "hub:main.js",
+      "offset": 8753353
+    },
+    {
+      "scope": "workspace",
+      "en": "Next",
+      "zh": "下一步",
+      "source": "hub:main.js",
+      "offset": 9487627
+    },
+    {
+      "scope": "workspace",
+      "en": "No matching files",
+      "zh": "没有匹配的文件",
+      "source": "hub:main.js",
+      "offset": 8519189
+    },
+    {
+      "scope": "workspace",
+      "en": "Only Archived",
+      "zh": "只看已归档",
+      "source": "hub:main.js",
+      "offset": 7657553
+    },
+    {
+      "scope": "workspace",
+      "en": "Only Automations",
+      "zh": "只看自动化",
+      "source": "hub:main.js",
+      "offset": 7657733
+    },
+    {
+      "scope": "workspace",
+      "en": "Only Unread",
+      "zh": "只看未读",
+      "source": "hub:main.js",
+      "offset": 7657378
+    },
+    {
+      "scope": "workspace",
+      "en": "Open File",
+      "zh": "打开文件",
+      "source": "hub:main.js",
+      "offset": 9629179
+    },
+    {
+      "scope": "workspace",
+      "en": "Pin conversation",
+      "zh": "置顶对话",
+      "source": "hub:main.js",
+      "offset": 8714403
+    },
+    {
+      "scope": "workspace",
+      "en": "Plugins",
+      "zh": "插件",
+      "source": "hub:main.js",
+      "offset": 9498318
+    },
+    {
+      "scope": "workspace",
+      "en": "Preview is not available for this file type.",
+      "zh": "这种文件暂时无法预览。",
+      "source": "hub:main.js",
+      "offset": 8063708
+    },
+    {
+      "scope": "workspace",
+      "en": "Rename",
+      "zh": "重命名",
+      "source": "hub:main.js",
+      "offset": 8680715
+    },
+    {
+      "scope": "workspace",
+      "en": "Searching...",
+      "zh": "正在搜索…",
+      "source": "hub:main.js",
+      "offset": 8518648
+    },
+    {
+      "scope": "workspace",
+      "en": "Send",
+      "zh": "发送",
+      "source": "hub:main.js",
+      "offset": 9740874
+    },
+    {
+      "scope": "workspace",
+      "en": "Sort By",
+      "zh": "排序方式",
+      "source": "hub:main.js",
+      "offset": 9520153
+    },
+    {
+      "scope": "workspace",
+      "en": "Sort Conversations",
+      "zh": "对话排序",
+      "source": "hub:main.js",
+      "offset": 9496363
+    },
+    {
+      "scope": "workspace",
+      "en": "Sort and filter conversations",
+      "zh": "排序和筛选对话",
+      "source": "hub:main.js",
+      "offset": 7656130
+    },
+    {
+      "scope": "workspace",
+      "en": "Terminals",
+      "zh": "终端",
+      "source": "hub:main.js",
+      "offset": 9639863
+    },
+    {
+      "scope": "workspace",
+      "en": "Unpin conversation",
+      "zh": "取消置顶",
+      "source": "hub:main.js",
+      "offset": 8714381
+    }
+  ],
+  "templates": []
+}

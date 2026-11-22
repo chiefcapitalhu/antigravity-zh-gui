@@ -21,6 +21,22 @@ function chromePath() {
   return executable;
 }
 
+function catalogFixture() {
+  const exact = {}, scopes = new Map(), templates = [];
+  for (const module of ['core', 'workspace', 'settings', 'agents', 'menus_dialogs']) {
+    const file = path.join(__dirname, '..', 'locales', 'zh-CN', module + '.json');
+    const entries = JSON.parse(fs.readFileSync(file, 'utf8'));
+    for (const {en, zh} of entries.exact) exact[en] = zh;
+    for (const {scope, en, zh} of entries.scoped) {
+      if (!scopes.has(scope)) scopes.set(scope, {});
+      scopes.get(scope)[en] = zh;
+    }
+    for (const {id, zh} of entries.templates) templates.push({id, format: zh});
+  }
+  const scoped = Array.from(scopes, ([scope, entries]) => ({scope, entries}));
+  return {exact, scoped, custom: {}, templates};
+}
+
 function run() {
   const chrome = chromePath();
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ag-zh-dom-'));
@@ -28,7 +44,7 @@ function run() {
     const resources = path.join(__dirname, '..', 'runtime');
     const source = fs.readFileSync(path.join(resources, 'ui_translator.js'), 'utf8');
     const native = fs.readFileSync(path.join(resources, 'main_hooks.js'), 'utf8');
-    fs.writeFileSync(path.join(temp, 'runtime.js'), 'const install = ' + source + ';\nconst createNative = ' + native + ';\n');
+    fs.writeFileSync(path.join(temp, 'runtime.js'), 'const install = ' + source + ';\nconst createNative = ' + native + ';\nconst releaseLocale = ' + JSON.stringify(catalogFixture()) + ';\n');
     fs.copyFileSync(path.join(__dirname, 'dom-cases.js'), path.join(temp, 'cases.js'));
     const html = path.join(temp, 'index.html');
     fs.writeFileSync(html, `<!doctype html><html lang="en"><head><meta charset="utf-8">

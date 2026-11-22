@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "module": "core",
+  "version": "2.34.0",
+  "sources": {
+    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+  },
+  "exact": [],
+  "scoped": [
+    {
+      "scope": "onboarding",
+      "en": "Authorization code",
+      "zh": "授权码",
+      "source": "hub:main.js",
+      "offset": 9075349
+    },
+    {
+      "scope": "onboarding",
+      "en": "Back",
+      "zh": "返回",
+      "source": "hub:main.js",
+      "offset": 7677523
+    },
+    {
+      "scope": "onboarding",
+      "en": "Build with one agent or a team",
+      "zh": "用一个或多个 AI 助手完成任务",
+      "source": "hub:main.js",
+      "offset": 7685234
+    },
+    {
+      "scope": "onboarding",
+      "en": "By default, agents work in folders you choose and ask before sensitive changes. Adjust this anytime in Settings.",
+      "zh": "默认情况下，AI 助手在你选择的文件夹中工作，做出敏感更改前会先询问。你随时可以在设置里调整。",
+      "source": "hub:main.js",
+      "offset": 7685600
+    },
+    {
+      "scope": "onboarding",
+      "en": "Comment on the plan before your agent starts, and get a walkthrough when it finishes.",
+      "zh": "在 AI 助手动手前给计划提意见，完成后即可查看执行说明。",
+      "source": "hub:main.js",
+      "offset": 7685440
+    },
+    {
+      "scope": "onboarding",
+      "en": "Copied!",
+      "zh": "已复制！",
+      "source": "hub:main.js",
+      "offset": 9077502
+    },
+    {
+      "scope": "onboarding",
+      "en": "Copy sign-in link",
+      "zh": "复制登录链接",
+      "source": "hub:main.js",
+      "offset": 9077512
+    },
+    {
+      "scope": "onboarding",
+      "en": "Describe what you want. Your agent plans and builds it, and brings in other agents when needed.",
+      "zh": "说说你想做什么。AI 助手会制定计划并动手完成，需要时还会请其他助手帮忙。",
+      "source": "hub:main.js",
+      "offset": 7685279
+    },
+    {
+      "scope": "onboarding",
+      "en": "Get started",
+      "zh": "开始使用",
+      "source": "hub:main.js",
+      "offset": 7688001
+    },
+    {
+      "scope": "onboarding",
+      "en": "Here's how you and your agents work together",
+      "zh": "了解如何与 AI 助手一起工作",
+      "source": "hub:main.js",
+      "offset": 7686635
+    },
+    {
+      "scope": "onboarding",
+      "en": "Last Used",
+      "zh": "上次使用",
+      "source": "hub:main.js",
+      "offset": 9079655
+    },
+    {
+      "scope": "onboarding",
+      "en": "Other sign-in options",
+      "zh": "其他登录方式",
+      "source": "hub:main.js",
+      "offset": 9080581
+    },
+    {
+      "scope": "onboarding",
+      "en": "Review plans and walkthroughs",
+      "zh": "审阅计划与完成说明",
+      "source": "hub:main.js",
+      "offset": 7685396
+    },
+    {
+      "scope": "onboarding",
+      "en": "Set the rules, define the boundaries.",
+      "zh": "设定规则，划清权限范围",
+      "source": "hub:main.js",
+      "offset": 7685548
+    },
+    {
+      "scope": "onboarding",
+      "en": "Sign in in your browser, then paste the authorization code shown on the callback page.",
+      "zh": "请在浏览器中登录，再把返回页面显示的授权码粘贴到这里。",
+      "source": "hub:main.js",
+      "offset": 9075089
+    },
+    {
+      "scope": "onboarding",
+      "en": "Submit code",
+      "zh": "提交授权码",
+      "source": "hub:main.js",
+      "offset": 9076502
+    },
+    {
+      "scope": "onboarding",
+      "en": "Trouble signing in? Enter authorization code",
+      "zh": "登录遇到问题？输入授权码",
+      "source": "hub:main.js",
+      "offset": 9074127
+    },
+    {
+      "scope": "toolbar",
+      "en": "Cancel",
+      "zh": "取消",
+      "source": "hub:main.js",
+      "offset": 4920830
+    },
+    {
+      "scope": "toolbar",
+      "en": "Close (Esc)",
+      "zh": "关闭 (Esc)",
+      "source": "hub:main.js",
+      "offset": 3527283
+    },
+    {
+      "scope": "toolbar",
+      "en": "Customize Sections",
+      "zh": "自定义分区",
+      "source": "hub:main.js",
+      "offset": 9285266
+    },
+    {
+      "scope": "toolbar",
+      "en": "Download image",
+      "zh": "下载图片",
+      "source": "hub:main.js",
+      "offset": 3527067
+    },
+    {
+      "scope": "toolbar",
+      "en": "Download video",
+      "zh": "下载视频",
+      "source": "hub:main.js",
+      "offset": 3527050
+    },
+    {
+      "scope": "toolbar",
+      "en": "Files",
+      "zh": "文件",
+      "source": "hub:main.js",
+      "offset": 9289783
+    },
+    {
+      "scope": "toolbar",
+      "en": "New Conversation",
+      "zh": "新建对话",
+      "source": "hub:main.js",
+      "offset": 9589623
+    },
+    {
+      "scope": "toolbar",
+      "en": "Next",
+      "zh": "下一步",
+      "source": "hub:main.js",
+      "offset": 3528217
+    },
+    {
+      "scope": "toolbar",
+      "en": "Next (→)",
+      "zh": "下一个 (→)",
+      "source": "hub:main.js",
+      "offset": 3528201
+    },
+    {
+      "scope": "toolbar",
+      "en": "OK",
+      "zh": "确定",
+      "source": "hub:main.js",
+      "offset": 4920937
+    },
+    {
+      "scope": "toolbar",
+      "en": "Open IDE",
+      "zh": "打开 IDE",
+      "source": "hub:main.js",
+      "offset": 9309411
+    },
+    {
+      "scope": "toolbar",
+      "en": "Plugins",
+      "zh": "插件",
+      "source": "hub:main.js",
+      "offset": 9590892
+    },
+    {
+      "scope": "toolbar",
+      "en": "Plugins Options",
+      "zh": "插件选项",
+      "source": "hub:main.js",
+      "offset": 9476804
+    },
+    {
+      "scope": "toolbar",
+      "en": "Previous",
+      "zh": "上一个",
+      "source": "hub:main.js",
+      "offset": 3527990
+    },
+    {
+      "scope": "toolbar",
+      "en": "Previous (←)",
+      "zh": "上一个 (←)",
+      "source": "hub:main.js",
+      "offset": 3527970
+    },
+    {
+      "scope": "toolbar",
+      "en": "Reset zoom (0)",
+      "zh": "重置缩放 (0)",
+      "source": "hub:main.js",
+      "offset": 3497975
+    },
+    {
+      "scope": "toolbar",
+      "en": "Review",
+      "zh": "审阅",
+      "source": "hub:main.js",
+      "offset": 9289639
+    },
+    {
+      "scope": "toolbar",
+      "en": "Settings",
+      "zh": "设置",
+      "source": "hub:main.js",
+      "offset": 9592991
+    },
+    {
+      "scope": "toolbar",
+      "en": "Terminal",
+      "zh": "终端",
+      "source": "hub:main.js",
+      "offset": 9289940
+    },
+    {
+      "scope": "toolbar",
+      "en": "Update Available",
+      "zh": "有可用更新",
+      "source": "hub:main.js",
+      "offset": 9301868
+    },
+    {
+      "scope": "toolbar",
+      "en": "Updating…",
+      "zh": "正在更新…",
+      "source": "hub:main.js",
+      "offset": 9295536
+    },
+    {
+      "scope": "toolbar",
+      "en": "Zoom in (+)",
+      "zh": "放大 (+)",
+      "source": "hub:main.js",
+      "offset": 3498354
+    },
+    {
+      "scope": "toolbar",
+      "en": "Zoom out (-)",
+      "zh": "缩小 (-)",
+      "source": "hub:main.js",
+      "offset": 3497763
+    }
+  ],
+  "templates": []
+}

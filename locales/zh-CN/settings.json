@@ -1,0 +1,453 @@
+{
+  "schema": 1,
+  "module": "settings",
+  "version": "2.34.0",
+  "sources": {
+    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+  },
+  "exact": [],
+  "scoped": [
+    {
+      "scope": "permissions",
+      "en": "Advanced",
+      "zh": "高级选项",
+      "source": "hub:main.js",
+      "offset": 5564743
+    },
+    {
+      "scope": "permissions",
+      "en": "Allow/deny agent read access to specific URLs or domains.",
+      "zh": "设置 AI 助手可以访问或禁止访问的网址和域名。",
+      "source": "hub:main.js",
+      "offset": 5554187
+    },
+    {
+      "scope": "permissions",
+      "en": "Allow/deny agent read access to specific files or directories.",
+      "zh": "设置 AI 助手可以读取或禁止读取的文件和目录。",
+      "source": "hub:main.js",
+      "offset": 5553570
+    },
+    {
+      "scope": "permissions",
+      "en": "Allow/deny agent write access to specific files or directories.",
+      "zh": "设置 AI 助手可以写入或禁止写入的文件和目录。",
+      "source": "hub:main.js",
+      "offset": 5553886
+    },
+    {
+      "scope": "permissions",
+      "en": "Browse",
+      "zh": "浏览",
+      "source": "hub:main.js",
+      "offset": 7590976
+    },
+    {
+      "scope": "permissions",
+      "en": "Change",
+      "zh": "更改",
+      "source": "hub:main.js",
+      "offset": 7590967
+    },
+    {
+      "scope": "permissions",
+      "en": "Configure allowed terminal commands.",
+      "zh": "设置允许执行的终端命令。",
+      "source": "hub:main.js",
+      "offset": 5555904
+    },
+    {
+      "scope": "permissions",
+      "en": "Confirm & Save",
+      "zh": "确认并保存",
+      "source": "hub:main.js",
+      "offset": 7593233
+    },
+    {
+      "scope": "permissions",
+      "en": "Confirm the command is safe to run outside of the sandbox with full network and disk access.",
+      "zh": "此命令将在沙箱外运行，可以访问所有网络和磁盘。请确认它可以安全执行。",
+      "source": "hub:main.js",
+      "offset": 8294663
+    },
+    {
+      "scope": "permissions",
+      "en": "Continue Task →",
+      "zh": "继续任务 →",
+      "source": "hub:main.js",
+      "offset": 7196486
+    },
+    {
+      "scope": "permissions",
+      "en": "Deny",
+      "zh": "拒绝",
+      "source": "hub:main.js",
+      "offset": 8298692
+    },
+    {
+      "scope": "permissions",
+      "en": "Deny with note",
+      "zh": "说明原因并拒绝",
+      "source": "hub:main.js",
+      "offset": 8298047
+    },
+    {
+      "scope": "permissions",
+      "en": "Enable macOS Permissions",
+      "zh": "开启 macOS 权限",
+      "source": "hub:main.js",
+      "offset": 7195125
+    },
+    {
+      "scope": "permissions",
+      "en": "File Permissions",
+      "zh": "文件权限",
+      "source": "hub:main.js",
+      "offset": 5557523
+    },
+    {
+      "scope": "permissions",
+      "en": "File reads",
+      "zh": "读取文件",
+      "source": "hub:main.js",
+      "offset": 5553545
+    },
+    {
+      "scope": "permissions",
+      "en": "File writes",
+      "zh": "写入文件",
+      "source": "hub:main.js",
+      "offset": 5553860
+    },
+    {
+      "scope": "permissions",
+      "en": "In chat",
+      "zh": "在对话中",
+      "source": "hub:main.js",
+      "offset": 8298378
+    },
+    {
+      "scope": "permissions",
+      "en": "Local Permissions",
+      "zh": "本地权限",
+      "source": "hub:main.js",
+      "offset": 5566122
+    },
+    {
+      "scope": "permissions",
+      "en": "Network Permissions",
+      "zh": "网络权限",
+      "source": "hub:main.js",
+      "offset": 5557647
+    },
+    {
+      "scope": "permissions",
+      "en": "Next: Review Permissions",
+      "zh": "下一步：核对权限",
+      "source": "hub:main.js",
+      "offset": 7591853
+    },
+    {
+      "scope": "permissions",
+      "en": "Read URLs",
+      "zh": "读取网址",
+      "source": "hub:main.js",
+      "offset": 5554163
+    },
+    {
+      "scope": "permissions",
+      "en": "Relaunch ↻",
+      "zh": "重新启动 ↻",
+      "source": "hub:main.js",
+      "offset": 7196321
+    },
+    {
+      "scope": "permissions",
+      "en": "Resolving...",
+      "zh": "正在解析…",
+      "source": "hub:main.js",
+      "offset": 7591838
+    },
+    {
+      "scope": "permissions",
+      "en": "Runtime permission",
+      "zh": "运行权限",
+      "source": "hub:main.js",
+      "offset": 8292387
+    },
+    {
+      "scope": "permissions",
+      "en": "Saving...",
+      "zh": "正在保存…",
+      "source": "hub:main.js",
+      "offset": 7593218
+    },
+    {
+      "scope": "permissions",
+      "en": "Terminal commands",
+      "zh": "终端命令",
+      "source": "hub:main.js",
+      "offset": 5555851
+    },
+    {
+      "scope": "permissions",
+      "en": "Tool Permissions",
+      "zh": "工具权限",
+      "source": "hub:main.js",
+      "offset": 5557369
+    },
+    {
+      "scope": "permissions",
+      "en": "Tool permissions",
+      "zh": "工具权限",
+      "source": "hub:main.js",
+      "offset": 5557016
+    },
+    {
+      "scope": "permissions",
+      "en": "Use Global Settings",
+      "zh": "使用全局设置",
+      "source": "hub:main.js",
+      "offset": 8839741
+    },
+    {
+      "scope": "permissions",
+      "en": "macOS Permissions Ready",
+      "zh": "macOS 权限已就绪",
+      "source": "hub:main.js",
+      "offset": 7195099
+    },
+    {
+      "scope": "settings",
+      "en": "Agents",
+      "zh": "AI 助手",
+      "source": "hub:main.js",
+      "offset": 5085647
+    },
+    {
+      "scope": "settings",
+      "en": "Appearance",
+      "zh": "外观",
+      "source": "hub:main.js",
+      "offset": 5085745
+    },
+    {
+      "scope": "settings",
+      "en": "Application",
+      "zh": "应用",
+      "source": "hub:main.js",
+      "offset": 5085722
+    },
+    {
+      "scope": "settings",
+      "en": "Browser",
+      "zh": "浏览器",
+      "source": "hub:main.js",
+      "offset": 5085857
+    },
+    {
+      "scope": "settings",
+      "en": "Cancel",
+      "zh": "取消",
+      "source": "hub:main.js",
+      "offset": 5328823
+    },
+    {
+      "scope": "settings",
+      "en": "Change",
+      "zh": "更改",
+      "source": "hub:main.js",
+      "offset": 5526208
+    },
+    {
+      "scope": "settings",
+      "en": "Change…",
+      "zh": "更改…",
+      "source": "hub:main.js",
+      "offset": 5337551
+    },
+    {
+      "scope": "settings",
+      "en": "Clear",
+      "zh": "清除",
+      "source": "hub:main.js",
+      "offset": 5329011
+    },
+    {
+      "scope": "settings",
+      "en": "Copied",
+      "zh": "已复制",
+      "source": "hub:main.js",
+      "offset": 5304146
+    },
+    {
+      "scope": "settings",
+      "en": "Copy output",
+      "zh": "复制输出",
+      "source": "hub:main.js",
+      "offset": 5304155
+    },
+    {
+      "scope": "settings",
+      "en": "Couldn't clear browsing data. Try again.",
+      "zh": "未能清除浏览数据，请重试。",
+      "source": "hub:main.js",
+      "offset": 5328581
+    },
+    {
+      "scope": "settings",
+      "en": "Couldn't load cookies.",
+      "zh": "无法加载 Cookie。",
+      "source": "hub:main.js",
+      "offset": 5330841
+    },
+    {
+      "scope": "settings",
+      "en": "Customizations",
+      "zh": "自定义",
+      "source": "hub:main.js",
+      "offset": 5085831
+    },
+    {
+      "scope": "settings",
+      "en": "Delete",
+      "zh": "删除",
+      "source": "hub:main.js",
+      "offset": 5529599
+    },
+    {
+      "scope": "settings",
+      "en": "Delete all",
+      "zh": "全部删除",
+      "source": "hub:main.js",
+      "offset": 5528872
+    },
+    {
+      "scope": "settings",
+      "en": "Developer",
+      "zh": "开发者",
+      "source": "hub:main.js",
+      "offset": 5085876
+    },
+    {
+      "scope": "settings",
+      "en": "Environments",
+      "zh": "环境",
+      "source": "hub:main.js",
+      "offset": 5085686
+    },
+    {
+      "scope": "settings",
+      "en": "General",
+      "zh": "通用",
+      "source": "hub:main.js",
+      "offset": 5085576
+    },
+    {
+      "scope": "settings",
+      "en": "Loading cookies…",
+      "zh": "正在加载 Cookie…",
+      "source": "hub:main.js",
+      "offset": 5330618
+    },
+    {
+      "scope": "settings",
+      "en": "Manage",
+      "zh": "管理",
+      "source": "hub:main.js",
+      "offset": 5326546
+    },
+    {
+      "scope": "settings",
+      "en": "Models",
+      "zh": "模型",
+      "source": "hub:main.js",
+      "offset": 5085813
+    },
+    {
+      "scope": "settings",
+      "en": "No sites have cookies in the built-in browser.",
+      "zh": "内置浏览器中没有网站保存 Cookie。",
+      "source": "hub:main.js",
+      "offset": 5331118
+    },
+    {
+      "scope": "settings",
+      "en": "Notifications",
+      "zh": "通知",
+      "source": "hub:main.js",
+      "offset": 5085788
+    },
+    {
+      "scope": "settings",
+      "en": "Open Keyboard Shortcuts",
+      "zh": "打开快捷键设置",
+      "source": "hub:main.js",
+      "offset": 5451199
+    },
+    {
+      "scope": "settings",
+      "en": "Projects",
+      "zh": "项目",
+      "source": "hub:main.js",
+      "offset": 5085612
+    },
+    {
+      "scope": "settings",
+      "en": "Reopen Locally",
+      "zh": "在本机重开",
+      "source": "hub:main.js",
+      "offset": 5260525
+    },
+    {
+      "scope": "settings",
+      "en": "Reset",
+      "zh": "重置",
+      "source": "hub:main.js",
+      "offset": 5337031
+    },
+    {
+      "scope": "settings",
+      "en": "Running",
+      "zh": "运行中",
+      "source": "hub:main.js",
+      "offset": 5085897
+    },
+    {
+      "scope": "settings",
+      "en": "Save",
+      "zh": "保存",
+      "source": "hub:main.js",
+      "offset": 5302126
+    },
+    {
+      "scope": "settings",
+      "en": "Settings",
+      "zh": "设置",
+      "source": "hub:main.js",
+      "offset": 5733533
+    },
+    {
+      "scope": "settings",
+      "en": "Shortcuts",
+      "zh": "快捷键",
+      "source": "hub:main.js",
+      "offset": 5085767
+    },
+    {
+      "scope": "settings",
+      "en": "Upload Debug Bundle",
+      "zh": "上传调试信息包",
+      "source": "hub:main.js",
+      "offset": 5735357
+    },
+    {
+      "scope": "settings",
+      "en": "Validate",
+      "zh": "检查",
+      "source": "hub:main.js",
+      "offset": 5302356
+    }
+  ],
+  "templates": []
+}

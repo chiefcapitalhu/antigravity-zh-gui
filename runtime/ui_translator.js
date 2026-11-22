@@ -18,24 +18,176 @@
     // Only these leaf controls may inherit a translation scope. Panels, model
     // names, custom menu items and plugin rows can contain user-authored labels.
     const scopeById = new Map();
-    for (const [scope, ids] of Object.entries({
-        toolbar: ["new-conversation-button", "app-icon-new-conversation-button",
-            "settings-button", "computer-permissions-continue",
-            "declared-permissions-confirm", "declared-permissions-next"],
-        model: ["model-selector-header", "model-selector-refresh", "model-selector-empty",
-            "model-selector-loading", "model-selector-effort-header"],
-        sidecar: ["sidecar-new-button", "new-sidecar-submit", "sidecar-action-delete",
-            "sidecar-action-restart", "sidecar-action-view-logs"]
-    })) {
+    const controls = {
+        toolbar: [
+            "new-conversation-button", "app-icon-new-conversation-button", "settings-button",
+            "app-update-button", "manual-update-button", "open-editor-empty", "open-editor-single",
+            "open-editor-multi", "plugins-button", "plugins-nav-more-button",
+            "overview-panel-customize-trigger", "media-modal-zoom-out", "media-modal-zoom-in",
+            "media-modal-zoom-reset", "media-modal-download", "media-modal-close", "media-modal-previous",
+            "media-modal-next", "webview-prompt-cancel", "webview-prompt-ok"
+        ],
+        onboarding: [
+            "onboarding-back", "onboarding-cancel-sign-in", "onboarding-switch-to-auth-code",
+            "onboarding-auth-code-submit", "onboarding-copy-sign-in-link", "onboarding-last-used-badge",
+            "onboarding-other-options-toggle", "post-onboarding-welcome-step-agents",
+            "post-onboarding-welcome-step-plans", "post-onboarding-welcome-step-safety"
+        ],
+        workspace: [
+            "customize-sidebar-button", "filter-sort-button", "filter-environment-all",
+            "filter-mark-all-read", "group-by-submenu-trigger", "sort-by-submenu-trigger",
+            "filter-submenu-trigger", "display-submenu-trigger", "view-option-auto-pin",
+            "view-option-archived", "filter-option-scheduled", "filter-option-plugins",
+            "palette-filter-unread", "palette-filter-archived", "palette-filter-scheduled",
+            "conversations-palette-filter-trigger", "palette-sort-last_user_prompt", "conversation-kebab",
+            "conversation-archive-button", "conversation-pin-button", "rename-conversation-submit",
+            "confirm-delete-conversation", "project-selector-connect-ssh-host",
+            "project-selector-connect-github", "project-selector-create-project-trigger",
+            "project-selector-github-loading", "project-folder-selection-next", "empty-file-open-button",
+            "file-tree-filter-error", "file-tree-filter-empty", "file-tree-filter-clear",
+            "voice-dock-send"
+        ],
+        settings: [
+            "open-vscode-keybindings-btn", "settings-upload-debug-bundle-button",
+            "browser-clear-data-cancel", "browser-clear-data-confirm", "browser-site-data-loading",
+            "browser-site-data-empty", "browser-site-data-error", "browser-clear-data-error",
+            "builtin-browser-download-dir-change", "builtin-browser-download-dir-reset",
+            "browser-site-data-manage-button", "wsl-reopen-locally", "setup-script-save-button",
+            "setup-script-validate-button", "setup-script-copy-button", "voice-settings-change",
+            "voice-settings-delete-recordings", "voice-delete-recordings-cancel",
+            "voice-delete-recordings-confirm"
+        ],
+        permissions: [
+            "inline-permission-badge", "permissions-advanced-toggle", "computer-permissions-relaunch",
+            "computer-permissions-continue", "declared-permissions-arg-folder",
+            "declared-permissions-next", "declared-permissions-confirm", "permissions-use-global-settings",
+            "inline-permission-add-note", "inline-permission-deny",
+            "inline-permission-unsandboxed-warning", "inline-permission-in-chat"
+        ],
+        model: [
+            "model-selector-header", "model-selector-refresh", "model-selector-loading",
+            "model-selector-empty", "model-selector-effort-header", "model-selector-effort-info",
+            "model-quota-refreshing"
+        ],
+        agents: [
+            "webview-download-agent-badge", "mcp-server-fix-with-agent", "mcp-server-configure",
+            "mcp-server-restart", "mcp-server-paste-code-instead", "add-mcp-button", "mcp-config-confirm",
+            "cancel-delete-mcp", "confirm-delete-mcp", "mcp-app-open-in-side-pane", "cancel-delete-skill",
+            "confirm-delete-skill", "delete-skill-reinstall-note", "delete-skill-permanent-warning",
+            "subagent-stop", "subagent-expand", "subagent-approve", "subagent-deny",
+            "subagent-node-children-toggle", "subagent-tab-loading", "subagent-tab-ended",
+            "subagent-tab-open-full-view", "new-coordinator-button", "create-coordinator-submit",
+            "coordinator-settings-save", "marketplace-filter-button", "review-plugin-source-caution",
+            "cancel-plugin-source-caution", "confirm-plugin-source-caution", "skills-rules-filter"
+        ],
+        sidecar: [
+            "automation-untrusted-warning", "sidecar-action-delete", "sidecar-action-run-now",
+            "sidecar-action-restart", "sidecar-action-manage-permissions", "sidecar-action-view-logs",
+            "new-sidecar-back", "new-sidecar-submit", "new-sidecar-trigger-scheduled",
+            "new-sidecar-remove-trigger", "new-sidecar-add-trigger", "sidecar-new-button",
+            "cancel-delete-sidecar", "confirm-delete-sidecar", "sidecar-detail-close",
+            "sidecar-detail-run-now", "new-sidecar-no-project", "automation-settings-save",
+            "automation-settings-cancel"
+        ]
+    };
+    for (const [scope, ids] of Object.entries(controls)) {
         for (const id of ids) scopeById.set(id, scope);
     }
+    // Mixed panels also contain paths, user names or comments. Match just the
+    // verified label within each panel. Dynamic attributes of these leaves
+    // (for example a project tooltip) still belong to the client.
+    const leafById = new Map();
+    function fixedLeaf(scope, id, ...children) {
+        const prefix = '[data-testid="' + id + '"] ';
+        leafById.set(id, {scope, selector: children.map(child => prefix + child).join(",")});
+    }
+    fixedLeaf("toolbar", "overview-panel-row-review", "> span.agy-hover-label");
+    fixedLeaf("toolbar", "overview-panel-row-files", "> span.agy-hover-label");
+    fixedLeaf("toolbar", "overview-panel-row-terminal", "> span.agy-hover-label");
+    fixedLeaf("toolbar", "overview-panel-row-plugins", "> span.agy-hover-label");
+    fixedLeaf("onboarding", "onboarding-auth-code-panel", "> p:first-child", "> div > label[for=\"onboarding-auth-code-input\"]");
+    fixedLeaf("onboarding", "post-onboarding-welcome-modal", "> p:first-child", "> div:last-child > button[data-autofocus=\"true\"]");
+    fixedLeaf("workspace", "filter-last-activity", "> span:first-child");
+    fixedLeaf("workspace", "filter-sort-by", "> span:first-child");
+    fixedLeaf("workspace", "filter-environment", "> span:first-child");
+    fixedLeaf("workspace", "artifact-update-notice", "> span:first-child", "> button[aria-label]");
+    fixedLeaf("workspace", "comments-modal-section-artifact", "> h3:first-child");
+    fixedLeaf("workspace", "artifact-pdf-fallback", "> span:first-child");
+    fixedLeaf("workspace", "artifact-no-preview", "> span:first-child");
+    fixedLeaf("workspace", "binary-file-no-preview", "> span:first-child");
+    fixedLeaf("workspace", "aux-pane-terminals-section", "> span.agy-hover-label");
+    fixedLeaf("workspace", "aux-pane-background-tasks-section", "> span.agy-hover-label");
+    fixedLeaf("workspace", "running-items-tasks", "> div:first-child > span.agy-hover-label");
+    fixedLeaf("workspace", "pane-selection-add-to-chat", "> span:first-child");
+    fixedLeaf("workspace", "project-selector-new-workspace", "span.truncate.min-w-0[title]");
+    fixedLeaf("settings", "settings-sidebar", "> div:first-child > div:first-child > h1:only-child");
+    fixedLeaf("permissions", "command-permissions-row", "> div:first-child > div:first-child > span:first-child", "> div:first-child > span.whitespace-pre-wrap");
+    fixedLeaf("permissions", "tool-permissions-row", "> div:first-child > div:first-child > span:first-child");
+    fixedLeaf("permissions", "computer-permissions-card", "> div:first-child > span:first-child");
+    fixedLeaf("model", "model-selector-orchestrator", "> span:first-child");
+    fixedLeaf("agents", "workflow-deprecation-banner", "> div > span", "> div > span > button");
+    // Some buttons interpolate a service name into their accessible label.
+    // Authorize only fixed values on the element that owns the attribute.
+    const controlAttributes = new Map();
+    function attributeLabels(id, names, ...labels) {
+        controlAttributes.set(id, {names: names.split(" "), labels});
+    }
+    attributeLabels("add-mcp-button", "aria-label", "Add MCP Server");
+    attributeLabels("app-icon-new-conversation-button", "aria-label", "New Conversation");
+    attributeLabels("artifact-update-notice", "aria-label", "Dismiss artifact update notice");
+    attributeLabels("automation-untrusted-warning", "aria-label", "Untrusted sidecar");
+    attributeLabels("conversation-archive-button", "aria-label", "Archive conversation");
+    attributeLabels("conversation-kebab", "aria-label", "More options");
+    attributeLabels("conversation-pin-button", "aria-label", "Unpin conversation", "Pin conversation");
+    attributeLabels("conversations-palette-filter-trigger", "aria-label", "Sort and filter conversations");
+    attributeLabels("customize-sidebar-button", "aria-label", "Customize Sidebar");
+    controlAttributes.set("file-tree-filter-clear", {byName: {"aria-label": ["Clear file filter"], "title": ["Searching...", "Clear filter"]}});
+    attributeLabels("filter-sort-button", "aria-label", "Filter and Sort");
+    attributeLabels("marketplace-filter-button", "aria-label", "Filter plugins");
+    attributeLabels("mcp-app-open-in-side-pane", "aria-label", "Open in side pane");
+    attributeLabels("media-modal-close", "aria-label title", "Close (Esc)");
+    attributeLabels("media-modal-download", "aria-label title", "Download video", "Download image");
+    attributeLabels("media-modal-next", "aria-label title", "Next (→)", "Next");
+    attributeLabels("media-modal-previous", "aria-label title", "Previous (←)", "Previous");
+    attributeLabels("media-modal-zoom-in", "aria-label title", "Zoom in (+)");
+    attributeLabels("media-modal-zoom-out", "aria-label title", "Zoom out (-)");
+    attributeLabels("media-modal-zoom-reset", "title", "Reset zoom (0)");
+    attributeLabels("new-coordinator-button", "aria-label", "New coordinator");
+    attributeLabels("new-sidecar-remove-trigger", "aria-label", "Remove trigger");
+    attributeLabels("onboarding-back", "aria-label title", "Back");
+    attributeLabels("overview-panel-customize-trigger", "aria-label", "Customize Sections");
+    attributeLabels("plugins-nav-more-button", "aria-label", "Plugins Options");
+    attributeLabels("settings-upload-debug-bundle-button", "aria-label", "Upload Debug Bundle");
+    attributeLabels("setup-script-copy-button", "aria-label title", "Copied", "Copy output");
+    attributeLabels("sidecar-detail-close", "aria-label", "Close");
+    attributeLabels("subagent-expand", "aria-label", "Collapse subagents", "Expand subagents");
+    attributeLabels("subagent-stop", "aria-label", "Stop subagent");
+    attributeLabels("voice-dock-send", "aria-label", "Send");
+    function permittedAttribute(id, name, source) {
+        if (id === "new-conversation-button") return true;
+        if (id === "model-selector-effort-info") return name === "aria-label" && scoped.get("model")?.has(source);
+        const rule = controlAttributes.get(id);
+        return rule?.byName ? rule.byName[name]?.includes(source) :
+            rule?.names.includes(name) && rule.labels.includes(source);
+    }
+
+    const fixedAlternatives = {
+        "declared-permissions-confirm": ["Saving...", "Confirm & Save"],
+        "mcp-config-confirm": ["Saving...", "Installing...", "Enabling..."]
+    };
+    const fixedScreens = new Set([
+        "General", "Projects", "Agents", "Environments", "App", "Appearance", "Shortcuts",
+        "Notifications", "Models", "Customizations", "Browser", "Developer", "Running"
+    ]);
+    const settingsItem = '[data-testid="settings-sidebar"] > div:first-child > div:nth-child(2) > div > button > span:only-child';
+    const linkCaption = 'a[data-testid="new-conversation-button"][href] > span.truncate';
     const protectedArea = [
         "script", "style", "noscript", "pre", "code", "svg", "math", "canvas",
-        "textarea", "iframe", "webview", "kbd", "a[href]",
+        "textarea", "iframe", "webview", "kbd", 'a[href]:not([data-testid="new-conversation-button"])',
         "[data-lexical-editor]", "[data-file-uri]", "[data-sidecar-url]",
         "[data-bubble-side]", "[data-quotable]", "[data-diff-type]", "[role=log]",
         ".monaco-editor", ".monaco-diff-editor", ".cm-editor", ".cm-mergeView",
-        ".terminal", ".xterm", ".diff-view",
+        ".terminal", ".xterm", ".diff-view", ".google-symbols",
         ...["user-message", "user-message-content", "agent-response", "browser-subagent-thinking",
             "side-question-followup-thinking", "bottom-terminal-panel", "sidecar-iframe",
             "sidecar-iframe-slot", "sidecar-logs-content", "model-selector-custom-item",
@@ -58,19 +210,19 @@
     const exact = dictionary(options.exact);
     const scoped = new Map();
     for (const item of options.scoped ?? []) {
-        if (!item || !["toolbar", "model", "sidecar"].includes(item.scope)) continue;
+        if (!item || !Object.hasOwn(controls, item.scope)) continue;
         if (!scoped.has(item.scope)) scoped.set(item.scope, new Map());
         for (const [key, value] of dictionary(item.entries)) scoped.get(item.scope).set(key, value);
     }
     const templates = (options.templates ?? []).filter(item =>
         item && Object.hasOwn(patterns, item.id) && typeof item.format === "string" &&
         item.format.includes("{n}"));
-    function translate(source, scope) {
+    function translate(source, scope, knownText) {
         const key = source.trim();
         // A filename can consist entirely of English words and match a custom
         // entry. Exact matches alone do not establish that a string is UI.
-        if (!key || key === "Antigravity" || /[\\/]/.test(key) ||
-            /^(?:[a-z][\w+.-]*:|~|\.{1,2}$|\.[\w-])/i.test(key) ||
+        if (!key || key === "Antigravity" || (/[\\/]/.test(key) && !(key === knownText && grantTerms.has(key))) ||
+            /^(?:[a-z][\w+.-]*:(?=\S)|~|\.{1,2}$|\.[\w-])/i.test(key) ||
             /(?:^|\s)[^\s]+\.[a-z\d]{1,16}(?:$|\s)/i.test(key)) return source;
         let translated = custom.get(key) ?? exact.get(key) ?? scoped.get(scope)?.get(key);
         if (translated === undefined) {
@@ -129,17 +281,101 @@
             el === toast || el.isContentEditable ||
             (el.hasAttribute("contenteditable") && el.getAttribute("contenteditable").toLowerCase() !== "false");
     }
+    // Settings subpages reuse their layout for arbitrary project or model
+    // names. Check the component's own sibling card and its fixed UI copy.
+    const settingsPage = ".settings-modal-container .max-w-2xl.gap-4";
+    const pageTitle = ":scope > .mb-2 > .justify-between > .flex-1 > h2";
+    const sectionTitle = ":scope > .gap-1 > .justify-between > .gap-1\\.5 > h3";
+    const grantRow = ".agy-card > .gap-1 > .justify-between:first-child > div:first-child";
+    const grantDescription = grantRow + " > span.whitespace-pre-wrap";
+    const grantLabel = grantRow + " > div:first-child > span:first-child";
+    const quotaMessage = ":scope > div:last-child > .agy-card > div.text-secondary-foreground:only-child";
+    const quotaEmpty = "No quota information available.";
+    const grantTerms = new Map([
+        ["Allow/deny agent read access to specific files or directories.", "File reads"],
+        ["Allow/deny agent write access to specific files or directories.", "File writes"],
+        ["Allow/deny agent read access to specific URLs or domains.", "Read URLs"]
+    ]);
+    function sourceText(el) {
+        if (!el || el.childNodes.length !== 1 || el.firstChild.nodeType !== 3) return;
+        const node = el.firstChild;
+        return writtenText.get(node) === node.nodeValue ? originalText.get(node) : node.nodeValue;
+    }
+    function settingsLabel(el) {
+        if (!el.matches("h2,h3,span.whitespace-pre-wrap,div.text-secondary-foreground,div > span:first-child") ||
+            sourceText(el) === undefined) return;
+        const page = el.closest(settingsPage);
+        if (!page) return;
+        const title = page.querySelector(pageTitle);
+        const body = page.querySelector(":scope > .gap-8:last-child");
+        if (el === title || el.matches(grantDescription + "," + grantLabel)) {
+            if (!body || (el !== title && !body.contains(el))) return;
+            if (el === title && body.querySelector('[data-testid="command-permissions-row"]')) return "Tool Permissions";
+            const descriptions = Array.from(body.querySelectorAll(grantDescription));
+            const labels = descriptions.map(node => grantTerms.get(sourceText(node)));
+            let expected;
+            if (labels.includes("File reads") && labels.includes("File writes")) expected = "File Permissions";
+            else if (labels.includes("Read URLs")) expected = "Network Permissions";
+            if (el === title) return expected;
+            if (!expected || sourceText(title) !== expected) return;
+            const own = el.matches(grantDescription) ? el : el.parentElement.parentElement.querySelector(":scope > span.whitespace-pre-wrap");
+            if (!descriptions.includes(own)) return;
+            const description = sourceText(own);
+            if (grantTerms.has(description)) return el === own ? description : grantTerms.get(description);
+        } else if (el.matches("h3,div.text-secondary-foreground")) {
+            const section = el.closest(".space-y-2");
+            const heading = section?.querySelector(sectionTitle);
+            if (!heading) return;
+            const card = section.querySelector(":scope > div:last-child > .agy-card");
+            if (el === heading && card?.querySelector(':scope > [data-testid="command-permissions-row"]')) return "Local Permissions";
+            const message = section.querySelector(quotaMessage);
+            if (sourceText(message) === quotaEmpty) {
+                if (el === heading) return "Model Quota";
+                if (el === message && sourceText(heading) === "Model Quota") return quotaEmpty;
+            }
+        }
+    }
+    function protectedOwner(owner) {
+        for (let p = owner; p; p = parent(p)) {
+            if (p.nodeType === 1 && (closedLightChild(p) || inProtectedSurface(p, false))) return true;
+        }
+        return false;
+    }
     function context(element) {
         if (!element || !element.isConnected || element.ownerDocument !== doc) return blocked;
-        let selected = false, scope, row = false;
+        let selected = false, scope, row = false, textOnly = false, knownText, attrOwner, alternatives;
         const input = fixedInput(element);
+        knownText = settingsLabel(element);
+        if (knownText) {
+            selected = true;
+            scope = knownText === "Model Quota" || knownText === quotaEmpty ? "model" : "permissions";
+            textOnly = true;
+        }
         for (let p = element; p; p = parent(p)) {
             if (p.nodeType !== 1) continue;
             if (closedLightChild(p) || inProtectedSurface(p, input && p === element)) return blocked;
             const id = p.getAttribute("data-testid");
             if (id === "sidecar-row" && p.hasAttribute("data-sidecar-id")) row = true;
+            const leaf = leafById.get(id);
+            if (!scope && leaf && element.matches(leaf.selector)) {
+                scope = leaf.scope;
+                textOnly = !(id === "artifact-update-notice" && element.localName === "button");
+                if (!textOnly) attrOwner = id;
+                selected = true;
+            }
             if (!selected && (id || p.matches("button,select,[role=button],[role=menuitem]"))) {
-                scope = scopeById.get(id);
+                if (p.matches("a[href]")) {
+                    if (element.matches(linkCaption)) { scope = "toolbar"; textOnly = true; }
+                } else if (id?.startsWith("settings-nav-item-")) {
+                    if (fixedScreens.has(id.slice("settings-nav-item-".length)) && element.matches(settingsItem)) {
+                        scope = "settings";
+                        textOnly = true;
+                    }
+                } else {
+                    scope = scopeById.get(id);
+                    if (scope && Object.hasOwn(fixedAlternatives, id)) alternatives = fixedAlternatives[id];
+                    if (p === element) attrOwner = id;
+                }
                 selected = true;
             }
         }
@@ -147,7 +383,26 @@
             element.firstChild.nodeType === 3 &&
             element.previousElementSibling?.getAttribute("data-testid") === "sidebar-header-logo";
         const errorBadge = row && element.matches("span[data-tooltip-id]");
-        return scope || errorBadge || brand || input ? {scope, errorBadge, brand, input} : null;
+        // A shared popup lives outside its control. The host sets aria-describedby
+        // on its current owner and reuses the popup for unrelated, dynamic data.
+        if (!scope && element.matches('.compact-tooltip[role="tooltip"][id], .compact-tooltip[role="tooltip"][id] > div > span:first-child')) {
+            const hint = element.closest('[role="tooltip"]');
+            const owners = Array.from(doc.querySelectorAll('[aria-describedby]')).filter(node =>
+                node.getAttribute("aria-describedby").split(/\s+/).includes(hint.id));
+            const owner = owners.length === 1 ? owners[0] : null;
+            if (owner?.matches('button[data-testid="model-selector-trigger"], button[data-testid="model-selector-add-custom-model"], button[data-testid="mcp-server-fix-with-agent"]') && !protectedOwner(owner)) {
+                const id = owner.getAttribute("data-testid");
+                if (id === "model-selector-trigger" && element !== hint) {
+                    scope = "model"; knownText = "Select Model";
+                } else if (id === "model-selector-add-custom-model" && element === hint) {
+                    scope = "model"; knownText = "Add Model";
+                } else if (id === "mcp-server-fix-with-agent" && element === hint) {
+                    scope = "agents"; knownText = "Ask the agent to diagnose and fix this server";
+                }
+                textOnly = true;
+            }
+        }
+        return scope || errorBadge || brand || input ? {scope, errorBadge, brand, input, textOnly, knownText, attrOwner, alternatives} : null;
     }
     function forgetAttr(element, name) {
         for (const map of [originalAttrs, writtenAttrs]) {
@@ -170,7 +425,22 @@
         }
     }
     function ingest(records) {
+        // The popup can be reused without its English text changing. Recheck
+        // each current popup once per mutation batch without traversing the
+        // inserted chat messages to look for potential owners.
+        if (records.some(r => r.type !== "characterData")) {
+            for (const hint of doc.getElementsByClassName("compact-tooltip")) enqueue(hint);
+        }
+        const pages = new Set(), sections = new Set();
         for (const r of records) {
+            const target = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+            const page = target?.closest(settingsPage);
+            if (page) {
+                pages.add(page);
+                const section = target.closest(".space-y-2");
+                if (section) sections.add(section);
+            }
+            if (target?.matches('[data-testid="settings-sidebar"] > div:first-child')) enqueue(target);
             if (r.type === "characterData") {
                 // Even a same-value assignment from the host establishes a new
                 // source value. Our own mutation records are removed at write time.
@@ -201,12 +471,20 @@
                 }
             }
         }
+        for (const page of pages) {
+            enqueue(page.querySelector(pageTitle));
+            for (const label of page.querySelectorAll(grantDescription + "," + grantLabel)) enqueue(label);
+        }
+        for (const section of sections) {
+            enqueue(section.querySelector(sectionTitle));
+            enqueue(section.querySelector(quotaMessage));
+        }
     }
     const observer = new win.MutationObserver(records => ingest(records));
     const watch = {
         subtree: true, childList: true, characterData: true, attributes: true,
         attributeFilter: [...attrs, "class", "contenteditable", "role", "href", "slot", "name",
-            "data-testid", "data-lexical-editor", "data-file-uri", "data-diff-type", "data-sidecar-url",
+            "data-testid", "aria-describedby", "id", "data-lexical-editor", "data-file-uri", "data-diff-type", "data-sidecar-url",
             "data-bubble-side", "data-quotable", "data-sidecar-id", "data-tooltip-id"]
     };
     function ownWrite(node, name, value) {
@@ -234,7 +512,8 @@
         let next = source;
         if (ctx && active && mode === "zh") {
             if (ctx.brand && options.brand === "hide" && source.trim() === "Antigravity") next = "";
-            else if (ctx.scope) next = translate(source, ctx.scope);
+            else if (ctx.scope && (!ctx.knownText || source.trim() === ctx.knownText) &&
+                (!ctx.alternatives || ctx.alternatives.includes(source.trim()))) next = translate(source, ctx.scope, ctx.knownText);
         }
         if (next !== source) {
             if (!owned) markAncestors(node);
@@ -262,7 +541,9 @@
                 if (ctx.input) {
                     if ((name === "placeholder" && source === "Untitled") ||
                         (name === "aria-label" && source === "Name")) next = translate(source, "sidecar");
-                } else if (ctx.scope) next = translate(source, ctx.scope);
+                } else if (ctx.scope && !ctx.textOnly && permittedAttribute(ctx.attrOwner, name, source)) {
+                    next = translate(source, ctx.scope);
+                }
                 else if (ctx.errorBadge && name === "aria-label" && source === "Sidecar error") {
                     next = translate(source, "sidecar");
                 }

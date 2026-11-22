@@ -51,7 +51,8 @@ func validEntries(entries map[string]string) error {
 	return nil
 }
 
-func (d Dictionary) validate() error {
+// Validate checks the dictionaries and matching scopes accepted by the presentation runtimes.
+func (d Dictionary) Validate() error {
 	for _, entries := range []map[string]string{d.Custom, d.Exact} {
 		for en, zh := range entries {
 			if err := config.ValidateGlobalEntry(en, zh); err != nil {
@@ -62,7 +63,7 @@ func (d Dictionary) validate() error {
 	seen := map[string]map[string]bool{}
 	for _, group := range d.Scoped {
 		switch group.Scope {
-		case "toolbar", "model", "sidecar", "application", "context", "tray", "dock":
+		case "toolbar", "workspace", "settings", "onboarding", "permissions", "agents", "model", "sidecar", "application", "context", "tray", "dock":
 		default:
 			return fmt.Errorf("unknown translation scope %q", group.Scope)
 		}
@@ -106,7 +107,7 @@ func Build(platform string, prefs config.Preferences, d Dictionary) (Bundle, err
 	if err := prefs.Validate(); err != nil {
 		return Bundle{}, err
 	}
-	if err := d.validate(); err != nil {
+	if err := d.Validate(); err != nil {
 		return Bundle{}, err
 	}
 	data, err := json.Marshal(struct {

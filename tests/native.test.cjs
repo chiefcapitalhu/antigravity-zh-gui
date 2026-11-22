@@ -100,3 +100,57 @@ test("tray count, Dock and Sidecar translate only verified display fields", () =
   assert.equal(menu.siteLabel("dockNewWindow", "New Window"), "New Window");
   assert.equal(menu.label("tray", "running-agents", "4 agents running"), "4 agents running");
 });
+
+test("every shipped native entry has a fixed presentation site", () => {
+  const source = JSON.parse(fs.readFileSync(path.join(__dirname, "../locales/zh-CN/menus_dialogs.json"), "utf8"));
+  const scopes = new Map();
+  for (const e of source.scoped) {
+    if (!scopes.has(e.scope)) scopes.set(e.scope, {});
+    scopes.get(e.scope)[e.en] = e.zh;
+  }
+  const menu = factory({
+    scoped: [...scopes].map(([scope, entries]) => ({scope, entries})),
+    templates: source.templates.map(e => ({id: e.id, format: e.zh}))
+  });
+  // Feed real native IDs, including the two separate meanings of delete.
+  const ids = ("copy-selection copy-link copy cut paste copy-message copy-agent-message rename " +
+    "copy-image copy-image-address copy-link-address select-all open-image-in-new-tab open-in-builtin-browser " +
+    "open-in-external-browser open-in-new-tab open-in-preview open-in-tab open-link-in-new-tab " +
+    "open-link-in-external-browser back forward reload stop archive restore share group-new group-remove delete " +
+    "reply-agent-message undo-to-here quote comment add edit remove reset feedback-bad feedback-good " +
+    "move-up move-down hide view-debug").split(" ");
+  const siteKeys = {
+    application: ("fileNewWindow helpDocs fileMenu viewMenu helpMenu connectWSL reopenLocally " +
+      "missingBinaryTitle wslSetupTitle startupTitle").split(" "),
+    tray: ["trayOpen", "trayQuit"], dock: ["dockNewWindow"]
+  };
+  const appIDs = ["check-for-updates", "hub-reset-zoom", "hub-zoom-in", "hub-zoom-out"];
+  const dialogs = [
+    ["update", {title:"Check for Updates", message:"No updates available", buttons:["OK"]}],
+    ["quit", {title:"Confirm Quit", message:"Are you sure you want to quit?",
+      detail:"There may be agents or background tasks running.", buttons:["Cancel", "Quit"]}],
+    ["missingWSL", {title:"WSL distro not found", detail:"Antigravity opened on Windows instead."}]
+  ];
+  for (const {scope, en, zh} of source.scoped) {
+    const observed = [];
+    if (scope === "context") {
+      for (const id of ids) observed.push(menu.label(scope, id, en));
+    } else {
+      for (const key of siteKeys[scope]) observed.push(menu.siteLabel(key, en));
+      if (scope === "application") {
+        for (const id of appIDs) observed.push(menu.label(scope, id, en));
+        for (const [site, fields] of dialogs) {
+          const out = menu.dialog(site, fields);
+          for (const field of ["title", "message", "detail"]) {
+            if (fields[field] === en) observed.push(out[field]);
+          }
+          fields.buttons?.forEach((s, i) => { if (s === en) observed.push(out.buttons[i]); });
+        }
+      }
+    }
+    assert.ok(observed.includes(zh), "unreachable native entry: " + scope + "/" + en);
+  }
+  for (const entry of source.templates) {
+    assert.equal(menu.label("tray", "running-agents", entry.en), entry.zh.replace("{n}", "0"));
+  }
+});
