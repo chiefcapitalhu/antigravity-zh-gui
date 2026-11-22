@@ -233,7 +233,8 @@ func (s Store) SavePreferences(p Preferences) error {
 
 var scopedOnly = map[string]bool{"on": true, "in": true, "run": true, "open": true, "file": true, "type": true, "use": true, "plan": true, "code": true}
 
-func validateEntry(en, zh string) error {
+// ValidateGlobalEntry checks an unscoped translation before storage or embedding.
+func ValidateGlobalEntry(en, zh string) error {
 	for _, v := range []string{en, zh} {
 		if strings.TrimSpace(v) == "" || strings.TrimSpace(v) != v || !utf8.ValidString(v) || strings.IndexFunc(v, unicode.IsControl) >= 0 {
 			return errors.New("词条需要有效文本，且不能含首尾空白或控制字符")
@@ -256,7 +257,7 @@ func (s Store) LoadDictionary() (map[string]string, error) {
 		if err := d.Decode(&v); err != nil {
 			return err
 		}
-		if err := validateEntry(k, v); err != nil {
+		if err := ValidateGlobalEntry(k, v); err != nil {
 			return err
 		}
 		entries[k] = v
@@ -274,7 +275,7 @@ func (s Store) SaveDictionary(entries map[string]string) error {
 		entries = map[string]string{}
 	}
 	for en, zh := range entries {
-		if err := validateEntry(en, zh); err != nil {
+		if err := ValidateGlobalEntry(en, zh); err != nil {
 			return err
 		}
 	}
