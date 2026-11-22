@@ -18,6 +18,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     env:
+      CGO_ENABLED: '0'
+      GOFLAGS: ${{ matrix.os == 'macos-latest' && '-ldflags=-B=gobuildid' || '' }}
       GOTOOLCHAIN: local
       GOPROXY: 'off'
       GOSUMDB: 'off'
