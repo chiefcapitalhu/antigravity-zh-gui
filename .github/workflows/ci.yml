@@ -2,8 +2,10 @@ name: Core tests
 
 on:
   push:
+    branches: ['**']
   pull_request:
   workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -43,3 +45,5 @@ jobs:
         run: node --test tests/native.test.cjs tests/runtime-policy.test.cjs
       - name: Offline browser DOM regressions
         run: node tests/browser.cjs
+      - name: Offline control panel interactions
+        run: node tests/panel.cjs

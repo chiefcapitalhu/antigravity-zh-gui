@@ -143,9 +143,11 @@ func TestLiteralProof(t *testing.T) {
 func TestVerifyLocales(t *testing.T) {
 	s := &SourceSet{"2.34.0", map[string][]byte{}, map[string]string{}, nil}
 	src := "const x='inside \"Save\"'; // 'Save'\n const f={label:'Save'};"
+	src += "const plain='" + welcomeText + "'; /* " + welcomeLiteral + " */ const title=" + welcomeLiteral + ";"
 	other := "const x='Save'"
 	s.add("hub:main.js", []byte(src))
 	s.add("asar:dist/menu.js", []byte(other))
+	coreScope := "toolbar"
 	check := func(e Entry, hash string) error {
 		dir := t.TempDir()
 		for idx, module := range modules {
@@ -153,7 +155,7 @@ func TestVerifyLocales(t *testing.T) {
 			if idx != 0 {
 				cell = Entry{"Save", "hub:main.js", strings.LastIndex(src, "'Save'")}
 			}
-			scope := []string{"toolbar", "model", "sidecar", "context", "application"}[idx]
+			scope := []string{coreScope, "model", "sidecar", "context", "application"}[idx]
 			digest := hash
 			if cell.Source != "hub:main.js" {
 				digest = s.hashes[cell.Source]
@@ -179,6 +181,48 @@ func TestVerifyLocales(t *testing.T) {
 	}
 	if err := check(valid, strings.Repeat("0", 64)); err == nil {
 		t.Fatal("wrong member hash accepted")
+	}
+	welcome := Entry{welcomeText, "hub:main.js", strings.LastIndex(src, welcomeLiteral)}
+	if err := check(welcome, h); err == nil {
+		t.Fatal("accepted welcome template outside onboarding")
+	}
+	coreScope = "onboarding"
+	if err := check(welcome, h); err != nil {
+		t.Fatal(err)
+	}
+	for _, e := range []Entry{
+		{welcomeText, welcome.Source, strings.Index(src, "'"+welcomeText+"'")},
+		{welcomeText, welcome.Source, strings.Index(src, welcomeLiteral)},
+		{welcomeText, welcome.Source, welcome.Offset + 1},
+		{"Welcome to", welcome.Source, welcome.Offset},
+	} {
+		if err := check(e, h); err == nil {
+			t.Fatalf("accepted invalid template evidence %+v", e)
+		}
+	}
+}
+
+func TestWelcomeTemplateIsReviewOnly(t *testing.T) {
+	src := "// " + welcomeLiteral + "\n" +
+		"const text='" + welcomeLiteral + "';const pattern=/" + welcomeLiteral + "/;" +
+		"const similar=[`Welcome to ${b}!`,`Welcome to ${a}!!!`,`Hi Welcome to ${a}!`,`Welcome to ${a + 1}!`];" +
+		"const ui={title:" + welcomeLiteral + "};"
+	var positions []int
+	err := staticLiterals([]byte(src), func(start, end int, context string) {
+		if context == welcomeContext {
+			if src[start:end] != welcomeLiteral {
+				t.Errorf("unreviewed template %q", src[start:end])
+			}
+			positions = append(positions, start)
+		}
+	})
+	if err != nil || !reflect.DeepEqual(positions, []int{strings.LastIndex(src, welcomeLiteral)}) {
+		t.Fatalf("template locations %v, err %v", positions, err)
+	}
+	s := &SourceSet{Version: "2.34.0", scripts: map[string][]byte{"hub:main.js": []byte(src)}}
+	c, err := s.Candidates()
+	if err != nil || len(c.Entries) != 0 {
+		t.Fatalf("unexpected automatic candidates %+v, err %v", c, err)
 	}
 }
 func TestBlockRegexpAndLineContinuation(t *testing.T) {

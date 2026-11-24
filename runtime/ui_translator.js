@@ -181,6 +181,28 @@
     ]);
     const settingsItem = '[data-testid="settings-sidebar"] > div:first-child > div:nth-child(2) > div > button > span:only-child';
     const linkCaption = 'a[data-testid="new-conversation-button"][href] > span.truncate';
+    // The sign-in page shares its shell with theme, persona and account forms.
+    // Only the directly rendered caption of each known control is a UI label.
+    const welcomePage = '[data-testid="onboarding-brand-shell"] > div.flex-shrink-0 > div.transition-all > div.justify-start';
+    const authPanel = welcomePage + ' > div.entrance-auth-panel';
+    const personalOptions = authPanel + ' > div.bg-card > #other-sign-in-options';
+    const googleSignIn = "Continue with Google";
+    const welcomeText = "Welcome to Antigravity!";
+    const welcomeTemplate = 'Welcome to ${a}!';
+    function welcomeLabel(el) {
+        if (el.localName === "div" && el.matches(welcomePage + ' > div.entrance-title:first-child') &&
+            el.childNodes.length === 1 && el.firstChild.nodeType === 3) return welcomeText;
+        if (el.localName !== "button" || el.hasAttribute("data-testid")) return;
+        if (el.matches(personalOptions + ' > button.shadow-sm:not([title])')) return "Use Business Account";
+        if (el.matches(authPanel + ' > button.text-sm:not([title])')) return "Having trouble signing in?";
+        if (el.matches([authPanel, authPanel + ' > div.bg-card', personalOptions]
+            .map(parent => parent + ' > button.shadow-sm[title]').join(','))) {
+            // The visible caption and the title have the same verified source.
+            const title = el.getAttribute("title");
+            const original = writtenAttrs.get(el)?.title === title ? originalAttrs.get(el)?.title : title;
+            if (original === googleSignIn) return googleSignIn;
+        }
+    }
     const protectedArea = [
         "script", "style", "noscript", "pre", "code", "svg", "math", "canvas",
         "textarea", "iframe", "webview", "kbd", 'a[href]:not([data-testid="new-conversation-button"])',
@@ -224,7 +246,9 @@
         if (!key || key === "Antigravity" || (/[\\/]/.test(key) && !(key === knownText && grantTerms.has(key))) ||
             /^(?:[a-z][\w+.-]*:(?=\S)|~|\.{1,2}$|\.[\w-])/i.test(key) ||
             /(?:^|\s)[^\s]+\.[a-z\d]{1,16}(?:$|\s)/i.test(key)) return source;
-        let translated = custom.get(key) ?? exact.get(key) ?? scoped.get(scope)?.get(key);
+        const catalogKey = scope === "onboarding" && key === welcomeText && knownText === welcomeText
+            ? welcomeTemplate : key;
+        let translated = custom.get(key) ?? exact.get(key) ?? scoped.get(scope)?.get(catalogKey);
         if (translated === undefined) {
             for (const {id, format} of templates) {
                 const match = patterns[id].exec(key);
@@ -356,6 +380,15 @@
             if (closedLightChild(p) || inProtectedSurface(p, input && p === element)) return blocked;
             const id = p.getAttribute("data-testid");
             if (id === "sidecar-row" && p.hasAttribute("data-sidecar-id")) row = true;
+            if (!scope && id === "onboarding-brand-shell") {
+                const label = welcomeLabel(element);
+                if (label) {
+                    scope = "onboarding";
+                    knownText = label;
+                    textOnly = label !== googleSignIn;
+                    selected = true;
+                }
+            }
             const leaf = leafById.get(id);
             if (!scope && leaf && element.matches(leaf.selector)) {
                 scope = leaf.scope;
@@ -541,6 +574,9 @@
                 if (ctx.input) {
                     if ((name === "placeholder" && source === "Untitled") ||
                         (name === "aria-label" && source === "Name")) next = translate(source, "sidecar");
+                } else if (ctx.scope === "onboarding" && ctx.knownText === googleSignIn &&
+                    name === "title" && source === googleSignIn) {
+                    next = translate(source, ctx.scope);
                 } else if (ctx.scope && !ctx.textOnly && permittedAttribute(ctx.attrOwner, name, source)) {
                     next = translate(source, ctx.scope);
                 }

@@ -108,13 +108,17 @@ func (s *SourceSet) VerifyLocales(dir string) ([]Entry, error) {
 	if err := locales.ValidateCatalogBytes(files); err != nil {
 		return nil, err
 	}
+	type localeEntry struct {
+		Entry
+		Scope string
+	}
 	for _, module := range modules {
 		data := files[module+".json"]
 		var doc struct {
 			Schema                   int
 			Module, Version          string
 			Sources                  map[string]string
-			Exact, Scoped, Templates []Entry
+			Exact, Scoped, Templates []localeEntry
 		}
 		if err := json.Unmarshal(data, &doc); err != nil {
 			return nil, err
@@ -127,8 +131,11 @@ func (s *SourceSet) VerifyLocales(dir string) ([]Entry, error) {
 				return nil, fmt.Errorf("%s: 成员摘要不符 %s", module, name)
 			}
 		}
-		for _, group := range [][]Entry{doc.Exact, doc.Scoped, doc.Templates} {
+		for _, group := range [][]localeEntry{doc.Exact, doc.Scoped, doc.Templates} {
 			for _, e := range group {
+				if e.En == welcomeText && (module != "core" || e.Scope != "onboarding" || e.Source != "hub:main.js") {
+					return nil, fmt.Errorf("%s: 欢迎模板只适用于 Hub 的 onboarding 作用域", module)
+				}
 				if _, ok := doc.Sources[e.Source]; !ok || e.Offset < 0 || e.En == "" {
 					return nil, fmt.Errorf("%s: 证据不完整 %+v", module, e)
 				}
@@ -145,9 +152,10 @@ func (s *SourceSet) VerifyLocales(dir string) ([]Entry, error) {
 	var verified []Entry
 	for name, positions := range wanted {
 		src := s.scripts[name]
-		err := staticLiterals(src, func(start, end int, _ string) {
+		err := staticLiterals(src, func(start, end int, context string) {
 			expected, ok := positions[start]
-			if !ok {
+			// Static quoted copies cannot stand in for the official template.
+			if !ok || (expected == welcomeText) != (context == welcomeContext) {
 				return
 			}
 			if en, ok := decode(src[start:end]); ok && en == expected {

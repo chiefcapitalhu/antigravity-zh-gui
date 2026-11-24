@@ -55,3 +55,37 @@ func VerifyOfficial(installation Installation) error {
 	_, err := run("/usr/bin/codesign", "--verify", "--strict", "--deep", "--all-architectures", "-R="+officialRequirement, installation.Root)
 	return err
 }
+
+// SignatureDescription describes the local signing state for the status panel.
+// An invalid signature is also returned as a warning so status remains usable.
+func SignatureDescription(i Installation) (string, error) {
+	if i.Platform == "windows" {
+		if err := VerifyExecutableSignature(i); err != nil {
+			return "可执行文件签名未通过", err
+		}
+		return "Google 可执行文件签名有效", nil
+	}
+	if i.Platform != "darwin" {
+		return "未知平台", errors.New("无法验证此平台的签名")
+	}
+	if err := VerifyOfficial(i); err == nil {
+		return "Google 官方整包签名有效", nil
+	}
+	if _, err := run("/usr/bin/codesign", "--verify", "--deep", "--strict", "--all-architectures", i.Root); err != nil {
+		return "整包签名未通过", err
+	}
+	// The generic check above succeeds for valid ad-hoc and third-party
+	// signatures as well. Only describe a specific kind when codesign says so.
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
+	out, err := exec.CommandContext(ctx, "/usr/bin/codesign", "--display", "--verbose=2", i.Root).CombinedOutput()
+	if err != nil {
+		return "签名有效，未确认发行方", err
+	}
+	for _, line := range strings.Split(string(out), "\n") {
+		if strings.TrimSpace(line) == "Signature=adhoc" {
+			return "本地临时签名有效", nil
+		}
+	}
+	return "签名有效，未确认发行方", nil
+}

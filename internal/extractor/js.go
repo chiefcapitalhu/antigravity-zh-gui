@@ -1,12 +1,19 @@
 package extractor
 
 import (
+	"bytes"
 	"errors"
 	"strconv"
 	"strings"
 	"unicode/utf16"
 	"unicode/utf8"
 )
+
+// This single Hub onboarding literal is archived as source text. The
+// expression is never evaluated, and no interpolation syntax is generalized.
+const welcomeText = "Welcome to ${a}!"
+const welcomeLiteral = "`" + welcomeText + "`"
+const welcomeContext = "#reviewed-welcome-template"
 
 func ident(c byte) bool {
 	return c == '_' || c == '$' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= 128
@@ -220,6 +227,12 @@ func staticLiterals(src []byte, visit func(start, end int, context string)) erro
 		}
 		if c == '"' || c == '\'' || c == 0x60 {
 			start := i
+			if c == 0x60 && bytes.HasPrefix(src[i:], []byte(welcomeLiteral)) {
+				i += len(welcomeLiteral)
+				visit(start, i, welcomeContext)
+				set("#", false)
+				continue
+			}
 			i++
 			finished := false
 			for i < len(src) {

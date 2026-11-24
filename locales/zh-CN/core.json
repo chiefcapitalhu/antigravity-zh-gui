@@ -44,6 +44,13 @@
     },
     {
       "scope": "onboarding",
+      "en": "Continue with Google",
+      "zh": "使用 Google 登录",
+      "source": "hub:main.js",
+      "offset": 9078625
+    },
+    {
+      "scope": "onboarding",
       "en": "Copied!",
       "zh": "已复制！",
       "source": "hub:main.js",
@@ -69,6 +76,13 @@
       "zh": "开始使用",
       "source": "hub:main.js",
       "offset": 7688001
+    },
+    {
+      "scope": "onboarding",
+      "en": "Having trouble signing in?",
+      "zh": "登录遇到问题？",
+      "source": "hub:main.js",
+      "offset": 9084373
     },
     {
       "scope": "onboarding",
@@ -125,6 +139,20 @@
       "zh": "登录遇到问题？输入授权码",
       "source": "hub:main.js",
       "offset": 9074127
+    },
+    {
+      "scope": "onboarding",
+      "en": "Use Business Account",
+      "zh": "使用企业账号",
+      "source": "hub:main.js",
+      "offset": 9081003
+    },
+    {
+      "scope": "onboarding",
+      "en": "Welcome to ${a}!",
+      "zh": "欢迎使用 Antigravity！",
+      "source": "hub:main.js",
+      "offset": 9097635
     },
     {
       "scope": "toolbar",

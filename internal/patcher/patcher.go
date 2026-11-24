@@ -15,6 +15,7 @@ import (
 	"strings"
 
 	"antigravity-zh-gui/internal/asar"
+	"antigravity-zh-gui/internal/config"
 	"antigravity-zh-gui/internal/detector"
 )
 
@@ -26,8 +27,27 @@ const (
 	mac234       = "8934adef0622c9271c92eea950a71848764a66f7b10023ccbd82e54b959adb0e"
 )
 
+const BackupSuffix = backupSuffix
+
+func Localized(i detector.Installation) (bool, error) {
+	if err := validate(i); err != nil {
+		return false, err
+	}
+	return marked(i.Archive)
+}
+func OfficialBackupPath() (string, error) { return officialBackup() }
+
 type Options struct {
-	BackupApp bool
+	BackupApp   bool
+	Preferences *config.Preferences
+	Custom      map[string]string
+	Progress    func(string)
+}
+
+func (o Options) log(message string) {
+	if o.Progress != nil {
+		o.Progress(message)
+	}
 }
 
 // releaseHash identifies the exact distribution used to audit the source members.
@@ -233,16 +253,35 @@ func (e engine) inspect(i detector.Installation) (snapshot, *asar.AuditReport, e
 	} else if s.liveHash != expected {
 		return s, nil, errors.New("当前资源与已核准指纹不符")
 	}
-	changes, _ := plan(s.original, i.Platform)
+	allowlist := map[string]bool{}
 	if s.patched {
-		if len(changes) == 0 {
-			return s, nil, errors.New("已标记的包没有可识别的界面文案")
+		ok, err := hasBuildReceipt(i, expected, s.liveHash)
+		if err != nil {
+			return s, nil, err
 		}
-		for k, want := range changes {
-			got, err := asar.ReadFile(i.Archive, k)
-			if err != nil || !bytes.Equal(want, got) {
-				return s, nil, errors.New("当前本地化成员含未知修改")
+		if ok {
+			for name := range reviewed {
+				installed, err := asar.ReadFile(i.Archive, name)
+				if err == nil && bytes.Contains(installed, []byte(begin)) {
+					allowlist[name] = true
+				}
 			}
+		} else {
+			// Replay the installed settings or recognize an earlier fixed-dialog build.
+			changes, err := reconstructPlan(s.original, i.Archive, i.Platform)
+			if err != nil {
+				return s, nil, err
+			}
+			if len(changes) == 0 {
+				return s, nil, errors.New("缺少本地化构建回执")
+			}
+			for k, want := range changes {
+				got, err := asar.ReadFile(i.Archive, k)
+				if err != nil || !bytes.Equal(want, got) {
+					return s, nil, errors.New("当前本地化成员与已核验的构建不符")
+				}
+			}
+			allowlist = allowed(changes)
 		}
 	}
 	if i.Platform == "darwin" {
@@ -259,7 +298,7 @@ func (e engine) inspect(i detector.Installation) (snapshot, *asar.AuditReport, e
 			return s, nil, err
 		}
 	}
-	report, err := asar.VerifyCandidate(s.original, i.Archive, allowed(changes))
+	report, err := asar.VerifyCandidate(s.original, i.Archive, allowlist)
 	return s, report, err
 }
 func Apply(target string, options Options) (*Result, error) {
@@ -267,7 +306,7 @@ func Apply(target string, options Options) (*Result, error) {
 	if err != nil {
 		return nil, err
 	}
-	report, err := defaults().run(i, options, false)
+	report, err := defaults().run(i, presentationDefaults(options), false)
 	if err == nil && target == "" && report.Committed {
 		appendCacheWarning(report, target)
 	}
@@ -283,12 +322,13 @@ func Restore(target string) error {
 	}
 	return nil
 }
-func RestoreWithReport(target string) (*Result, error) {
+func RestoreWithReport(target string) (*Result, error) { return RestoreWithProgress(target, nil) }
+func RestoreWithProgress(target string, progress func(string)) (*Result, error) {
 	i, err := detector.Inspect(target)
 	if err != nil {
 		return nil, err
 	}
-	result, err := defaults().run(i, Options{}, true)
+	result, err := defaults().run(i, presentationDefaults(Options{Progress: progress}), true)
 	if err == nil && target == "" && result.Committed {
 		appendCacheWarning(result, target)
 	}
@@ -356,6 +396,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 	if err := validate(i); err != nil {
 		return nil, err
 	}
+	opt.log("检查客户端进程与备份位置")
 	if err := e.protectBackup(i); err != nil {
 		return nil, err
 	}
@@ -382,7 +423,11 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 			return nil, fmt.Errorf("缺少原始备份: %w", err)
 		}
 	}
-	changes, warnings := plan(source, i.Platform)
+	opt.log("核对界面成员与安装基线")
+	changes, warnings, err := presentationPlan(source, i.Platform, opt)
+	if err != nil {
+		return nil, err
+	}
 	if !hasMarkers && len(changes) == 0 {
 		audit, err := asar.VerifyCandidate(i.Archive, i.Archive, nil)
 		if err != nil {
@@ -410,6 +455,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 		return &Result{AuditReport: report, Warnings: warnings}, nil
 	}
 	if i.Platform == "darwin" {
+		opt.log("记录应用包快照")
 		s.bundleHash, err = bundleDigest(i.Root)
 		if err != nil {
 			return nil, err
@@ -419,6 +465,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 		if i.Platform != "darwin" {
 			return nil, errors.New("整包备份仅适用于 macOS")
 		}
+		opt.log("备份官方应用包")
 		if err = e.backup(i, s); err != nil {
 			return nil, err
 		}
@@ -438,8 +485,12 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 	if h, err := hashFile(original); err != nil || h != e.baseline(i) {
 		return nil, errors.New("构建源与已确认基线不符")
 	}
-	changes, warnings = plan(original, i.Platform)
-	if len(changes) == 0 {
+	opt.log("构建候选 ASAR")
+	changes, warnings, err = presentationPlan(original, i.Platform, opt)
+	if err != nil {
+		return nil, err
+	}
+	if !restore && len(changes) == 0 {
 		return nil, errors.New("构建时文案上下文已变化")
 	}
 	candidate := filepath.Join(work, "candidate.asar")
@@ -460,6 +511,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 	}
 	// Verify against the original to enforce the allowlist, then audit the
 	// actual before/after pair so repeat applies and restores report correctly.
+	opt.log("校验白名单、文件摘要与完整性")
 	if _, err = asar.VerifyCandidate(original, candidate, allowed(changes)); err != nil {
 		return nil, err
 	}
@@ -477,7 +529,13 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 			ch.BeforeSHA256, ch.AfterSHA256 = ch.AfterSHA256, ch.BeforeSHA256
 		}
 	} else {
-		report, err = asar.VerifyCandidate(i.Archive, candidate, allowed(changes))
+		nextAllowed := allowed(changes)
+		if s.patched {
+			for _, change := range report.Changes {
+				nextAllowed[change.Path] = true
+			}
+		}
+		report, err = asar.VerifyCandidate(i.Archive, candidate, nextAllowed)
 		if err != nil {
 			return nil, err
 		}
@@ -485,9 +543,20 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 	if err = e.unchanged(i, s); err != nil {
 		return nil, err
 	}
+	if !restore && opt.Preferences != nil {
+		candidateHash, err := hashFile(candidate)
+		if err != nil {
+			return nil, err
+		}
+		if err := recordBuild(i, e.baseline(i), candidateHash); err != nil {
+			return nil, err
+		}
+	}
 	if i.Platform == "darwin" {
+		opt.log("复制、签名并原子替换应用包")
 		err = e.installMac(i, s, work, candidate)
 	} else {
+		opt.log("备份资源并原子替换 ASAR")
 		err = e.installWindows(i, s, work, candidate)
 	}
 	if err != nil {

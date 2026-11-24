@@ -413,6 +413,59 @@ test('release dictionary limits permission and quota headings to identifiable se
   for (const en of ['Model Quota','No quota information available.']) seenReleaseTerms.add('model|'+en);
 });
 
+test('the signed-out welcome screen translates its verified captions and fixed brand', async () => {
+  const title = box({class:'entrance-title'}); title.textContent = 'Welcome to Antigravity!';
+  const subtitle = box({'data-testid':'onboarding-welcome-subtitle'}); subtitle.textContent = 'Welcome to Antigravity!';
+  const account = element('span',{},'Use Business Account');
+  const signin = element('button',{class:'shadow-sm',title:'Continue with Google'});
+  const icon = element('span',{class:'google-symbols'},'check_circle');
+  signin.append(icon,document.createTextNode('Continue with Google'));
+  const business = element('button',{class:'shadow-sm'},'Use Business Account');
+  const customProvider = element('button',{class:'shadow-sm',title:'Alice'},'Continue with Google');
+  const options = box({id:'other-sign-in-options'},signin,business,customProvider,account);
+  const form = element('input',{value:'Having trouble signing in?',placeholder:'Use Business Account'});
+  const otherAction = element('button',{class:'text-sm'},'Having trouble signing in?');
+  const help = element('button',{class:'text-sm'},'Having trouble signing in?');
+  const card = box({class:'bg-card'},options,box({id:'advanced-sso-panel'},form,otherAction));
+  const auth = box({class:'entrance-auth-panel'},card,help);
+  const page = box({class:'justify-start'},title,subtitle,auth);
+  const shell = box({'data-testid':'onboarding-brand-shell'},box({class:'flex-shrink-0'},box({class:'transition-all'},page)));
+  root.append(shell);
+  const chatCopy = shell.cloneNode(true); root.append(box({'data-testid':'agent-response'},chatCopy));
+  const api = mount({...releaseLocale,custom:{Alice:'不应翻译的账户名',check_circle:'不应翻译的图标'}});
+  for (const mode of ['zh','en','zh']) {
+    api.setMode(mode); await tick();
+    equal(title.textContent,mode === 'zh' ? '欢迎使用 Antigravity！' : 'Welcome to Antigravity!','verified product title');
+    equal(signin.lastChild.nodeValue,mode === 'zh' ? '使用 Google 登录' : 'Continue with Google','sign in');
+    equal(signin.title,mode === 'zh' ? '使用 Google 登录' : 'Continue with Google','sign-in tooltip');
+    equal(business.textContent,mode === 'zh' ? '使用企业账号' : 'Use Business Account','business');
+    equal(help.textContent,mode === 'zh' ? '登录遇到问题？' : 'Having trouble signing in?','help');
+    equal(customProvider.title,'Alice','provider identity');
+    equal(customProvider.textContent,'Continue with Google','provider identity overrides matching caption');
+    equal(account.textContent,'Use Business Account','nested account label');
+    equal(icon.textContent,'check_circle','icon ligature');
+    equal(form.value,'Having trouble signing in?','form value');
+    equal(form.placeholder,'Use Business Account','form hint');
+    equal(otherAction.textContent,'Having trouble signing in?','other action in configurable SSO panel');
+    equal(subtitle.textContent,'Welcome to Antigravity!','dynamic subtitle');
+    equal(chatCopy.querySelector('.entrance-title').textContent,'Welcome to Antigravity!','copy in protected content');
+  }
+  for (const en of ['Welcome to ${a}!','Continue with Google','Use Business Account','Having trouble signing in?']) {
+    seenReleaseTerms.add('onboarding|'+en);
+  }
+  title.firstChild.nodeValue = 'Welcome to Alice!'; await tick();
+  equal(title.textContent,'Welcome to Alice!','unknown product or personal name');
+  signin.title = 'Alice'; await tick();
+  equal(signin.lastChild.nodeValue,'Continue with Google','reused provider control');
+  // The version without business-account options renders the primary button directly under the panel.
+  signin.title = 'Continue with Google'; auth.prepend(signin); await tick();
+  equal(signin.lastChild.nodeValue,'使用 Google 登录','simple personal sign-in');
+  const custom = mount({...releaseLocale,custom:{'Welcome to Antigravity!':'自定义欢迎词'}});
+  title.firstChild.nodeValue = 'Welcome to Antigravity!'; await tick();
+  equal(title.textContent,'自定义欢迎词','custom title override');
+  custom.setMode('en'); await tick(); equal(title.textContent,'Welcome to Antigravity!','custom title restoration');
+});
+
 test('all shipped Hub translations have an exercised display path', () => {
   const scopes = new Set(['toolbar','workspace','settings','permissions','onboarding','model','agents','sidecar']);
   const missing = releaseLocale.scoped.filter(group => scopes.has(group.scope))

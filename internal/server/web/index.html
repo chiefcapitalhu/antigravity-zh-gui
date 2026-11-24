@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <meta name="color-scheme" content="light dark">
+    <title>Antigravity 可视化汉化工具</title>
+    <link rel="stylesheet" href="/panel.css">
+    <script src="/panel.js" defer></script>
+  </head>
+  <body>
+    <header class="mast">
+      <div class="bar">
+        <span class="mark" aria-hidden="true"></span>
+        <h1>
+          Antigravity
+          <span>可视化汉化工具</span>
+        </h1>
+        <span id="version" class="version"></span>
+        <span class="offline">
+          <i></i>
+          纯本地离线・零外网连接
+        </span>
+        <button id="quit" type="button" class="subtle">退出工具</button>
+      </div>
+    </header>
+    <main>
+      <p id="notice" class="notice" role="status" hidden></p>
+      <div class="grid">
+        <section class="card environment">
+          <div class="head">
+            <h2>环境体检</h2>
+            <button type="button" id="refresh" class="subtle">重新检测</button>
+          </div>
+          <label for="target">客户端安装路径</label>
+          <input id="target" type="text" spellcheck="false" placeholder="自动探测，也可输入安装目录">
+          <p id="detected" class="hint path"></p>
+          <dl class="facts">
+            <div>
+              <dt>客户端版本</dt>
+              <dd id="clientVersion">待检测</dd>
+            </div>
+            <div>
+              <dt>运行状态</dt>
+              <dd id="running">待检测</dd>
+            </div>
+            <div>
+              <dt>汉化状态</dt>
+              <dd id="localized">待检测</dd>
+            </div>
+            <div>
+              <dt>归档备份</dt>
+              <dd id="backup">待检测</dd>
+            </div>
+            <div class="full">
+              <dt id="sigLabel">签名状态</dt>
+              <dd id="signature">待检测</dd>
+            </div>
+          </dl>
+          <p id="health" class="hint" role="status"></p>
+          <button id="restoreApp" class="subtle" hidden>从整包备份还原官方签名</button>
+        </section>
+        <section class="card options">
+          <div class="head">
+            <h2>一键操作</h2>
+            <button type="button" id="save" class="subtle">保存设置</button>
+          </div>
+          <div class="pair">
+            <label>
+              默认界面语言
+              <select id="lang">
+                <option value="zh">简体中文</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <label>
+              左上角品牌
+              <select id="brand">
+                <option value="keep">保留 Antigravity</option>
+                <option value="hide">隐藏品牌</option>
+              </select>
+            </label>
+          </div>
+          <label class="switchrow">
+            <span>
+              软件内切换中英文
+              <kbd id="shortcut">Ctrl + Shift + L</kbd>
+            </span>
+            <input type="checkbox" role="switch" id="hotkey" checked>
+          </label>
+          <label class="switchrow" id="backupRow">
+            <span>保留官方签名的 .app 整包备份</span>
+            <input type="checkbox" role="switch" id="makeBackup">
+          </label>
+          <div class="actionbar">
+            <button id="apply" type="button" class="primary">一键汉化 / 更新</button>
+            <button id="restore" type="button">一键还原官方英文</button>
+            <button id="verify" type="button">验证文件完整性</button>
+          </div>
+        </section>
+      </div>
+      <section class="card eventcard">
+        <div class="head">
+          <h2>操作日志</h2>
+          <span class="live" id="jobState" aria-live="polite">等待操作</span>
+        </div>
+        <div id="logs" class="logs" role="log" aria-live="polite">
+          <p class="empty">操作开始后，这里会显示每一步和用时。</p>
+        </div>
+        <details class="audit" id="audit">
+          <summary>
+            安全透明审计
+            <span id="auditCount"></span>
+          </summary>
+          <div id="changes">
+            <p class="hint">执行汉化或验证后可查看归档成员及 SHA-256。</p>
+          </div>
+        </details>
+      </section>
+      <section class="card words">
+        <div class="head">
+          <div>
+            <h2>自定义词条</h2>
+            <p class="hint">保存后重新汉化，个人译文将优先用于已识别的界面控件。</p>
+          </div>
+          <span class="count" id="wordCount"></span>
+        </div>
+        <form id="wordForm">
+          <label>
+            英文原文
+            <input id="english" required placeholder="New Conversation" spellcheck="false">
+          </label>
+          <label>
+            中文译文
+            <input id="chinese" required placeholder="新建对话">
+          </label>
+          <button id="addWord">保存词条</button>
+        </form>
+        <ul id="wordList"></ul>
+      </section>
+    </main>
+    <noscript>请在浏览器中启用 JavaScript 以使用本地控制台。</noscript>
+  </body>
+</html>

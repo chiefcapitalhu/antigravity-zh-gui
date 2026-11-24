@@ -149,3 +149,84 @@ func packageVersion(path string) (string, error) {
 	err = json.Unmarshal(data, &info)
 	return info.Version, err
 }
+
+// A content-addressed receipt binds an already audited candidate to its
+// original, installation path and version. Persisting it before the atomic
+// replacement makes it available on the first launch after a crash.
+func installedReceipt(i detector.Installation, original, installed string) (string, error) {
+	path, err := receiptPath(i, "installed-v1\x00"+original+"\x00"+installed)
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(filepath.Dir(path), "installed-"+filepath.Base(path)), nil
+}
+
+func hasBuildReceipt(i detector.Installation, original, installed string) (bool, error) {
+	path, err := installedReceipt(i, original, installed)
+	if err != nil {
+		return false, err
+	}
+	for _, d := range []string{filepath.Dir(filepath.Dir(path)), filepath.Dir(path)} {
+		if err := checkDir(d); err != nil {
+			if os.IsNotExist(err) {
+				return false, nil
+			}
+			return false, err
+		}
+	}
+	st, err := os.Lstat(path)
+	if os.IsNotExist(err) {
+		return false, nil
+	}
+	if err != nil {
+		return false, err
+	}
+	if !st.Mode().IsRegular() || st.Size() != 64 {
+		return false, errors.New("构建回执损坏")
+	}
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return false, err
+	}
+	if string(data) != installed {
+		return false, errors.New("构建回执摘要不符")
+	}
+	return true, nil
+}
+
+func recordBuild(i detector.Installation, original, installed string) error {
+	if ok, err := hasBuildReceipt(i, original, installed); ok || err != nil {
+		return err
+	}
+	path, err := installedReceipt(i, original, installed)
+	if err != nil {
+		return err
+	}
+	dir := filepath.Dir(path)
+	if err := os.MkdirAll(dir, 0700); err != nil {
+		return err
+	}
+	if err := checkDir(filepath.Dir(dir)); err != nil {
+		return err
+	}
+	if err := checkDir(dir); err != nil {
+		return err
+	}
+	f, err := os.CreateTemp(dir, ".installed-*")
+	if err != nil {
+		return err
+	}
+	defer os.Remove(f.Name())
+	_, err = f.WriteString(installed)
+	if err == nil {
+		err = f.Sync()
+	}
+	closeErr := f.Close()
+	if err != nil {
+		return err
+	}
+	if closeErr != nil {
+		return closeErr
+	}
+	return os.Rename(f.Name(), path)
+}

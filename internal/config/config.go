@@ -269,6 +269,45 @@ func (s Store) LoadDictionary() (map[string]string, error) {
 	return entries, nil
 }
 
+func (s Store) lockDictionary() (func(), error) {
+	// Check the configured directory and destination before creating anything.
+	if _, err := s.path(dictionaryFile); err != nil {
+		return nil, err
+	}
+	if err := os.MkdirAll(s.dir, 0700); err != nil {
+		return nil, err
+	}
+	return acquireDictionaryLock(filepath.Join(s.dir, "custom_dict.lock"))
+}
+
+// EditDictionary updates only one entry. Read the latest dictionary while
+// holding the process-shared lock and keep it through the atomic replacement.
+func (s Store) EditDictionary(en string, zh *string) (map[string]string, error) {
+	if zh != nil {
+		if err := ValidateGlobalEntry(en, *zh); err != nil {
+			return nil, err
+		}
+	}
+	unlock, err := s.lockDictionary()
+	if err != nil {
+		return nil, err
+	}
+	defer unlock()
+	entries, err := s.LoadDictionary()
+	if err != nil {
+		return nil, err
+	}
+	if zh == nil {
+		delete(entries, en)
+	} else {
+		entries[en] = *zh
+	}
+	if err := s.save(dictionaryFile, entries); err != nil {
+		return nil, err
+	}
+	return entries, nil
+}
+
 // SaveDictionary atomically publishes the complete dictionary supplied by the user.
 func (s Store) SaveDictionary(entries map[string]string) error {
 	if entries == nil {
@@ -279,5 +318,10 @@ func (s Store) SaveDictionary(entries map[string]string) error {
 			return err
 		}
 	}
+	unlock, err := s.lockDictionary()
+	if err != nil {
+		return err
+	}
+	defer unlock()
 	return s.save(dictionaryFile, entries)
 }
