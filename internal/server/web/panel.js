@@ -52,13 +52,13 @@ function showStatus(value, warning) {
     $('health').textContent = warning || (value?.warnings || []).join('\n');
     if (value?.running === true)
         $('health').textContent += '\n请手动完全退出 Antigravity 后再修改客户端。';
-    $('health').classList.toggle('bad', !value || value.running !== false);
+    $('health').classList.toggle('bad', !value || value.running !== false || Boolean(value.degraded) || Boolean(value.warnings?.length));
     $('detected').textContent = value?.target || '';
     $('restoreApp').hidden = !(value?.platform === 'darwin' && value.backupApp);
     const flag = (v, yes, no) => typeof v === 'boolean' ? (v ? yes : no) : '待确认';
     showFact('clientVersion', value?.version || '待确认');
     showFact('running', flag(value?.running, '运行中', '已退出'), value?.running === false ? 'ok' : 'bad');
-    showFact('localized', flag(value?.localized, '已汉化', '英文原版'), value?.localized ? 'ok' : '');
+    showFact('localized', value?.degraded ? '部分汉化（已降级）' : flag(value?.localized, '已汉化', '英文原版'), value?.degraded ? 'bad' : value?.localized ? 'ok' : '');
     showFact('backup', flag(value?.backup, '已备份', '无备份'), value?.backup ? 'ok' : '');
     showFact('signature', value?.signature || '待确认');
     lockUI();

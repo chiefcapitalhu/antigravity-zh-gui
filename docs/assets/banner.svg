@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="Antigravity 可视化汉化工具">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071512"/>
+      <stop offset="52%" stop-color="#0c231e"/>
+      <stop offset="100%" stop-color="#0a2429"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="16%" cy="24%" r="48%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="85%" cy="78%" r="45%">
+      <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#99f6e4" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="320" rx="20" fill="url(#bg)"/>
+  <rect width="1200" height="320" rx="20" fill="url(#grid)"/>
+  <rect width="1200" height="320" rx="20" fill="url(#glowA)"/>
+  <rect width="1200" height="320" rx="20" fill="url(#glowB)"/>
+  <rect x="0.75" y="0.75" width="1198.5" height="318.5" rx="19.25" fill="none" stroke="#1f4d43" stroke-opacity="0.7" stroke-width="1.5"/>
+
+  <g transform="translate(564, 26) scale(0.6667)">
+    <rect width="108" height="108" rx="26" fill="#0b3b2e" stroke="url(#accent)" stroke-opacity="0.65" stroke-width="2.25"/>
+    <path d="M 80 82 C 84 85 90 83 84 77 C 68 61 72 22 54 22 C 36 22 40 61 24 77 C 18 83 24 85 28 82 C 42 72 41 55 54 55 C 67 55 66 72 80 82 Z" fill="url(#accent)"/>
+    <circle cx="84" cy="24" r="5" fill="#6ee7b7"/>
+  </g>
+
+  <text x="600" y="152" text-anchor="middle" fill="#f0fdf9" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif" font-size="44" font-weight="700">Antigravity 可视化汉化工具</text>
+  <text x="600" y="190" text-anchor="middle" fill="#99c2b8" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif" font-size="20" font-weight="400">纯本地离线 · 零外部依赖 · 四层红线保护 · 一键透明审计与无损热切换</text>
+
+  <g transform="translate(0, 214)" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif" font-size="14" font-weight="600">
+    <g transform="translate(233, 0)">
+      <rect width="152" height="34" rx="17" fill="#10b981" fill-opacity="0.18" stroke="#34d399" stroke-opacity="0.5"/>
+      <text x="76" y="17" text-anchor="middle" dominant-baseline="central" fill="#6ee7b7">3,107 原创词条</text>
+    </g>
+    <g transform="translate(399, 0)">
+      <rect width="186" height="34" rx="17" fill="#14b8a6" fill-opacity="0.16" stroke="#2dd4bf" stroke-opacity="0.45"/>
+      <text x="93" y="17" text-anchor="middle" dominant-baseline="central" fill="#99f6e4">macOS 2.34 / 2.35</text>
+    </g>
+    <g transform="translate(599, 0)">
+      <rect width="194" height="34" rx="17" fill="#0ea5e9" fill-opacity="0.15" stroke="#38bdf8" stroke-opacity="0.45"/>
+      <text x="97" y="17" text-anchor="middle" dominant-baseline="central" fill="#bae6fd">Cmd/Ctrl+Shift+L 切换</text>
+    </g>
+    <g transform="translate(807, 0)">
+      <rect width="160" height="34" rx="17" fill="#f59e0b" fill-opacity="0.14" stroke="#fbbf24" stroke-opacity="0.42"/>
+      <text x="80" y="17" text-anchor="middle" dominant-baseline="central" fill="#fde68a">SHA-256 事务审计</text>
+    </g>
+  </g>
+
+  <text x="600" y="290" text-anchor="middle" fill="#5e877d" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, monospace" font-size="13">antigravity-zh-gui · v0.2.0 · MIT License</text>
+</svg>

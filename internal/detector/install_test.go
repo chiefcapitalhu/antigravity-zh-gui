@@ -128,3 +128,32 @@ func TestInspectMalformedArchive(t *testing.T) {
 		t.Fatal("invalid archive accepted")
 	}
 }
+
+func TestInspectCandidatesSkipsResidualInvalidDir(t *testing.T) {
+	stale := filepath.Join(t.TempDir(), "Antigravity")
+	bakPath := filepath.Join(stale, "resources", "app.asar.zh-gui.bak")
+	if err := os.MkdirAll(filepath.Dir(bakPath), 0700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(bakPath, []byte("leftover backup"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	valid := fakeInstall(t, "windows", "2.34.0")
+	want, err := filepath.EvalSymlinks(valid)
+	if err != nil {
+		t.Fatal(err)
+	}
+	got, err := inspectCandidates("windows", []string{stale, valid})
+	if err != nil {
+		t.Fatalf("expected second candidate to match, got err=%v", err)
+	}
+	if got.Root != want || got.Version != "2.34.0" {
+		t.Fatalf("got %+v, want root %s", got, want)
+	}
+	if _, err := inspectCandidates("windows", []string{stale}); err == nil {
+		t.Fatal("expected error when all existing candidates are invalid")
+	}
+	if _, err := inspectCandidates("windows", []string{filepath.Join(t.TempDir(), "absent")}); err == nil || !strings.Contains(err.Error(), "未找到") {
+		t.Fatalf("expected not-found error, got %v", err)
+	}
+}

@@ -1,453 +1,5212 @@
 {
   "schema": 1,
   "module": "settings",
-  "version": "2.34.0",
+  "version": "2.35.0",
   "sources": {
-    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+    "hub:main.js": "f039eca519f153aeac9a0f1d10abc7afd8ff4b8009ef78d684669a3c7955f54d"
   },
-  "exact": [],
+  "exact": [
+    {
+      "en": ". If it isn't in the list, drag it in from the small window next to System Settings.",
+      "zh": "。如果列表中没有它，请从“系统设置”旁边的小窗口中将其拖入。",
+      "source": "hub:main.js",
+      "offset": 8050703
+    },
+    {
+      "en": ". It is not visible in the agent's sandbox and is shared across all your projects.",
+      "zh": "。它在 AI 助手的沙箱中不可见，并在你的所有项目间共享。",
+      "source": "hub:main.js",
+      "offset": 11949048
+    },
+    {
+      "en": ". Reload the window if a change does not take effect.",
+      "zh": "。如果更改未生效，请重新加载窗口。",
+      "source": "hub:main.js",
+      "offset": 5413228
+    },
+    {
+      "en": ". To use another account, add it in the",
+      "zh": "。如需使用其他账号，请前往",
+      "source": "hub:main.js",
+      "offset": 8354143
+    },
+    {
+      "en": ". You can control this from your settings at any point.",
+      "zh": "。你随时可以在设置中更改此项。",
+      "source": "hub:main.js",
+      "offset": 7399918
+    },
+    {
+      "en": "\"Allow remote debugging for this browser instance\"",
+      "zh": "“允许对此浏览器实例进行远程调试”",
+      "source": "hub:main.js",
+      "offset": 8991717
+    },
+    {
+      "en": "⌘I Focus Input, ⌘⇧O New Conversation, ⌘K Picker in chat, ⌘, Settings, ⌘[/] History). Replaces Go to Symbol (⌘⇧O) and Trigger Suggest (⌘I), and rebinds VS Code Settings to ⌘⌥,.",
+      "zh": "⌘I 聚焦输入框、⌘⇧O 新建对话、⌘K 聊天内选择器、⌘, 打开设置、⌘[/] 历史记录。将替换“转到符号”（⌘⇧O）和“触发建议”（⌘I），并将 VS Code 设置重新绑定为 ⌘⌥,。",
+      "source": "hub:main.js",
+      "offset": 5513916
+    },
+    {
+      "en": "⌘L Focus Input, ⌘⇧L New Conversation, ⌘⇧A Picker, ⌘⇧, Settings",
+      "zh": "⌘L 聚焦输入框、⌘⇧L 新建对话、⌘⇧A 打开选择器、⌘⇧, 打开设置",
+      "source": "hub:main.js",
+      "offset": 5513609
+    },
+    {
+      "en": "✓ macOS permissions granted",
+      "zh": "✓ 已授予 macOS 权限",
+      "source": "hub:main.js",
+      "offset": 8054304
+    },
+    {
+      "en": "1 MCP server failed to start",
+      "zh": "有 1 个 MCP 服务启动失败",
+      "source": "hub:main.js",
+      "offset": 8399812
+    },
+    {
+      "en": "1. Accessibility",
+      "zh": "1. 辅助功能",
+      "source": "hub:main.js",
+      "offset": 8053690
+    },
+    {
+      "en": "2. Screen Recording",
+      "zh": "2. 屏幕录制",
+      "source": "hub:main.js",
+      "offset": 8053821
+    },
+    {
+      "en": "A bash script run in your cloud environment after cloning repositories (or configure interactively in chat with /env-setup).",
+      "zh": "克隆代码仓库后在云端环境中运行的 Bash 脚本（也可在对话中输入 /env-setup 进行交互式配置）。",
+      "source": "hub:main.js",
+      "offset": 5823534
+    },
+    {
+      "en": "A comma-separated list like org-a, org-b, or * for all.",
+      "zh": "以逗号分隔的列表，例如 org-a, org-b，或使用 * 表示全部。",
+      "source": "hub:main.js",
+      "offset": 11966503
+    },
+    {
+      "en": "A comma-separated list like repo-a, repo-b, or * for all.",
+      "zh": "以逗号分隔的列表，例如 repo-a, repo-b，或使用 * 表示全部。",
+      "source": "hub:main.js",
+      "offset": 11957115
+    },
+    {
+      "en": "A customization failed to load",
+      "zh": "有一项自定义配置加载失败",
+      "source": "hub:main.js",
+      "offset": 8969301
+    },
+    {
+      "en": "A Google Cloud project is required to use Antigravity.",
+      "zh": "使用 Antigravity 需要关联一个 Google Cloud 项目。",
+      "source": "hub:main.js",
+      "offset": 5225774
+    },
+    {
+      "en": "A label for this computer when you connect from another device. Changing it reconnects.",
+      "zh": "从其他设备连接时用于标识这台电脑的名称，修改后会重新连接。",
+      "source": "hub:main.js",
+      "offset": 5323114
+    },
+    {
+      "en": "A license or project selection is required to use Antigravity.",
+      "zh": "使用 Antigravity 需要选择许可证或项目。",
+      "source": "hub:main.js",
+      "offset": 5225831
+    },
+    {
+      "en": "A nickname for identifying this application in the companion website. Changing this will restart the connection.",
+      "zh": "用于在配套网页端识别此应用的昵称。修改后会重新建立连接。",
+      "source": "hub:main.js",
+      "offset": 5144372
+    },
+    {
+      "en": "A shell setup script run before every command the agent executes in this project. Overrides the global script.",
+      "zh": "在 AI 助手于此项目中执行每条命令前运行的 Shell 初始化脚本，将覆盖全局脚本。",
+      "source": "hub:main.js",
+      "offset": 5823661
+    },
+    {
+      "en": "A shell setup script run before every command the agent executes.",
+      "zh": "在 AI 助手执行每条命令前运行的 Shell 初始化脚本。",
+      "source": "hub:main.js",
+      "offset": 5136675
+    },
+    {
+      "en": "Accent",
+      "zh": "强调色",
+      "source": "hub:main.js",
+      "offset": 12021856
+    },
+    {
+      "en": "Access grants",
+      "zh": "访问授权",
+      "source": "hub:main.js",
+      "offset": 8309394
+    },
+    {
+      "en": "Access rules",
+      "zh": "访问规则",
+      "source": "hub:main.js",
+      "offset": 11959154
+    },
+    {
+      "en": "Accessibility",
+      "zh": "辅助功能",
+      "source": "hub:main.js",
+      "offset": 5132769
+    },
+    {
+      "en": "Account",
+      "zh": "账号",
+      "source": "hub:main.js",
+      "offset": 5223886
+    },
+    {
+      "en": "Account connected.",
+      "zh": "账号已关联。",
+      "source": "hub:main.js",
+      "offset": 8406318
+    },
+    {
+      "en": "Account connection was not completed.",
+      "zh": "账号连接尚未完成。",
+      "source": "hub:main.js",
+      "offset": 10092336
+    },
+    {
+      "en": "Accounts",
+      "zh": "账号",
+      "source": "hub:main.js",
+      "offset": 5733253
+    },
+    {
+      "en": "Accounts tab",
+      "zh": "账号标签页",
+      "source": "hub:main.js",
+      "offset": 8353936
+    },
+    {
+      "en": "Active environment: os=",
+      "zh": "当前环境：os=",
+      "source": "hub:main.js",
+      "offset": 5413041
+    },
+    {
+      "en": "Add account",
+      "zh": "添加账号",
+      "source": "hub:main.js",
+      "offset": 5738691
+    },
+    {
+      "en": "Add Handler",
+      "zh": "添加处理程序",
+      "source": "hub:main.js",
+      "offset": 5697351
+    },
+    {
+      "en": "Add Hook Card",
+      "zh": "添加钩子卡片",
+      "source": "hub:main.js",
+      "offset": 5696265
+    },
+    {
+      "en": "Add label",
+      "zh": "添加标签",
+      "source": "hub:main.js",
+      "offset": 5738286
+    },
+    {
+      "en": "Add label for",
+      "zh": "添加标签至",
+      "source": "hub:main.js",
+      "offset": 5738157
+    },
+    {
+      "en": "Add MCP Servers",
+      "zh": "添加 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 5711216
+    },
+    {
+      "en": "Admin escalation",
+      "zh": "管理员权限提升",
+      "source": "hub:main.js",
+      "offset": 8301568
+    },
+    {
+      "en": "Advanced",
+      "zh": "高级选项",
+      "source": "hub:main.js",
+      "offset": 4724894
+    },
+    {
+      "en": "Advanced Settings",
+      "zh": "高级设置",
+      "source": "hub:main.js",
+      "offset": 5382578
+    },
+    {
+      "en": "Agent can",
+      "zh": "AI 助手可以",
+      "source": "hub:main.js",
+      "offset": 11953149
+    },
+    {
+      "en": "Agent can run",
+      "zh": "AI 助手可以运行",
+      "source": "hub:main.js",
+      "offset": 11954312
+    },
+    {
+      "en": "Agent Hooks Configuration",
+      "zh": "AI 助手钩子配置",
+      "source": "hub:main.js",
+      "offset": 5702202
+    },
+    {
+      "en": "Agent Settings",
+      "zh": "AI 助手设置",
+      "source": "hub:main.js",
+      "offset": 5657494
+    },
+    {
+      "en": "AI coding agents are known to have certain security risks, including autonomous code execution, data exfiltration, prompt injection and supply chain risks. Ensure that you monitor and verify all actions taken by the agent.",
+      "zh": "AI 编程助手存在一定的安全风险，包括自主执行代码、数据泄露、提示词注入及供应链风险。请务必监督并核实 AI 助手执行的所有操作。",
+      "source": "hub:main.js",
+      "offset": 7396512
+    },
+    {
+      "en": "AI Credits are used when you've exceeded your model quota. Keep track of your current AI Credits in the",
+      "zh": "超出模型额度后将消耗 AI 积分。查看当前 AI 积分请前往",
+      "source": "hub:main.js",
+      "offset": 8064572
+    },
+    {
+      "en": "All active Antigravity shortcuts and user keybinding overrides are managed directly by VS Code.",
+      "zh": "所有已启用的 Antigravity 快捷键和用户自定义键位均直接由 VS Code 管理。",
+      "source": "hub:main.js",
+      "offset": 5516722
+    },
+    {
+      "en": "All terminal commands require review. The agent can read or write to any file in the machine.",
+      "zh": "所有终端命令均需审核。AI 助手可读写本机上的任意文件。",
+      "source": "hub:main.js",
+      "offset": 5629900
+    },
+    {
+      "en": "Allow creating issues and grant access to specific issues.",
+      "zh": "允许创建议题，并授予特定议题的访问权限。",
+      "source": "hub:main.js",
+      "offset": 11958474
+    },
+    {
+      "en": "Allow Google to collect and use your Interactions data, subject to the",
+      "zh": "允许 Google 收集并使用你的交互数据，具体遵循",
+      "source": "hub:main.js",
+      "offset": 7399500
+    },
+    {
+      "en": "Allow opening pull requests and grant access to specific PRs.",
+      "zh": "允许发起拉取请求，并授予特定 PR 的访问权限。",
+      "source": "hub:main.js",
+      "offset": 11960313
+    },
+    {
+      "en": "Allow reading workflow runs (list, view, watch) across the whole repository.",
+      "zh": "允许查看整个仓库的工作流运行记录（列出、查看、监视）。",
+      "source": "hub:main.js",
+      "offset": 11964082
+    },
+    {
+      "en": "Allow/deny agent command execution outside the sandbox.",
+      "zh": "允许或禁止 AI 助手在沙箱外执行命令。",
+      "source": "hub:main.js",
+      "offset": 5650017
+    },
+    {
+      "en": "Allow/deny specific terminal commands.",
+      "zh": "允许或禁止特定终端命令。",
+      "source": "hub:main.js",
+      "offset": 5649709
+    },
+    {
+      "en": "Allowed by you",
+      "zh": "由你手动允许",
+      "source": "hub:main.js",
+      "offset": 5625864
+    },
+    {
+      "en": "Also includes",
+      "zh": "同时包含",
+      "source": "hub:main.js",
+      "offset": 5647999
+    },
+    {
+      "en": "Always Ask",
+      "zh": "每次询问",
+      "source": "hub:main.js",
+      "offset": 5654271
+    },
+    {
+      "en": "Always Proceed",
+      "zh": "始终自动执行",
+      "source": "hub:main.js",
+      "offset": 5655955
+    },
+    {
+      "en": "Antigravity (AGY) Style",
+      "zh": "Antigravity（AGY）风格",
+      "source": "hub:main.js",
+      "offset": 5513829
+    },
+    {
+      "en": "Any resource",
+      "zh": "任意资源",
+      "source": "hub:main.js",
+      "offset": 5622395
+    },
+    {
+      "en": "App update required",
+      "zh": "需要更新应用",
+      "source": "hub:main.js",
+      "offset": 8361430
+    },
+    {
+      "en": "App version",
+      "zh": "应用版本",
+      "source": "hub:main.js",
+      "offset": 5228008
+    },
+    {
+      "en": "Appearance",
+      "zh": "外观",
+      "source": "hub:main.js",
+      "offset": 5382937
+    },
+    {
+      "en": "Appears larger on mobile",
+      "zh": "在移动端显示更大",
+      "source": "hub:main.js",
+      "offset": 12024194
+    },
+    {
+      "en": "Application",
+      "zh": "应用",
+      "source": "hub:main.js",
+      "offset": 5150358
+    },
+    {
+      "en": "Ask before sensitive operations.",
+      "zh": "执行敏感操作前先询问。",
+      "source": "hub:main.js",
+      "offset": 3838476
+    },
+    {
+      "en": "Authenticate",
+      "zh": "身份验证",
+      "source": "hub:main.js",
+      "offset": 5676433
+    },
+    {
+      "en": "Authenticated as",
+      "zh": "已认证为",
+      "source": "hub:main.js",
+      "offset": 11950362
+    },
+    {
+      "en": "Authenticated via Enterprise Gateway",
+      "zh": "已通过企业网关认证",
+      "source": "hub:main.js",
+      "offset": 5224651
+    },
+    {
+      "en": "Authenticating...",
+      "zh": "正在验证身份...",
+      "source": "hub:main.js",
+      "offset": 9558541
+    },
+    {
+      "en": "Authentication required",
+      "zh": "需要身份认证",
+      "source": "hub:main.js",
+      "offset": 8453749
+    },
+    {
+      "en": "Auto",
+      "zh": "自动",
+      "source": "hub:main.js",
+      "offset": 3838743
+    },
+    {
+      "en": "Auto (detected)",
+      "zh": "自动（已检测）",
+      "source": "hub:main.js",
+      "offset": 5409168
+    },
+    {
+      "en": "Auto-assignment not configured",
+      "zh": "未配置自动分配",
+      "source": "hub:main.js",
+      "offset": 5215849
+    },
+    {
+      "en": "Auto-detect (browser defaults)",
+      "zh": "自动检测（浏览器默认）",
+      "source": "hub:main.js",
+      "offset": 5584251
+    },
+    {
+      "en": "Automated safeguards help to protect your conversations from insecure or unsafe content. That being said, users should be aware of potential agentic risks, including data exfiltration.",
+      "zh": "自动防护机制可帮助保护你的对话免受不安全内容的侵害。尽管如此，用户仍需留意 AI 助手自主操作可能带来的风险，包括数据泄露。",
+      "source": "hub:main.js",
+      "offset": 7398541
+    },
+    {
+      "en": "Automatic check for updates",
+      "zh": "自动检查更新",
+      "source": "hub:main.js",
+      "offset": 5143882
+    },
+    {
+      "en": "Automatically decide if commands run.",
+      "zh": "自动判断是否运行命令。",
+      "source": "hub:main.js",
+      "offset": 3838762
+    },
+    {
+      "en": "Automatically prompt you to restart the app when a new update is available. When disabled, you can check for updates manually from the app menu.",
+      "zh": "有新版本时自动提示您重启应用。关闭后，可在应用菜单中手动检查更新。",
+      "source": "hub:main.js",
+      "offset": 5143925
+    },
+    {
+      "en": "Automation credentials expired",
+      "zh": "自动化凭据已过期",
+      "source": "hub:main.js",
+      "offset": 9769522
+    },
+    {
+      "en": "Automation credentials expiring soon",
+      "zh": "自动化凭据即将过期",
+      "source": "hub:main.js",
+      "offset": 9769555
+    },
+    {
+      "en": "Available dictation languages",
+      "zh": "可选语音听写语言",
+      "source": "hub:main.js",
+      "offset": 5586922
+    },
+    {
+      "en": "Available licenses",
+      "zh": "可用许可证",
+      "source": "hub:main.js",
+      "offset": 5212962
+    },
+    {
+      "en": "Background",
+      "zh": "背景色",
+      "source": "hub:main.js",
+      "offset": 12021239
+    },
+    {
+      "en": "Billing model",
+      "zh": "计费模式",
+      "source": "hub:main.js",
+      "offset": 5210927
+    },
+    {
+      "en": "Blocked",
+      "zh": "已阻止",
+      "source": "hub:main.js",
+      "offset": 8333080
+    },
+    {
+      "en": "Blocked by organization policy",
+      "zh": "已被组织策略拦截",
+      "source": "hub:main.js",
+      "offset": 5674798
+    },
+    {
+      "en": "Bot",
+      "zh": "智能机器人",
+      "source": "hub:main.js",
+      "offset": 6616457
+    },
+    {
+      "en": "Browse",
+      "zh": "浏览",
+      "source": "hub:main.js",
+      "offset": 8307681
+    },
+    {
+      "en": "Browse and enable plugins from the Build With Google catalog.",
+      "zh": "浏览并启用 Build With Google 目录中的插件。",
+      "source": "hub:main.js",
+      "offset": 5714387
+    },
+    {
+      "en": "Browse Connectors",
+      "zh": "浏览连接器",
+      "source": "hub:main.js",
+      "offset": 8953575
+    },
+    {
+      "en": "Browser",
+      "zh": "浏览器",
+      "source": "hub:main.js",
+      "offset": 5403345
+    },
+    {
+      "en": "Browser actions",
+      "zh": "浏览器操作",
+      "source": "hub:main.js",
+      "offset": 8301419
+    },
+    {
+      "en": "Browser actuation rules",
+      "zh": "浏览器操作规则",
+      "source": "hub:main.js",
+      "offset": 5402745
+    },
+    {
+      "en": "Browser downloads",
+      "zh": "浏览器下载",
+      "source": "hub:main.js",
+      "offset": 8301467
+    },
+    {
+      "en": "Browser JavaScript execution policy",
+      "zh": "浏览器 JavaScript 执行策略",
+      "source": "hub:main.js",
+      "offset": 5141930
+    },
+    {
+      "en": "Browser tools run on the SSH host this window is connected to, and Chrome there isn't accepting remote debugging. Complete these steps on the SSH host, not on this computer:",
+      "zh": "浏览器工具运行在当前窗口连接的 SSH 主机上，但那里的 Chrome 未开启远程调试。请在 SSH 主机上（而非本机）完成以下步骤：",
+      "source": "hub:main.js",
+      "offset": 8989718
+    },
+    {
+      "en": "Browsing data",
+      "zh": "浏览数据",
+      "source": "hub:main.js",
+      "offset": 5390323
+    },
+    {
+      "en": "Browsing history",
+      "zh": "浏览历史",
+      "source": "hub:main.js",
+      "offset": 5391807
+    },
+    {
+      "en": "Build With Google Plugins",
+      "zh": "Build With Google 插件",
+      "source": "hub:main.js",
+      "offset": 5713087
+    },
+    {
+      "en": "Built-in Browser",
+      "zh": "内置浏览器",
+      "source": "hub:main.js",
+      "offset": 5133395
+    },
+    {
+      "en": "Business Account Sign In",
+      "zh": "企业账号登录",
+      "source": "hub:main.js",
+      "offset": 9228217
+    },
+    {
+      "en": "Cancel recording",
+      "zh": "取消录制",
+      "source": "hub:main.js",
+      "offset": 5525003
+    },
+    {
+      "en": "Change",
+      "zh": "更改",
+      "source": "hub:main.js",
+      "offset": 5612749
+    },
+    {
+      "en": "Change VCS in General settings, under Advanced",
+      "zh": "可在“通用设置”下的“高级”中更改版本控制系统",
+      "source": "hub:main.js",
+      "offset": 8902765
+    },
+    {
+      "en": "Change…",
+      "zh": "更改…",
+      "source": "hub:main.js",
+      "offset": 5400811
+    },
+    {
+      "en": "Changes plugins can make without asking.",
+      "zh": "插件无需询问即可执行的更改。",
+      "source": "hub:main.js",
+      "offset": 5651853
+    },
+    {
+      "en": "Chat",
+      "zh": "对话",
+      "source": "hub:main.js",
+      "offset": 5132542
+    },
+    {
+      "en": "Chat Layout",
+      "zh": "对话布局",
+      "source": "hub:main.js",
+      "offset": 5132595
+    },
+    {
+      "en": "Chime volume",
+      "zh": "提示音量",
+      "source": "hub:main.js",
+      "offset": 5480444
+    },
+    {
+      "en": "Choose a Subscription",
+      "zh": "选择订阅方案",
+      "source": "hub:main.js",
+      "offset": 5212461
+    },
+    {
+      "en": "Choose between non-colliding VS Code defaults or standalone Antigravity chords.",
+      "zh": "在无冲突的 VS Code 默认快捷键与 Antigravity 独立组合键之间选择。",
+      "source": "hub:main.js",
+      "offset": 5515250
+    },
+    {
+      "en": "Choose how much detail is shown during a conversation.",
+      "zh": "选择在对话过程中展示的详细程度。",
+      "source": "hub:main.js",
+      "offset": 5139207
+    },
+    {
+      "en": "Choose icon and color",
+      "zh": "选择图标和颜色",
+      "source": "hub:main.js",
+      "offset": 9468532
+    },
+    {
+      "en": "Choose Region",
+      "zh": "选择区域",
+      "source": "hub:main.js",
+      "offset": 5206010
+    },
+    {
+      "en": "Choose what to clear from the built-in browser. It can't be undone.",
+      "zh": "选择要从内置浏览器清除的内容。此操作无法撤销。",
+      "source": "hub:main.js",
+      "offset": 5391444
+    },
+    {
+      "en": "Choose where links open by default when clicked.",
+      "zh": "选择点击链接时的默认打开位置。",
+      "source": "hub:main.js",
+      "offset": 5141054
+    },
+    {
+      "en": "Choose where terminal sessions appear.",
+      "zh": "选择终端会话的显示位置。",
+      "source": "hub:main.js",
+      "offset": 5140180
+    },
+    {
+      "en": "Choose which key sends a message in the chat composer.",
+      "zh": "选择在对话输入框中用于发送消息的快捷键。",
+      "source": "hub:main.js",
+      "offset": 5136044
+    },
+    {
+      "en": "Chrome on the machine you are controlling is not accepting remote debugging. Complete these steps on that machine, not in this tab:",
+      "zh": "所控制设备上的 Chrome 未开启远程调试。请在该设备上（而非当前标签页）完成以下步骤：",
+      "source": "hub:main.js",
+      "offset": 8990165
+    },
+    {
+      "en": "Clear",
+      "zh": "清除",
+      "source": "hub:main.js",
+      "offset": 5002884
+    },
+    {
+      "en": "Clear Browsing Data?",
+      "zh": "确定清除浏览数据？",
+      "source": "hub:main.js",
+      "offset": 5391305
+    },
+    {
+      "en": "Clear history, cookies and site data from the built-in browser, or manage cookies for each site.",
+      "zh": "清除内置浏览器的历史记录、Cookie 和网站数据，或按网站管理 Cookie。",
+      "source": "hub:main.js",
+      "offset": 5390367
+    },
+    {
+      "en": "Clear visited URLs and autocomplete suggestions from side panel preview.",
+      "zh": "清除侧边栏预览中访问过的网址和自动补全建议。",
+      "source": "hub:main.js",
+      "offset": 5401958
+    },
+    {
+      "en": "Clear visited URLs and autocomplete suggestions from the built-in browser.",
+      "zh": "清除内置浏览器中访问过的网址和自动补全建议。",
+      "source": "hub:main.js",
+      "offset": 5402033
+    },
+    {
+      "en": "Cleared built-in browser data",
+      "zh": "已清除内置浏览器数据",
+      "source": "hub:main.js",
+      "offset": 5390140
+    },
+    {
+      "en": "Cleared built-in browser history",
+      "zh": "已清除内置浏览器历史记录",
+      "source": "hub:main.js",
+      "offset": 5390172
+    },
+    {
+      "en": "Click items to multi-select · Drag or ‹/› pills to reorder",
+      "zh": "点击可多选 · 拖动或使用 ‹/› 标签调整顺序",
+      "source": "hub:main.js",
+      "offset": 5587354
+    },
+    {
+      "en": "Code Preview",
+      "zh": "代码预览",
+      "source": "hub:main.js",
+      "offset": 12022450
+    },
+    {
+      "en": "Color",
+      "zh": "颜色",
+      "source": "hub:main.js",
+      "offset": 9469578
+    },
+    {
+      "en": "Colors and styles for the token.",
+      "zh": "Token 的颜色和样式。",
+      "source": "hub:main.js",
+      "offset": 7597053
+    },
+    {
+      "en": "Command prompt",
+      "zh": "命令提示符",
+      "source": "hub:main.js",
+      "offset": 6616145
+    },
+    {
+      "en": "Command setup script",
+      "zh": "命令初始化脚本",
+      "source": "hub:main.js",
+      "offset": 5136640
+    },
+    {
+      "en": "Commands outside sandbox",
+      "zh": "沙箱外命令",
+      "source": "hub:main.js",
+      "offset": 5649978
+    },
+    {
+      "en": "Commands Outside Sandbox",
+      "zh": "沙箱外命令",
+      "source": "hub:main.js",
+      "offset": 5653417
+    },
+    {
+      "en": "Configuration parameters are required before this server can be started",
+      "zh": "启动此服务前需要先填写配置参数",
+      "source": "hub:main.js",
+      "offset": 8340771
+    },
+    {
+      "en": "Configure agent execution, queued message delivery, and permissions.",
+      "zh": "配置 AI 助手执行方式、排队消息发送和权限。",
+      "source": "hub:main.js",
+      "offset": 5666894
+    },
+    {
+      "en": "Configure allowed and denied paths for file reads and writes.",
+      "zh": "配置允许和禁止读写的文件路径。",
+      "source": "hub:main.js",
+      "offset": 5650594
+    },
+    {
+      "en": "Configure allowed and denied URLs for reading.",
+      "zh": "配置允许和禁止读取的网址。",
+      "source": "hub:main.js",
+      "offset": 5650843
+    },
+    {
+      "en": "Configure allowed commands outside the sandbox.",
+      "zh": "配置允许在沙箱外执行的命令。",
+      "source": "hub:main.js",
+      "offset": 5651347
+    },
+    {
+      "en": "Configure allowed terminal commands.",
+      "zh": "设置允许执行的终端命令。",
+      "source": "hub:main.js",
+      "offset": 5651116
+    },
+    {
+      "en": "Configure built-in browser, link opening, and browser subagent preferences.",
+      "zh": "配置内置浏览器、链接打开方式和浏览器子助手偏好设置。",
+      "source": "hub:main.js",
+      "offset": 5403367
+    },
+    {
+      "en": "Configure default behaviors, skills, and MCP servers.",
+      "zh": "配置默认行为、技能和 MCP 服务。",
+      "source": "hub:main.js",
+      "offset": 5713277
+    },
+    {
+      "en": "Configure external tools via Model Context Protocol.",
+      "zh": "通过模型上下文协议（MCP）配置外部工具。",
+      "source": "hub:main.js",
+      "offset": 5651577
+    },
+    {
+      "en": "Configure GitHub access policies.",
+      "zh": "配置 GitHub 访问策略。",
+      "source": "hub:main.js",
+      "offset": 5652048
+    },
+    {
+      "en": "Configure global allowed and denied resource permissions.",
+      "zh": "配置全局允许和禁止的资源权限。",
+      "source": "hub:main.js",
+      "offset": 5658820
+    },
+    {
+      "en": "Configure hooks that run on agent lifecycle events.",
+      "zh": "配置在 AI 助手生命周期事件中运行的钩子。",
+      "source": "hub:main.js",
+      "offset": 5714680
+    },
+    {
+      "en": "Configure MCP Server",
+      "zh": "配置 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 5703601
+    },
+    {
+      "en": "Configure the agent's visual theme and display preferences.",
+      "zh": "配置 AI 助手的外观主题和显示偏好。",
+      "source": "hub:main.js",
+      "offset": 5382962
+    },
+    {
+      "en": "Configure the default width of markdown artifacts.",
+      "zh": "设置 Markdown 生成文档的默认宽度。",
+      "source": "hub:main.js",
+      "offset": 5140493
+    },
+    {
+      "en": "Configure the maximum width of the conversation panel.",
+      "zh": "设置对话面板的最大宽度。",
+      "source": "hub:main.js",
+      "offset": 5139850
+    },
+    {
+      "en": "Configure what the agent can do in local and remote conversations.",
+      "zh": "配置 AI 助手在本地和远程对话中的可执行权限。",
+      "source": "hub:main.js",
+      "offset": 5658751
+    },
+    {
+      "en": "Configure when follow-up messages are sent.",
+      "zh": "配置后续排队消息的发送时机。",
+      "source": "hub:main.js",
+      "offset": 5135119
+    },
+    {
+      "en": "Configure workspace-specific permissions, resources, and customizations.",
+      "zh": "配置当前工作目录专属的权限、资源和自定义项。",
+      "source": "hub:main.js",
+      "offset": 5575613
+    },
+    {
+      "en": "Configured servers",
+      "zh": "已配置的服务",
+      "source": "hub:main.js",
+      "offset": 8420199
+    },
+    {
+      "en": "Configures how the agent tries to access files outside of its working folders.",
+      "zh": "配置 AI 助手访问工作文件夹以外文件时的处理方式。",
+      "source": "hub:main.js",
+      "offset": 5654050
+    },
+    {
+      "en": "Confirm & Save",
+      "zh": "确认并保存",
+      "source": "hub:main.js",
+      "offset": 8309938
+    },
+    {
+      "en": "Confirm the command is safe to run outside of the sandbox with full network and disk access.",
+      "zh": "此命令将在沙箱外运行，可以访问所有网络和磁盘。请确认它可以安全执行。",
+      "source": "hub:main.js",
+      "offset": 8273931
+    },
+    {
+      "en": "Connected account",
+      "zh": "已关联账号",
+      "source": "hub:main.js",
+      "offset": 8355614
+    },
+    {
+      "en": "Connections",
+      "zh": "连接",
+      "source": "hub:main.js",
+      "offset": 5747531
+    },
+    {
+      "en": "Connectors",
+      "zh": "连接器",
+      "source": "hub:main.js",
+      "offset": 8949266
+    },
+    {
+      "en": "Console Telemetry",
+      "zh": "控制台遥测日志",
+      "source": "hub:main.js",
+      "offset": 5403841
+    },
+    {
+      "en": "Constrain voice dictation to selected languages in priority order. Leave empty to auto-detect.",
+      "zh": "按优先级将语音听写限定在所选语言内；留空则自动检测。",
+      "source": "hub:main.js",
+      "offset": 5614751
+    },
+    {
+      "en": "Contact your administrator to set up Gemini Enterprise for this project",
+      "zh": "请联系管理员为此项目配置 Gemini Enterprise",
+      "source": "hub:main.js",
+      "offset": 5207726
+    },
+    {
+      "en": "Contents",
+      "zh": "仓库内容",
+      "source": "hub:main.js",
+      "offset": 11957502
+    },
+    {
+      "en": "Context and quota indicator",
+      "zh": "上下文与额度指示器",
+      "source": "hub:main.js",
+      "offset": 5140774
+    },
+    {
+      "en": "Context Providers",
+      "zh": "上下文提供程序",
+      "source": "hub:main.js",
+      "offset": 8399429
+    },
+    {
+      "en": "Continue Task →",
+      "zh": "继续任务 →",
+      "source": "hub:main.js",
+      "offset": 8054713
+    },
+    {
+      "en": "Continue with different account",
+      "zh": "换用其他账号继续",
+      "source": "hub:main.js",
+      "offset": 9245858
+    },
+    {
+      "en": "Continue with Google Cloud",
+      "zh": "使用 Google Cloud 继续",
+      "source": "hub:main.js",
+      "offset": 9225675
+    },
+    {
+      "en": "Continue with SSO",
+      "zh": "使用 SSO 继续",
+      "source": "hub:main.js",
+      "offset": 9225704
+    },
+    {
+      "en": "Continue your work from another device with Remote Control. Scan the QR code or open the link below.",
+      "zh": "通过远程控制在其他设备上继续工作。扫描二维码或打开下方链接即可连接。",
+      "source": "hub:main.js",
+      "offset": 5323378
+    },
+    {
+      "en": "Contrast",
+      "zh": "对比度",
+      "source": "hub:main.js",
+      "offset": 12023893
+    },
+    {
+      "en": "Controls permissions for remote conversations.",
+      "zh": "控制远程对话的权限。",
+      "source": "hub:main.js",
+      "offset": 5659656
+    },
+    {
+      "en": "Controls the actions the agent can take.",
+      "zh": "控制 AI 助手可执行的操作。",
+      "source": "hub:main.js",
+      "offset": 5639173
+    },
+    {
+      "en": "Controls whether terminal commands require your approval before running.",
+      "zh": "控制终端命令运行前是否需要你批准。",
+      "source": "hub:main.js",
+      "offset": 5655035
+    },
+    {
+      "en": "Conversation steps",
+      "zh": "对话步骤展示",
+      "source": "hub:main.js",
+      "offset": 5139174
+    },
+    {
+      "en": "Conversation Telemetry",
+      "zh": "对话遥测",
+      "source": "hub:main.js",
+      "offset": 8824773
+    },
+    {
+      "en": "Conversation width",
+      "zh": "对话面板宽度",
+      "source": "hub:main.js",
+      "offset": 5139817
+    },
+    {
+      "en": "Cookies and other site data",
+      "zh": "Cookie 及其他网站数据",
+      "source": "hub:main.js",
+      "offset": 5392178
+    },
+    {
+      "en": "Cookies by Site",
+      "zh": "按网站管理 Cookie",
+      "source": "hub:main.js",
+      "offset": 5391053
+    },
+    {
+      "en": "Cookies the built-in browser stores for each site. Deleting a site's cookies usually signs you out of it. Other site data (local storage, IndexedDB, cache) is cleared only by Browsing data → Clear.",
+      "zh": "内置浏览器为各个网站保存的 Cookie。删除某网站的 Cookie 通常会退出该网站的登录。其他网站数据（本地存储、IndexedDB、缓存）只能通过“浏览数据 → 清除”一并清理。",
+      "source": "hub:main.js",
+      "offset": 5396752
+    },
+    {
+      "en": "Cookies, site storage and cache. Signs you out of all sites in the built-in browser and reloads its open tabs.",
+      "zh": "包括 Cookie、网站存储和缓存。清除后将退出内置浏览器中所有网站的登录，并重新加载已打开的标签页。",
+      "source": "hub:main.js",
+      "offset": 5392276
+    },
+    {
+      "en": "Copied",
+      "zh": "已复制",
+      "source": "hub:main.js",
+      "offset": 3565170
+    },
+    {
+      "en": "Copied version details",
+      "zh": "已复制版本信息",
+      "source": "hub:main.js",
+      "offset": 5826339
+    },
+    {
+      "en": "Copy Config File Path",
+      "zh": "复制配置文件路径",
+      "source": "hub:main.js",
+      "offset": 9336894
+    },
+    {
+      "en": "Copy output",
+      "zh": "复制输出",
+      "source": "hub:main.js",
+      "offset": 5368910
+    },
+    {
+      "en": "Copy version details",
+      "zh": "复制版本信息",
+      "source": "hub:main.js",
+      "offset": 5826364
+    },
+    {
+      "en": "Couldn't clear browsing data. Try again.",
+      "zh": "未能清除浏览数据，请重试。",
+      "source": "hub:main.js",
+      "offset": 5392744
+    },
+    {
+      "en": "Couldn't delete your data. Try again.",
+      "zh": "无法删除您的数据，请重试。",
+      "source": "hub:main.js",
+      "offset": 5221591
+    },
+    {
+      "en": "Couldn't load cookies.",
+      "zh": "无法加载 Cookie。",
+      "source": "hub:main.js",
+      "offset": 5395004
+    },
+    {
+      "en": "Couldn't load the suggested plugin.",
+      "zh": "无法加载推荐的插件。",
+      "source": "hub:main.js",
+      "offset": 8330510
+    },
+    {
+      "en": "Create a token",
+      "zh": "创建 Token",
+      "source": "hub:main.js",
+      "offset": 11949308
+    },
+    {
+      "en": "Credentials expiring soon. Refresh credentials to keep this automation running",
+      "zh": "凭据即将过期，请及时刷新以保证此自动化任务正常运行",
+      "source": "hub:main.js",
+      "offset": 9313356
+    },
+    {
+      "en": "Credentials for one or more automations expire in less than a week.",
+      "zh": "一个或多个自动化任务的凭据将在一周内过期。",
+      "source": "hub:main.js",
+      "offset": 9560648
+    },
+    {
+      "en": "Credentials for one or more automations have expired.",
+      "zh": "一个或多个自动化任务的凭据已过期。",
+      "source": "hub:main.js",
+      "offset": 9560591
+    },
+    {
+      "en": "Ctrl+I Focus Input, Ctrl+Shift+O New Conversation, Ctrl+K Picker in chat, Ctrl+, Settings, Ctrl+[/] History). Replaces Go to Symbol (Ctrl+Shift+O) and Trigger Suggest (Ctrl+I), and rebinds VS Code Settings to Ctrl+Alt+,.",
+      "zh": "Ctrl+I 聚焦输入框、Ctrl+Shift+O 新建对话、Ctrl+K 聊天内选择器、Ctrl+, 打开设置、Ctrl+[/] 历史记录。将替换“转到符号”（Ctrl+Shift+O）和“触发建议”（Ctrl+I），并将 VS Code 设置重新绑定为 Ctrl+Alt+,。",
+      "source": "hub:main.js",
+      "offset": 5514150
+    },
+    {
+      "en": "Ctrl+L Focus Input, Ctrl+Shift+L New Conversation, Ctrl+Shift+A Picker, Ctrl+Shift+, Settings",
+      "zh": "Ctrl+L 聚焦输入框、Ctrl+Shift+L 新建对话、Ctrl+Shift+A 打开选择器、Ctrl+Shift+, 打开设置",
+      "source": "hub:main.js",
+      "offset": 5513709
+    },
+    {
+      "en": "Currently installed",
+      "zh": "当前已安装",
+      "source": "hub:main.js",
+      "offset": 8312125
+    },
+    {
+      "en": "Custom",
+      "zh": "自定义",
+      "source": "hub:main.js",
+      "offset": 5470275
+    },
+    {
+      "en": "Custom context menus",
+      "zh": "自定义右键菜单",
+      "source": "hub:main.js",
+      "offset": 5139433
+    },
+    {
+      "en": "Custom flag to turn on",
+      "zh": "要开启的自定义开关",
+      "source": "hub:main.js",
+      "offset": 5404538
+    },
+    {
+      "en": "Custom Flags",
+      "zh": "自定义开关",
+      "source": "hub:main.js",
+      "offset": 5407663
+    },
+    {
+      "en": "Custom models are only supported on Linux machines.",
+      "zh": "自定义模型仅支持 Linux 设备。",
+      "source": "hub:main.js",
+      "offset": 9053179
+    },
+    {
+      "en": "Custom Order",
+      "zh": "自定义顺序",
+      "source": "hub:main.js",
+      "offset": 9673570
+    },
+    {
+      "en": "Custom…",
+      "zh": "自定义…",
+      "source": "hub:main.js",
+      "offset": 5413526
+    },
+    {
+      "en": "Customization",
+      "zh": "自定义",
+      "source": "hub:main.js",
+      "offset": 8970087
+    },
+    {
+      "en": "Customizations",
+      "zh": "自定义",
+      "source": "hub:main.js",
+      "offset": 5556243
+    },
+    {
+      "en": "Customize",
+      "zh": "自定义",
+      "source": "hub:main.js",
+      "offset": 5714547
+    },
+    {
+      "en": "Customize Global Skills",
+      "zh": "自定义全局技能",
+      "source": "hub:main.js",
+      "offset": 5133891
+    },
+    {
+      "en": "Customize Shortcuts",
+      "zh": "自定义快捷键",
+      "source": "hub:main.js",
+      "offset": 5516691
+    },
+    {
+      "en": "Danger Zone",
+      "zh": "危险操作区",
+      "source": "hub:main.js",
+      "offset": 5825140
+    },
+    {
+      "en": "Dark Mode",
+      "zh": "深色模式",
+      "source": "hub:main.js",
+      "offset": 12544305
+    },
+    {
+      "en": "Dark Theme",
+      "zh": "深色主题",
+      "source": "hub:main.js",
+      "offset": 12024499
+    },
+    {
+      "en": "Decorations",
+      "zh": "装饰标记",
+      "source": "hub:main.js",
+      "offset": 9664964
+    },
+    {
+      "en": "Default",
+      "zh": "默认",
+      "source": "hub:main.js",
+      "offset": 1940180
+    },
+    {
+      "en": "Default (Gemini Pro)",
+      "zh": "默认（Gemini Pro）",
+      "source": "hub:main.js",
+      "offset": 5467423
+    },
+    {
+      "en": "Default Customizations",
+      "zh": "默认自定义配置",
+      "source": "hub:main.js",
+      "offset": 5133810
+    },
+    {
+      "en": "Default Dark",
+      "zh": "默认深色",
+      "source": "hub:main.js",
+      "offset": 12011751
+    },
+    {
+      "en": "Default Light",
+      "zh": "默认浅色",
+      "source": "hub:main.js",
+      "offset": 12011735
+    },
+    {
+      "en": "Default uses server-managed routing and Orchestrator quota. Custom pins specific models for orchestration and execution.",
+      "zh": "默认模式由服务端自动路由并使用编排器配额；自定义模式可为编排与执行固定指定模型。",
+      "source": "hub:main.js",
+      "offset": 5472003
+    },
+    {
+      "en": "Delete all",
+      "zh": "全部删除",
+      "source": "hub:main.js",
+      "offset": 5616685
+    },
+    {
+      "en": "Delete All Data",
+      "zh": "删除全部数据",
+      "source": "hub:main.js",
+      "offset": 5220983
+    },
+    {
+      "en": "Delete all recordings?",
+      "zh": "要删除所有录音吗？",
+      "source": "hub:main.js",
+      "offset": 5616756
+    },
+    {
+      "en": "Delete all Remote Agents data",
+      "zh": "删除所有远程 AI 助手数据",
+      "source": "hub:main.js",
+      "offset": 5220635
+    },
+    {
+      "en": "Delete Handler",
+      "zh": "删除处理程序",
+      "source": "hub:main.js",
+      "offset": 5696321
+    },
+    {
+      "en": "Delete Hook",
+      "zh": "删除钩子",
+      "source": "hub:main.js",
+      "offset": 5694932
+    },
+    {
+      "en": "Delete organization policy",
+      "zh": "删除组织策略",
+      "source": "hub:main.js",
+      "offset": 11966210
+    },
+    {
+      "en": "Delete repository policy",
+      "zh": "删除仓库策略",
+      "source": "hub:main.js",
+      "offset": 11956824
+    },
+    {
+      "en": "Denied Sites",
+      "zh": "已禁止的网站",
+      "source": "hub:main.js",
+      "offset": 8689100
+    },
+    {
+      "en": "Deny",
+      "zh": "拒绝",
+      "source": "hub:main.js",
+      "offset": 5654264
+    },
+    {
+      "en": "Developer",
+      "zh": "开发者",
+      "source": "hub:main.js",
+      "offset": 5419187
+    },
+    {
+      "en": "Developer-only tools. These settings do not affect other users.",
+      "zh": "仅供开发者使用的工具，这些设置不会影响其他用户。",
+      "source": "hub:main.js",
+      "offset": 5419211
+    },
+    {
+      "en": "Developer: Reset NUX",
+      "zh": "开发者：重置首次体验引导",
+      "source": "hub:main.js",
+      "offset": 6568664
+    },
+    {
+      "en": "Developer: Reset Onboarding",
+      "zh": "开发者：重置新手引导",
+      "source": "hub:main.js",
+      "offset": 6568597
+    },
+    {
+      "en": "Device name",
+      "zh": "设备名称",
+      "source": "hub:main.js",
+      "offset": 5321864
+    },
+    {
+      "en": "Dictation language options",
+      "zh": "语音听写语言选项",
+      "source": "hub:main.js",
+      "offset": 5586689
+    },
+    {
+      "en": "Dictation languages",
+      "zh": "语音听写语言",
+      "source": "hub:main.js",
+      "offset": 5614449
+    },
+    {
+      "en": "Disabled by organization policy",
+      "zh": "已被组织策略禁用",
+      "source": "hub:main.js",
+      "offset": 5654505
+    },
+    {
+      "en": "Disabled. Open the plugin page to finish setup.",
+      "zh": "已禁用。请打开插件页面完成设置。",
+      "source": "hub:main.js",
+      "offset": 8330668
+    },
+    {
+      "en": "Disables all safety barriers for maximal iteration velocity.",
+      "zh": "关闭所有安全限制，以获得最快的迭代速度。",
+      "source": "hub:main.js",
+      "offset": 5630342
+    },
+    {
+      "en": "Disconnect",
+      "zh": "断开连接",
+      "source": "hub:main.js",
+      "offset": 5749258
+    },
+    {
+      "en": "Disconnect account",
+      "zh": "断开账号关联",
+      "source": "hub:main.js",
+      "offset": 8355708
+    },
+    {
+      "en": "Display Options",
+      "zh": "显示选项",
+      "source": "hub:main.js",
+      "offset": 9661303
+    },
+    {
+      "en": "Download location",
+      "zh": "下载位置",
+      "source": "hub:main.js",
+      "offset": 5141429
+    },
+    {
+      "en": "Download this site as an app to get notified when the agent needs your attention or completes a task.",
+      "zh": "将此网站安装为应用，以便在 AI 助手需要你处理或完成任务时收到通知。",
+      "source": "hub:main.js",
+      "offset": 11939316
+    },
+    {
+      "en": "E.g. locations/global/workforcePools...",
+      "zh": "例如 locations/global/workforcePools...",
+      "source": "hub:main.js",
+      "offset": 9230593
+    },
+    {
+      "en": "Each rule lets the agent run the listed workflow files on the listed refs — each a comma-separated list like ci.yml, deploy.yml and main, dev (glob patterns like fix-* allowed), or * for all. Both fields must be set for a rule to grant anything.",
+      "zh": "每条规则允许 AI 助手在所列引用上运行所列工作流文件——每项均以逗号分隔，例如 ci.yml, deploy.yml 和 main, dev（支持 fix-* 等通配符），或使用 * 表示全部。两个字段都必须填写，规则才会生效。",
+      "source": "hub:main.js",
+      "offset": 11964512
+    },
+    {
+      "en": "Edit Model",
+      "zh": "编辑模型",
+      "source": "hub:main.js",
+      "offset": 9051857
+    },
+    {
+      "en": "Edit permission target",
+      "zh": "编辑权限对象",
+      "source": "hub:main.js",
+      "offset": 8274702
+    },
+    {
+      "en": "Electron (Android Desktop)",
+      "zh": "Electron（Android 桌面端）",
+      "source": "hub:main.js",
+      "offset": 5409530
+    },
+    {
+      "en": "Electron (Desktop)",
+      "zh": "Electron（桌面端）",
+      "source": "hub:main.js",
+      "offset": 5409396
+    },
+    {
+      "en": "Electron (Gemini App)",
+      "zh": "Electron（Gemini 应用）",
+      "source": "hub:main.js",
+      "offset": 5409459
+    },
+    {
+      "en": "Email",
+      "zh": "电子邮箱",
+      "source": "hub:main.js",
+      "offset": 5226101
+    },
+    {
+      "en": "Enable AI credit overages",
+      "zh": "启用 AI 额度超额使用",
+      "source": "hub:main.js",
+      "offset": 5478556
+    },
+    {
+      "en": "Enable browser agent",
+      "zh": "启用浏览器助手",
+      "source": "hub:main.js",
+      "offset": 5141517
+    },
+    {
+      "en": "Enable fine-grained GitHub permissions and define the org, repository, and resource-level access the agent is allowed to use.",
+      "zh": "启用精细化的 GitHub 权限控制，定义允许 AI 助手访问的组织、仓库及资源级权限。",
+      "source": "hub:main.js",
+      "offset": 11974282
+    },
+    {
+      "en": "Enable macOS Permissions",
+      "zh": "开启 macOS 权限",
+      "source": "hub:main.js",
+      "offset": 8053352
+    },
+    {
+      "en": "Enable Notifications",
+      "zh": "开启通知",
+      "source": "hub:main.js",
+      "offset": 11939285
+    },
+    {
+      "en": "Enable notifications for agent",
+      "zh": "开启 AI 助手通知",
+      "source": "hub:main.js",
+      "offset": 5138951
+    },
+    {
+      "en": "Enable Overages",
+      "zh": "开启超额计费",
+      "source": "hub:main.js",
+      "offset": 6501209
+    },
+    {
+      "en": "Enable Remote Control",
+      "zh": "启用远程控制",
+      "source": "hub:main.js",
+      "offset": 5144164
+    },
+    {
+      "en": "Enable sandbox mode",
+      "zh": "启用沙箱模式",
+      "source": "hub:main.js",
+      "offset": 5656465
+    },
+    {
+      "en": "Enable sounds for agent",
+      "zh": "开启 AI 助手提示音",
+      "source": "hub:main.js",
+      "offset": 5138741
+    },
+    {
+      "en": "Enable telemetry",
+      "zh": "启用遥测",
+      "source": "hub:main.js",
+      "offset": 5224058
+    },
+    {
+      "en": "Enable telemetry in Settings before changing per-conversation telemetry.",
+      "zh": "请先在设置中启用遥测，再修改单个对话的遥测状态。",
+      "source": "hub:main.js",
+      "offset": 8818032
+    },
+    {
+      "en": "Enable terminal sandbox",
+      "zh": "启用终端沙盒",
+      "source": "hub:main.js",
+      "offset": 5136903
+    },
+    {
+      "en": "Enable the plugin to sign in.",
+      "zh": "请先启用插件再登录。",
+      "source": "hub:main.js",
+      "offset": 5740675
+    },
+    {
+      "en": "Enable this plugin to manage its accounts.",
+      "zh": "启用此插件后即可管理其账号。",
+      "source": "hub:main.js",
+      "offset": 5733546
+    },
+    {
+      "en": "Encountered an error while running the plugin.",
+      "zh": "运行插件时出错。",
+      "source": "hub:main.js",
+      "offset": 8625008
+    },
+    {
+      "en": "Enter always submits. This adds a second shortcut.",
+      "zh": "回车键始终用于发送，此项用于添加第二个快捷键。",
+      "source": "hub:main.js",
+      "offset": 5531805
+    },
+    {
+      "en": "Enter authorization code...",
+      "zh": "输入授权码...",
+      "source": "hub:main.js",
+      "offset": 8345119
+    },
+    {
+      "en": "Enter device name...",
+      "zh": "输入设备名称...",
+      "source": "hub:main.js",
+      "offset": 5321905
+    },
+    {
+      "en": "Enter Google Cloud Project Details",
+      "zh": "输入 Google Cloud 项目信息",
+      "source": "hub:main.js",
+      "offset": 9248919
+    },
+    {
+      "en": "Enter the configuration values this MCP server needs. Saving restarts the server with them.",
+      "zh": "输入此 MCP 服务所需的配置项。保存后将使用新配置重启该服务。",
+      "source": "hub:main.js",
+      "offset": 8429031
+    },
+    {
+      "en": "Enter to send",
+      "zh": "按 Enter 发送",
+      "source": "hub:main.js",
+      "offset": 5135819
+    },
+    {
+      "en": "Enter tool name or server...",
+      "zh": "输入工具名称或服务...",
+      "source": "hub:main.js",
+      "offset": 5650465
+    },
+    {
+      "en": "Enterprise",
+      "zh": "企业",
+      "source": "hub:main.js",
+      "offset": 5410976
+    },
+    {
+      "en": "Enterprise Gateway",
+      "zh": "企业网关",
+      "source": "hub:main.js",
+      "offset": 5223022
+    },
+    {
+      "en": "Environments",
+      "zh": "环境",
+      "source": "hub:main.js",
+      "offset": 5150322
+    },
+    {
+      "en": "Europe",
+      "zh": "欧洲",
+      "source": "hub:main.js",
+      "offset": 5156685
+    },
+    {
+      "en": "Events and stdout streams will appear here as they occur.",
+      "zh": "事件和标准输出日志产生后会显示在此处。",
+      "source": "hub:main.js",
+      "offset": 8391303
+    },
+    {
+      "en": "Every command requires approval.",
+      "zh": "每条命令都需要手动批准。",
+      "source": "hub:main.js",
+      "offset": 3838191
+    },
+    {
+      "en": "Excluded",
+      "zh": "已排除",
+      "source": "hub:main.js",
+      "offset": 5552117
+    },
+    {
+      "en": "Expected behavior",
+      "zh": "预期行为",
+      "source": "hub:main.js",
+      "offset": 5421920
+    },
+    {
+      "en": "Extension",
+      "zh": "扩展程序",
+      "source": "hub:main.js",
+      "offset": 5410480
+    },
+    {
+      "en": "Extension (Antigravity IDE)",
+      "zh": "扩展程序（Antigravity IDE）",
+      "source": "hub:main.js",
+      "offset": 5410653
+    },
+    {
+      "en": "Extension (Eclipse)",
+      "zh": "扩展程序（Eclipse）",
+      "source": "hub:main.js",
+      "offset": 5410799
+    },
+    {
+      "en": "Extension (Visual Studio)",
+      "zh": "扩展程序（Visual Studio）",
+      "source": "hub:main.js",
+      "offset": 5410730
+    },
+    {
+      "en": "Extension (VS Code)",
+      "zh": "扩展程序（VS Code）",
+      "source": "hub:main.js",
+      "offset": 5410591
+    },
+    {
+      "en": "External",
+      "zh": "外部",
+      "source": "hub:main.js",
+      "offset": 5410938
+    },
+    {
+      "en": "External Browser",
+      "zh": "外部浏览器",
+      "source": "hub:main.js",
+      "offset": 3635814
+    },
+    {
+      "en": "External tools the agent can call via Model Context Protocol.",
+      "zh": "AI 助手可通过模型上下文协议（MCP）调用的外部工具。",
+      "source": "hub:main.js",
+      "offset": 5650300
+    },
+    {
+      "en": "Eye",
+      "zh": "眼睛",
+      "source": "hub:main.js",
+      "offset": 6616374
+    },
+    {
+      "en": "Failed to determine plugin install directory",
+      "zh": "无法确定插件安装目录",
+      "source": "hub:main.js",
+      "offset": 6416768
+    },
+    {
+      "en": "Failed to inspect license for this project",
+      "zh": "无法检查此项目的许可证",
+      "source": "hub:main.js",
+      "offset": 5204982
+    },
+    {
+      "en": "Failed to load plugins. Please try again.",
+      "zh": "加载插件失败，请重试。",
+      "source": "hub:main.js",
+      "offset": 6411920
+    },
+    {
+      "en": "Failed to parse settings. Fix and restart.",
+      "zh": "解析设置失败，请修复后重启。",
+      "source": "hub:main.js",
+      "offset": 5129741
+    },
+    {
+      "en": "Failed to refresh credentials",
+      "zh": "刷新凭据失败",
+      "source": "hub:main.js",
+      "offset": 9560203
+    },
+    {
+      "en": "Failed to save token to ~/.env",
+      "zh": "无法将 Token 保存到 ~/.env",
+      "source": "hub:main.js",
+      "offset": 11948725
+    },
+    {
+      "en": "Failed to validate the saved GitHub token.",
+      "zh": "验证已保存的 GitHub Token 失败。",
+      "source": "hub:main.js",
+      "offset": 11947662
+    },
+    {
+      "en": "Feature Environment Override",
+      "zh": "功能环境覆盖",
+      "source": "hub:main.js",
+      "offset": 5411493
+    },
+    {
+      "en": "File access rules",
+      "zh": "文件访问规则",
+      "source": "hub:main.js",
+      "offset": 5650541
+    },
+    {
+      "en": "Finish signing in in your browser.",
+      "zh": "请在浏览器中完成登录。",
+      "source": "hub:main.js",
+      "offset": 5740930
+    },
+    {
+      "en": "Flask",
+      "zh": "烧瓶",
+      "source": "hub:main.js",
+      "offset": 6616401
+    },
+    {
+      "en": "Folder where files downloaded in the built-in browser are saved.",
+      "zh": "内置浏览器下载文件的默认保存文件夹。",
+      "source": "hub:main.js",
+      "offset": 5399677
+    },
+    {
+      "en": "Font",
+      "zh": "字体",
+      "source": "hub:main.js",
+      "offset": 12024041
+    },
+    {
+      "en": "Font Size",
+      "zh": "字号",
+      "source": "hub:main.js",
+      "offset": 11405395
+    },
+    {
+      "en": "For Antigravity Business consumption options, see",
+      "zh": "有关 Antigravity Business 的用量计费方案，请参阅",
+      "source": "hub:main.js",
+      "offset": 5479722
+    },
+    {
+      "en": "Foreground",
+      "zh": "前景色",
+      "source": "hub:main.js",
+      "offset": 12021375
+    },
+    {
+      "en": "Foreground color for the token.",
+      "zh": "Token 的前景色。",
+      "source": "hub:main.js",
+      "offset": 7597169
+    },
+    {
+      "en": "Full Logs",
+      "zh": "完整日志",
+      "source": "hub:main.js",
+      "offset": 8389932
+    },
+    {
+      "en": "Gauge",
+      "zh": "仪表盘",
+      "source": "hub:main.js",
+      "offset": 6616342
+    },
+    {
+      "en": "General",
+      "zh": "通用",
+      "source": "hub:main.js",
+      "offset": 5133645
+    },
+    {
+      "en": "Get API key",
+      "zh": "获取 API 密钥",
+      "source": "hub:main.js",
+      "offset": 5742402
+    },
+    {
+      "en": "Get More AI Credits",
+      "zh": "获取更多 AI 积分",
+      "source": "hub:main.js",
+      "offset": 5479517
+    },
+    {
+      "en": "Get notified when the agent needs your attention or completes a task.",
+      "zh": "在 AI 助手需要你处理或完成任务时接收通知。",
+      "source": "hub:main.js",
+      "offset": 11943012
+    },
+    {
+      "en": "GitHub Permissions",
+      "zh": "GitHub 权限",
+      "source": "hub:main.js",
+      "offset": 11975419
+    },
+    {
+      "en": "GitHub Personal Access Token",
+      "zh": "GitHub 个人访问 Token",
+      "source": "hub:main.js",
+      "offset": 11948836
+    },
+    {
+      "en": "GitHub Policies",
+      "zh": "GitHub 策略",
+      "source": "hub:main.js",
+      "offset": 11974255
+    },
+    {
+      "en": "Global Permissions",
+      "zh": "全局权限",
+      "source": "hub:main.js",
+      "offset": 5648120
+    },
+    {
+      "en": "Go to Accounts",
+      "zh": "前往账号设置",
+      "source": "hub:main.js",
+      "offset": 8426351
+    },
+    {
+      "en": "Google (internal)",
+      "zh": "Google（内部）",
+      "source": "hub:main.js",
+      "offset": 5410893
+    },
+    {
+      "en": "Google Cloud Project ID",
+      "zh": "Google Cloud 项目 ID",
+      "source": "hub:main.js",
+      "offset": 9249137
+    },
+    {
+      "en": "Google One referral",
+      "zh": "Google One 推荐奖励",
+      "source": "hub:main.js",
+      "offset": 5225380
+    },
+    {
+      "en": "Grant create, update, or delete access to specific branches.",
+      "zh": "授予特定分支的创建、更新或删除权限。",
+      "source": "hub:main.js",
+      "offset": 11962264
+    },
+    {
+      "en": "Grant read access to workflow runs and allow dispatching workflows on specific files and refs.",
+      "zh": "授予工作流运行记录的只读权限，并允许在指定文件和引用上触发工作流。",
+      "source": "hub:main.js",
+      "offset": 11963675
+    },
+    {
+      "en": "Grant the selected actions on the listed branch names — a comma-separated list like main, dev, prod (glob patterns like fix-* allowed), or * for all.",
+      "zh": "对所列分支名称授予选定操作权限——以逗号分隔，例如 main, dev, prod（支持 fix-* 等通配符），或使用 * 表示全部。",
+      "source": "hub:main.js",
+      "offset": 11962559
+    },
+    {
+      "en": "Grant the selected actions on the listed issue numbers — a comma-separated list like 1, 2, 3, or * for all.",
+      "zh": "对所列议题编号授予选定操作权限——以逗号分隔，例如 1, 2, 3，或使用 * 表示全部。",
+      "source": "hub:main.js",
+      "offset": 11959241
+    },
+    {
+      "en": "Grant the selected actions on the listed pull request numbers — a comma-separated list like 1, 2, 3, or * for all.",
+      "zh": "对所列拉取请求编号授予选定操作权限——以逗号分隔，例如 1, 2, 3，或使用 * 表示全部。",
+      "source": "hub:main.js",
+      "offset": 11961090
+    },
+    {
+      "en": "Handler #",
+      "zh": "处理程序 #",
+      "source": "hub:main.js",
+      "offset": 5696211
+    },
+    {
+      "en": "Hide breakdown",
+      "zh": "隐藏明细",
+      "source": "hub:main.js",
+      "offset": 5551368
+    },
+    {
+      "en": "Hide token",
+      "zh": "隐藏 Token",
+      "source": "hub:main.js",
+      "offset": 11950159
+    },
+    {
+      "en": "Hide tools",
+      "zh": "隐藏工具",
+      "source": "hub:main.js",
+      "offset": 5553522
+    },
+    {
+      "en": "Hooks",
+      "zh": "钩子",
+      "source": "hub:main.js",
+      "offset": 5714594
+    },
+    {
+      "en": "Host",
+      "zh": "主机",
+      "source": "hub:main.js",
+      "offset": 11974705
+    },
+    {
+      "en": "Host Endpoint",
+      "zh": "主机地址",
+      "source": "hub:main.js",
+      "offset": 8389461
+    },
+    {
+      "en": "Host environment",
+      "zh": "宿主环境",
+      "source": "hub:main.js",
+      "offset": 5412207
+    },
+    {
+      "en": "How loud Antigravity's voice is.",
+      "zh": "Antigravity 的语音音量。",
+      "source": "hub:main.js",
+      "offset": 5617757
+    },
+    {
+      "en": "Icon",
+      "zh": "图标",
+      "source": "hub:main.js",
+      "offset": 9468932
+    },
+    {
+      "en": "If that machine is a cloudtop, reach it via",
+      "zh": "如果该设备是 Cloudtop，请通过以下方式访问",
+      "source": "hub:main.js",
+      "offset": 8990649
+    },
+    {
+      "en": "Image rendering blocked (strict mode enabled)",
+      "zh": "图片渲染已阻止（已开启严格模式）",
+      "source": "hub:main.js",
+      "offset": 6678338
+    },
+    {
+      "en": "In chat",
+      "zh": "在对话中",
+      "source": "hub:main.js",
+      "offset": 8141211
+    },
+    {
+      "en": "Include default customizations, such as default skills.",
+      "zh": "包含默认自定义内容，例如默认技能。",
+      "source": "hub:main.js",
+      "offset": 5143343
+    },
+    {
+      "en": "Included with plugin",
+      "zh": "插件自带权限",
+      "source": "hub:main.js",
+      "offset": 5626457
+    },
+    {
+      "en": "Inherit Global",
+      "zh": "继承全局设置",
+      "source": "hub:main.js",
+      "offset": 5645578
+    },
+    {
+      "en": "Input Box",
+      "zh": "输入框",
+      "source": "hub:main.js",
+      "offset": 5132888
+    },
+    {
+      "en": "Input device for voice mode and dictation.",
+      "zh": "用于语音模式和语音听写的输入设备。",
+      "source": "hub:main.js",
+      "offset": 5613290
+    },
+    {
+      "en": "Inspect live bindings or record custom key chords filtered to",
+      "zh": "查看当前键位绑定或录制自定义组合键，已筛选为",
+      "source": "hub:main.js",
+      "offset": 5517176
+    },
+    {
+      "en": "Install or enable the Google Drive plugin in Customizations to search files with @drive: or paste Drive links",
+      "zh": "在“自定义”中安装或启用 Google Drive 插件，即可通过 @drive: 搜索文件或粘贴云端硬盘链接",
+      "source": "hub:main.js",
+      "offset": 8462921
+    },
+    {
+      "en": "Install this plugin to see the commands it adds, along with its skills, agents and MCP servers.",
+      "zh": "安装此插件后，即可查看其新增命令以及包含的技能、AI 助手和 MCP 服务。",
+      "source": "hub:main.js",
+      "offset": 8428693
+    },
+    {
+      "en": "Installed MCP Servers",
+      "zh": "已安装的 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 5686032
+    },
+    {
+      "en": "Interface Layout",
+      "zh": "界面布局",
+      "source": "hub:main.js",
+      "offset": 5620323
+    },
+    {
+      "en": "Invite a Friend",
+      "zh": "邀请好友",
+      "source": "hub:main.js",
+      "offset": 5225584
+    },
+    {
+      "en": "Issue creation",
+      "zh": "创建议题",
+      "source": "hub:main.js",
+      "offset": 11958756
+    },
+    {
+      "en": "Issues",
+      "zh": "议题",
+      "source": "hub:main.js",
+      "offset": 11958393
+    },
+    {
+      "en": "Its customizations are now available",
+      "zh": "其自定义配置现已生效",
+      "source": "hub:main.js",
+      "offset": 8334839
+    },
+    {
+      "en": "Keep in menu bar",
+      "zh": "保留在菜单栏",
+      "source": "hub:main.js",
+      "offset": 5143661
+    },
+    {
+      "en": "Keep the app accessible from the menu bar and running in the background when all windows are closed.",
+      "zh": "关闭所有窗口后仍保持应用在后台运行，并可通过菜单栏快速访问。",
+      "source": "hub:main.js",
+      "offset": 5143692
+    },
+    {
+      "en": "Keybinding Scheme",
+      "zh": "快捷键方案",
+      "source": "hub:main.js",
+      "offset": 5515221
+    },
+    {
+      "en": "Keyboard shortcuts",
+      "zh": "快捷键",
+      "source": "hub:main.js",
+      "offset": 5379985
+    },
+    {
+      "en": "Keyboard shortcuts for quick navigation and control.",
+      "zh": "用于快速导航和操作的快捷键。",
+      "source": "hub:main.js",
+      "offset": 5540322
+    },
+    {
+      "en": "Labs",
+      "zh": "实验室",
+      "source": "hub:main.js",
+      "offset": 5133321
+    },
+    {
+      "en": "Legacy Dark",
+      "zh": "经典深色",
+      "source": "hub:main.js",
+      "offset": 6602811
+    },
+    {
+      "en": "Legacy Light",
+      "zh": "经典浅色",
+      "source": "hub:main.js",
+      "offset": 6602796
+    },
+    {
+      "en": "Let's tailor the experience for you. What best describes your work?",
+      "zh": "我们来为你定制使用体验。哪一项最符合你的工作内容？",
+      "source": "hub:main.js",
+      "offset": 9258408
+    },
+    {
+      "en": "License required",
+      "zh": "需要许可证",
+      "source": "hub:main.js",
+      "offset": 5225722
+    },
+    {
+      "en": "Light Mode",
+      "zh": "浅色模式",
+      "source": "hub:main.js",
+      "offset": 12544292
+    },
+    {
+      "en": "Light Theme",
+      "zh": "浅色主题",
+      "source": "hub:main.js",
+      "offset": 12024334
+    },
+    {
+      "en": "Link Settings",
+      "zh": "链接设置",
+      "source": "hub:main.js",
+      "offset": 3637625
+    },
+    {
+      "en": "Links",
+      "zh": "相关链接",
+      "source": "hub:main.js",
+      "offset": 8367261
+    },
+    {
+      "en": "Loading connectors…",
+      "zh": "正在加载连接器…",
+      "source": "hub:main.js",
+      "offset": 8953298
+    },
+    {
+      "en": "Loading cookies…",
+      "zh": "正在加载 Cookie…",
+      "source": "hub:main.js",
+      "offset": 5394781
+    },
+    {
+      "en": "Loading events...",
+      "zh": "正在加载事件...",
+      "source": "hub:main.js",
+      "offset": 8390243
+    },
+    {
+      "en": "Loading hooks...",
+      "zh": "正在加载钩子...",
+      "source": "hub:main.js",
+      "offset": 5701838
+    },
+    {
+      "en": "Loading licenses...",
+      "zh": "正在加载许可证...",
+      "source": "hub:main.js",
+      "offset": 5216196
+    },
+    {
+      "en": "Loading MCP servers...",
+      "zh": "正在加载 MCP 服务...",
+      "source": "hub:main.js",
+      "offset": 5687014
+    },
+    {
+      "en": "Loading plugins...",
+      "zh": "正在加载插件...",
+      "source": "hub:main.js",
+      "offset": 5669717
+    },
+    {
+      "en": "Loading token usage...",
+      "zh": "正在加载 Token 用量...",
+      "source": "hub:main.js",
+      "offset": 5558352
+    },
+    {
+      "en": "Local only",
+      "zh": "仅限本地",
+      "source": "hub:main.js",
+      "offset": 8331221
+    },
+    {
+      "en": "Local Windows environment",
+      "zh": "本地 Windows 环境",
+      "source": "hub:main.js",
+      "offset": 5324724
+    },
+    {
+      "en": "Logs each telemetry event to the browser's DevTools console as it fires, with the click or key that caused it. Stays on across reloads until you turn it off.",
+      "zh": "触发遥测事件时，将其连同对应的点击或按键操作记录到浏览器开发者工具控制台。重新加载后仍保持开启，直至手动关闭。",
+      "source": "hub:main.js",
+      "offset": 5403967
+    },
+    {
+      "en": "macOS Permissions Ready",
+      "zh": "macOS 权限已就绪",
+      "source": "hub:main.js",
+      "offset": 8053326
+    },
+    {
+      "en": "Make default",
+      "zh": "设为默认",
+      "source": "hub:main.js",
+      "offset": 5737706
+    },
+    {
+      "en": "Manage",
+      "zh": "管理",
+      "source": "hub:main.js",
+      "offset": 5224967
+    },
+    {
+      "en": "Manage fine-grained permissions for GitHub.",
+      "zh": "管理 GitHub 的精细化权限。",
+      "source": "hub:main.js",
+      "offset": 11975452
+    },
+    {
+      "en": "Manage Hooks",
+      "zh": "管理钩子",
+      "source": "hub:main.js",
+      "offset": 5712932
+    },
+    {
+      "en": "Manage License",
+      "zh": "管理许可证",
+      "source": "hub:main.js",
+      "offset": 5226015
+    },
+    {
+      "en": "Manage permissions",
+      "zh": "管理权限",
+      "source": "hub:main.js",
+      "offset": 8701742
+    },
+    {
+      "en": "Manage your conversations from the companion website.",
+      "zh": "通过配套网页端管理您的对话。",
+      "source": "hub:main.js",
+      "offset": 5144200
+    },
+    {
+      "en": "Manage your keybinding scheme and customize shortcuts in VS Code.",
+      "zh": "管理您的快捷键方案，并在 VS Code 中自定义快捷键。",
+      "source": "hub:main.js",
+      "offset": 5515049
+    },
+    {
+      "en": "Manage your model quota and credits.",
+      "zh": "管理您的模型额度和积分。",
+      "source": "hub:main.js",
+      "offset": 5477828
+    },
+    {
+      "en": "Manage your notification preferences.",
+      "zh": "管理您的通知偏好设置。",
+      "source": "hub:main.js",
+      "offset": 5481114
+    },
+    {
+      "en": "Manage your plan, credentials, and general preferences.",
+      "zh": "管理您的订阅方案、登录凭据和常规偏好设置。",
+      "source": "hub:main.js",
+      "offset": 5223908
+    },
+    {
+      "en": "Managed by application menu",
+      "zh": "由应用菜单管理",
+      "source": "hub:main.js",
+      "offset": 5527788
+    },
+    {
+      "en": "Managed by Enterprise Gateway",
+      "zh": "由企业网关管理",
+      "source": "hub:main.js",
+      "offset": 5226121
+    },
+    {
+      "en": "Managed by plugin",
+      "zh": "由插件管理",
+      "source": "hub:main.js",
+      "offset": 8391894
+    },
+    {
+      "en": "Manager Error",
+      "zh": "管理器出错",
+      "source": "hub:main.js",
+      "offset": 8387213
+    },
+    {
+      "en": "Manual Order",
+      "zh": "手动排序",
+      "source": "hub:main.js",
+      "offset": 9675444
+    },
+    {
+      "en": "Manually customize individual settings.",
+      "zh": "手动逐项自定义设置。",
+      "source": "hub:main.js",
+      "offset": 5645769
+    },
+    {
+      "en": "Markdown artifact width",
+      "zh": "Markdown 生成文档宽度",
+      "source": "hub:main.js",
+      "offset": 5140455
+    },
+    {
+      "en": "Marketing emails",
+      "zh": "营销邮件",
+      "source": "hub:main.js",
+      "offset": 5224259
+    },
+    {
+      "en": "MCP Authentication Error:",
+      "zh": "MCP 身份验证错误：",
+      "source": "hub:main.js",
+      "offset": 8418983
+    },
+    {
+      "en": "MCP Configuration Error:",
+      "zh": "MCP 配置出错：",
+      "source": "hub:main.js",
+      "offset": 5686738
+    },
+    {
+      "en": "MCP error",
+      "zh": "MCP 错误",
+      "source": "hub:main.js",
+      "offset": 8425021
+    },
+    {
+      "en": "MCP Install Error:",
+      "zh": "MCP 安装出错：",
+      "source": "hub:main.js",
+      "offset": 5712417
+    },
+    {
+      "en": "MCP Restart Error:",
+      "zh": "MCP 服务重启出错：",
+      "source": "hub:main.js",
+      "offset": 8419121
+    },
+    {
+      "en": "MCP server error",
+      "zh": "MCP 服务出错",
+      "source": "hub:main.js",
+      "offset": 8428038
+    },
+    {
+      "en": "MCP servers",
+      "zh": "MCP 服务",
+      "source": "hub:main.js",
+      "offset": 8398762
+    },
+    {
+      "en": "MCP Servers Disabled",
+      "zh": "MCP 服务已禁用",
+      "source": "hub:main.js",
+      "offset": 5685832
+    },
+    {
+      "en": "MCP tools",
+      "zh": "MCP 工具",
+      "source": "hub:main.js",
+      "offset": 5650276
+    },
+    {
+      "en": "MCP Tools",
+      "zh": "MCP 工具",
+      "source": "hub:main.js",
+      "offset": 5653549
+    },
+    {
+      "en": "Microphone",
+      "zh": "麦克风",
+      "source": "hub:main.js",
+      "offset": 5613265
+    },
+    {
+      "en": "Model cannot be changed while the agent is running",
+      "zh": "AI 助手运行期间无法切换模型",
+      "source": "hub:main.js",
+      "offset": 9064147
+    },
+    {
+      "en": "Model Credits",
+      "zh": "模型积分",
+      "source": "hub:main.js",
+      "offset": 5133728
+    },
+    {
+      "en": "Model selection",
+      "zh": "模型选择",
+      "source": "hub:main.js",
+      "offset": 5471973
+    },
+    {
+      "en": "Models",
+      "zh": "模型",
+      "source": "hub:main.js",
+      "offset": 5133701
+    },
+    {
+      "en": "Models & Usage",
+      "zh": "模型与用量",
+      "source": "hub:main.js",
+      "offset": 5477545
+    },
+    {
+      "en": "Models Tab",
+      "zh": "模型标签页",
+      "source": "hub:main.js",
+      "offset": 8064791
+    },
+    {
+      "en": "Modify permissions for file and terminal tools.",
+      "zh": "修改文件和终端工具的权限。",
+      "source": "hub:main.js",
+      "offset": 5652293
+    },
+    {
+      "en": "Modify permissions for file, terminal, and MCP tools.",
+      "zh": "修改文件、终端和 MCP 工具的权限。",
+      "source": "hub:main.js",
+      "offset": 5652237
+    },
+    {
+      "en": "Name unavailable",
+      "zh": "名称不可用",
+      "source": "hub:main.js",
+      "offset": 5622745
+    },
+    {
+      "en": "Needs re-auth",
+      "zh": "需要重新验证",
+      "source": "hub:main.js",
+      "offset": 5736918
+    },
+    {
+      "en": "Needs reconnect",
+      "zh": "需要重新连接",
+      "source": "hub:main.js",
+      "offset": 8356229
+    },
+    {
+      "en": "Network access rules",
+      "zh": "网络访问规则",
+      "source": "hub:main.js",
+      "offset": 5650787
+    },
+    {
+      "en": "New conversation button",
+      "zh": "新建对话按钮",
+      "source": "hub:main.js",
+      "offset": 5665036
+    },
+    {
+      "en": "New hook name",
+      "zh": "新钩子名称",
+      "source": "hub:main.js",
+      "offset": 5702489
+    },
+    {
+      "en": "Next voice",
+      "zh": "下一个语音",
+      "source": "hub:main.js",
+      "offset": 5597243
+    },
+    {
+      "en": "Next: Review Permissions",
+      "zh": "下一步：核对权限",
+      "source": "hub:main.js",
+      "offset": 8308558
+    },
+    {
+      "en": "Nickname",
+      "zh": "设备昵称",
+      "source": "hub:main.js",
+      "offset": 5144349
+    },
+    {
+      "en": "No access",
+      "zh": "无访问权限",
+      "source": "hub:main.js",
+      "offset": 11951839
+    },
+    {
+      "en": "No connectors available in this project",
+      "zh": "当前项目暂无可用连接器",
+      "source": "hub:main.js",
+      "offset": 8953256
+    },
+    {
+      "en": "No custom flag matches your search.",
+      "zh": "没有符合搜索条件的自定义开关。",
+      "source": "hub:main.js",
+      "offset": 5408249
+    },
+    {
+      "en": "No events recorded",
+      "zh": "暂无事件记录",
+      "source": "hub:main.js",
+      "offset": 8391202
+    },
+    {
+      "en": "No keyboard shortcuts found matching your filter.",
+      "zh": "未找到符合筛选条件的快捷键。",
+      "source": "hub:main.js",
+      "offset": 5541122
+    },
+    {
+      "en": "No license available for this project and location",
+      "zh": "该项目和区域下没有可用的许可证",
+      "source": "hub:main.js",
+      "offset": 5207622
+    },
+    {
+      "en": "No matching flags",
+      "zh": "没有匹配的开关",
+      "source": "hub:main.js",
+      "offset": 5408156
+    },
+    {
+      "en": "No MCP servers installed",
+      "zh": "未安装 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 5687258
+    },
+    {
+      "en": "No Model Selected",
+      "zh": "未选择模型",
+      "source": "hub:main.js",
+      "offset": 6930725
+    },
+    {
+      "en": "No plugin loads from this folder.",
+      "zh": "此文件夹中未加载任何插件。",
+      "source": "hub:main.js",
+      "offset": 8312266
+    },
+    {
+      "en": "No plugins available",
+      "zh": "暂无可用插件",
+      "source": "hub:main.js",
+      "offset": 8656040
+    },
+    {
+      "en": "No Plugins Available",
+      "zh": "暂无可用插件",
+      "source": "hub:main.js",
+      "offset": 5671518
+    },
+    {
+      "en": "No rate card for this model; showing comparable rates.",
+      "zh": "该模型暂无费率表，当前显示同类模型的参考费率。",
+      "source": "hub:main.js",
+      "offset": 8242481
+    },
+    {
+      "en": "No recordings",
+      "zh": "暂无录音",
+      "source": "hub:main.js",
+      "offset": 5615722
+    },
+    {
+      "en": "No sign-in needed",
+      "zh": "无需登录",
+      "source": "hub:main.js",
+      "offset": 5740279
+    },
+    {
+      "en": "No sign-in required. This app is ready to use.",
+      "zh": "无需登录，此应用可直接使用。",
+      "source": "hub:main.js",
+      "offset": 8406675
+    },
+    {
+      "en": "No sites have cookies in the built-in browser.",
+      "zh": "内置浏览器中没有网站保存 Cookie。",
+      "source": "hub:main.js",
+      "offset": 5395281
+    },
+    {
+      "en": "No sites match “",
+      "zh": "没有匹配“",
+      "source": "hub:main.js",
+      "offset": 5395678
+    },
+    {
+      "en": "No token data available.",
+      "zh": "暂无 Token 数据。",
+      "source": "hub:main.js",
+      "offset": 5558762
+    },
+    {
+      "en": "None (clear inherited style)",
+      "zh": "无（清除继承的样式）",
+      "source": "hub:main.js",
+      "offset": 7597924
+    },
+    {
+      "en": "Not configured",
+      "zh": "未配置",
+      "source": "hub:main.js",
+      "offset": 5212206
+    },
+    {
+      "en": "Not connected",
+      "zh": "未连接",
+      "source": "hub:main.js",
+      "offset": 5748104
+    },
+    {
+      "en": "Not set",
+      "zh": "未设置",
+      "source": "hub:main.js",
+      "offset": 5612628
+    },
+    {
+      "en": "Nothing is always allowed. You'll be asked before this plugin makes changes.",
+      "zh": "当前没有设为始终允许的权限。该插件在执行更改前会先询问你。",
+      "source": "hub:main.js",
+      "offset": 5625967
+    },
+    {
+      "en": "Notification Preferences",
+      "zh": "通知偏好设置",
+      "source": "hub:main.js",
+      "offset": 11937764
+    },
+    {
+      "en": "Notification settings",
+      "zh": "通知设置",
+      "source": "hub:main.js",
+      "offset": 5228579
+    },
+    {
+      "en": "Notifications",
+      "zh": "通知",
+      "source": "hub:main.js",
+      "offset": 5481086
+    },
+    {
+      "en": "Only stored on your machine.",
+      "zh": "仅保存在你的本机设备中。",
+      "source": "hub:main.js",
+      "offset": 5615359
+    },
+    {
+      "en": "Open Appearance",
+      "zh": "打开外观设置",
+      "source": "hub:main.js",
+      "offset": 8395112
+    },
+    {
+      "en": "Open Browser Setup",
+      "zh": "打开浏览器配置",
+      "source": "hub:main.js",
+      "offset": 8687131
+    },
+    {
+      "en": "Open Google Chrome on the machine running Antigravity.",
+      "zh": "在运行 Antigravity 的设备上打开 Google Chrome。",
+      "source": "hub:main.js",
+      "offset": 8990507
+    },
+    {
+      "en": "Open In",
+      "zh": "打开方式",
+      "source": "hub:main.js",
+      "offset": 3637750
+    },
+    {
+      "en": "Open in Remote Control",
+      "zh": "在远程控制中打开",
+      "source": "hub:main.js",
+      "offset": 5323341
+    },
+    {
+      "en": "Open Keyboard Shortcuts",
+      "zh": "打开快捷键设置",
+      "source": "hub:main.js",
+      "offset": 1923599
+    },
+    {
+      "en": "Open links in",
+      "zh": "链接打开方式",
+      "source": "hub:main.js",
+      "offset": 5141026
+    },
+    {
+      "en": "Open MCP Config",
+      "zh": "打开 MCP 配置",
+      "source": "hub:main.js",
+      "offset": 5686646
+    },
+    {
+      "en": "Open plugin page",
+      "zh": "打开插件页面",
+      "source": "hub:main.js",
+      "offset": 8429855
+    },
+    {
+      "en": "Open Preferences",
+      "zh": "打开偏好设置",
+      "source": "hub:main.js",
+      "offset": 11937931
+    },
+    {
+      "en": "Open Settings",
+      "zh": "打开设置",
+      "source": "hub:main.js",
+      "offset": 1920811
+    },
+    {
+      "en": "Open settings menu",
+      "zh": "打开设置菜单",
+      "source": "hub:main.js",
+      "offset": 5834251
+    },
+    {
+      "en": "Open System Preferences",
+      "zh": "打开系统偏好设置",
+      "source": "hub:main.js",
+      "offset": 5228825
+    },
+    {
+      "en": "Open System Settings ↗",
+      "zh": "打开系统设置 ↗",
+      "source": "hub:main.js",
+      "offset": 8049516
+    },
+    {
+      "en": "Operating system",
+      "zh": "操作系统",
+      "source": "hub:main.js",
+      "offset": 5411866
+    },
+    {
+      "en": "Optimize the interface and terminal output for screen readers.",
+      "zh": "针对屏幕阅读器优化界面和终端输出。",
+      "source": "hub:main.js",
+      "offset": 5139659
+    },
+    {
+      "en": "Orchestrator model selection",
+      "zh": "编排器模型选择",
+      "source": "hub:main.js",
+      "offset": 5472225
+    },
+    {
+      "en": "Organization Allowed Domains (Read-Only)",
+      "zh": "组织允许的域名（只读）",
+      "source": "hub:main.js",
+      "offset": 5398191
+    },
+    {
+      "en": "Organizations",
+      "zh": "组织",
+      "source": "hub:main.js",
+      "offset": 11965754
+    },
+    {
+      "en": "Other Customizations",
+      "zh": "其他自定义项",
+      "source": "hub:main.js",
+      "offset": 5556220
+    },
+    {
+      "en": "Other License",
+      "zh": "其他许可证",
+      "source": "hub:main.js",
+      "offset": 5214516
+    },
+    {
+      "en": "Outside of folders file access policy",
+      "zh": "文件夹外文件访问策略",
+      "source": "hub:main.js",
+      "offset": 5653998
+    },
+    {
+      "en": "Override feature environment",
+      "zh": "覆盖功能环境",
+      "source": "hub:main.js",
+      "offset": 5411575
+    },
+    {
+      "en": "Paste auth code",
+      "zh": "粘贴授权码",
+      "source": "hub:main.js",
+      "offset": 5673093
+    },
+    {
+      "en": "Paste authorization code",
+      "zh": "粘贴授权码",
+      "source": "hub:main.js",
+      "offset": 9222680
+    },
+    {
+      "en": "Paste code",
+      "zh": "粘贴代码",
+      "source": "hub:main.js",
+      "offset": 5744646
+    },
+    {
+      "en": "Paste the code shown after you sign in.",
+      "zh": "粘贴登录后显示的代码。",
+      "source": "hub:main.js",
+      "offset": 5744195
+    },
+    {
+      "en": "Pay As You Go",
+      "zh": "按量付费",
+      "source": "hub:main.js",
+      "offset": 5211085
+    },
+    {
+      "en": "Permanently delete",
+      "zh": "永久删除",
+      "source": "hub:main.js",
+      "offset": 5825446
+    },
+    {
+      "en": "Permission decision",
+      "zh": "权限决定",
+      "source": "hub:main.js",
+      "offset": 8274983
+    },
+    {
+      "en": "Permission Details",
+      "zh": "权限详情",
+      "source": "hub:main.js",
+      "offset": 5662030
+    },
+    {
+      "en": "Permission preset",
+      "zh": "权限预设",
+      "source": "hub:main.js",
+      "offset": 5659235
+    },
+    {
+      "en": "Permission Settings",
+      "zh": "权限设置",
+      "source": "hub:main.js",
+      "offset": 5661149
+    },
+    {
+      "en": "Permissions",
+      "zh": "权限",
+      "source": "hub:main.js",
+      "offset": 5658677
+    },
+    {
+      "en": "Permissions cannot be changed while the agent is running",
+      "zh": "AI 助手运行期间无法更改权限",
+      "source": "hub:main.js",
+      "offset": 8979916
+    },
+    {
+      "en": "Pick one of these themes under Preset in Settings > Appearance.",
+      "zh": "请在“设置 > 外观 > 预设”中选择这些主题之一。",
+      "source": "hub:main.js",
+      "offset": 8394876
+    },
+    {
+      "en": "Pinned Actions",
+      "zh": "固定操作",
+      "source": "hub:main.js",
+      "offset": 9679031
+    },
+    {
+      "en": "Play a sound when your action is needed or the agent finishes.",
+      "zh": "在需要您操作或 AI 助手完成任务时播放提示音。",
+      "source": "hub:main.js",
+      "offset": 5138779
+    },
+    {
+      "en": "Please verify your account, then sign in again to continue. Learn more by visiting our",
+      "zh": "请先验证你的账号，然后重新登录以继续。如需了解更多，请访问我们的",
+      "source": "hub:main.js",
+      "offset": 9246390
+    },
+    {
+      "en": "Plugin",
+      "zh": "插件",
+      "source": "hub:main.js",
+      "offset": 8334631
+    },
+    {
+      "en": "Plugin details",
+      "zh": "插件详情",
+      "source": "hub:main.js",
+      "offset": 8426947
+    },
+    {
+      "en": "Plugin metadata",
+      "zh": "插件元数据",
+      "source": "hub:main.js",
+      "offset": 8366191
+    },
+    {
+      "en": "Plugin Operation Error:",
+      "zh": "插件操作出错：",
+      "source": "hub:main.js",
+      "offset": 5670432
+    },
+    {
+      "en": "Plugin permissions",
+      "zh": "插件权限",
+      "source": "hub:main.js",
+      "offset": 5651799
+    },
+    {
+      "en": "Plugin update required",
+      "zh": "需要更新插件",
+      "source": "hub:main.js",
+      "offset": 8361536
+    },
+    {
+      "en": "Preset",
+      "zh": "预设",
+      "source": "hub:main.js",
+      "offset": 12020068
+    },
+    {
+      "en": "Press Cmd+Enter to send, Enter for a new line.",
+      "zh": "按 Cmd+Enter 发送，按 Enter 换行。",
+      "source": "hub:main.js",
+      "offset": 5136379
+    },
+    {
+      "en": "Press Ctrl+Enter to send, Enter for a new line.",
+      "zh": "按 Ctrl+Enter 发送，按 Enter 换行。",
+      "source": "hub:main.js",
+      "offset": 5136428
+    },
+    {
+      "en": "Press keys...",
+      "zh": "请按下快捷键...",
+      "source": "hub:main.js",
+      "offset": 5524899
+    },
+    {
+      "en": "Prevent sleep",
+      "zh": "防止系统休眠",
+      "source": "hub:main.js",
+      "offset": 5143487
+    },
+    {
+      "en": "Prevent the computer from sleeping while the app is running.",
+      "zh": "应用运行时防止电脑进入休眠状态。",
+      "source": "hub:main.js",
+      "offset": 5143515
+    },
+    {
+      "en": "Preview disabled (experiment off)",
+      "zh": "预览已禁用（实验功能未开启）",
+      "source": "hub:main.js",
+      "offset": 7258238
+    },
+    {
+      "en": "Previous voice",
+      "zh": "上一个语音",
+      "source": "hub:main.js",
+      "offset": 5597226
+    },
+    {
+      "en": "Pricing is based on public API pricing",
+      "zh": "价格基于公开 API 定价计算",
+      "source": "hub:main.js",
+      "offset": 8245563
+    },
+    {
+      "en": "Print telemetry to the console",
+      "zh": "将遥测信息输出到控制台",
+      "source": "hub:main.js",
+      "offset": 5403912
+    },
+    {
+      "en": "Privacy Notice",
+      "zh": "隐私声明",
+      "source": "hub:main.js",
+      "offset": 7397610
+    },
+    {
+      "en": "Privacy Settings",
+      "zh": "隐私设置",
+      "source": "hub:main.js",
+      "offset": 3008598
+    },
+    {
+      "en": "Proceed in Sandbox",
+      "zh": "在沙箱中自动执行",
+      "source": "hub:main.js",
+      "offset": 5656027
+    },
+    {
+      "en": "Process Error",
+      "zh": "进程出错",
+      "source": "hub:main.js",
+      "offset": 8387229
+    },
+    {
+      "en": "Process exited with an error",
+      "zh": "进程异常退出",
+      "source": "hub:main.js",
+      "offset": 8387354
+    },
+    {
+      "en": "Project required",
+      "zh": "需要选择项目",
+      "source": "hub:main.js",
+      "offset": 5225703
+    },
+    {
+      "en": "Project Settings",
+      "zh": "项目设置",
+      "source": "hub:main.js",
+      "offset": 8888642
+    },
+    {
+      "en": "Projects",
+      "zh": "项目",
+      "source": "hub:main.js",
+      "offset": 5150248
+    },
+    {
+      "en": "Provide Google Cloud Project",
+      "zh": "填写 Google Cloud 项目",
+      "source": "hub:main.js",
+      "offset": 5205514
+    },
+    {
+      "en": "Pull request creation",
+      "zh": "创建拉取请求",
+      "source": "hub:main.js",
+      "offset": 11960598
+    },
+    {
+      "en": "Pull requests",
+      "zh": "拉取请求",
+      "source": "hub:main.js",
+      "offset": 11960225
+    },
+    {
+      "en": "Queued messages",
+      "zh": "排队消息",
+      "source": "hub:main.js",
+      "offset": 5135089
+    },
+    {
+      "en": "Radar",
+      "zh": "雷达",
+      "source": "hub:main.js",
+      "offset": 6616428
+    },
+    {
+      "en": "Read access",
+      "zh": "只读权限",
+      "source": "hub:main.js",
+      "offset": 11957874
+    },
+    {
+      "en": "Read access to code, refs, commits, and other repository contents.",
+      "zh": "代码、引用、提交及其他仓库内容的只读权限。",
+      "source": "hub:main.js",
+      "offset": 11957585
+    },
+    {
+      "en": "Read files",
+      "zh": "读取文件",
+      "source": "hub:main.js",
+      "offset": 8301278
+    },
+    {
+      "en": "Readme",
+      "zh": "说明文档",
+      "source": "hub:main.js",
+      "offset": 8398157
+    },
+    {
+      "en": "Recent Events",
+      "zh": "最近事件",
+      "source": "hub:main.js",
+      "offset": 8389780
+    },
+    {
+      "en": "Reconnect",
+      "zh": "重新连接",
+      "source": "hub:main.js",
+      "offset": 5737070
+    },
+    {
+      "en": "Reconnect account",
+      "zh": "重新关联账号",
+      "source": "hub:main.js",
+      "offset": 8355666
+    },
+    {
+      "en": "Recordings",
+      "zh": "录音",
+      "source": "hub:main.js",
+      "offset": 5616499
+    },
+    {
+      "en": "Refresh all credentials",
+      "zh": "刷新全部凭据",
+      "source": "hub:main.js",
+      "offset": 9560762
+    },
+    {
+      "en": "Refresh MCP servers",
+      "zh": "刷新 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 5686203
+    },
+    {
+      "en": "Refresh quota and credits data",
+      "zh": "刷新额度和积分数据",
+      "source": "hub:main.js",
+      "offset": 5477650
+    },
+    {
+      "en": "Refreshed credentials for all automations.",
+      "zh": "已刷新所有自动化任务的凭据。",
+      "source": "hub:main.js",
+      "offset": 9560054
+    },
+    {
+      "en": "Refreshing credentials...",
+      "zh": "正在刷新凭据...",
+      "source": "hub:main.js",
+      "offset": 9560734
+    },
+    {
+      "en": "Relaunch ↻",
+      "zh": "重新启动 ↻",
+      "source": "hub:main.js",
+      "offset": 8054548
+    },
+    {
+      "en": "Remote branches",
+      "zh": "远程分支",
+      "source": "hub:main.js",
+      "offset": 11962174
+    },
+    {
+      "en": "Remote Control",
+      "zh": "远程控制",
+      "source": "hub:main.js",
+      "offset": 5321196
+    },
+    {
+      "en": "Remote Control isn't active on this instance. Enable it in",
+      "zh": "当前实例未启用远程控制。请前往",
+      "source": "hub:main.js",
+      "offset": 9478084
+    },
+    {
+      "en": "Remote Control link",
+      "zh": "远程控制链接",
+      "source": "hub:main.js",
+      "offset": 5322600
+    },
+    {
+      "en": "Remote only",
+      "zh": "仅限远程",
+      "source": "hub:main.js",
+      "offset": 8331278
+    },
+    {
+      "en": "Remote Permissions",
+      "zh": "远程权限",
+      "source": "hub:main.js",
+      "offset": 8980058
+    },
+    {
+      "en": "Remove policy",
+      "zh": "移除策略",
+      "source": "hub:main.js",
+      "offset": 11953725
+    },
+    {
+      "en": "Reopen Locally",
+      "zh": "在本机重开",
+      "source": "hub:main.js",
+      "offset": 5325142
+    },
+    {
+      "en": "Replace the default browser right-click menu with quick actions.",
+      "zh": "将浏览器默认的右键菜单替换为快捷操作菜单。",
+      "source": "hub:main.js",
+      "offset": 5139468
+    },
+    {
+      "en": "Replace with",
+      "zh": "替换为",
+      "source": "hub:main.js",
+      "offset": 8312471
+    },
+    {
+      "en": "Replacing removes the currently installed plugin and installs the new one in its place.",
+      "zh": "替换操作会先移除当前已安装的插件，再安装新插件。",
+      "source": "hub:main.js",
+      "offset": 8311945
+    },
+    {
+      "en": "Replacing...",
+      "zh": "正在替换...",
+      "source": "hub:main.js",
+      "offset": 8313118
+    },
+    {
+      "en": "Repositories",
+      "zh": "代码仓库",
+      "source": "hub:main.js",
+      "offset": 11956369
+    },
+    {
+      "en": "Repository",
+      "zh": "代码仓库",
+      "source": "hub:main.js",
+      "offset": 8367475
+    },
+    {
+      "en": "Request Review",
+      "zh": "请求审核",
+      "source": "hub:main.js",
+      "offset": 3838162
+    },
+    {
+      "en": "Requesting a one-time administrator (UAC) elevation",
+      "zh": "正在请求一次性管理员（UAC）提权",
+      "source": "hub:main.js",
+      "offset": 8263637
+    },
+    {
+      "en": "Require Review",
+      "zh": "需要审核",
+      "source": "hub:main.js",
+      "offset": 5656048
+    },
+    {
+      "en": "Requires manual confirmation.",
+      "zh": "需要手动确认。",
+      "source": "hub:main.js",
+      "offset": 8267874
+    },
+    {
+      "en": "Requires manual review for all terminal commands and file accesses outside of the working folders.",
+      "zh": "所有终端命令以及工作文件夹以外的文件访问均需人工审核。",
+      "source": "hub:main.js",
+      "offset": 5629476
+    },
+    {
+      "en": "Reset all shortcuts to defaults",
+      "zh": "恢复全部默认快捷键",
+      "source": "hub:main.js",
+      "offset": 5540699
+    },
+    {
+      "en": "Reset All to Defaults",
+      "zh": "全部恢复默认",
+      "source": "hub:main.js",
+      "offset": 5540662
+    },
+    {
+      "en": "Reset overrides",
+      "zh": "重置覆盖项",
+      "source": "hub:main.js",
+      "offset": 5407794
+    },
+    {
+      "en": "Reset to auto",
+      "zh": "重置为自动",
+      "source": "hub:main.js",
+      "offset": 5615011
+    },
+    {
+      "en": "Reset to preset",
+      "zh": "重置为预设",
+      "source": "hub:main.js",
+      "offset": 12020248
+    },
+    {
+      "en": "Resets in <1m",
+      "zh": "将于 1 分钟内重置",
+      "source": "hub:main.js",
+      "offset": 1988875
+    },
+    {
+      "en": "Resolving permissions...",
+      "zh": "正在解析权限...",
+      "source": "hub:main.js",
+      "offset": 8309199
+    },
+    {
+      "en": "Resolving...",
+      "zh": "正在解析…",
+      "source": "hub:main.js",
+      "offset": 8308543
+    },
+    {
+      "en": "Restart sign-in",
+      "zh": "重新登录",
+      "source": "hub:main.js",
+      "offset": 5741626
+    },
+    {
+      "en": "Restricts agent tools to a secure, isolated local sandbox.",
+      "zh": "将 AI 助手工具限制在安全隔离的本地沙箱中运行。",
+      "source": "hub:main.js",
+      "offset": 5656499
+    },
+    {
+      "en": "Revoke all",
+      "zh": "全部撤销",
+      "source": "hub:main.js",
+      "offset": 5624414
+    },
+    {
+      "en": "Robot",
+      "zh": "机器人",
+      "source": "hub:main.js",
+      "offset": 6615989
+    },
+    {
+      "en": "Run all commands without restrictions.",
+      "zh": "无限制自动运行所有命令。",
+      "source": "hub:main.js",
+      "offset": 3839037
+    },
+    {
+      "en": "Run terminal commands with sandbox restrictions.",
+      "zh": "在沙盒限制下运行终端命令。",
+      "source": "hub:main.js",
+      "offset": 5136941
+    },
+    {
+      "en": "Run the app against a Linux environment. Connecting relaunches the app into the selected WSL distro.",
+      "zh": "在 Linux 环境中运行应用。连接后应用将重启并切换至所选的 WSL 发行版。",
+      "source": "hub:main.js",
+      "offset": 5324129
+    },
+    {
+      "en": "Run visibility",
+      "zh": "运行记录可见性",
+      "source": "hub:main.js",
+      "offset": 11963993
+    },
+    {
+      "en": "Running",
+      "zh": "运行中",
+      "source": "hub:main.js",
+      "offset": 5847271
+    },
+    {
+      "en": "Save audio recordings",
+      "zh": "保存语音录音",
+      "source": "hub:main.js",
+      "offset": 5615323
+    },
+    {
+      "en": "Save Configuration",
+      "zh": "保存配置",
+      "source": "hub:main.js",
+      "offset": 5703234
+    },
+    {
+      "en": "Saving...",
+      "zh": "正在保存…",
+      "source": "hub:main.js",
+      "offset": 5703222
+    },
+    {
+      "en": "Scan the code to open this device in Remote Control, or",
+      "zh": "扫描二维码以在远程控制中打开此设备，或",
+      "source": "hub:main.js",
+      "offset": 5322022
+    },
+    {
+      "en": "Screen reader mode",
+      "zh": "屏幕阅读器模式",
+      "source": "hub:main.js",
+      "offset": 5139626
+    },
+    {
+      "en": "Search connectors",
+      "zh": "搜索连接器",
+      "source": "hub:main.js",
+      "offset": 8950268
+    },
+    {
+      "en": "Search flags",
+      "zh": "搜索开关",
+      "source": "hub:main.js",
+      "offset": 5407871
+    },
+    {
+      "en": "Search for MCP servers to add to your configuration",
+      "zh": "搜索并添加 MCP 服务到你的配置中",
+      "source": "hub:main.js",
+      "offset": 5712791
+    },
+    {
+      "en": "Search languages to add (e.g. English, Spanish, 中文, yue)...",
+      "zh": "搜索要添加的语言（如 English、Spanish、中文、yue）…",
+      "source": "hub:main.js",
+      "offset": 5585032
+    },
+    {
+      "en": "Search MCP servers by name",
+      "zh": "按名称搜索 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 5711558
+    },
+    {
+      "en": "Search sites",
+      "zh": "搜索网站",
+      "source": "hub:main.js",
+      "offset": 5397117
+    },
+    {
+      "en": "Search sites...",
+      "zh": "搜索网站...",
+      "source": "hub:main.js",
+      "offset": 5397089
+    },
+    {
+      "en": "Security preset",
+      "zh": "安全预设",
+      "source": "hub:main.js",
+      "offset": 5657580
+    },
+    {
+      "en": "See Activity",
+      "zh": "查看使用记录",
+      "source": "hub:main.js",
+      "offset": 5479228
+    },
+    {
+      "en": "Select Billing Model",
+      "zh": "选择计费模式",
+      "source": "hub:main.js",
+      "offset": 5210802
+    },
+    {
+      "en": "Select License",
+      "zh": "选择许可证",
+      "source": "hub:main.js",
+      "offset": 5206659
+    },
+    {
+      "en": "Select Project",
+      "zh": "选择项目",
+      "source": "hub:main.js",
+      "offset": 5225998
+    },
+    {
+      "en": "Select the workspace type that will be used for new conversations started with the New Workspace option.",
+      "zh": "选择通过“新建工作目录”选项发起新对话时使用的工作目录类型。",
+      "source": "hub:main.js",
+      "offset": 5720653
+    },
+    {
+      "en": "Select Theme",
+      "zh": "选择主题",
+      "source": "hub:main.js",
+      "offset": 9260998
+    },
+    {
+      "en": "Select your license",
+      "zh": "请选择您的许可证",
+      "source": "hub:main.js",
+      "offset": 5216052
+    },
+    {
+      "en": "Selected dictation languages",
+      "zh": "已选语音听写语言",
+      "source": "hub:main.js",
+      "offset": 5583854
+    },
+    {
+      "en": "Send message",
+      "zh": "发送消息方式",
+      "source": "hub:main.js",
+      "offset": 5136017
+    },
+    {
+      "en": "Send messages with the keyboard's Enter key instead of starting a new line.",
+      "zh": "按键盘的 Enter 键直接发送消息，而不是换行。",
+      "source": "hub:main.js",
+      "offset": 5135847
+    },
+    {
+      "en": "Services this plugin connects to on your behalf.",
+      "zh": "此插件代表你连接的服务。",
+      "source": "hub:main.js",
+      "offset": 5733329
+    },
+    {
+      "en": "Set the volume of agent sounds.",
+      "zh": "调节 AI 助手提示音的音量。",
+      "source": "hub:main.js",
+      "offset": 5480299
+    },
+    {
+      "en": "Set up authentication",
+      "zh": "设置认证",
+      "source": "hub:main.js",
+      "offset": 8423616
+    },
+    {
+      "en": "Set up my environment",
+      "zh": "配置我的环境",
+      "source": "hub:main.js",
+      "offset": 9627856
+    },
+    {
+      "en": "Sets or unsets the font style to bold. Note, the presence of 'fontStyle' overrides this setting.",
+      "zh": "设置或取消粗体样式。注意，如果同时配置了 'fontStyle'，该项会被覆盖。",
+      "source": "hub:main.js",
+      "offset": 7598453
+    },
+    {
+      "en": "Sets or unsets the font style to italic. Note, the presence of 'fontStyle' overrides this setting.",
+      "zh": "设置或取消斜体样式。注意，如果同时配置了 'fontStyle'，该项会被覆盖。",
+      "source": "hub:main.js",
+      "offset": 7598614
+    },
+    {
+      "en": "Sets or unsets the font style to strikethrough. Note, the presence of 'fontStyle' overrides this setting.",
+      "zh": "设置或取消删除线样式。注意，如果同时配置了 'fontStyle'，该项会被覆盖。",
+      "source": "hub:main.js",
+      "offset": 7598964
+    },
+    {
+      "en": "Sets or unsets the font style to underline. Note, the presence of 'fontStyle' overrides this setting.",
+      "zh": "设置或取消下划线样式。注意，如果同时配置了 'fontStyle'，该项会被覆盖。",
+      "source": "hub:main.js",
+      "offset": 7598784
+    },
+    {
+      "en": "Sets the `workspaceUri` URL parameter and reloads, repointing the active workspace. Pick a folder from an existing project or enter a custom URI (e.g. file:///path/to/workspace).",
+      "zh": "设置 `workspaceUri` URL 参数并重新加载，以重新指定当前工作目录。可从现有项目中选择文件夹，或输入自定义 URI（如 file:///path/to/workspace）。",
+      "source": "hub:main.js",
+      "offset": 5416372
+    },
+    {
+      "en": "Sets the all font styles of the rule: 'italic', 'bold', 'underline' or 'strikethrough' or a combination. All styles that are not listed are unset. The empty string unsets all styles.",
+      "zh": "设置该规则的所有字体样式：'italic'、'bold'、'underline'、'strikethrough' 或其组合。未列出的样式将被取消；空字符串表示取消所有样式。",
+      "source": "hub:main.js",
+      "offset": 7597446
+    },
+    {
+      "en": "Settings Unavailable",
+      "zh": "设置不可用",
+      "source": "hub:main.js",
+      "offset": 5852593
+    },
+    {
+      "en": "Setup",
+      "zh": "配置",
+      "source": "hub:main.js",
+      "offset": 8687154
+    },
+    {
+      "en": "Setup required",
+      "zh": "需要配置",
+      "source": "hub:main.js",
+      "offset": 8419334
+    },
+    {
+      "en": "Setup script",
+      "zh": "初始化脚本",
+      "source": "hub:main.js",
+      "offset": 5823482
+    },
+    {
+      "en": "Share your referral link with friends",
+      "zh": "将您的推荐链接分享给好友",
+      "source": "hub:main.js",
+      "offset": 5225414
+    },
+    {
+      "en": "Shield",
+      "zh": "盾牌",
+      "source": "hub:main.js",
+      "offset": 6616279
+    },
+    {
+      "en": "Shortcuts",
+      "zh": "快捷键",
+      "source": "hub:main.js",
+      "offset": 5515025
+    },
+    {
+      "en": "Show how full the context window is next to the send button. Click it for a breakdown and to see your model quota.",
+      "zh": "在发送按钮旁显示上下文窗口的已用比例，点击可查看详细占用和模型额度。",
+      "source": "hub:main.js",
+      "offset": 5140816
+    },
+    {
+      "en": "Show Remote Control QR code",
+      "zh": "显示远程控制二维码",
+      "source": "hub:main.js",
+      "offset": 5322293
+    },
+    {
+      "en": "Show system notifications when your action is needed or the agent finishes.",
+      "zh": "在需要您操作或 AI 助手完成任务时显示系统通知。",
+      "source": "hub:main.js",
+      "offset": 5138996
+    },
+    {
+      "en": "Show token",
+      "zh": "显示 Token",
+      "source": "hub:main.js",
+      "offset": 11950172
+    },
+    {
+      "en": "Side Pane UI Available",
+      "zh": "支持侧边栏界面",
+      "source": "hub:main.js",
+      "offset": 8386283
+    },
+    {
+      "en": "Side Panel",
+      "zh": "侧边面板",
+      "source": "hub:main.js",
+      "offset": 5134603
+    },
+    {
+      "en": "Side Panel Preview",
+      "zh": "侧边栏预览",
+      "source": "hub:main.js",
+      "offset": 5132463
+    },
+    {
+      "en": "Sign in needed",
+      "zh": "需要登录",
+      "source": "hub:main.js",
+      "offset": 8332189
+    },
+    {
+      "en": "Sign in required",
+      "zh": "需要登录",
+      "source": "hub:main.js",
+      "offset": 9347586
+    },
+    {
+      "en": "Sign in required.",
+      "zh": "需要登录。",
+      "source": "hub:main.js",
+      "offset": 8426317
+    },
+    {
+      "en": "Sign in to finish setting up this plugin.",
+      "zh": "请登录以完成此插件的设置。",
+      "source": "hub:main.js",
+      "offset": 8330720
+    },
+    {
+      "en": "Sign in with a different account",
+      "zh": "使用其他账号登录",
+      "source": "hub:main.js",
+      "offset": 9249829
+    },
+    {
+      "en": "Sign In with SSO",
+      "zh": "使用 SSO 登录",
+      "source": "hub:main.js",
+      "offset": 9231205
+    },
+    {
+      "en": "Sign Out",
+      "zh": "退出登录",
+      "source": "hub:main.js",
+      "offset": 5226477
+    },
+    {
+      "en": "Sign-in didn't finish. Try again.",
+      "zh": "登录未完成，请重试。",
+      "source": "hub:main.js",
+      "offset": 8947252
+    },
+    {
+      "en": "Sign-in required",
+      "zh": "需要登录",
+      "source": "hub:main.js",
+      "offset": 8339445
+    },
+    {
+      "en": "Signed in as",
+      "zh": "当前登录账号",
+      "source": "hub:main.js",
+      "offset": 8354298
+    },
+    {
+      "en": "Signed-in accounts",
+      "zh": "已登录账号",
+      "source": "hub:main.js",
+      "offset": 5736138
+    },
+    {
+      "en": "Signing out…",
+      "zh": "正在退出登录…",
+      "source": "hub:main.js",
+      "offset": 5738541
+    },
+    {
+      "en": "Signing Out...",
+      "zh": "正在退出登录...",
+      "source": "hub:main.js",
+      "offset": 5226460
+    },
+    {
+      "en": "Simulate a different host (Electron, desktop or mobile Web, Extension, remote control, or installed PWA).",
+      "zh": "模拟不同的宿主环境（Electron、桌面或移动端网页、扩展程序、远程控制或已安装的 PWA）。",
+      "source": "hub:main.js",
+      "offset": 5412248
+    },
+    {
+      "en": "Simulate a different user cohort (Google, External, Enterprise).",
+      "zh": "模拟不同的用户群体（Google、外部、企业）。",
+      "source": "hub:main.js",
+      "offset": 5412656
+    },
+    {
+      "en": "Simulate running on a different OS.",
+      "zh": "模拟在不同的操作系统上运行。",
+      "source": "hub:main.js",
+      "offset": 5411907
+    },
+    {
+      "en": "Sites with cookies",
+      "zh": "存有 Cookie 的网站",
+      "source": "hub:main.js",
+      "offset": 5395763
+    },
+    {
+      "en": "Sliders",
+      "zh": "滑块",
+      "source": "hub:main.js",
+      "offset": 6616071
+    },
+    {
+      "en": "Sound",
+      "zh": "声音",
+      "source": "hub:main.js",
+      "offset": 5134211
+    },
+    {
+      "en": "Sparkles",
+      "zh": "星光",
+      "source": "hub:main.js",
+      "offset": 6616220
+    },
+    {
+      "en": "Speedometer",
+      "zh": "速度表",
+      "source": "hub:main.js",
+      "offset": 6616307
+    },
+    {
+      "en": "Start Plugin",
+      "zh": "启动插件",
+      "source": "hub:main.js",
+      "offset": 8391698
+    },
+    {
+      "en": "Stop Editing",
+      "zh": "停止编辑",
+      "source": "hub:main.js",
+      "offset": 5524975
+    },
+    {
+      "en": "Subscription",
+      "zh": "订阅制",
+      "source": "hub:main.js",
+      "offset": 5210981
+    },
+    {
+      "en": "Subtitles",
+      "zh": "副标题",
+      "source": "hub:main.js",
+      "offset": 9664705
+    },
+    {
+      "en": "Suggested plugin:",
+      "zh": "推荐插件：",
+      "source": "hub:main.js",
+      "offset": 7271596
+    },
+    {
+      "en": "Switch to Dark Mode",
+      "zh": "切换到深色模式",
+      "source": "hub:main.js",
+      "offset": 12544236
+    },
+    {
+      "en": "Switch to Light Mode",
+      "zh": "切换到浅色模式",
+      "source": "hub:main.js",
+      "offset": 12544213
+    },
+    {
+      "en": "System default",
+      "zh": "系统默认",
+      "source": "hub:main.js",
+      "offset": 5611489
+    },
+    {
+      "en": "System default app",
+      "zh": "系统默认应用",
+      "source": "hub:main.js",
+      "offset": 6517231
+    },
+    {
+      "en": "System Settings",
+      "zh": "系统设置",
+      "source": "hub:main.js",
+      "offset": 3008617
+    },
+    {
+      "en": "Telemetry",
+      "zh": "遥测",
+      "source": "hub:main.js",
+      "offset": 8824666
+    },
+    {
+      "en": "Telemetry is disabled in Settings",
+      "zh": "设置中已关闭遥测",
+      "source": "hub:main.js",
+      "offset": 8817988
+    },
+    {
+      "en": "Telemetry is off for all conversations.",
+      "zh": "所有对话均已关闭遥测。",
+      "source": "hub:main.js",
+      "offset": 8818715
+    },
+    {
+      "en": "Telemetry is off for this conversation.",
+      "zh": "当前对话已关闭遥测。",
+      "source": "hub:main.js",
+      "offset": 8818757
+    },
+    {
+      "en": "Telemetry is turned off for your account.",
+      "zh": "您的账号已关闭遥测功能。",
+      "source": "hub:main.js",
+      "offset": 5154994
+    },
+    {
+      "en": "Telemetry is turned off in settings",
+      "zh": "设置中已关闭遥测",
+      "source": "hub:main.js",
+      "offset": 8818801
+    },
+    {
+      "en": "Telemetry will be disabled for this conversation; click to enable.",
+      "zh": "当前对话将关闭遥测，点击可开启。",
+      "source": "hub:main.js",
+      "offset": 8818910
+    },
+    {
+      "en": "Telemetry will be enabled for this conversation; click to disable.",
+      "zh": "当前对话将启用遥测，点击可关闭。",
+      "source": "hub:main.js",
+      "offset": 8818841
+    },
+    {
+      "en": "Terminal & Tooling Permissions",
+      "zh": "终端与工具权限",
+      "source": "hub:main.js",
+      "offset": 5660922
+    },
+    {
+      "en": "Terminal command auto execution",
+      "zh": "终端命令自动执行",
+      "source": "hub:main.js",
+      "offset": 5137091
+    },
+    {
+      "en": "Terminal commands",
+      "zh": "终端命令",
+      "source": "hub:main.js",
+      "offset": 5649676
+    },
+    {
+      "en": "Terminal Commands",
+      "zh": "终端命令",
+      "source": "hub:main.js",
+      "offset": 5653288
+    },
+    {
+      "en": "Terminal placement",
+      "zh": "终端显示位置",
+      "source": "hub:main.js",
+      "offset": 5140147
+    },
+    {
+      "en": "Terminal sandbox is not supported in this environment",
+      "zh": "当前环境不支持终端沙盒",
+      "source": "hub:main.js",
+      "offset": 3847672
+    },
+    {
+      "en": "Terminal window",
+      "zh": "终端窗口",
+      "source": "hub:main.js",
+      "offset": 6616103
+    },
+    {
+      "en": "Terms and Privacy:",
+      "zh": "条款与隐私：",
+      "source": "hub:main.js",
+      "offset": 7397185
+    },
+    {
+      "en": "Terms of Service & Data Use",
+      "zh": "服务条款与数据使用",
+      "source": "hub:main.js",
+      "offset": 7396430
+    },
+    {
+      "en": "The app is currently connected to a WSL distro. Reopening locally relaunches it directly on Windows.",
+      "zh": "应用当前已连接到 WSL 发行版。在本地重新打开后将直接在 Windows 上重启。",
+      "source": "hub:main.js",
+      "offset": 5324821
+    },
+    {
+      "en": "The breakdown below shows token usage from customizations like rules, skills, and MCP. If a budget is exceeded, large rules are demoted to path pointers and large customizations are excluded automatically.",
+      "zh": "下方明细展示了规则、技能和 MCP 等自定义项的 Token 用量。超出预算时，较大的规则会自动降级为路径引用，较大的自定义项会自动排除。",
+      "source": "hub:main.js",
+      "offset": 5557213
+    },
+    {
+      "en": "The full developer experience.",
+      "zh": "完整的开发者体验。",
+      "source": "hub:main.js",
+      "offset": 1940202
+    },
+    {
+      "en": "The suggested plugin isn't in the marketplace.",
+      "zh": "插件市场中未找到该推荐插件。",
+      "source": "hub:main.js",
+      "offset": 8330548
+    },
+    {
+      "en": "The voice used in Voice mode. Powered by Gemini Live.",
+      "zh": "语音模式下使用的语音，由 Gemini Live 提供支持。",
+      "source": "hub:main.js",
+      "offset": 5612401
+    },
+    {
+      "en": "Theme",
+      "zh": "主题",
+      "source": "hub:main.js",
+      "offset": 12023731
+    },
+    {
+      "en": "Themes",
+      "zh": "主题",
+      "source": "hub:main.js",
+      "offset": 8394697
+    },
+    {
+      "en": "There are no customizations enabled.",
+      "zh": "当前未启用任何自定义项。",
+      "source": "hub:main.js",
+      "offset": 5557781
+    },
+    {
+      "en": "There was an unexpected issue setting up your account.",
+      "zh": "设置账号时出现意外问题。",
+      "source": "hub:main.js",
+      "offset": 9245591
+    },
+    {
+      "en": "These allowed domain rules are set by your organization's administrator and cannot be removed.",
+      "zh": "这些允许域名规则由您所属组织的管理员设置，无法移除。",
+      "source": "hub:main.js",
+      "offset": 5398363
+    },
+    {
+      "en": "These come with the plugin and can't be revoked.",
+      "zh": "这些权限随插件内置，无法单独撤销。",
+      "source": "hub:main.js",
+      "offset": 5626553
+    },
+    {
+      "en": "These MCP allowlist rules are enforced by your organization's administrator.",
+      "zh": "这些 MCP 白名单规则由你的组织管理员强制执行。",
+      "source": "hub:main.js",
+      "offset": 5688070
+    },
+    {
+      "en": "These settings can only be changed on the computer running the app, not from a remote session.",
+      "zh": "这些设置只能在运行应用的本机电脑上修改，无法在远程会话中更改。",
+      "source": "hub:main.js",
+      "offset": 5321330
+    },
+    {
+      "en": "This client was started with no custom flags.",
+      "zh": "此客户端启动时未设置任何自定义开关。",
+      "source": "hub:main.js",
+      "offset": 5408201
+    },
+    {
+      "en": "This extension has no declared permissions requiring user input.",
+      "zh": "此扩展未声明需要用户确认的权限。",
+      "source": "hub:main.js",
+      "offset": 8306431
+    },
+    {
+      "en": "This Google Cloud project is not supported. Input a different project, or sign in with another account.",
+      "zh": "不支持此 Google Cloud 项目。请输入其他项目，或换用其他账号登录。",
+      "source": "hub:main.js",
+      "offset": 9249368
+    },
+    {
+      "en": "This plugin is currently stopped. Events and stdout streams will appear here once started.",
+      "zh": "此插件目前已停止。启动后，事件和标准输出日志将显示在此处。",
+      "source": "hub:main.js",
+      "offset": 8391474
+    },
+    {
+      "en": "This plugin was force disabled.",
+      "zh": "此插件已被强制禁用。",
+      "source": "hub:main.js",
+      "offset": 8426229
+    },
+    {
+      "en": "This setting is turned off for your account.",
+      "zh": "您的账号已关闭此设置。",
+      "source": "hub:main.js",
+      "offset": 5155821
+    },
+    {
+      "en": "To modify notification settings, open your operating system's system preferences.",
+      "zh": "如需修改通知设置，请打开操作系统的系统偏好设置。",
+      "source": "hub:main.js",
+      "offset": 5228678
+    },
+    {
+      "en": "To use browser tools, you need to enable remote debugging:",
+      "zh": "要使用浏览器工具，需先开启远程调试：",
+      "source": "hub:main.js",
+      "offset": 8990310
+    },
+    {
+      "en": "Toggle Between Light/Dark Themes",
+      "zh": "切换浅色/深色主题",
+      "source": "hub:main.js",
+      "offset": 1925472
+    },
+    {
+      "en": "Toggle Google Cloud projects",
+      "zh": "切换 Google Cloud 项目",
+      "source": "hub:main.js",
+      "offset": 5200969
+    },
+    {
+      "en": "Toggle language list",
+      "zh": "切换语言列表",
+      "source": "hub:main.js",
+      "offset": 5585939
+    },
+    {
+      "en": "Toggle this on to allow creating new issues.",
+      "zh": "开启此项以允许创建新议题。",
+      "source": "hub:main.js",
+      "offset": 11958845
+    },
+    {
+      "en": "Toggle this on to allow creating new pull requests.",
+      "zh": "开启此项以允许创建新的拉取请求。",
+      "source": "hub:main.js",
+      "offset": 11960694
+    },
+    {
+      "en": "Toggle this on to enable read access on contents.",
+      "zh": "开启此项以允许读取仓库内容。",
+      "source": "hub:main.js",
+      "offset": 11957960
+    },
+    {
+      "en": "Token Usage",
+      "zh": "Token 用量",
+      "source": "hub:main.js",
+      "offset": 5714004
+    },
+    {
+      "en": "Tool permissions",
+      "zh": "工具权限",
+      "source": "hub:main.js",
+      "offset": 5652511
+    },
+    {
+      "en": "Tree",
+      "zh": "树",
+      "source": "hub:main.js",
+      "offset": 6616023
+    },
+    {
+      "en": "Try out early-stage features before they ship. These may be changed or removed at any time. These features are experimental, and we make no guarantees about performance or functionality.",
+      "zh": "抢先体验尚未正式发布的早期功能。这些实验性功能可能随时调整或移除，我们不对其性能或功能做任何保证。",
+      "source": "hub:main.js",
+      "offset": 5665731
+    },
+    {
+      "en": "Turbo",
+      "zh": "极速模式",
+      "source": "hub:main.js",
+      "offset": 3839017
+    },
+    {
+      "en": "Turn on a flag you don't have",
+      "zh": "开启当前未拥有的实验开关",
+      "source": "hub:main.js",
+      "offset": 5404493
+    },
+    {
+      "en": "Type a voice variant name, such as rev27.",
+      "zh": "输入语音变体名称，例如 rev27。",
+      "source": "hub:main.js",
+      "offset": 5413553
+    },
+    {
+      "en": "UI Plugin (SidePanel)",
+      "zh": "界面插件（侧边栏）",
+      "source": "hub:main.js",
+      "offset": 8382802
+    },
+    {
+      "en": "UI plugins",
+      "zh": "界面插件",
+      "source": "hub:main.js",
+      "offset": 8399127
+    },
+    {
+      "en": "UI Plugins",
+      "zh": "界面插件",
+      "source": "hub:main.js",
+      "offset": 8411978
+    },
+    {
+      "en": "Unauthenticated",
+      "zh": "未验证身份",
+      "source": "hub:main.js",
+      "offset": 8361328
+    },
+    {
+      "en": "Uninstalling...",
+      "zh": "正在卸载...",
+      "source": "hub:main.js",
+      "offset": 8352826
+    },
+    {
+      "en": "United States",
+      "zh": "美国",
+      "source": "hub:main.js",
+      "offset": 5156653
+    },
+    {
+      "en": "Unnamed MCP Server",
+      "zh": "未命名 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 8372595
+    },
+    {
+      "en": "Unsandboxed commands",
+      "zh": "非沙盒命令",
+      "source": "hub:main.js",
+      "offset": 8301210
+    },
+    {
+      "en": "Update",
+      "zh": "更新",
+      "source": "hub:main.js",
+      "offset": 9457077
+    },
+    {
+      "en": "Update Anyway",
+      "zh": "仍然更新",
+      "source": "hub:main.js",
+      "offset": 9457061
+    },
+    {
+      "en": "Updating will restart the server and apply the latest changes.",
+      "zh": "更新将重启服务并应用最新更改。",
+      "source": "hub:main.js",
+      "offset": 9456348
+    },
+    {
+      "en": "Upgrade",
+      "zh": "升级",
+      "source": "hub:main.js",
+      "offset": 5225331
+    },
+    {
+      "en": "Upload Debug Bundle",
+      "zh": "上传调试信息包",
+      "source": "hub:main.js",
+      "offset": 5831789
+    },
+    {
+      "en": "Uptime",
+      "zh": "运行时长",
+      "source": "hub:main.js",
+      "offset": 8389216
+    },
+    {
+      "en": "Usage",
+      "zh": "用量",
+      "source": "hub:main.js",
+      "offset": 9042850
+    },
+    {
+      "en": "Use Add MCP to browse the store, or add a custom server via the MCP config.",
+      "zh": "点击“添加 MCP”浏览商店，或通过 MCP 配置添加自定义服务。",
+      "source": "hub:main.js",
+      "offset": 5687370
+    },
+    {
+      "en": "Use Add MCP to browse the store.",
+      "zh": "点击“添加 MCP”浏览商店。",
+      "source": "hub:main.js",
+      "offset": 5687448
+    },
+    {
+      "en": "Use Advanced SSO Config",
+      "zh": "使用高级 SSO 配置",
+      "source": "hub:main.js",
+      "offset": 9229171
+    },
+    {
+      "en": "Use Global Settings",
+      "zh": "使用全局设置",
+      "source": "hub:main.js",
+      "offset": 8987742
+    },
+    {
+      "en": "Use Google Cloud project instead",
+      "zh": "改用 Google Cloud 项目",
+      "source": "hub:main.js",
+      "offset": 9244024
+    },
+    {
+      "en": "Use the default color.",
+      "zh": "使用默认颜色。",
+      "source": "hub:main.js",
+      "offset": 7428955
+    },
+    {
+      "en": "Use theme to be imported with settings",
+      "zh": "使用随设置一并导入的主题",
+      "source": "hub:main.js",
+      "offset": 9261072
+    },
+    {
+      "en": "Use this if your admin gave you a WIF config. Paste it below to sign in.",
+      "zh": "如果管理员向你提供了 WIF 配置，请粘贴在下方以登录。",
+      "source": "hub:main.js",
+      "offset": 9229552
+    },
+    {
+      "en": "User type",
+      "zh": "用户类型",
+      "source": "hub:main.js",
+      "offset": 5412622
+    },
+    {
+      "en": "Validate",
+      "zh": "检查",
+      "source": "hub:main.js",
+      "offset": 5367111
+    },
+    {
+      "en": "Validated with GitHub and stored in",
+      "zh": "经 GitHub 验证后保存在",
+      "source": "hub:main.js",
+      "offset": 11948908
+    },
+    {
+      "en": "Verbose",
+      "zh": "详细",
+      "source": "hub:main.js",
+      "offset": 5139334
+    },
+    {
+      "en": "Verify",
+      "zh": "验证",
+      "source": "hub:main.js",
+      "offset": 9246663
+    },
+    {
+      "en": "Verify that these licenses were provided by your administrator and that you trust the project ID before proceeding. Account activity and data may be logged by your organization.",
+      "zh": "继续前请确认这些许可证由管理员提供，且您信任该项目 ID。您的账号活动和数据可能会被所属组织记录。",
+      "source": "hub:main.js",
+      "offset": 5206749
+    },
+    {
+      "en": "Version",
+      "zh": "版本",
+      "source": "hub:main.js",
+      "offset": 5227947
+    },
+    {
+      "en": "View MCP servers",
+      "zh": "查看 MCP 服务",
+      "source": "hub:main.js",
+      "offset": 8426479
+    },
+    {
+      "en": "View plans",
+      "zh": "查看套餐",
+      "source": "hub:main.js",
+      "offset": 9061912
+    },
+    {
+      "en": "View Usage",
+      "zh": "查看用量",
+      "source": "hub:main.js",
+      "offset": 9061256
+    },
+    {
+      "en": "Visited URLs and autocomplete suggestions.",
+      "zh": "访问过的网址和自动补全建议。",
+      "source": "hub:main.js",
+      "offset": 5391895
+    },
+    {
+      "en": "Voice",
+      "zh": "语音",
+      "source": "hub:main.js",
+      "offset": 5612347
+    },
+    {
+      "en": "Voice engine",
+      "zh": "语音引擎",
+      "source": "hub:main.js",
+      "offset": 5413981
+    },
+    {
+      "en": "Voice engine address",
+      "zh": "语音引擎地址",
+      "source": "hub:main.js",
+      "offset": 5414402
+    },
+    {
+      "en": "Voice mode",
+      "zh": "语音模式",
+      "source": "hub:main.js",
+      "offset": 5619053
+    },
+    {
+      "en": "Voice Mode",
+      "zh": "语音模式",
+      "source": "hub:main.js",
+      "offset": 5413917
+    },
+    {
+      "en": "Voice volume",
+      "zh": "语音音量",
+      "source": "hub:main.js",
+      "offset": 5617903
+    },
+    {
+      "en": "Voices",
+      "zh": "语音",
+      "source": "hub:main.js",
+      "offset": 5603649
+    },
+    {
+      "en": "VS Code Default",
+      "zh": "VS Code 默认方案",
+      "source": "hub:main.js",
+      "offset": 5513497
+    },
+    {
+      "en": "VS Code keyboard shortcuts",
+      "zh": "VS Code 键盘快捷键",
+      "source": "hub:main.js",
+      "offset": 5517063
+    },
+    {
+      "en": "Waiting for you to finish signing in…",
+      "zh": "正在等待你完成登录…",
+      "source": "hub:main.js",
+      "offset": 5735184
+    },
+    {
+      "en": "Web (desktop, PWA)",
+      "zh": "网页端（桌面，PWA）",
+      "source": "hub:main.js",
+      "offset": 5409650
+    },
+    {
+      "en": "Web (desktop, remote agents, PWA)",
+      "zh": "网页端（桌面，远程 AI 助手，PWA）",
+      "source": "hub:main.js",
+      "offset": 5409973
+    },
+    {
+      "en": "Web (desktop, remote agents)",
+      "zh": "网页端（桌面，远程 AI 助手）",
+      "source": "hub:main.js",
+      "offset": 5409890
+    },
+    {
+      "en": "Web (desktop, remote control, PWA)",
+      "zh": "网页端（桌面，远程控制，PWA）",
+      "source": "hub:main.js",
+      "offset": 5409805
+    },
+    {
+      "en": "Web (desktop, remote control)",
+      "zh": "网页端（桌面，远程控制）",
+      "source": "hub:main.js",
+      "offset": 5409720
+    },
+    {
+      "en": "Web (desktop)",
+      "zh": "网页端（桌面）",
+      "source": "hub:main.js",
+      "offset": 5409594
+    },
+    {
+      "en": "Web (mobile, PWA)",
+      "zh": "网页端（移动端，PWA）",
+      "source": "hub:main.js",
+      "offset": 5410096
+    },
+    {
+      "en": "Web (mobile, remote agents, PWA)",
+      "zh": "网页端（移动端，远程 AI 助手，PWA）",
+      "source": "hub:main.js",
+      "offset": 5410412
+    },
+    {
+      "en": "Web (mobile, remote agents)",
+      "zh": "网页端（移动端，远程 AI 助手）",
+      "source": "hub:main.js",
+      "offset": 5410331
+    },
+    {
+      "en": "Web (mobile, remote control, PWA)",
+      "zh": "网页端（移动端，远程控制，PWA）",
+      "source": "hub:main.js",
+      "offset": 5410248
+    },
+    {
+      "en": "Web (mobile, remote control)",
+      "zh": "网页端（移动端，远程控制）",
+      "source": "hub:main.js",
+      "offset": 5410165
+    },
+    {
+      "en": "Web (mobile)",
+      "zh": "网页端（移动端）",
+      "source": "hub:main.js",
+      "offset": 5410043
+    },
+    {
+      "en": "Website",
+      "zh": "官方网站",
+      "source": "hub:main.js",
+      "offset": 8367386
+    },
+    {
+      "en": "Whatever the voice-engine-addr flag serves you.",
+      "zh": "使用 voice-engine-addr 开关下发的默认地址。",
+      "source": "hub:main.js",
+      "offset": 5413344
+    },
+    {
+      "en": "When enabled, the agent will include default customizations, including default skills.",
+      "zh": "启用后，AI 助手将包含默认自定义项，包括默认技能。",
+      "source": "hub:main.js",
+      "offset": 5713885
+    },
+    {
+      "en": "When enabled, the values below replace the auto-detected OS, host, and user type used for feature gating.",
+      "zh": "启用后，下方选项将替换自动检测到的操作系统、宿主环境和用户类型，用于控制功能开关。",
+      "source": "hub:main.js",
+      "offset": 5411629
+    },
+    {
+      "en": "When Turbo mode is on, the agent will automatically capture screenshots in the Browser without explicit user input. You can toggle this setting in Antigravity's settings.",
+      "zh": "开启极速模式后，AI 助手会自动在浏览器中截屏，无需手动确认。你可以在 Antigravity 的设置中切换此选项。",
+      "source": "hub:main.js",
+      "offset": 8691467
+    },
+    {
+      "en": "Which workspace the New Conversation button and keyboard shortcut start you in.",
+      "zh": "点击“新建对话”按钮或使用快捷键时默认进入的工作目录。",
+      "source": "hub:main.js",
+      "offset": 5665074
+    },
+    {
+      "en": "WIF Config",
+      "zh": "WIF 配置",
+      "source": "hub:main.js",
+      "offset": 9230386
+    },
+    {
+      "en": "Windows Subsystem for Linux",
+      "zh": "适用于 Linux 的 Windows 子系统（WSL）",
+      "source": "hub:main.js",
+      "offset": 5324031
+    },
+    {
+      "en": "Workflow files",
+      "zh": "工作流文件",
+      "source": "hub:main.js",
+      "offset": 11954387
+    },
+    {
+      "en": "Workflow refs",
+      "zh": "工作流引用",
+      "source": "hub:main.js",
+      "offset": 11954815
+    },
+    {
+      "en": "Workflow runs",
+      "zh": "工作流运行",
+      "source": "hub:main.js",
+      "offset": 11963587
+    },
+    {
+      "en": "Workspace Settings",
+      "zh": "工作目录设置",
+      "source": "hub:main.js",
+      "offset": 5575580
+    },
+    {
+      "en": "Wrench",
+      "zh": "扳手",
+      "source": "hub:main.js",
+      "offset": 6616250
+    },
+    {
+      "en": "Write files",
+      "zh": "写入文件",
+      "source": "hub:main.js",
+      "offset": 8301338
+    },
+    {
+      "en": "Yes, allow for this conversation",
+      "zh": "允许，仅限当前对话",
+      "source": "hub:main.js",
+      "offset": 8267012
+    },
+    {
+      "en": "Yes, and always allow",
+      "zh": "允许，且以后始终放行",
+      "source": "hub:main.js",
+      "offset": 8267244
+    },
+    {
+      "en": "Yes, and always allow in this conversation",
+      "zh": "允许，且在当前对话中始终放行",
+      "source": "hub:main.js",
+      "offset": 8266894
+    },
+    {
+      "en": "Yes, save rule globally",
+      "zh": "允许，并保存为全局规则",
+      "source": "hub:main.js",
+      "offset": 8267095
+    },
+    {
+      "en": "Yes, save rule in this conversation",
+      "zh": "允许，并在当前对话中保存规则",
+      "source": "hub:main.js",
+      "offset": 8266677
+    },
+    {
+      "en": "You are logged in using Application Default Credentials (ADC). To log out, undo any changes to ~/.gemini/config/config.json (or unset AGY_ADC_AUTH if launched from terminal) and restart the application.",
+      "zh": "您当前通过应用默认凭据（ADC）登录。如需退出，请还原 ~/.gemini/config/config.json 的修改（若从终端启动则取消设置 AGY_ADC_AUTH），然后重启应用。",
+      "source": "hub:main.js",
+      "offset": 5222708
+    },
+    {
+      "en": "You are logged in using environment credentials and cannot sign out from the application.",
+      "zh": "您当前通过环境凭据登录，无法在应用内退出登录。",
+      "source": "hub:main.js",
+      "offset": 5222915
+    },
+    {
+      "en": "You can change this in",
+      "zh": "可前往更改",
+      "source": "hub:main.js",
+      "offset": 5602590
+    },
+    {
+      "en": "You cannot sign out from Remote Control. Please sign out on your local application.",
+      "zh": "无法在远程控制中退出登录，请在本地应用中操作。",
+      "source": "hub:main.js",
+      "offset": 5222620
+    },
+    {
+      "en": "You have a conversation in progress. Updating will cancel it and you'll need to manually restart it.",
+      "zh": "你有一个正在进行的对话。更新会取消它，之后需要你手动重新开始。",
+      "source": "hub:main.js",
+      "offset": 9456244
+    },
+    {
+      "en": "You have a conversation in progress. Updating will interrupt it, and it will automatically resume once the update completes.",
+      "zh": "你有一个正在进行的对话。更新会暂时中断它，更新完成后会自动恢复。",
+      "source": "hub:main.js",
+      "offset": 9456117
+    },
+    {
+      "en": "Your administrator has disabled MCP servers for this workspace.",
+      "zh": "管理员已为此工作目录禁用 MCP 服务。",
+      "source": "hub:main.js",
+      "offset": 5685935
+    },
+    {
+      "en": "Your agent’s ability to execute commands is also controlled by enterprise security policies.",
+      "zh": "AI 助手执行命令的能力同时受企业安全策略控制。",
+      "source": "hub:main.js",
+      "offset": 5658346
+    },
+    {
+      "en": "Your Antigravity use will be associated with provided project.",
+      "zh": "您对 Antigravity 的使用将关联到所填写的项目。",
+      "source": "hub:main.js",
+      "offset": 5205618
+    },
+    {
+      "en": "Your Antigravity use will be associated with provided project. Make sure you trust the project ID before proceeding. Account activity and data may be logged by your organization.",
+      "zh": "您对 Antigravity 的使用将关联到所填写的项目。继续前请确认您信任该项目 ID，您的账号活动和数据可能会被所属组织记录。",
+      "source": "hub:main.js",
+      "offset": 5208478
+    },
+    {
+      "en": "Your plan",
+      "zh": "当前方案",
+      "source": "hub:main.js",
+      "offset": 5224612
+    },
+    {
+      "en": "Your Remote setting",
+      "zh": "你的远程设置",
+      "source": "hub:main.js",
+      "offset": 8987402
+    },
+    {
+      "en": "Your This Computer setting",
+      "zh": "你的本机设置",
+      "source": "hub:main.js",
+      "offset": 8987424
+    }
+  ],
   "scoped": [
     {
       "scope": "permissions",
       "en": "Advanced",
       "zh": "高级选项",
       "source": "hub:main.js",
-      "offset": 5564743
-    },
-    {
-      "scope": "permissions",
-      "en": "Allow/deny agent read access to specific URLs or domains.",
-      "zh": "设置 AI 助手可以访问或禁止访问的网址和域名。",
-      "source": "hub:main.js",
-      "offset": 5554187
+      "offset": 4724894
     },
     {
       "scope": "permissions",
       "en": "Allow/deny agent read access to specific files or directories.",
       "zh": "设置 AI 助手可以读取或禁止读取的文件和目录。",
       "source": "hub:main.js",
-      "offset": 5553570
+      "offset": 5648783
+    },
+    {
+      "scope": "permissions",
+      "en": "Allow/deny agent read access to specific URLs or domains.",
+      "zh": "设置 AI 助手可以访问或禁止访问的网址和域名。",
+      "source": "hub:main.js",
+      "offset": 5649400
     },
     {
       "scope": "permissions",
       "en": "Allow/deny agent write access to specific files or directories.",
       "zh": "设置 AI 助手可以写入或禁止写入的文件和目录。",
       "source": "hub:main.js",
-      "offset": 5553886
+      "offset": 5649098
     },
     {
       "scope": "permissions",
       "en": "Browse",
       "zh": "浏览",
       "source": "hub:main.js",
-      "offset": 7590976
+      "offset": 8307681
     },
     {
       "scope": "permissions",
       "en": "Change",
       "zh": "更改",
       "source": "hub:main.js",
-      "offset": 7590967
+      "offset": 5612749
     },
     {
       "scope": "permissions",
       "en": "Configure allowed terminal commands.",
       "zh": "设置允许执行的终端命令。",
       "source": "hub:main.js",
-      "offset": 5555904
+      "offset": 5651116
     },
     {
       "scope": "permissions",
       "en": "Confirm & Save",
       "zh": "确认并保存",
       "source": "hub:main.js",
-      "offset": 7593233
+      "offset": 8309938
     },
     {
       "scope": "permissions",
       "en": "Confirm the command is safe to run outside of the sandbox with full network and disk access.",
       "zh": "此命令将在沙箱外运行，可以访问所有网络和磁盘。请确认它可以安全执行。",
       "source": "hub:main.js",
-      "offset": 8294663
+      "offset": 8273931
     },
     {
       "scope": "permissions",
       "en": "Continue Task →",
       "zh": "继续任务 →",
       "source": "hub:main.js",
-      "offset": 7196486
+      "offset": 8054713
     },
     {
       "scope": "permissions",
       "en": "Deny",
       "zh": "拒绝",
       "source": "hub:main.js",
-      "offset": 8298692
-    },
-    {
-      "scope": "permissions",
-      "en": "Deny with note",
-      "zh": "说明原因并拒绝",
-      "source": "hub:main.js",
-      "offset": 8298047
+      "offset": 5654264
     },
     {
       "scope": "permissions",
       "en": "Enable macOS Permissions",
       "zh": "开启 macOS 权限",
       "source": "hub:main.js",
-      "offset": 7195125
+      "offset": 8053352
     },
     {
       "scope": "permissions",
       "en": "File Permissions",
       "zh": "文件权限",
       "source": "hub:main.js",
-      "offset": 5557523
+      "offset": 5653032
     },
     {
       "scope": "permissions",
       "en": "File reads",
       "zh": "读取文件",
       "source": "hub:main.js",
-      "offset": 5553545
+      "offset": 5648758
     },
     {
       "scope": "permissions",
       "en": "File writes",
       "zh": "写入文件",
       "source": "hub:main.js",
-      "offset": 5553860
+      "offset": 5649072
     },
     {
       "scope": "permissions",
       "en": "In chat",
       "zh": "在对话中",
       "source": "hub:main.js",
-      "offset": 8298378
+      "offset": 8141211
     },
     {
       "scope": "permissions",
       "en": "Local Permissions",
       "zh": "本地权限",
       "source": "hub:main.js",
-      "offset": 5566122
-    },
-    {
-      "scope": "permissions",
-      "en": "Network Permissions",
-      "zh": "网络权限",
-      "source": "hub:main.js",
-      "offset": 5557647
-    },
-    {
-      "scope": "permissions",
-      "en": "Next: Review Permissions",
-      "zh": "下一步：核对权限",
-      "source": "hub:main.js",
-      "offset": 7591853
-    },
-    {
-      "scope": "permissions",
-      "en": "Read URLs",
-      "zh": "读取网址",
-      "source": "hub:main.js",
-      "offset": 5554163
-    },
-    {
-      "scope": "permissions",
-      "en": "Relaunch ↻",
-      "zh": "重新启动 ↻",
-      "source": "hub:main.js",
-      "offset": 7196321
-    },
-    {
-      "scope": "permissions",
-      "en": "Resolving...",
-      "zh": "正在解析…",
-      "source": "hub:main.js",
-      "offset": 7591838
-    },
-    {
-      "scope": "permissions",
-      "en": "Runtime permission",
-      "zh": "运行权限",
-      "source": "hub:main.js",
-      "offset": 8292387
-    },
-    {
-      "scope": "permissions",
-      "en": "Saving...",
-      "zh": "正在保存…",
-      "source": "hub:main.js",
-      "offset": 7593218
-    },
-    {
-      "scope": "permissions",
-      "en": "Terminal commands",
-      "zh": "终端命令",
-      "source": "hub:main.js",
-      "offset": 5555851
-    },
-    {
-      "scope": "permissions",
-      "en": "Tool Permissions",
-      "zh": "工具权限",
-      "source": "hub:main.js",
-      "offset": 5557369
-    },
-    {
-      "scope": "permissions",
-      "en": "Tool permissions",
-      "zh": "工具权限",
-      "source": "hub:main.js",
-      "offset": 5557016
-    },
-    {
-      "scope": "permissions",
-      "en": "Use Global Settings",
-      "zh": "使用全局设置",
-      "source": "hub:main.js",
-      "offset": 8839741
+      "offset": 5661860
     },
     {
       "scope": "permissions",
       "en": "macOS Permissions Ready",
       "zh": "macOS 权限已就绪",
       "source": "hub:main.js",
-      "offset": 7195099
+      "offset": 8053326
+    },
+    {
+      "scope": "permissions",
+      "en": "Network Permissions",
+      "zh": "网络权限",
+      "source": "hub:main.js",
+      "offset": 5653156
+    },
+    {
+      "scope": "permissions",
+      "en": "Next: Review Permissions",
+      "zh": "下一步：核对权限",
+      "source": "hub:main.js",
+      "offset": 8308558
+    },
+    {
+      "scope": "permissions",
+      "en": "Read URLs",
+      "zh": "读取网址",
+      "source": "hub:main.js",
+      "offset": 5649376
+    },
+    {
+      "scope": "permissions",
+      "en": "Relaunch ↻",
+      "zh": "重新启动 ↻",
+      "source": "hub:main.js",
+      "offset": 8054548
+    },
+    {
+      "scope": "permissions",
+      "en": "Resolving...",
+      "zh": "正在解析…",
+      "source": "hub:main.js",
+      "offset": 8308543
+    },
+    {
+      "scope": "permissions",
+      "en": "Saving...",
+      "zh": "正在保存…",
+      "source": "hub:main.js",
+      "offset": 5703222
+    },
+    {
+      "scope": "permissions",
+      "en": "Terminal commands",
+      "zh": "终端命令",
+      "source": "hub:main.js",
+      "offset": 5649676
+    },
+    {
+      "scope": "permissions",
+      "en": "Tool permissions",
+      "zh": "工具权限",
+      "source": "hub:main.js",
+      "offset": 5652511
+    },
+    {
+      "scope": "permissions",
+      "en": "Tool Permissions",
+      "zh": "工具权限",
+      "source": "hub:main.js",
+      "offset": 5652862
+    },
+    {
+      "scope": "permissions",
+      "en": "Use Global Settings",
+      "zh": "使用全局设置",
+      "source": "hub:main.js",
+      "offset": 8987742
     },
     {
       "scope": "settings",
       "en": "Agents",
       "zh": "AI 助手",
       "source": "hub:main.js",
-      "offset": 5085647
+      "offset": 5150283
     },
     {
       "scope": "settings",
       "en": "Appearance",
       "zh": "外观",
       "source": "hub:main.js",
-      "offset": 5085745
+      "offset": 5382937
     },
     {
       "scope": "settings",
       "en": "Application",
       "zh": "应用",
       "source": "hub:main.js",
-      "offset": 5085722
+      "offset": 5150358
     },
     {
       "scope": "settings",
       "en": "Browser",
       "zh": "浏览器",
       "source": "hub:main.js",
-      "offset": 5085857
+      "offset": 5403345
     },
     {
       "scope": "settings",
       "en": "Cancel",
       "zh": "取消",
       "source": "hub:main.js",
-      "offset": 5328823
+      "offset": 4949063
     },
     {
       "scope": "settings",
       "en": "Change",
       "zh": "更改",
       "source": "hub:main.js",
-      "offset": 5526208
+      "offset": 5612749
     },
     {
       "scope": "settings",
       "en": "Change…",
       "zh": "更改…",
       "source": "hub:main.js",
-      "offset": 5337551
+      "offset": 5400811
     },
     {
       "scope": "settings",
       "en": "Clear",
       "zh": "清除",
       "source": "hub:main.js",
-      "offset": 5329011
+      "offset": 5002884
     },
     {
       "scope": "settings",
       "en": "Copied",
       "zh": "已复制",
       "source": "hub:main.js",
-      "offset": 5304146
+      "offset": 3565170
     },
     {
       "scope": "settings",
       "en": "Copy output",
       "zh": "复制输出",
       "source": "hub:main.js",
-      "offset": 5304155
+      "offset": 5368910
     },
     {
       "scope": "settings",
       "en": "Couldn't clear browsing data. Try again.",
       "zh": "未能清除浏览数据，请重试。",
       "source": "hub:main.js",
-      "offset": 5328581
+      "offset": 5392744
     },
     {
       "scope": "settings",
       "en": "Couldn't load cookies.",
       "zh": "无法加载 Cookie。",
       "source": "hub:main.js",
-      "offset": 5330841
+      "offset": 5395004
     },
     {
       "scope": "settings",
       "en": "Customizations",
       "zh": "自定义",
       "source": "hub:main.js",
-      "offset": 5085831
+      "offset": 5556243
     },
     {
       "scope": "settings",
       "en": "Delete",
       "zh": "删除",
       "source": "hub:main.js",
-      "offset": 5529599
+      "offset": 4948838
     },
     {
       "scope": "settings",
       "en": "Delete all",
       "zh": "全部删除",
       "source": "hub:main.js",
-      "offset": 5528872
+      "offset": 5616685
     },
     {
       "scope": "settings",
       "en": "Developer",
       "zh": "开发者",
       "source": "hub:main.js",
-      "offset": 5085876
+      "offset": 5419187
     },
     {
       "scope": "settings",
       "en": "Environments",
       "zh": "环境",
       "source": "hub:main.js",
-      "offset": 5085686
+      "offset": 5150322
     },
     {
       "scope": "settings",
       "en": "General",
       "zh": "通用",
       "source": "hub:main.js",
-      "offset": 5085576
+      "offset": 5133645
     },
     {
       "scope": "settings",
       "en": "Loading cookies…",
       "zh": "正在加载 Cookie…",
       "source": "hub:main.js",
-      "offset": 5330618
+      "offset": 5394781
     },
     {
       "scope": "settings",
       "en": "Manage",
       "zh": "管理",
       "source": "hub:main.js",
-      "offset": 5326546
+      "offset": 5224967
     },
     {
       "scope": "settings",
       "en": "Models",
       "zh": "模型",
       "source": "hub:main.js",
-      "offset": 5085813
+      "offset": 5133701
     },
     {
       "scope": "settings",
       "en": "No sites have cookies in the built-in browser.",
       "zh": "内置浏览器中没有网站保存 Cookie。",
       "source": "hub:main.js",
-      "offset": 5331118
+      "offset": 5395281
     },
     {
       "scope": "settings",
       "en": "Notifications",
       "zh": "通知",
       "source": "hub:main.js",
-      "offset": 5085788
+      "offset": 5481086
     },
     {
       "scope": "settings",
       "en": "Open Keyboard Shortcuts",
       "zh": "打开快捷键设置",
       "source": "hub:main.js",
-      "offset": 5451199
+      "offset": 1923599
     },
     {
       "scope": "settings",
       "en": "Projects",
       "zh": "项目",
       "source": "hub:main.js",
-      "offset": 5085612
+      "offset": 5150248
     },
     {
       "scope": "settings",
       "en": "Reopen Locally",
       "zh": "在本机重开",
       "source": "hub:main.js",
-      "offset": 5260525
+      "offset": 5325142
     },
     {
       "scope": "settings",
       "en": "Reset",
       "zh": "重置",
       "source": "hub:main.js",
-      "offset": 5337031
+      "offset": 5400291
     },
     {
       "scope": "settings",
       "en": "Running",
       "zh": "运行中",
       "source": "hub:main.js",
-      "offset": 5085897
+      "offset": 5847271
     },
     {
       "scope": "settings",
       "en": "Save",
       "zh": "保存",
       "source": "hub:main.js",
-      "offset": 5302126
+      "offset": 5366881
     },
     {
       "scope": "settings",
       "en": "Settings",
       "zh": "设置",
       "source": "hub:main.js",
-      "offset": 5733533
+      "offset": 3637918
     },
     {
       "scope": "settings",
       "en": "Shortcuts",
       "zh": "快捷键",
       "source": "hub:main.js",
-      "offset": 5085767
+      "offset": 5515025
     },
     {
       "scope": "settings",
       "en": "Upload Debug Bundle",
       "zh": "上传调试信息包",
       "source": "hub:main.js",
-      "offset": 5735357
+      "offset": 5831789
     },
     {
       "scope": "settings",
       "en": "Validate",
       "zh": "检查",
       "source": "hub:main.js",
-      "offset": 5302356
+      "offset": 5367111
     }
   ],
-  "templates": []
+  "templates": [
+    {
+      "id": "resetsIn",
+      "en": "Resets in <1m",
+      "zh": "{n}后重置",
+      "source": "hub:main.js",
+      "offset": 1988875
+    }
+  ]
 }

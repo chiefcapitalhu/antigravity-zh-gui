@@ -25,15 +25,32 @@ const (
 	member       = "dist/updater.js"
 	backupSuffix = ".zh-gui.bak"
 	mac234       = "8934adef0622c9271c92eea950a71848764a66f7b10023ccbd82e54b959adb0e"
+	mac235       = "99ff7f6cf1219f46c8437df65ca866e384836b5230adba8efd91b3152f823e15"
 )
 
 const BackupSuffix = backupSuffix
 
 func Localized(i detector.Installation) (bool, error) {
+	localized, _, err := LocalizedDetail(i)
+	return localized, err
+}
+
+// LocalizedDetail reports whether the archive carries localization markers and
+// whether the installation is in a degraded fallback state (e.g. only updater
+// dialogs were patched without injecting the Hub preload translator).
+func LocalizedDetail(i detector.Installation) (localized bool, degraded bool, err error) {
 	if err := validate(i); err != nil {
-		return false, err
+		return false, false, err
 	}
-	return marked(i.Archive)
+	localized, err = marked(i.Archive)
+	if err != nil || !localized {
+		return localized, false, err
+	}
+	preload, readErr := asar.ReadFile(i.Archive, preloadMember)
+	if readErr != nil || !bytes.Contains(preload, []byte(begin)) {
+		return true, true, nil
+	}
+	return true, false, nil
 }
 func OfficialBackupPath() (string, error) { return officialBackup() }
 
@@ -53,8 +70,13 @@ func (o Options) log(message string) {
 // releaseHash identifies the exact distribution used to audit the source members.
 // Add Windows hashes only after inspecting an original Windows distribution.
 func releaseHash(i detector.Installation) string {
-	if i.Platform == "darwin" && i.Version == "2.34.0" {
-		return mac234
+	if i.Platform == "darwin" {
+		switch i.Version {
+		case "2.34.0":
+			return mac234
+		case "2.35.0":
+			return mac235
+		}
 	}
 	return ""
 }
@@ -68,10 +90,11 @@ type engine struct {
 	copyBundle func(string, string) error
 	exchange   func(string, string) error
 	backupPath func() (string, error)
+	clearCache func(string) error
 }
 
 func defaults() engine {
-	return engine{windowsHost, detector.Running, detector.VerifyOfficial, releaseHash, signBundle, copyApp, swapBundle, officialBackup}
+	return engine{windowsHost, detector.Running, detector.VerifyOfficial, releaseHash, signBundle, copyApp, swapBundle, officialBackup, ClearCaches}
 }
 func command(name string, args ...string) error {
 	cmd := exec.Command(name, args...)
@@ -328,7 +351,7 @@ func RestoreWithProgress(target string, progress func(string)) (*Result, error) 
 	if err != nil {
 		return nil, err
 	}
-	result, err := defaults().run(i, presentationDefaults(Options{Progress: progress}), true)
+	result, err := defaults().run(i, Options{Progress: progress}, true)
 	if err == nil && target == "" && result.Committed {
 		appendCacheWarning(result, target)
 	}
@@ -423,17 +446,30 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 			return nil, fmt.Errorf("缺少原始备份: %w", err)
 		}
 	}
-	opt.log("核对界面成员与安装基线")
-	changes, warnings, err := presentationPlan(source, i.Platform, opt)
-	if err != nil {
-		return nil, err
-	}
-	if !hasMarkers && len(changes) == 0 {
-		audit, err := asar.VerifyCandidate(i.Archive, i.Archive, nil)
+	var changes map[string][]byte
+	var warnings []Warning
+	if restore {
+		opt.log("核对原始备份与安装基线")
+		if !hasMarkers {
+			audit, err := asar.VerifyCandidate(i.Archive, i.Archive, nil)
+			if err != nil {
+				return nil, err
+			}
+			return &Result{AuditReport: audit}, nil
+		}
+	} else {
+		opt.log("核对界面成员与安装基线")
+		changes, warnings, err = presentationPlan(source, i.Platform, opt)
 		if err != nil {
 			return nil, err
 		}
-		return &Result{AuditReport: audit, Warnings: warnings}, nil
+		if !hasMarkers && len(changes) == 0 {
+			audit, err := asar.VerifyCandidate(i.Archive, i.Archive, nil)
+			if err != nil {
+				return nil, err
+			}
+			return &Result{AuditReport: audit, Warnings: warnings}, nil
+		}
 	}
 	e, err = e.selectBuild(i, true)
 	if err != nil {
@@ -452,7 +488,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 		return nil, errors.New("预检期间安装内容变化")
 	}
 	if restore && !s.patched {
-		return &Result{AuditReport: report, Warnings: warnings}, nil
+		return &Result{AuditReport: report}, nil
 	}
 	if i.Platform == "darwin" {
 		opt.log("记录应用包快照")
@@ -485,18 +521,21 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 	if h, err := hashFile(original); err != nil || h != e.baseline(i) {
 		return nil, errors.New("构建源与已确认基线不符")
 	}
-	opt.log("构建候选 ASAR")
-	changes, warnings, err = presentationPlan(original, i.Platform, opt)
-	if err != nil {
-		return nil, err
-	}
-	if !restore && len(changes) == 0 {
-		return nil, errors.New("构建时文案上下文已变化")
-	}
 	candidate := filepath.Join(work, "candidate.asar")
+	var allow map[string]bool
 	if restore {
+		opt.log("准备原始 ASAR 还原候选")
 		err = copyFile(original, candidate)
 	} else {
+		opt.log("构建候选 ASAR")
+		changes, warnings, err = presentationPlan(original, i.Platform, opt)
+		if err != nil {
+			return nil, err
+		}
+		if len(changes) == 0 {
+			return nil, errors.New("构建时文案上下文已变化")
+		}
+		allow = allowed(changes)
 		err = asar.Rewrite(original, candidate, changes)
 	}
 	if err != nil {
@@ -512,7 +551,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 	// Verify against the original to enforce the allowlist, then audit the
 	// actual before/after pair so repeat applies and restores report correctly.
 	opt.log("校验白名单、文件摘要与完整性")
-	if _, err = asar.VerifyCandidate(original, candidate, allowed(changes)); err != nil {
+	if _, err = asar.VerifyCandidate(original, candidate, allow); err != nil {
 		return nil, err
 	}
 	if restore {
@@ -739,13 +778,13 @@ func (e engine) backup(i detector.Installation, s snapshot) error {
 	if _, err = os.Lstat(dst); err == nil {
 		existing := relocate(i, dst)
 		if err := validate(existing); err != nil {
-			return err
+			return fmt.Errorf("官方整包备份路径 %s 已存在但内容无效（%w）；请先移走旧备份或在控制台取消勾选「保留官方签名的 .app 整包备份」", dst, err)
 		}
 		if err := e.official(existing); err != nil {
-			return err
+			return fmt.Errorf("官方整包备份路径 %s 已存在且签名校验失败（%w）；请先移走旧备份或在控制台取消勾选「保留官方签名的 .app 整包备份」", dst, err)
 		}
 		if h, err := hashFile(existing.Archive); err != nil || h != e.baseline(i) {
-			return errors.New("备份位置已存在其他版本")
+			return fmt.Errorf("官方整包备份路径 %s 已存在其他版本的旧备份；请先移走旧备份，或在控制台取消勾选「保留官方签名的 .app 整包备份」后重试", dst)
 		}
 		return nil
 	} else if !os.IsNotExist(err) {
@@ -782,14 +821,36 @@ func (e engine) backup(i detector.Installation, s snapshot) error {
 	return os.Rename(stage, dst)
 }
 func RestoreOfficialApp(target string) error {
+	_, err := RestoreOfficialAppWithReport(target)
+	return err
+}
+
+func RestoreOfficialAppWithReport(target string) (*Result, error) {
 	if runtime.GOOS != "darwin" {
-		return errors.New("整包还原仅适用于 macOS")
+		return nil, errors.New("整包还原仅适用于 macOS")
 	}
 	i, err := detector.Inspect(target)
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return defaults().restoreOfficial(i)
+	return defaults().restoreOfficialWithReport(i, target)
+}
+
+func (e engine) restoreOfficialWithReport(i detector.Installation, target string) (*Result, error) {
+	if err := e.restoreOfficial(i); err != nil {
+		return nil, err
+	}
+	result := &Result{Committed: true}
+	if target == "" {
+		clear := e.clearCache
+		if clear == nil {
+			clear = ClearCaches
+		}
+		if err := clear(target); err != nil {
+			result.Warnings = append(result.Warnings, Warning{"cache_cleanup_incomplete", "", err.Error()})
+		}
+	}
+	return result, nil
 }
 func (e engine) restoreOfficial(i detector.Installation) error {
 	if err := validate(i); err != nil {

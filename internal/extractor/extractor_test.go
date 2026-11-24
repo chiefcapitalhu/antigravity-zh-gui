@@ -335,3 +335,57 @@ func TestVerifyRejectsInvalidDocuments(t *testing.T) {
 		}
 	}
 }
+
+func TestExpandedUIPropertiesTernaryAndNoiseFilter(t *testing.T) {
+	src := `
+const ui = {
+  description: "Choose how agents handle commands.",
+  shortDescription: "Short help",
+  tooltipContent: "Hover tip",
+  ariaLabel: "Close dialog",
+  emptyMessage: "No items found",
+  errorMessage: "Failed to connect",
+  helperText: "Optional note",
+  confirmText: "Confirm action",
+  cancelText: "Keep editing",
+  buttonText: "Continue",
+  heading: "Workspace settings",
+  subheading: "General options",
+  subtitle: "Manage preferences",
+  header: "Permissions",
+  detail: "Antigravity opened on Windows instead.",
+  buttons: ["Cancel", "Quit"],
+  label: flag ? "Show Less" : "Show More",
+  className: "flex items-center gap-2 text-sm",
+  url: "https://example.invalid/docs",
+  path: "/usr/local/bin/tool",
+  ident: "some_snake_case"
+};
+E.createElement("button", null, ok ? "Retry Now" : "Try Later");
+`
+	s := &SourceSet{Version: "2.34.0", scripts: map[string][]byte{"hub:main.js": []byte(src)}, hashes: map[string]string{"hub:main.js": strings.Repeat("a", 64)}}
+	c, err := s.Candidates()
+	if err != nil {
+		t.Fatal(err)
+	}
+	got := map[string]bool{}
+	for _, e := range c.Entries {
+		got[e.En] = true
+	}
+	for _, want := range []string{
+		"Choose how agents handle commands.", "Short help", "Hover tip", "Close dialog",
+		"No items found", "Failed to connect", "Optional note", "Confirm action",
+		"Keep editing", "Continue", "Workspace settings", "General options",
+		"Manage preferences", "Permissions", "Antigravity opened on Windows instead.",
+		"Cancel", "Quit", "Show Less", "Show More", "Retry Now", "Try Later",
+	} {
+		if !got[want] {
+			t.Errorf("missing expected UI candidate %q (got %v)", want, got)
+		}
+	}
+	for _, noise := range []string{"flex items-center gap-2 text-sm", "https://example.invalid/docs", "/usr/local/bin/tool", "some_snake_case"} {
+		if got[noise] {
+			t.Errorf("noise string leaked into candidates: %q", noise)
+		}
+	}
+}

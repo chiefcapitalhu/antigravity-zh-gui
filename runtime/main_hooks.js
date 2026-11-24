@@ -46,7 +46,14 @@
     viewMenu: ["application", "View"], helpMenu: ["application", "Help"],
     connectWSL: ["application", "Connect to WSL"], reopenLocally: ["application", "Reopen Locally"],
     missingBinaryTitle: ["application", "Binary not found"], wslSetupTitle: ["application", "WSL setup failed"],
-    startupTitle: ["application", "Startup failed"]
+    startupTitle: ["application", "Startup failed"],
+    cannotOpenFolder: ["application", "Cannot open folder"],
+    windowsFolderMsg: ["application", "Folder is on the Windows filesystem"],
+    openWorkspace: ["application", "Open workspace"],
+    openWorkspaces: ["application", "Open workspaces"],
+    selectDownloadFolder: ["application", "Select Download Folder"],
+    chooseSshConfig: ["application", "Choose an SSH config file"],
+    connectionInfoMenu: ["application", "Connection info…"]
   };
   let mode = options.defaultLang === "en" ? "en" : "zh";
 
@@ -93,21 +100,47 @@
     update: {title: "Check for Updates", message: "No updates available", buttons: ["OK"]},
     quit: {title: "Confirm Quit", message: "Are you sure you want to quit?",
       detail: "There may be agents or background tasks running.", buttons: ["Cancel", "Quit"]},
-    missingWSL: {title: "WSL distro not found", detail: "Antigravity opened on Windows instead."}
+    missingWSL: {title: "WSL distro not found", detail: "Antigravity opened on Windows instead."},
+    chooseAnotherSshConfig: {title: "Choose another SSH config file", buttons: ["Choose Another File…", "Cancel"]},
+    stopSshServer: {title: "Stop SSH server", buttons: ["Stop Server", "Cancel"]},
+    sshMicAccess: {title: "Microphone access", buttons: ["Allow", "Don't Allow"]},
+    sshSignIn: {title: "Sign in", buttons: ["Sign In", "Cancel"]},
+    sshPrompt: {buttonSets: [["Yes", "No"], ["Cancel"]]},
+    deviceChooser: {title: "Connect a device", details: ["Select a device:", "No compatible devices found."], lastButton: "Cancel"},
+    passkeyChooser: {title: "Choose a Passkey", detail: "Select a passkey account to continue:", lastButton: "Cancel"},
+    connectionInfo: {title: "Connection info", buttons: ["OK"]}
   };
   function dialog(site, options) {
-    if (mode !== "zh" || !Object.hasOwn(dialogFields, site) || !options) return options;
+    if (mode !== "zh" || !options) return options;
+    if (site === "sshSheet") {
+      if (options.title === "Microphone access") site = "sshMicAccess";
+      else if (options.title === "Sign in") site = "sshSignIn";
+      else return options;
+    }
+    if (!Object.hasOwn(dialogFields, site)) return options;
     const rule = dialogFields[site];
-    if (options.title !== rule.title) return options;
+    if (Object.hasOwn(rule, "title") && options.title !== rule.title) return options;
     const result = {...options};
     for (const key of ["title", "message", "detail"]) {
       if (Object.hasOwn(rule, key) && options[key] === rule[key]) {
         result[key] = translated("application", options[key]) ?? options[key];
       }
     }
+    if (rule.details && rule.details.includes(options.detail)) {
+      result.detail = translated("application", options.detail) ?? options.detail;
+    }
     if (rule.buttons && Array.isArray(options.buttons) && rule.buttons.length === options.buttons.length &&
         rule.buttons.every((text, index) => text === options.buttons[index])) {
       result.buttons = rule.buttons.map(text => translated("application", text) ?? text);
+    } else if (rule.buttonSets && Array.isArray(options.buttons)) {
+      const matched = rule.buttonSets.find(set => set.length === options.buttons.length &&
+        set.every((text, index) => text === options.buttons[index]));
+      if (matched) result.buttons = matched.map(text => translated("application", text) ?? text);
+    } else if (rule.lastButton && Array.isArray(options.buttons) && options.buttons.length > 0 &&
+        options.buttons[options.buttons.length - 1] === rule.lastButton) {
+      const next = options.buttons.slice();
+      next[next.length - 1] = translated("application", rule.lastButton) ?? rule.lastButton;
+      result.buttons = next;
     }
     return result;
   }

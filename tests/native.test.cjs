@@ -121,7 +121,8 @@ test("every shipped native entry has a fixed presentation site", () => {
     "move-up move-down hide view-debug").split(" ");
   const siteKeys = {
     application: ("fileNewWindow helpDocs fileMenu viewMenu helpMenu connectWSL reopenLocally " +
-      "missingBinaryTitle wslSetupTitle startupTitle").split(" "),
+      "missingBinaryTitle wslSetupTitle startupTitle cannotOpenFolder windowsFolderMsg " +
+      "openWorkspace openWorkspaces selectDownloadFolder chooseSshConfig connectionInfoMenu").split(" "),
     tray: ["trayOpen", "trayQuit"], dock: ["dockNewWindow"]
   };
   const appIDs = ["check-for-updates", "hub-reset-zoom", "hub-zoom-in", "hub-zoom-out"];
@@ -129,7 +130,17 @@ test("every shipped native entry has a fixed presentation site", () => {
     ["update", {title:"Check for Updates", message:"No updates available", buttons:["OK"]}],
     ["quit", {title:"Confirm Quit", message:"Are you sure you want to quit?",
       detail:"There may be agents or background tasks running.", buttons:["Cancel", "Quit"]}],
-    ["missingWSL", {title:"WSL distro not found", detail:"Antigravity opened on Windows instead."}]
+    ["missingWSL", {title:"WSL distro not found", detail:"Antigravity opened on Windows instead."}],
+    ["chooseAnotherSshConfig", {title:"Choose another SSH config file", buttons:["Choose Another File…", "Cancel"]}],
+    ["stopSshServer", {title:"Stop SSH server", buttons:["Stop Server", "Cancel"]}],
+    ["sshSheet", {title:"Microphone access", buttons:["Allow", "Don't Allow"]}],
+    ["sshSheet", {title:"Sign in", buttons:["Sign In", "Cancel"]}],
+    ["sshPrompt", {buttons:["Yes", "No"]}],
+    ["sshPrompt", {buttons:["Cancel"]}],
+    ["deviceChooser", {title:"Connect a device", detail:"Select a device:", buttons:["USB Device", "Cancel"]}],
+    ["deviceChooser", {title:"Connect a device", detail:"No compatible devices found.", buttons:["Cancel"]}],
+    ["passkeyChooser", {title:"Choose a Passkey", detail:"Select a passkey account to continue:", buttons:["alice@example", "Cancel"]}],
+    ["connectionInfo", {title:"Connection info", buttons:["OK"]}]
   ];
   for (const {scope, en, zh} of source.scoped) {
     const observed = [];

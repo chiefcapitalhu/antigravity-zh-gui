@@ -231,6 +231,10 @@ func (p *panel) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		if !body(w, r, &q) {
 			return
 		}
+		if err := config.ValidateTarget(q.Target); err != nil {
+			fail(w, 400, err)
+			return
+		}
 		s, err := p.service.Status(q.Target)
 		if err != nil {
 			fail(w, 400, err)

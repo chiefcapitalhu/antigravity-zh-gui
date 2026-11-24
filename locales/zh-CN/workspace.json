@@ -1,348 +1,3424 @@
 {
   "schema": 1,
   "module": "workspace",
-  "version": "2.34.0",
+  "version": "2.35.0",
   "sources": {
-    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+    "hub:main.js": "f039eca519f153aeac9a0f1d10abc7afd8ff4b8009ef78d684669a3c7955f54d"
   },
-  "exact": [],
+  "exact": [
+    {
+      "en": ". Applying or clearing reloads the window. Suggestions come from your recent workspaces and the folders of your existing projects and their environments",
+      "zh": "。应用或清除后会重新加载窗口。建议列表来自您最近使用过的工作目录，以及现有项目及其环境对应的文件夹",
+      "source": "hub:main.js",
+      "offset": 5418586
+    },
+    {
+      "en": ". If a page fails to load, use the",
+      "zh": "。如果页面无法加载，请点击地址栏中的",
+      "source": "hub:main.js",
+      "offset": 4424742
+    },
+    {
+      "en": "), use an external SSH session",
+      "zh": "），请改用外部 SSH 会话",
+      "source": "hub:main.js",
+      "offset": 8611149
+    },
+    {
+      "en": "A copy of the workspace snapshot recorded at this step.",
+      "zh": "此步骤记录的工作目录快照副本。",
+      "source": "hub:main.js",
+      "offset": 8182967
+    },
+    {
+      "en": "A folder in this project could not be loaded because its location is invalid.",
+      "zh": "此项目中的一个文件夹因位置无效而无法加载。",
+      "source": "hub:main.js",
+      "offset": 7694196
+    },
+    {
+      "en": "A full copy of this workspace, uncommitted changes included.",
+      "zh": "此工作目录的完整副本，包含未提交的更改。",
+      "source": "hub:main.js",
+      "offset": 8183025
+    },
+    {
+      "en": "A host can't contain spaces.",
+      "zh": "主机地址不能包含空格。",
+      "source": "hub:main.js",
+      "offset": 6432213
+    },
+    {
+      "en": "A project with this name already exists.",
+      "zh": "已存在同名项目。",
+      "source": "hub:main.js",
+      "offset": 9654153
+    },
+    {
+      "en": "A snapshot was saved before running. To restore your previous output:",
+      "zh": "运行前已保存快照。如需恢复先前的输出：",
+      "source": "hub:main.js",
+      "offset": 8696628
+    },
+    {
+      "en": "Add an optional message, ⏎ to submit comments",
+      "zh": "可添加补充说明，按 ⏎ 提交评论",
+      "source": "hub:main.js",
+      "offset": 7936769
+    },
+    {
+      "en": "Add Folder",
+      "zh": "添加文件夹",
+      "source": "hub:main.js",
+      "offset": 5805094
+    },
+    {
+      "en": "Add Resource",
+      "zh": "添加资源",
+      "source": "hub:main.js",
+      "offset": 5805079
+    },
+    {
+      "en": "Add Terminal",
+      "zh": "新建终端",
+      "source": "hub:main.js",
+      "offset": 7965714
+    },
+    {
+      "en": "Add Workspace",
+      "zh": "添加工作目录",
+      "source": "hub:main.js",
+      "offset": 9748740
+    },
+    {
+      "en": "Added (Staged)",
+      "zh": "已添加（已暂存）",
+      "source": "hub:main.js",
+      "offset": 6487135
+    },
+    {
+      "en": "After",
+      "zh": "修改后",
+      "source": "hub:main.js",
+      "offset": 6938005
+    },
+    {
+      "en": "All changes since the branch point",
+      "zh": "自分支起点以来的所有更改",
+      "source": "hub:main.js",
+      "offset": 12798531
+    },
+    {
+      "en": "All Workspaces",
+      "zh": "全部工作目录",
+      "source": "hub:main.js",
+      "offset": 5823212
+    },
+    {
+      "en": "Amend",
+      "zh": "修改提交",
+      "source": "hub:main.js",
+      "offset": 12794531
+    },
+    {
+      "en": "Amend staged changes into the current commit",
+      "zh": "将已暂存的更改合并到当前提交",
+      "source": "hub:main.js",
+      "offset": 12793057
+    },
+    {
+      "en": "Amend succeeded",
+      "zh": "修订提交成功",
+      "source": "hub:main.js",
+      "offset": 6486998
+    },
+    {
+      "en": "Annotate",
+      "zh": "标注",
+      "source": "hub:main.js",
+      "offset": 8498475
+    },
+    {
+      "en": "Antigravity Interactive HTML",
+      "zh": "Antigravity 交互式 HTML",
+      "source": "hub:main.js",
+      "offset": 7908915
+    },
+    {
+      "en": "Approved · Code-Review +2",
+      "zh": "已批准 · 代码审查 +2",
+      "source": "hub:main.js",
+      "offset": 3643358
+    },
+    {
+      "en": "Archive conversation",
+      "zh": "归档对话",
+      "source": "hub:main.js",
+      "offset": 8850432
+    },
+    {
+      "en": "Archive project",
+      "zh": "归档项目",
+      "source": "hub:main.js",
+      "offset": 12739493
+    },
+    {
+      "en": "Archive Workspace",
+      "zh": "归档工作目录",
+      "source": "hub:main.js",
+      "offset": 12739589
+    },
+    {
+      "en": "Archived Only",
+      "zh": "只看已归档",
+      "source": "hub:main.js",
+      "offset": 9665297
+    },
+    {
+      "en": "Artifact",
+      "zh": "生成文档",
+      "source": "hub:main.js",
+      "offset": 7855822
+    },
+    {
+      "en": "Artifact Comments",
+      "zh": "生成文档评论",
+      "source": "hub:main.js",
+      "offset": 7818554
+    },
+    {
+      "en": "Artifact updated by agent",
+      "zh": "AI 助手已更新生成文档",
+      "source": "hub:main.js",
+      "offset": 7842667
+    },
+    {
+      "en": "Artifacts",
+      "zh": "生成文档",
+      "source": "hub:main.js",
+      "offset": 8007393
+    },
+    {
+      "en": "Artifacts like Google Docs, PDFs, Office documents (Word, Excel, PowerPoint), etc. Everything else the agent creates is under Artifacts.",
+      "zh": "如 Google 文档、PDF、Office 文档（Word、Excel、PowerPoint）等生成文档。AI 助手创建的其他内容均位于“生成文档”中。",
+      "source": "hub:main.js",
+      "offset": 8016165
+    },
+    {
+      "en": "Author",
+      "zh": "作者",
+      "source": "hub:main.js",
+      "offset": 3651929
+    },
+    {
+      "en": "Auto Pin",
+      "zh": "自动置顶",
+      "source": "hub:main.js",
+      "offset": 9665163
+    },
+    {
+      "en": "Automatically pin conversations when you send a message. Unpin as needed to keep your Pinned list focused.",
+      "zh": "发送消息时自动置顶对话；可按需取消置顶以保持置顶列表简洁。",
+      "source": "hub:main.js",
+      "offset": 9687967
+    },
+    {
+      "en": "Automations",
+      "zh": "自动化",
+      "source": "hub:main.js",
+      "offset": 1922552
+    },
+    {
+      "en": "Avoid uploading highly sensitive data and verify actions taken by your agent. Make sure you have the",
+      "zh": "请勿上传高度敏感的数据，并仔细核实 AI 助手执行的操作。请确保你拥有",
+      "source": "hub:main.js",
+      "offset": 5801548
+    },
+    {
+      "en": "Background Tasks",
+      "zh": "后台任务",
+      "source": "hub:main.js",
+      "offset": 8008711
+    },
+    {
+      "en": "Before",
+      "zh": "修改前",
+      "source": "hub:main.js",
+      "offset": 6937939
+    },
+    {
+      "en": "Binary file not shown",
+      "zh": "暂不显示二进制文件",
+      "source": "hub:main.js",
+      "offset": 8471456
+    },
+    {
+      "en": "Bookmarked",
+      "zh": "已添加书签",
+      "source": "hub:main.js",
+      "offset": 8692681
+    },
+    {
+      "en": "Bookmarking",
+      "zh": "正在添加书签",
+      "source": "hub:main.js",
+      "offset": 8692642
+    },
+    {
+      "en": "Branch",
+      "zh": "分支",
+      "source": "hub:main.js",
+      "offset": 3651879
+    },
+    {
+      "en": "Branch Changes",
+      "zh": "分支更改",
+      "source": "hub:main.js",
+      "offset": 7957749
+    },
+    {
+      "en": "Browser is currently being operated by this conversation in another Hub window",
+      "zh": "浏览器当前正由此对话在另一个中枢窗口中操作",
+      "source": "hub:main.js",
+      "offset": 9888465
+    },
+    {
+      "en": "Canceled bookmark of",
+      "zh": "已取消添加书签",
+      "source": "hub:main.js",
+      "offset": 8692658
+    },
+    {
+      "en": "Canceled creation of",
+      "zh": "已取消创建",
+      "source": "hub:main.js",
+      "offset": 8692898
+    },
+    {
+      "en": "Canceled deletion of",
+      "zh": "已取消删除",
+      "source": "hub:main.js",
+      "offset": 8693048
+    },
+    {
+      "en": "Canceled edit to",
+      "zh": "已取消编辑",
+      "source": "hub:main.js",
+      "offset": 8692708
+    },
+    {
+      "en": "Canceled removal of bookmark",
+      "zh": "已取消移除书签",
+      "source": "hub:main.js",
+      "offset": 8692982
+    },
+    {
+      "en": "Cannot parse folder URI.",
+      "zh": "无法解析文件夹路径。",
+      "source": "hub:main.js",
+      "offset": 5795437
+    },
+    {
+      "en": "Change details unavailable",
+      "zh": "无法获取变更详情",
+      "source": "hub:main.js",
+      "offset": 3642932
+    },
+    {
+      "en": "Changes",
+      "zh": "更改",
+      "source": "hub:main.js",
+      "offset": 7957555
+    },
+    {
+      "en": "Clear file filter",
+      "zh": "清除文件筛选",
+      "source": "hub:main.js",
+      "offset": 8520180
+    },
+    {
+      "en": "Clear filter",
+      "zh": "清除筛选",
+      "source": "hub:main.js",
+      "offset": 7961123
+    },
+    {
+      "en": "Clear row filter",
+      "zh": "清除行筛选",
+      "source": "hub:main.js",
+      "offset": 8484586
+    },
+    {
+      "en": "Clone current workspace into a new independent workspace",
+      "zh": "将当前工作目录克隆为新的独立工作目录",
+      "source": "hub:main.js",
+      "offset": 9079881
+    },
+    {
+      "en": "Clone from Remote",
+      "zh": "从远程克隆",
+      "source": "hub:main.js",
+      "offset": 8901155
+    },
+    {
+      "en": "Clone from This Computer",
+      "zh": "从本机克隆",
+      "source": "hub:main.js",
+      "offset": 8901552
+    },
+    {
+      "en": "Cloning locally…",
+      "zh": "正在克隆到本地…",
+      "source": "hub:main.js",
+      "offset": 8890714
+    },
+    {
+      "en": "Close Other Tabs",
+      "zh": "关闭其他标签页",
+      "source": "hub:main.js",
+      "offset": 9876535
+    },
+    {
+      "en": "Close Panel",
+      "zh": "关闭面板",
+      "source": "hub:main.js",
+      "offset": 9787875
+    },
+    {
+      "en": "Close references",
+      "zh": "关闭引用",
+      "source": "hub:main.js",
+      "offset": 7760383
+    },
+    {
+      "en": "Close Sidebar",
+      "zh": "关闭侧边栏",
+      "source": "hub:main.js",
+      "offset": 9766648
+    },
+    {
+      "en": "Close split view and go to forked conversation",
+      "zh": "关闭分屏视图并前往分支对话",
+      "source": "hub:main.js",
+      "offset": 9609688
+    },
+    {
+      "en": "Close Tabs to the Left",
+      "zh": "关闭左侧标签页",
+      "source": "hub:main.js",
+      "offset": 9876667
+    },
+    {
+      "en": "Close Tabs to the Right",
+      "zh": "关闭右侧标签页",
+      "source": "hub:main.js",
+      "offset": 9876808
+    },
+    {
+      "en": "Cloud conversation",
+      "zh": "云端对话",
+      "source": "hub:main.js",
+      "offset": 9396776
+    },
+    {
+      "en": "Cloud Conversation",
+      "zh": "云端对话",
+      "source": "hub:main.js",
+      "offset": 9397017
+    },
+    {
+      "en": "Code Change Summary",
+      "zh": "代码变更摘要",
+      "source": "hub:main.js",
+      "offset": 8780726
+    },
+    {
+      "en": "Code Search",
+      "zh": "代码搜索",
+      "source": "hub:main.js",
+      "offset": 1922499
+    },
+    {
+      "en": "Code snippet",
+      "zh": "代码片段",
+      "source": "hub:main.js",
+      "offset": 2618612
+    },
+    {
+      "en": "Collapse All Folders",
+      "zh": "折叠所有文件夹",
+      "source": "hub:main.js",
+      "offset": 1925925
+    },
+    {
+      "en": "Collapse Diffs",
+      "zh": "折叠差异",
+      "source": "hub:main.js",
+      "offset": 8533892
+    },
+    {
+      "en": "Commit",
+      "zh": "提交",
+      "source": "hub:main.js",
+      "offset": 12793189
+    },
+    {
+      "en": "Commit staged changes",
+      "zh": "提交已暂存的更改",
+      "source": "hub:main.js",
+      "offset": 12793208
+    },
+    {
+      "en": "Commit succeeded",
+      "zh": "提交成功",
+      "source": "hub:main.js",
+      "offset": 12794367
+    },
+    {
+      "en": "Configure Branches",
+      "zh": "配置分支",
+      "source": "hub:main.js",
+      "offset": 9019140
+    },
+    {
+      "en": "Confirming this undo action will make the following changes:",
+      "zh": "确认此撤销操作将进行以下更改：",
+      "source": "hub:main.js",
+      "offset": 8153848
+    },
+    {
+      "en": "Conflict",
+      "zh": "冲突",
+      "source": "hub:main.js",
+      "offset": 8565736
+    },
+    {
+      "en": "Connect GitHub",
+      "zh": "连接 GitHub",
+      "source": "hub:main.js",
+      "offset": 3648569
+    },
+    {
+      "en": "Connect GitHub: Run gh auth login in a terminal",
+      "zh": "连接 GitHub：请在终端中运行 gh auth login",
+      "source": "hub:main.js",
+      "offset": 12701159
+    },
+    {
+      "en": "Connect to SSH Host",
+      "zh": "连接到 SSH 主机",
+      "source": "hub:main.js",
+      "offset": 6431371
+    },
+    {
+      "en": "Connect to SSH Host…",
+      "zh": "连接 SSH 主机…",
+      "source": "hub:main.js",
+      "offset": 1925560
+    },
+    {
+      "en": "Connected Google Drive and GitHub resources",
+      "zh": "已连接的 Google 云端硬盘和 GitHub 资源",
+      "source": "hub:main.js",
+      "offset": 5798455
+    },
+    {
+      "en": "Connecting to terminal...",
+      "zh": "正在连接终端...",
+      "source": "hub:main.js",
+      "offset": 9785552
+    },
+    {
+      "en": "Continue as a new conversation",
+      "zh": "作为新对话继续",
+      "source": "hub:main.js",
+      "offset": 9838310
+    },
+    {
+      "en": "Conversation resolved",
+      "zh": "对话已标记为已解决",
+      "source": "hub:main.js",
+      "offset": 8839412
+    },
+    {
+      "en": "Copy File Name",
+      "zh": "复制文件名",
+      "source": "hub:main.js",
+      "offset": 8514108
+    },
+    {
+      "en": "Copy File Path",
+      "zh": "复制文件路径",
+      "source": "hub:main.js",
+      "offset": 8514045
+    },
+    {
+      "en": "Copy gh auth login command",
+      "zh": "复制 gh auth login 命令",
+      "source": "hub:main.js",
+      "offset": 3647222
+    },
+    {
+      "en": "Copy path",
+      "zh": "复制路径",
+      "source": "hub:main.js",
+      "offset": 5568730
+    },
+    {
+      "en": "Copy Path",
+      "zh": "复制路径",
+      "source": "hub:main.js",
+      "offset": 5569074
+    },
+    {
+      "en": "Could not create project",
+      "zh": "无法创建项目",
+      "source": "hub:main.js",
+      "offset": 7680687
+    },
+    {
+      "en": "Couldn't load your SSH hosts",
+      "zh": "无法加载 SSH 主机列表",
+      "source": "hub:main.js",
+      "offset": 8876300
+    },
+    {
+      "en": "Couldn't load your SSH hosts. You can still type one.",
+      "zh": "无法加载 SSH 主机列表，但你仍可手动输入。",
+      "source": "hub:main.js",
+      "offset": 6437883
+    },
+    {
+      "en": "Couldn't search files",
+      "zh": "无法搜索文件",
+      "source": "hub:main.js",
+      "offset": 8520623
+    },
+    {
+      "en": "Create a JJ worktree",
+      "zh": "创建 JJ 工作树",
+      "source": "hub:main.js",
+      "offset": 9037606
+    },
+    {
+      "en": "Create a new project from one or more folders.",
+      "zh": "从一个或多个文件夹新建项目。",
+      "source": "hub:main.js",
+      "offset": 8882329
+    },
+    {
+      "en": "Create a project on a machine you reach over SSH. It opens in that host's own window.",
+      "zh": "在通过 SSH 连接的设备上新建项目，并在该主机的独立窗口中打开。",
+      "source": "hub:main.js",
+      "offset": 8882623
+    },
+    {
+      "en": "Create a project on this computer or remotely.",
+      "zh": "在本机或远程设备上新建项目。",
+      "source": "hub:main.js",
+      "offset": 8882444
+    },
+    {
+      "en": "Create New Project",
+      "zh": "创建新项目",
+      "source": "hub:main.js",
+      "offset": 9748756
+    },
+    {
+      "en": "Create Project",
+      "zh": "创建项目",
+      "source": "hub:main.js",
+      "offset": 8882126
+    },
+    {
+      "en": "Created",
+      "zh": "已创建",
+      "source": "hub:main.js",
+      "offset": 8692921
+    },
+    {
+      "en": "Created a new branch on GitHub.",
+      "zh": "已在 GitHub 上创建新分支。",
+      "source": "hub:main.js",
+      "offset": 12796394
+    },
+    {
+      "en": "Created a new branch on Origin.",
+      "zh": "已在 Origin 上创建新分支。",
+      "source": "hub:main.js",
+      "offset": 12796626
+    },
+    {
+      "en": "Creating",
+      "zh": "正在创建",
+      "source": "hub:main.js",
+      "offset": 8692885
+    },
+    {
+      "en": "Creating environment...",
+      "zh": "正在创建环境...",
+      "source": "hub:main.js",
+      "offset": 9081355
+    },
+    {
+      "en": "Creating projects for your conversations",
+      "zh": "正在为你的对话创建项目",
+      "source": "hub:main.js",
+      "offset": 6510121
+    },
+    {
+      "en": "Creating terminal...",
+      "zh": "正在创建终端...",
+      "source": "hub:main.js",
+      "offset": 8617062
+    },
+    {
+      "en": "Creating...",
+      "zh": "正在创建…",
+      "source": "hub:main.js",
+      "offset": 9653099
+    },
+    {
+      "en": "Current workspace",
+      "zh": "当前工作目录",
+      "source": "hub:main.js",
+      "offset": 12738142
+    },
+    {
+      "en": "Customize Sidebar",
+      "zh": "自定义侧栏",
+      "source": "hub:main.js",
+      "offset": 9688314
+    },
+    {
+      "en": "Declared by",
+      "zh": "声明于",
+      "source": "hub:main.js",
+      "offset": 7777537
+    },
+    {
+      "en": "Default workspace VCS",
+      "zh": "默认工作目录版本控制",
+      "source": "hub:main.js",
+      "offset": 5144720
+    },
+    {
+      "en": "Delete Terminal",
+      "zh": "删除终端",
+      "source": "hub:main.js",
+      "offset": 8576990
+    },
+    {
+      "en": "Deleted",
+      "zh": "已删除",
+      "source": "hub:main.js",
+      "offset": 6487388
+    },
+    {
+      "en": "Deleting",
+      "zh": "正在删除",
+      "source": "hub:main.js",
+      "offset": 8693035
+    },
+    {
+      "en": "Describe your changes",
+      "zh": "描述你的更改",
+      "source": "hub:main.js",
+      "offset": 6469178
+    },
+    {
+      "en": "Describe your changes, or leave empty to auto-generate",
+      "zh": "描述你的更改，或留空以自动生成",
+      "source": "hub:main.js",
+      "offset": 6469121
+    },
+    {
+      "en": "Dev mode: Localhost server automatically detected",
+      "zh": "开发模式：已自动检测到本地服务",
+      "source": "hub:main.js",
+      "offset": 3598850
+    },
+    {
+      "en": "Directories",
+      "zh": "目录",
+      "source": "hub:main.js",
+      "offset": 8958130
+    },
+    {
+      "en": "Directory",
+      "zh": "目录",
+      "source": "hub:main.js",
+      "offset": 8628034
+    },
+    {
+      "en": "Discard",
+      "zh": "放弃",
+      "source": "hub:main.js",
+      "offset": 12797980
+    },
+    {
+      "en": "Discard unstaged changes",
+      "zh": "放弃未暂存的更改",
+      "source": "hub:main.js",
+      "offset": 12798010
+    },
+    {
+      "en": "Dismiss artifact update notice",
+      "zh": "关闭文档更新提示",
+      "source": "hub:main.js",
+      "offset": 7843374
+    },
+    {
+      "en": "Display",
+      "zh": "显示",
+      "source": "hub:main.js",
+      "offset": 9664472
+    },
+    {
+      "en": "Documents",
+      "zh": "文档",
+      "source": "hub:main.js",
+      "offset": 8016644
+    },
+    {
+      "en": "Download File",
+      "zh": "下载文件",
+      "source": "hub:main.js",
+      "offset": 8535670
+    },
+    {
+      "en": "Drag to select a region to comment",
+      "zh": "拖动以框选要评论的区域",
+      "source": "hub:main.js",
+      "offset": 7894115
+    },
+    {
+      "en": "Edited",
+      "zh": "已编辑",
+      "source": "hub:main.js",
+      "offset": 8093449
+    },
+    {
+      "en": "Editing",
+      "zh": "正在编辑",
+      "source": "hub:main.js",
+      "offset": 8692696
+    },
+    {
+      "en": "Embedded web preview",
+      "zh": "嵌入式网页预览",
+      "source": "hub:main.js",
+      "offset": 5125520
+    },
+    {
+      "en": "Embedding Limitations",
+      "zh": "嵌入限制说明",
+      "source": "hub:main.js",
+      "offset": 4424386
+    },
+    {
+      "en": "Empty directory",
+      "zh": "空文件夹",
+      "source": "hub:main.js",
+      "offset": 7975733
+    },
+    {
+      "en": "Empty table",
+      "zh": "空表格",
+      "source": "hub:main.js",
+      "offset": 8483894
+    },
+    {
+      "en": "Enter [user@]host[:port], or pick a host from your SSH config.",
+      "zh": "输入 [user@]host[:port]，或从 SSH 配置中选择主机。",
+      "source": "hub:main.js",
+      "offset": 6434493
+    },
+    {
+      "en": "Enter project name...",
+      "zh": "输入项目名称...",
+      "source": "hub:main.js",
+      "offset": 9653904
+    },
+    {
+      "en": "Environment",
+      "zh": "环境",
+      "source": "hub:main.js",
+      "offset": 5823397
+    },
+    {
+      "en": "Error editing file",
+      "zh": "编辑文件出错",
+      "source": "hub:main.js",
+      "offset": 8057787
+    },
+    {
+      "en": "Error editing notebook",
+      "zh": "编辑笔记本出错",
+      "source": "hub:main.js",
+      "offset": 8058209
+    },
+    {
+      "en": "Error occurred during import.",
+      "zh": "导入过程中发生错误。",
+      "source": "hub:main.js",
+      "offset": 6548485
+    },
+    {
+      "en": "Error reading notebook",
+      "zh": "读取笔记本出错",
+      "source": "hub:main.js",
+      "offset": 8058433
+    },
+    {
+      "en": "Error viewing file",
+      "zh": "查看文件出错",
+      "source": "hub:main.js",
+      "offset": 8057988
+    },
+    {
+      "en": "Error while editing",
+      "zh": "编辑时出错",
+      "source": "hub:main.js",
+      "offset": 8057732
+    },
+    {
+      "en": "Error while editing notebook",
+      "zh": "编辑笔记本时出错",
+      "source": "hub:main.js",
+      "offset": 8058145
+    },
+    {
+      "en": "Error while reading notebook",
+      "zh": "读取笔记本时出错",
+      "source": "hub:main.js",
+      "offset": 8058369
+    },
+    {
+      "en": "Error while viewing",
+      "zh": "查看时出错",
+      "source": "hub:main.js",
+      "offset": 8057933
+    },
+    {
+      "en": "Expand All Folders",
+      "zh": "展开所有文件夹",
+      "source": "hub:main.js",
+      "offset": 1926004
+    },
+    {
+      "en": "Expand Diffs",
+      "zh": "展开差异",
+      "source": "hub:main.js",
+      "offset": 8533910
+    },
+    {
+      "en": "Export artifact",
+      "zh": "导出生成文档",
+      "source": "hub:main.js",
+      "offset": 7939900
+    },
+    {
+      "en": "Export Artifact",
+      "zh": "导出生成文档",
+      "source": "hub:main.js",
+      "offset": 7859151
+    },
+    {
+      "en": "Export as PDF",
+      "zh": "导出为 PDF",
+      "source": "hub:main.js",
+      "offset": 7859300
+    },
+    {
+      "en": "Failed to Amend",
+      "zh": "修改提交失败",
+      "source": "hub:main.js",
+      "offset": 12795480
+    },
+    {
+      "en": "Failed to clone project locally",
+      "zh": "本地克隆项目失败",
+      "source": "hub:main.js",
+      "offset": 8905759
+    },
+    {
+      "en": "Failed to Commit",
+      "zh": "提交失败",
+      "source": "hub:main.js",
+      "offset": 12794470
+    },
+    {
+      "en": "Failed to create folder. Please try again.",
+      "zh": "创建文件夹失败，请重试。",
+      "source": "hub:main.js",
+      "offset": 6566147
+    },
+    {
+      "en": "Failed to create remote project",
+      "zh": "创建远程项目失败",
+      "source": "hub:main.js",
+      "offset": 8887497
+    },
+    {
+      "en": "Failed to create terminal",
+      "zh": "创建终端失败",
+      "source": "hub:main.js",
+      "offset": 7407975
+    },
+    {
+      "en": "Failed to create worktree",
+      "zh": "创建工作树失败",
+      "source": "hub:main.js",
+      "offset": 8996414
+    },
+    {
+      "en": "Failed to download Firebase skill.",
+      "zh": "下载 Firebase 技能失败。",
+      "source": "hub:main.js",
+      "offset": 6548448
+    },
+    {
+      "en": "Failed to edit",
+      "zh": "编辑失败",
+      "source": "hub:main.js",
+      "offset": 8790664
+    },
+    {
+      "en": "Failed to export artifact",
+      "zh": "导出生成文档失败",
+      "source": "hub:main.js",
+      "offset": 7856283
+    },
+    {
+      "en": "Failed to fetch diffs",
+      "zh": "获取差异失败",
+      "source": "hub:main.js",
+      "offset": 8573601
+    },
+    {
+      "en": "Failed to Generate Commit Message",
+      "zh": "生成提交说明失败",
+      "source": "hub:main.js",
+      "offset": 12793904
+    },
+    {
+      "en": "Failed to load resources",
+      "zh": "加载资源失败",
+      "source": "hub:main.js",
+      "offset": 5787893
+    },
+    {
+      "en": "Failed to load some diffs",
+      "zh": "部分差异加载失败",
+      "source": "hub:main.js",
+      "offset": 8558242
+    },
+    {
+      "en": "Failed to Push",
+      "zh": "推送失败",
+      "source": "hub:main.js",
+      "offset": 12797398
+    },
+    {
+      "en": "Failed to read",
+      "zh": "读取失败",
+      "source": "hub:main.js",
+      "offset": 8792260
+    },
+    {
+      "en": "Failed to read file",
+      "zh": "读取文件失败",
+      "source": "hub:main.js",
+      "offset": 3799625
+    },
+    {
+      "en": "Failed to read file content",
+      "zh": "读取文件内容失败",
+      "source": "hub:main.js",
+      "offset": 8489445
+    },
+    {
+      "en": "Failed to unarchive local project",
+      "zh": "取消归档本地项目失败",
+      "source": "hub:main.js",
+      "offset": 8904108
+    },
+    {
+      "en": "Failed to upload HTML artifact to Drive",
+      "zh": "上传 HTML 生成文档到云端硬盘失败",
+      "source": "hub:main.js",
+      "offset": 7858254
+    },
+    {
+      "en": "File Comments",
+      "zh": "文件评论",
+      "source": "hub:main.js",
+      "offset": 7819121
+    },
+    {
+      "en": "File Diff Comments",
+      "zh": "文件差异评论",
+      "source": "hub:main.js",
+      "offset": 7818827
+    },
+    {
+      "en": "File Explorer",
+      "zh": "文件资源管理器",
+      "source": "hub:main.js",
+      "offset": 2928355
+    },
+    {
+      "en": "File not found",
+      "zh": "找不到文件",
+      "source": "hub:main.js",
+      "offset": 8489237
+    },
+    {
+      "en": "File path breadcrumbs",
+      "zh": "文件路径导航栏",
+      "source": "hub:main.js",
+      "offset": 7981207
+    },
+    {
+      "en": "File Picker",
+      "zh": "文件选择器",
+      "source": "hub:main.js",
+      "offset": 1921344
+    },
+    {
+      "en": "File Tree Component is not loaded.",
+      "zh": "文件树组件未加载。",
+      "source": "hub:main.js",
+      "offset": 7986404
+    },
+    {
+      "en": "Files and resources in cloud workspaces",
+      "zh": "云端工作目录中的文件与资源",
+      "source": "hub:main.js",
+      "offset": 5800426
+    },
+    {
+      "en": "Files Changed",
+      "zh": "已更改文件",
+      "source": "hub:main.js",
+      "offset": 7958464
+    },
+    {
+      "en": "Files to edit:",
+      "zh": "待编辑文件：",
+      "source": "hub:main.js",
+      "offset": 8769766
+    },
+    {
+      "en": "Files, folders, and repositories you connect are accessible to your agent in this project, including during background or scheduled runs.",
+      "zh": "你连接的文件、文件夹和代码仓库可供此项目中的 AI 助手访问，包括在后台或定时运行期间。",
+      "source": "hub:main.js",
+      "offset": 5798513
+    },
+    {
+      "en": "Filter",
+      "zh": "筛选",
+      "source": "hub:main.js",
+      "offset": 7374591
+    },
+    {
+      "en": "Filter files",
+      "zh": "筛选文件",
+      "source": "hub:main.js",
+      "offset": 8519924
+    },
+    {
+      "en": "Filter files...",
+      "zh": "筛选文件...",
+      "source": "hub:main.js",
+      "offset": 8519893
+    },
+    {
+      "en": "Filter resources...",
+      "zh": "筛选资源...",
+      "source": "hub:main.js",
+      "offset": 5789086
+    },
+    {
+      "en": "Filter rows",
+      "zh": "筛选行",
+      "source": "hub:main.js",
+      "offset": 8484261
+    },
+    {
+      "en": "Filter rows...",
+      "zh": "筛选行...",
+      "source": "hub:main.js",
+      "offset": 8484231
+    },
+    {
+      "en": "Find References",
+      "zh": "查找引用",
+      "source": "hub:main.js",
+      "offset": 8513876
+    },
+    {
+      "en": "Finder",
+      "zh": "访达",
+      "source": "hub:main.js",
+      "offset": 2935041
+    },
+    {
+      "en": "Fold code block",
+      "zh": "折叠代码块",
+      "source": "hub:main.js",
+      "offset": 7765243
+    },
+    {
+      "en": "Folder",
+      "zh": "文件夹",
+      "source": "hub:main.js",
+      "offset": 9124428
+    },
+    {
+      "en": "Folder doesn't exist",
+      "zh": "文件夹不存在",
+      "source": "hub:main.js",
+      "offset": 5795173
+    },
+    {
+      "en": "Folders",
+      "zh": "文件夹",
+      "source": "hub:main.js",
+      "offset": 5824030
+    },
+    {
+      "en": "For Turn",
+      "zh": "本轮对话",
+      "source": "hub:main.js",
+      "offset": 7960826
+    },
+    {
+      "en": "Fork in Current Workspace",
+      "zh": "在当前工作目录中分叉对话",
+      "source": "hub:main.js",
+      "offset": 8182497
+    },
+    {
+      "en": "Fork in New Workspace",
+      "zh": "在新工作目录中创建分支",
+      "source": "hub:main.js",
+      "offset": 8182724
+    },
+    {
+      "en": "Fork in Shared Workspace",
+      "zh": "在共享工作目录中分叉对话",
+      "source": "hub:main.js",
+      "offset": 8182669
+    },
+    {
+      "en": "Found references to",
+      "zh": "已找到引用",
+      "source": "hub:main.js",
+      "offset": 8762347
+    },
+    {
+      "en": "GitHub Repositories",
+      "zh": "GitHub 仓库",
+      "source": "hub:main.js",
+      "offset": 8900551
+    },
+    {
+      "en": "GitHub: not signed in",
+      "zh": "GitHub：未登录",
+      "source": "hub:main.js",
+      "offset": 12700718
+    },
+    {
+      "en": "Grant repository access",
+      "zh": "授予仓库访问权限",
+      "source": "hub:main.js",
+      "offset": 3649091
+    },
+    {
+      "en": "Grid",
+      "zh": "网格",
+      "source": "hub:main.js",
+      "offset": 8498548
+    },
+    {
+      "en": "Group By",
+      "zh": "分组方式",
+      "source": "hub:main.js",
+      "offset": 9661529
+    },
+    {
+      "en": "Here's how uploaded files, attachments, and connected resources work in your cloud environment",
+      "zh": "了解已上传文件、附件和已连接资源在云端环境中的使用方式",
+      "source": "hub:main.js",
+      "offset": 5800667
+    },
+    {
+      "en": "Hidden hosts",
+      "zh": "已隐藏主机",
+      "source": "hub:main.js",
+      "offset": 6437505
+    },
+    {
+      "en": "Hide from this list",
+      "zh": "从此列表中隐藏",
+      "source": "hub:main.js",
+      "offset": 6433602
+    },
+    {
+      "en": "Hide Whitespace Changes",
+      "zh": "隐藏空白字符改动",
+      "source": "hub:main.js",
+      "offset": 8534060
+    },
+    {
+      "en": "Hub",
+      "zh": "中枢",
+      "source": "hub:main.js",
+      "offset": 6616047
+    },
+    {
+      "en": "icon in the URL bar.",
+      "zh": "图标。",
+      "source": "hub:main.js",
+      "offset": 4424872
+    },
+    {
+      "en": "Import AI Studio Project",
+      "zh": "导入 AI Studio 项目",
+      "source": "hub:main.js",
+      "offset": 6547093
+    },
+    {
+      "en": "Inbox Mode",
+      "zh": "收件箱模式",
+      "source": "hub:main.js",
+      "offset": 9689959
+    },
+    {
+      "en": "Include unstaged changes",
+      "zh": "包含未暂存的更改",
+      "source": "hub:main.js",
+      "offset": 12792772
+    },
+    {
+      "en": "Initialized with",
+      "zh": "初始化自",
+      "source": "hub:main.js",
+      "offset": 7777518
+    },
+    {
+      "en": "Inline PDF preview is not available in this environment.",
+      "zh": "当前环境无法直接预览 PDF。",
+      "source": "hub:main.js",
+      "offset": 7922895
+    },
+    {
+      "en": "Insert in terminal",
+      "zh": "插入到终端",
+      "source": "hub:main.js",
+      "offset": 6707102
+    },
+    {
+      "en": "Insert in Terminal",
+      "zh": "插入到终端",
+      "source": "hub:main.js",
+      "offset": 6707230
+    },
+    {
+      "en": "Inspected commit",
+      "zh": "已检查提交记录",
+      "source": "hub:main.js",
+      "offset": 8769270
+    },
+    {
+      "en": "Intended primarily for previewing local development servers (e.g.,",
+      "zh": "主要用于预览本地开发服务器（例如",
+      "source": "hub:main.js",
+      "offset": 4423866
+    },
+    {
+      "en": "Invalid notebook JSON.",
+      "zh": "无效的 Notebook JSON 文件。",
+      "source": "hub:main.js",
+      "offset": 8493038
+    },
+    {
+      "en": "JJ worktree",
+      "zh": "JJ 工作树",
+      "source": "hub:main.js",
+      "offset": 9038002
+    },
+    {
+      "en": "Keep Open",
+      "zh": "保持打开",
+      "source": "hub:main.js",
+      "offset": 9876224
+    },
+    {
+      "en": "Keep running conversations in a separate Working section instead of in the Inbox.",
+      "zh": "将正在运行的对话单独归入“进行中”分区，而不是留在收件箱中。",
+      "source": "hub:main.js",
+      "offset": 9683750
+    },
+    {
+      "en": "Keeps working in this workspace. Nothing is copied.",
+      "zh": "继续在此工作目录中工作，不复制任何内容。",
+      "source": "hub:main.js",
+      "offset": 8183188
+    },
+    {
+      "en": "Keeps your checkout untouched",
+      "zh": "不会影响当前本地代码",
+      "source": "hub:main.js",
+      "offset": 9021123
+    },
+    {
+      "en": "Kill Terminal",
+      "zh": "终止终端",
+      "source": "hub:main.js",
+      "offset": 9781235
+    },
+    {
+      "en": "Last Activity",
+      "zh": "最近活动",
+      "source": "hub:main.js",
+      "offset": 9684950
+    },
+    {
+      "en": "Last Prompt",
+      "zh": "最近的提示词",
+      "source": "hub:main.js",
+      "offset": 7374499
+    },
+    {
+      "en": "Loading hosts…",
+      "zh": "正在加载主机…",
+      "source": "hub:main.js",
+      "offset": 6437776
+    },
+    {
+      "en": "Loading Hosts…",
+      "zh": "正在加载主机…",
+      "source": "hub:main.js",
+      "offset": 8876448
+    },
+    {
+      "en": "Loading Notebook View...",
+      "zh": "正在加载 Notebook 视图...",
+      "source": "hub:main.js",
+      "offset": 8524737
+    },
+    {
+      "en": "Loading preview…",
+      "zh": "正在加载预览…",
+      "source": "hub:main.js",
+      "offset": 5125429
+    },
+    {
+      "en": "Loading Repositories…",
+      "zh": "正在加载仓库…",
+      "source": "hub:main.js",
+      "offset": 8884024
+    },
+    {
+      "en": "Loading resources...",
+      "zh": "正在加载资源...",
+      "source": "hub:main.js",
+      "offset": 5785508
+    },
+    {
+      "en": "Loading workspace customizations...",
+      "zh": "正在加载工作目录自定义项...",
+      "source": "hub:main.js",
+      "offset": 5573059
+    },
+    {
+      "en": "Loading worktrees...",
+      "zh": "正在加载工作树...",
+      "source": "hub:main.js",
+      "offset": 9025625
+    },
+    {
+      "en": "Local",
+      "zh": "本地",
+      "source": "hub:main.js",
+      "offset": 9024683
+    },
+    {
+      "en": "Local Checkout",
+      "zh": "本地检出",
+      "source": "hub:main.js",
+      "offset": 9026851
+    },
+    {
+      "en": "Locked while grouped by Status",
+      "zh": "按状态分组时已锁定",
+      "source": "hub:main.js",
+      "offset": 9690577
+    },
+    {
+      "en": "Manage and delete your data anytime",
+      "zh": "随时管理和删除你的数据",
+      "source": "hub:main.js",
+      "offset": 5798674
+    },
+    {
+      "en": "Manifest Changes",
+      "zh": "清单更改",
+      "source": "hub:main.js",
+      "offset": 7955703
+    },
+    {
+      "en": "Many external websites (such as Google Search, GitHub, or Wikipedia) restrict iframe embedding via",
+      "zh": "许多外部网站（如 Google 搜索、GitHub 或维基百科）会通过以下方式限制 iframe 嵌入：",
+      "source": "hub:main.js",
+      "offset": 4424495
+    },
+    {
+      "en": "Mark All as Read",
+      "zh": "全部标为已读",
+      "source": "hub:main.js",
+      "offset": 1924609
+    },
+    {
+      "en": "Maximize",
+      "zh": "最大化",
+      "source": "hub:main.js",
+      "offset": 6398129
+    },
+    {
+      "en": "Merge Conflict",
+      "zh": "合并冲突",
+      "source": "hub:main.js",
+      "offset": 8572189
+    },
+    {
+      "en": "Missing a repository? Configure on GitHub",
+      "zh": "找不到代码仓库？前往 GitHub 配置",
+      "source": "hub:main.js",
+      "offset": 5790989
+    },
+    {
+      "en": "Modified",
+      "zh": "已修改",
+      "source": "hub:main.js",
+      "offset": 6487308
+    },
+    {
+      "en": "Modified Files",
+      "zh": "已修改文件",
+      "source": "hub:main.js",
+      "offset": 9409009
+    },
+    {
+      "en": "Modified in",
+      "zh": "修改于",
+      "source": "hub:main.js",
+      "offset": 5638172
+    },
+    {
+      "en": "More options",
+      "zh": "更多选项",
+      "source": "hub:main.js",
+      "offset": 8829528
+    },
+    {
+      "en": "Move Conversation",
+      "zh": "移动对话",
+      "source": "hub:main.js",
+      "offset": 9762296
+    },
+    {
+      "en": "Move idle Inbox conversations to Resolved automatically after the selected time.",
+      "zh": "在超过所选空闲时间后，自动将收件箱中的对话移至“已解决”。",
+      "source": "hub:main.js",
+      "offset": 9684606
+    },
+    {
+      "en": "Moved to Resolved.",
+      "zh": "已移至“已解决”。",
+      "source": "hub:main.js",
+      "offset": 8839455
+    },
+    {
+      "en": "New chats will be grouped by workspace.",
+      "zh": "新对话将按工作目录分组。",
+      "source": "hub:main.js",
+      "offset": 9183918
+    },
+    {
+      "en": "New Conversation in Project",
+      "zh": "在项目中新建对话",
+      "source": "hub:main.js",
+      "offset": 9759889
+    },
+    {
+      "en": "New Conversation in Workspace",
+      "zh": "在工作目录中新建对话",
+      "source": "hub:main.js",
+      "offset": 9759857
+    },
+    {
+      "en": "New Fig Workspace",
+      "zh": "新建 Fig 工作目录",
+      "source": "hub:main.js",
+      "offset": 9028737
+    },
+    {
+      "en": "New Project",
+      "zh": "新建项目",
+      "source": "hub:main.js",
+      "offset": 8881491
+    },
+    {
+      "en": "New Remote Project",
+      "zh": "新建远程项目",
+      "source": "hub:main.js",
+      "offset": 8901095
+    },
+    {
+      "en": "New tab",
+      "zh": "新建标签页",
+      "source": "hub:main.js",
+      "offset": 9887707
+    },
+    {
+      "en": "New Terminal",
+      "zh": "新建终端",
+      "source": "hub:main.js",
+      "offset": 8659871
+    },
+    {
+      "en": "New Terminal Tab",
+      "zh": "新建终端标签页",
+      "source": "hub:main.js",
+      "offset": 1921176
+    },
+    {
+      "en": "New Worktree",
+      "zh": "新建工作树",
+      "source": "hub:main.js",
+      "offset": 9024918
+    },
+    {
+      "en": "No active terminals",
+      "zh": "暂无活动终端",
+      "source": "hub:main.js",
+      "offset": 8025425
+    },
+    {
+      "en": "No active terminals. Click + to create one.",
+      "zh": "当前没有运行中的终端，点击 + 即可新建。",
+      "source": "hub:main.js",
+      "offset": 8616876
+    },
+    {
+      "en": "No branches",
+      "zh": "暂无分支",
+      "source": "hub:main.js",
+      "offset": 9017092
+    },
+    {
+      "en": "No changes to amend",
+      "zh": "没有可修改的更改",
+      "source": "hub:main.js",
+      "offset": 12794797
+    },
+    {
+      "en": "No changes to review",
+      "zh": "暂无待审查的更改",
+      "source": "hub:main.js",
+      "offset": 8557708
+    },
+    {
+      "en": "No commit to amend",
+      "zh": "没有可修改的提交",
+      "source": "hub:main.js",
+      "offset": 12794819
+    },
+    {
+      "en": "No commits to push",
+      "zh": "没有可推送的提交",
+      "source": "hub:main.js",
+      "offset": 12795885
+    },
+    {
+      "en": "No commits yet",
+      "zh": "暂无提交记录",
+      "source": "hub:main.js",
+      "offset": 9010804
+    },
+    {
+      "en": "No documents",
+      "zh": "暂无文档",
+      "source": "hub:main.js",
+      "offset": 8016816
+    },
+    {
+      "en": "No environments found",
+      "zh": "未找到环境",
+      "source": "hub:main.js",
+      "offset": 9033425
+    },
+    {
+      "en": "No file changes",
+      "zh": "暂无文件更改",
+      "source": "hub:main.js",
+      "offset": 8013009
+    },
+    {
+      "en": "No files or folders found",
+      "zh": "未找到文件或文件夹",
+      "source": "hub:main.js",
+      "offset": 8480705
+    },
+    {
+      "en": "No folder selected",
+      "zh": "未选择文件夹",
+      "source": "hub:main.js",
+      "offset": 8307407
+    },
+    {
+      "en": "No folders added yet.",
+      "zh": "尚未添加任何文件夹。",
+      "source": "hub:main.js",
+      "offset": 5824203
+    },
+    {
+      "en": "No hosts in ~/.ssh/config yet",
+      "zh": "~/.ssh/config 中尚无主机配置",
+      "source": "hub:main.js",
+      "offset": 8876847
+    },
+    {
+      "en": "No matching files",
+      "zh": "没有匹配的文件",
+      "source": "hub:main.js",
+      "offset": 8520788
+    },
+    {
+      "en": "No matching hosts",
+      "zh": "没有匹配的主机",
+      "source": "hub:main.js",
+      "offset": 8876781
+    },
+    {
+      "en": "No matching project folders. Apply to use the custom URI.",
+      "zh": "没有匹配的项目文件夹。点击“应用”即可使用自定义 URI。",
+      "source": "hub:main.js",
+      "offset": 5418328
+    },
+    {
+      "en": "No matching repositories",
+      "zh": "没有匹配的仓库",
+      "source": "hub:main.js",
+      "offset": 8884495
+    },
+    {
+      "en": "No matching resources found.",
+      "zh": "未找到匹配的资源。",
+      "source": "hub:main.js",
+      "offset": 5789637
+    },
+    {
+      "en": "No previous worktrees",
+      "zh": "暂无历史工作树",
+      "source": "hub:main.js",
+      "offset": 9025738
+    },
+    {
+      "en": "No Project",
+      "zh": "无项目",
+      "source": "hub:main.js",
+      "offset": 8902443
+    },
+    {
+      "en": "No project selected",
+      "zh": "未选择项目",
+      "source": "hub:main.js",
+      "offset": 5798161
+    },
+    {
+      "en": "No project selected or project management not available.",
+      "zh": "未选择项目，或项目管理功能不可用。",
+      "source": "hub:main.js",
+      "offset": 5821329
+    },
+    {
+      "en": "No projects created",
+      "zh": "尚未创建任何项目",
+      "source": "hub:main.js",
+      "offset": 10124756
+    },
+    {
+      "en": "No remote configured",
+      "zh": "未配置远程仓库",
+      "source": "hub:main.js",
+      "offset": 12795830
+    },
+    {
+      "en": "No repositories found",
+      "zh": "未找到仓库",
+      "source": "hub:main.js",
+      "offset": 8884522
+    },
+    {
+      "en": "No resources added yet.",
+      "zh": "尚未添加任何资源。",
+      "source": "hub:main.js",
+      "offset": 5824177
+    },
+    {
+      "en": "No uploads",
+      "zh": "暂无上传文件",
+      "source": "hub:main.js",
+      "offset": 8027163
+    },
+    {
+      "en": "No workspaces open.",
+      "zh": "未打开任何工作目录。",
+      "source": "hub:main.js",
+      "offset": 7985941
+    },
+    {
+      "en": "Not in Project",
+      "zh": "未归属项目",
+      "source": "hub:main.js",
+      "offset": 5831284
+    },
+    {
+      "en": "Not on a branch",
+      "zh": "当前不在任何分支上",
+      "source": "hub:main.js",
+      "offset": 12795913
+    },
+    {
+      "en": "Notebook",
+      "zh": "笔记本",
+      "source": "hub:main.js",
+      "offset": 8792338
+    },
+    {
+      "en": "Notebook execution not implemented",
+      "zh": "暂不支持执行笔记本",
+      "source": "hub:main.js",
+      "offset": 8696011
+    },
+    {
+      "en": "Only Archived",
+      "zh": "只看已归档",
+      "source": "hub:main.js",
+      "offset": 7374930
+    },
+    {
+      "en": "Only Automations",
+      "zh": "只看自动化",
+      "source": "hub:main.js",
+      "offset": 7375110
+    },
+    {
+      "en": "Only Unread",
+      "zh": "只看未读",
+      "source": "hub:main.js",
+      "offset": 7374755
+    },
+    {
+      "en": "Open Antigravity IDE",
+      "zh": "打开 Antigravity IDE",
+      "source": "hub:main.js",
+      "offset": 9466764
+    },
+    {
+      "en": "Open Blame in Code Search",
+      "zh": "在 Code Search 中查看代码归属",
+      "source": "hub:main.js",
+      "offset": 8536490
+    },
+    {
+      "en": "Open Diff",
+      "zh": "打开差异对比",
+      "source": "hub:main.js",
+      "offset": 8152797
+    },
+    {
+      "en": "Open extracted DOM in editor",
+      "zh": "在编辑器中打开提取的 DOM",
+      "source": "hub:main.js",
+      "offset": 8782790
+    },
+    {
+      "en": "Open File",
+      "zh": "打开文件",
+      "source": "hub:main.js",
+      "offset": 8659572
+    },
+    {
+      "en": "Open Folder",
+      "zh": "打开文件夹",
+      "source": "hub:main.js",
+      "offset": 1933204
+    },
+    {
+      "en": "Open Folder (Interactive)",
+      "zh": "打开文件夹（交互式）",
+      "source": "hub:main.js",
+      "offset": 11929894
+    },
+    {
+      "en": "Open in Antigravity IDE",
+      "zh": "在 Antigravity IDE 中打开",
+      "source": "hub:main.js",
+      "offset": 9467024
+    },
+    {
+      "en": "Open in Code Search",
+      "zh": "在代码搜索中打开",
+      "source": "hub:main.js",
+      "offset": 1921990
+    },
+    {
+      "en": "Open in Hub",
+      "zh": "在中枢打开",
+      "source": "hub:main.js",
+      "offset": 9455280
+    },
+    {
+      "en": "Open in Notebook View",
+      "zh": "在 Notebook 视图中打开",
+      "source": "hub:main.js",
+      "offset": 8535318
+    },
+    {
+      "en": "Open project settings",
+      "zh": "打开项目设置",
+      "source": "hub:main.js",
+      "offset": 10001940
+    },
+    {
+      "en": "Open side-by-side view",
+      "zh": "打开并排视图",
+      "source": "hub:main.js",
+      "offset": 9521720
+    },
+    {
+      "en": "Open Source Code",
+      "zh": "打开源代码",
+      "source": "hub:main.js",
+      "offset": 7258423
+    },
+    {
+      "en": "Open SSH Host",
+      "zh": "打开 SSH 主机",
+      "source": "hub:main.js",
+      "offset": 6431355
+    },
+    {
+      "en": "Open Terminal",
+      "zh": "打开终端",
+      "source": "hub:main.js",
+      "offset": 8026318
+    },
+    {
+      "en": "Open Workspace Selector",
+      "zh": "打开工作目录选择器",
+      "source": "hub:main.js",
+      "offset": 1921607
+    },
+    {
+      "en": "Owner",
+      "zh": "负责人",
+      "source": "hub:main.js",
+      "offset": 3644308
+    },
+    {
+      "en": "Pan",
+      "zh": "平移",
+      "source": "hub:main.js",
+      "offset": 8498509
+    },
+    {
+      "en": "Password Prompt Blocked",
+      "zh": "已拦截密码输入提示",
+      "source": "hub:main.js",
+      "offset": 8610700
+    },
+    {
+      "en": "Path copied!",
+      "zh": "路径已复制！",
+      "source": "hub:main.js",
+      "offset": 5569765
+    },
+    {
+      "en": "Pin conversation",
+      "zh": "置顶对话",
+      "source": "hub:main.js",
+      "offset": 8850690
+    },
+    {
+      "en": "Pin Tab",
+      "zh": "固定标签页",
+      "source": "hub:main.js",
+      "offset": 9876346
+    },
+    {
+      "en": "PR details unavailable",
+      "zh": "无法获取 PR 详情",
+      "source": "hub:main.js",
+      "offset": 3649655
+    },
+    {
+      "en": "Previous Worktrees",
+      "zh": "历史工作树",
+      "source": "hub:main.js",
+      "offset": 9021277
+    },
+    {
+      "en": "Project",
+      "zh": "项目",
+      "source": "hub:main.js",
+      "offset": 3644264
+    },
+    {
+      "en": "Project + Worktree",
+      "zh": "项目 + 工作树",
+      "source": "hub:main.js",
+      "offset": 9660329
+    },
+    {
+      "en": "Project location",
+      "zh": "项目位置",
+      "source": "hub:main.js",
+      "offset": 9651846
+    },
+    {
+      "en": "Project Name",
+      "zh": "项目名称",
+      "source": "hub:main.js",
+      "offset": 8823595
+    },
+    {
+      "en": "Project options",
+      "zh": "项目选项",
+      "source": "hub:main.js",
+      "offset": 9745781
+    },
+    {
+      "en": "Pull Requests",
+      "zh": "拉取请求",
+      "source": "hub:main.js",
+      "offset": 12705699
+    },
+    {
+      "en": "Push",
+      "zh": "推送",
+      "source": "hub:main.js",
+      "offset": 12795538
+    },
+    {
+      "en": "Push succeeded",
+      "zh": "推送成功",
+      "source": "hub:main.js",
+      "offset": 12796904
+    },
+    {
+      "en": "Recent files",
+      "zh": "最近文件",
+      "source": "hub:main.js",
+      "offset": 7329098
+    },
+    {
+      "en": "Recent Files",
+      "zh": "最近的文件",
+      "source": "hub:main.js",
+      "offset": 6531370
+    },
+    {
+      "en": "References",
+      "zh": "引用",
+      "source": "hub:main.js",
+      "offset": 7759692
+    },
+    {
+      "en": "Refresh gcert Credentials",
+      "zh": "刷新 gcert 凭据",
+      "source": "hub:main.js",
+      "offset": 1923752
+    },
+    {
+      "en": "Remote",
+      "zh": "远程",
+      "source": "hub:main.js",
+      "offset": 5643966
+    },
+    {
+      "en": "Remove from Recent",
+      "zh": "从最近记录中移除",
+      "source": "hub:main.js",
+      "offset": 6433113
+    },
+    {
+      "en": "Remove From Split",
+      "zh": "移出分屏",
+      "source": "hub:main.js",
+      "offset": 9485946
+    },
+    {
+      "en": "Remove individual uploaded files or connected resources in Project Settings, or delete a project or conversation to remove its stored files.",
+      "zh": "你可以在“项目设置”中移除单个已上传的文件或已连接的资源，或通过删除项目或对话来清除其存储的文件。",
+      "source": "hub:main.js",
+      "offset": 5798725
+    },
+    {
+      "en": "Remove resource",
+      "zh": "移除资源",
+      "source": "hub:main.js",
+      "offset": 5796545
+    },
+    {
+      "en": "Removed bookmark",
+      "zh": "已移除书签",
+      "source": "hub:main.js",
+      "offset": 8693014
+    },
+    {
+      "en": "Removing bookmark",
+      "zh": "正在移除书签",
+      "source": "hub:main.js",
+      "offset": 8692960
+    },
+    {
+      "en": "Rename",
+      "zh": "重命名",
+      "source": "hub:main.js",
+      "offset": 5738148
+    },
+    {
+      "en": "Rename Group",
+      "zh": "重命名分组",
+      "source": "hub:main.js",
+      "offset": 9763239
+    },
+    {
+      "en": "Renamed",
+      "zh": "已重命名",
+      "source": "hub:main.js",
+      "offset": 6487464
+    },
+    {
+      "en": "Repo",
+      "zh": "仓库",
+      "source": "hub:main.js",
+      "offset": 9689366
+    },
+    {
+      "en": "Repo default",
+      "zh": "仓库默认",
+      "source": "hub:main.js",
+      "offset": 9010730
+    },
+    {
+      "en": "Resize terminal panes",
+      "zh": "调整终端面板大小",
+      "source": "hub:main.js",
+      "offset": 8614374
+    },
+    {
+      "en": "Resolve conflicts first",
+      "zh": "请先解决冲突",
+      "source": "hub:main.js",
+      "offset": 12794739
+    },
+    {
+      "en": "Resolve conversation",
+      "zh": "标记对话已解决",
+      "source": "hub:main.js",
+      "offset": 8850924
+    },
+    {
+      "en": "Resources",
+      "zh": "资源",
+      "source": "hub:main.js",
+      "offset": 5824018
+    },
+    {
+      "en": "Resume environment",
+      "zh": "恢复环境",
+      "source": "hub:main.js",
+      "offset": 8488493
+    },
+    {
+      "en": "Resume it to load this file.",
+      "zh": "恢复环境后即可加载此文件。",
+      "source": "hub:main.js",
+      "offset": 8488821
+    },
+    {
+      "en": "Resume it to open a new terminal. Anything that was running in this one has stopped.",
+      "zh": "恢复后将打开新终端，原终端中运行的所有任务均已停止。",
+      "source": "hub:main.js",
+      "offset": 9783337
+    },
+    {
+      "en": "Resuming environment…",
+      "zh": "正在恢复环境…",
+      "source": "hub:main.js",
+      "offset": 8488464
+    },
+    {
+      "en": "Return to Inbox",
+      "zh": "移回收件箱",
+      "source": "hub:main.js",
+      "offset": 8825978
+    },
+    {
+      "en": "Reveal in Finder",
+      "zh": "在访达中显示",
+      "source": "hub:main.js",
+      "offset": 2185050
+    },
+    {
+      "en": "Revert file changes",
+      "zh": "还原文件更改",
+      "source": "hub:main.js",
+      "offset": 8154769
+    },
+    {
+      "en": "Rewinds the conversation only. Files in this workspace stay as they are now.",
+      "zh": "仅回退对话进度。当前工作目录中的文件保持不变。",
+      "source": "hub:main.js",
+      "offset": 8183109
+    },
+    {
+      "en": "Run in a new git worktree",
+      "zh": "在新的 Git 工作树中运行",
+      "source": "hub:main.js",
+      "offset": 9080514
+    },
+    {
+      "en": "Run in a new worktree",
+      "zh": "在新工作树中运行",
+      "source": "hub:main.js",
+      "offset": 9079792
+    },
+    {
+      "en": "Run in your current workspace",
+      "zh": "在当前工作目录中运行",
+      "source": "hub:main.js",
+      "offset": 9079699
+    },
+    {
+      "en": "Runs in a cloud environment",
+      "zh": "在云端环境中运行",
+      "source": "hub:main.js",
+      "offset": 8911427
+    },
+    {
+      "en": "Sample GDoc",
+      "zh": "Google 文档示例",
+      "source": "hub:main.js",
+      "offset": 4423022
+    },
+    {
+      "en": "Search branches",
+      "zh": "搜索分支",
+      "source": "hub:main.js",
+      "offset": 9015966
+    },
+    {
+      "en": "Search file contents...",
+      "zh": "搜索文件内容...",
+      "source": "hub:main.js",
+      "offset": 7329399
+    },
+    {
+      "en": "Search files...",
+      "zh": "搜索文件...",
+      "source": "hub:main.js",
+      "offset": 7383891
+    },
+    {
+      "en": "Search for content to open",
+      "zh": "搜索要打开的内容",
+      "source": "hub:main.js",
+      "offset": 9870538
+    },
+    {
+      "en": "Search for files in the project...",
+      "zh": "搜索项目中的文件...",
+      "source": "hub:main.js",
+      "offset": 7383854
+    },
+    {
+      "en": "Search Google Drive",
+      "zh": "搜索 Google 云端硬盘",
+      "source": "hub:main.js",
+      "offset": 8448356
+    },
+    {
+      "en": "Search Hosts…",
+      "zh": "搜索主机…",
+      "source": "hub:main.js",
+      "offset": 8877701
+    },
+    {
+      "en": "Search or enter a URL",
+      "zh": "搜索或输入网址",
+      "source": "hub:main.js",
+      "offset": 9870471
+    },
+    {
+      "en": "Search past workspaces...",
+      "zh": "搜索历史工作目录...",
+      "source": "hub:main.js",
+      "offset": 9032851
+    },
+    {
+      "en": "Search past worktrees...",
+      "zh": "搜索历史工作树...",
+      "source": "hub:main.js",
+      "offset": 9032879
+    },
+    {
+      "en": "Search Projects",
+      "zh": "搜索项目",
+      "source": "hub:main.js",
+      "offset": 12739981
+    },
+    {
+      "en": "Search projects...",
+      "zh": "搜索项目...",
+      "source": "hub:main.js",
+      "offset": 7384528
+    },
+    {
+      "en": "Search Projects…",
+      "zh": "搜索项目…",
+      "source": "hub:main.js",
+      "offset": 8892652
+    },
+    {
+      "en": "Search Recent Workspaces",
+      "zh": "搜索最近的工作目录",
+      "source": "hub:main.js",
+      "offset": 12724897
+    },
+    {
+      "en": "Search Remote…",
+      "zh": "搜索远程项目…",
+      "source": "hub:main.js",
+      "offset": 8892548
+    },
+    {
+      "en": "Search Repositories…",
+      "zh": "搜索代码仓库…",
+      "source": "hub:main.js",
+      "offset": 8900706
+    },
+    {
+      "en": "Search tabs, files and more",
+      "zh": "搜索标签页、文件及更多内容",
+      "source": "hub:main.js",
+      "offset": 9870495
+    },
+    {
+      "en": "Search Workspaces…",
+      "zh": "搜索工作目录…",
+      "source": "hub:main.js",
+      "offset": 8892626
+    },
+    {
+      "en": "Searching...",
+      "zh": "正在搜索…",
+      "source": "hub:main.js",
+      "offset": 8520247
+    },
+    {
+      "en": "Select a folder.",
+      "zh": "选择一个文件夹。",
+      "source": "hub:main.js",
+      "offset": 8881517
+    },
+    {
+      "en": "Select Environment",
+      "zh": "选择环境",
+      "source": "hub:main.js",
+      "offset": 9031475
+    },
+    {
+      "en": "Select Folder(s)",
+      "zh": "选择文件夹",
+      "source": "hub:main.js",
+      "offset": 9651641
+    },
+    {
+      "en": "Select or enter a workspace URI",
+      "zh": "选择或输入工作目录 URI",
+      "source": "hub:main.js",
+      "offset": 5416745
+    },
+    {
+      "en": "Select Resource(s)",
+      "zh": "选择资源",
+      "source": "hub:main.js",
+      "offset": 9651620
+    },
+    {
+      "en": "Select text in the artifact to add a comment",
+      "zh": "在生成文档中选中文本即可添加评论",
+      "source": "hub:main.js",
+      "offset": 7937659
+    },
+    {
+      "en": "Select workspace",
+      "zh": "选择工作目录",
+      "source": "hub:main.js",
+      "offset": 10125582
+    },
+    {
+      "en": "Select Workspace",
+      "zh": "选择工作目录",
+      "source": "hub:main.js",
+      "offset": 8896595
+    },
+    {
+      "en": "Select Worktree",
+      "zh": "选择工作树",
+      "source": "hub:main.js",
+      "offset": 9023987
+    },
+    {
+      "en": "Setup script failed.",
+      "zh": "初始化脚本运行失败。",
+      "source": "hub:main.js",
+      "offset": 5368562
+    },
+    {
+      "en": "Setup script ran successfully.",
+      "zh": "初始化脚本运行成功。",
+      "source": "hub:main.js",
+      "offset": 5368344
+    },
+    {
+      "en": "Show in File Explorer",
+      "zh": "在文件资源管理器中显示",
+      "source": "hub:main.js",
+      "offset": 2185090
+    },
+    {
+      "en": "Show in File Manager",
+      "zh": "在文件管理器中显示",
+      "source": "hub:main.js",
+      "offset": 2185133
+    },
+    {
+      "en": "Show in Sidebar",
+      "zh": "在侧边栏中显示",
+      "source": "hub:main.js",
+      "offset": 9642894
+    },
+    {
+      "en": "Show in the list again",
+      "zh": "重新在列表中显示",
+      "source": "hub:main.js",
+      "offset": 6433624
+    },
+    {
+      "en": "Show Whitespace Changes",
+      "zh": "显示空白字符改动",
+      "source": "hub:main.js",
+      "offset": 8534034
+    },
+    {
+      "en": "Sidebar",
+      "zh": "侧边栏",
+      "source": "hub:main.js",
+      "offset": 9766256
+    },
+    {
+      "en": "Sidecar",
+      "zh": "伴生侧栏",
+      "source": "hub:main.js",
+      "offset": 9910345
+    },
+    {
+      "en": "Sort and filter conversations",
+      "zh": "排序和筛选对话",
+      "source": "hub:main.js",
+      "offset": 7373507
+    },
+    {
+      "en": "Sort By",
+      "zh": "排序方式",
+      "source": "hub:main.js",
+      "offset": 9675346
+    },
+    {
+      "en": "Sort Conversations",
+      "zh": "对话排序",
+      "source": "hub:main.js",
+      "offset": 7374174
+    },
+    {
+      "en": "Sort Projects",
+      "zh": "排序项目",
+      "source": "hub:main.js",
+      "offset": 9661160
+    },
+    {
+      "en": "Sort Workspaces",
+      "zh": "排序工作目录",
+      "source": "hub:main.js",
+      "offset": 9661142
+    },
+    {
+      "en": "Split Terminal",
+      "zh": "拆分终端",
+      "source": "hub:main.js",
+      "offset": 1920871
+    },
+    {
+      "en": "SSH Config",
+      "zh": "SSH 配置",
+      "source": "hub:main.js",
+      "offset": 6436936
+    },
+    {
+      "en": "SSH host",
+      "zh": "SSH 主机",
+      "source": "hub:main.js",
+      "offset": 6434891
+    },
+    {
+      "en": "SSH Host",
+      "zh": "SSH 主机",
+      "source": "hub:main.js",
+      "offset": 8877196
+    },
+    {
+      "en": "SSH Host…",
+      "zh": "SSH 主机…",
+      "source": "hub:main.js",
+      "offset": 8882594
+    },
+    {
+      "en": "Stage and amend all changes into the current commit",
+      "zh": "暂存所有更改并合并到当前提交",
+      "source": "hub:main.js",
+      "offset": 12793104
+    },
+    {
+      "en": "Stage and commit all changes",
+      "zh": "暂存并提交所有更改",
+      "source": "hub:main.js",
+      "offset": 12793232
+    },
+    {
+      "en": "Stage change",
+      "zh": "暂存更改",
+      "source": "hub:main.js",
+      "offset": 12797812
+    },
+    {
+      "en": "Staged",
+      "zh": "已暂存",
+      "source": "hub:main.js",
+      "offset": 8565362
+    },
+    {
+      "en": "Staged Changes",
+      "zh": "已暂存的更改",
+      "source": "hub:main.js",
+      "offset": 7957346
+    },
+    {
+      "en": "Staged index changes and working tree changes",
+      "zh": "已暂存的索引更改和工作区更改",
+      "source": "hub:main.js",
+      "offset": 12798295
+    },
+    {
+      "en": "Standalone terminals",
+      "zh": "独立终端",
+      "source": "hub:main.js",
+      "offset": 8577988
+    },
+    {
+      "en": "Standalone Terminals",
+      "zh": "独立终端",
+      "source": "hub:main.js",
+      "offset": 8579116
+    },
+    {
+      "en": "Starting terminal…",
+      "zh": "正在启动终端…",
+      "source": "hub:main.js",
+      "offset": 9788648
+    },
+    {
+      "en": "Stop SSH Server…",
+      "zh": "停止 SSH 服务…",
+      "source": "hub:main.js",
+      "offset": 1925637
+    },
+    {
+      "en": "Stored and mounted in your cloud environment",
+      "zh": "存储并挂载到你的云端环境",
+      "source": "hub:main.js",
+      "offset": 5798216
+    },
+    {
+      "en": "Submit comment",
+      "zh": "提交评论",
+      "source": "hub:main.js",
+      "offset": 7936432
+    },
+    {
+      "en": "Successfully imported project:",
+      "zh": "项目导入成功：",
+      "source": "hub:main.js",
+      "offset": 6547520
+    },
+    {
+      "en": "Switch IDE Workspace",
+      "zh": "切换 IDE 工作目录",
+      "source": "hub:main.js",
+      "offset": 8975384
+    },
+    {
+      "en": "Switch to This Computer",
+      "zh": "切换到本机",
+      "source": "hub:main.js",
+      "offset": 1925723
+    },
+    {
+      "en": "Sync JJ worktrees to head",
+      "zh": "将 JJ 工作树同步到最新提交",
+      "source": "hub:main.js",
+      "offset": 5145741
+    },
+    {
+      "en": "Sync newly created JJ worktrees to head when starting a conversation.",
+      "zh": "开始对话时将新建的 JJ 工作树同步到最新提交（head）。",
+      "source": "hub:main.js",
+      "offset": 5145781
+    },
+    {
+      "en": "Terminal: Add to Chat",
+      "zh": "终端：添加到对话",
+      "source": "hub:main.js",
+      "offset": 1923695
+    },
+    {
+      "en": "Terminals",
+      "zh": "终端",
+      "source": "hub:main.js",
+      "offset": 7964530
+    },
+    {
+      "en": "The branch was pushed to GitLab.",
+      "zh": "分支已推送至 GitLab。",
+      "source": "hub:main.js",
+      "offset": 12796524
+    },
+    {
+      "en": "The change was pushed to Gerrit.",
+      "zh": "更改已推送至 Gerrit。",
+      "source": "hub:main.js",
+      "offset": 12796753
+    },
+    {
+      "en": "The remote shared a link for this push.",
+      "zh": "远程仓库为此次推送生成了链接。",
+      "source": "hub:main.js",
+      "offset": 12796826
+    },
+    {
+      "en": "The remote workspace is not running",
+      "zh": "远程工作目录未运行",
+      "source": "hub:main.js",
+      "offset": 4425993
+    },
+    {
+      "en": "This computer",
+      "zh": "此电脑",
+      "source": "hub:main.js",
+      "offset": 5659219
+    },
+    {
+      "en": "This Computer",
+      "zh": "此电脑",
+      "source": "hub:main.js",
+      "offset": 5643931
+    },
+    {
+      "en": "This conversation is in a different workspace.",
+      "zh": "当前对话属于其他工作目录。",
+      "source": "hub:main.js",
+      "offset": 8975190
+    },
+    {
+      "en": "This file type is not currently supported in remote mode",
+      "zh": "远程模式暂不支持此文件类型",
+      "source": "hub:main.js",
+      "offset": 2630395
+    },
+    {
+      "en": "This project is associated with a different workspace.",
+      "zh": "当前项目关联了其他工作目录。",
+      "source": "hub:main.js",
+      "offset": 8975239
+    },
+    {
+      "en": "This project uses Firebase. Do you want to download the Firebase skill?",
+      "zh": "此项目使用了 Firebase。是否下载 Firebase 技能？",
+      "source": "hub:main.js",
+      "offset": 6547736
+    },
+    {
+      "en": "This project was created for",
+      "zh": "此项目适用于",
+      "source": "hub:main.js",
+      "offset": 5648469
+    },
+    {
+      "en": "This undo action will not make any code changes.",
+      "zh": "此撤销操作不会对代码造成任何更改。",
+      "source": "hub:main.js",
+      "offset": 8153911
+    },
+    {
+      "en": "Toggle checkerboard background",
+      "zh": "切换棋盘格背景",
+      "source": "hub:main.js",
+      "offset": 8498564
+    },
+    {
+      "en": "Toggle Environment Selector",
+      "zh": "切换环境选择器",
+      "source": "hub:main.js",
+      "offset": 1920370
+    },
+    {
+      "en": "Toggle file diff",
+      "zh": "切换文件差异显示",
+      "source": "hub:main.js",
+      "offset": 8540604
+    },
+    {
+      "en": "Toggle Project Selector",
+      "zh": "切换项目选择器",
+      "source": "hub:main.js",
+      "offset": 1920296
+    },
+    {
+      "en": "Toggle sidebar",
+      "zh": "切换侧边栏",
+      "source": "hub:main.js",
+      "offset": 9852282
+    },
+    {
+      "en": "Toggle Terminal",
+      "zh": "切换终端显示",
+      "source": "hub:main.js",
+      "offset": 1920155
+    },
+    {
+      "en": "Toggle Terminal Panel",
+      "zh": "切换终端面板",
+      "source": "hub:main.js",
+      "offset": 9398751
+    },
+    {
+      "en": "Toggle Virtual Machine",
+      "zh": "切换虚拟机",
+      "source": "hub:main.js",
+      "offset": 9489951
+    },
+    {
+      "en": "Toggle Word Wrap",
+      "zh": "切换自动换行",
+      "source": "hub:main.js",
+      "offset": 1920216
+    },
+    {
+      "en": "True changes vs the parent workspace",
+      "zh": "与父工作目录相比的实际更改",
+      "source": "hub:main.js",
+      "offset": 7955731
+    },
+    {
+      "en": "Type absolute path or navigate folders...",
+      "zh": "输入绝对路径或浏览文件夹...",
+      "source": "hub:main.js",
+      "offset": 6567861
+    },
+    {
+      "en": "Type to search file contents",
+      "zh": "输入关键词以搜索文件内容",
+      "source": "hub:main.js",
+      "offset": 7329269
+    },
+    {
+      "en": "Uncommitted",
+      "zh": "未提交",
+      "source": "hub:main.js",
+      "offset": 12798272
+    },
+    {
+      "en": "Unfold code block",
+      "zh": "展开代码块",
+      "source": "hub:main.js",
+      "offset": 7765223
+    },
+    {
+      "en": "Unknown edit",
+      "zh": "未知编辑",
+      "source": "hub:main.js",
+      "offset": 8694096
+    },
+    {
+      "en": "Unknown Environment",
+      "zh": "未知环境",
+      "source": "hub:main.js",
+      "offset": 9029261
+    },
+    {
+      "en": "Unknown file edit",
+      "zh": "未知文件编辑",
+      "source": "hub:main.js",
+      "offset": 8748872
+    },
+    {
+      "en": "Unknown Notebook",
+      "zh": "未知笔记本",
+      "source": "hub:main.js",
+      "offset": 8694908
+    },
+    {
+      "en": "Unpin conversation",
+      "zh": "取消置顶",
+      "source": "hub:main.js",
+      "offset": 8850669
+    },
+    {
+      "en": "Unpin Tab",
+      "zh": "取消固定标签页",
+      "source": "hub:main.js",
+      "offset": 9876334
+    },
+    {
+      "en": "Unstage change",
+      "zh": "取消暂存更改",
+      "source": "hub:main.js",
+      "offset": 12797591
+    },
+    {
+      "en": "Untitled project",
+      "zh": "未命名项目",
+      "source": "hub:main.js",
+      "offset": 5638946
+    },
+    {
+      "en": "Untracked",
+      "zh": "未跟踪",
+      "source": "hub:main.js",
+      "offset": 8520918
+    },
+    {
+      "en": "Untracked (Unstaged)",
+      "zh": "未跟踪（未暂存）",
+      "source": "hub:main.js",
+      "offset": 6487207
+    },
+    {
+      "en": "Upload Files",
+      "zh": "上传文件",
+      "source": "hub:main.js",
+      "offset": 5792337
+    },
+    {
+      "en": "Upload to Google Drive",
+      "zh": "上传到 Google 云端硬盘",
+      "source": "hub:main.js",
+      "offset": 7858877
+    },
+    {
+      "en": "Uploaded files and connected resources are mounted in your cloud environment.",
+      "zh": "已上传的文件和已连接的资源已挂载到你的云端环境中。",
+      "source": "hub:main.js",
+      "offset": 5803120
+    },
+    {
+      "en": "Uploaded project files and in-chat attachments are stored on Google servers and mounted into your cloud sandbox so your agent can read and work with them.",
+      "zh": "上传的项目文件和对话附件会存储在 Google 服务器上，并挂载到你的云端沙箱中，以便 AI 助手读取和使用。",
+      "source": "hub:main.js",
+      "offset": 5798275
+    },
+    {
+      "en": "Uploaded to Google Drive",
+      "zh": "已上传到 Google 云端硬盘",
+      "source": "hub:main.js",
+      "offset": 7857993
+    },
+    {
+      "en": "Uploading to Drive…",
+      "zh": "正在上传到云端硬盘…",
+      "source": "hub:main.js",
+      "offset": 7858850
+    },
+    {
+      "en": "Uploading to Google Drive…",
+      "zh": "正在上传到 Google 云端硬盘…",
+      "source": "hub:main.js",
+      "offset": 7857486
+    },
+    {
+      "en": "Uploads",
+      "zh": "上传文件",
+      "source": "hub:main.js",
+      "offset": 8027027
+    },
+    {
+      "en": "Use full Git clones for Best of N",
+      "zh": "Best of N 使用完整 Git 克隆",
+      "source": "hub:main.js",
+      "offset": 5146336
+    },
+    {
+      "en": "Use full VCS clones for Best of N",
+      "zh": "Best of N 使用完整版本库克隆",
+      "source": "hub:main.js",
+      "offset": 5145944
+    },
+    {
+      "en": "Validating setup script…",
+      "zh": "正在验证初始化脚本…",
+      "source": "hub:main.js",
+      "offset": 5368127
+    },
+    {
+      "en": "VCS used when creating a new workspace, including workspaces generated based off your initial prompt.",
+      "zh": "创建新工作目录时使用的版本控制系统，包括根据初始提示词生成的工作目录。",
+      "source": "hub:main.js",
+      "offset": 5144756
+    },
+    {
+      "en": "View Branches",
+      "zh": "查看分支",
+      "source": "hub:main.js",
+      "offset": 9036221
+    },
+    {
+      "en": "View Diff",
+      "zh": "查看差异对比",
+      "source": "hub:main.js",
+      "offset": 8156170
+    },
+    {
+      "en": "View File",
+      "zh": "查看文件",
+      "source": "hub:main.js",
+      "offset": 8534291
+    },
+    {
+      "en": "View Split Diff",
+      "zh": "切换为并排对比",
+      "source": "hub:main.js",
+      "offset": 8533706
+    },
+    {
+      "en": "View Stacked Diff",
+      "zh": "切换为堆叠对比",
+      "source": "hub:main.js",
+      "offset": 8533686
+    },
+    {
+      "en": "Viewing Diff",
+      "zh": "正在查看差异",
+      "source": "hub:main.js",
+      "offset": 8534215
+    },
+    {
+      "en": "Web Preview",
+      "zh": "网页预览",
+      "source": "hub:main.js",
+      "offset": 4423786
+    },
+    {
+      "en": "What counts as a document",
+      "zh": "哪些内容属于文档",
+      "source": "hub:main.js",
+      "offset": 8015814
+    },
+    {
+      "en": "Window",
+      "zh": "窗口",
+      "source": "hub:main.js",
+      "offset": 9207725
+    },
+    {
+      "en": "Work in a New Worktree",
+      "zh": "在新工作树中开发",
+      "source": "hub:main.js",
+      "offset": 9021021
+    },
+    {
+      "en": "Working Section",
+      "zh": "进行中分区",
+      "source": "hub:main.js",
+      "offset": 9683333
+    },
+    {
+      "en": "Workspace",
+      "zh": "工作目录",
+      "source": "hub:main.js",
+      "offset": 5570182
+    },
+    {
+      "en": "Workspace + Worktree",
+      "zh": "工作目录 + 工作树",
+      "source": "hub:main.js",
+      "offset": 9660292
+    },
+    {
+      "en": "Workspace > Restore to Snapshot",
+      "zh": "工作目录 > 恢复到快照",
+      "source": "hub:main.js",
+      "offset": 8696818
+    },
+    {
+      "en": "Workspace folder suggestions",
+      "zh": "工作目录文件夹建议",
+      "source": "hub:main.js",
+      "offset": 5417590
+    },
+    {
+      "en": "Workspace mismatch actions",
+      "zh": "工作目录不匹配时的操作",
+      "source": "hub:main.js",
+      "offset": 8974287
+    },
+    {
+      "en": "Workspace setup warning",
+      "zh": "工作目录配置警告",
+      "source": "hub:main.js",
+      "offset": 7695010
+    },
+    {
+      "en": "Workspace URI query parameter",
+      "zh": "工作目录 URI 查询参数",
+      "source": "hub:main.js",
+      "offset": 5416328
+    },
+    {
+      "en": "Workspace URI Switcher",
+      "zh": "工作目录 URI 切换器",
+      "source": "hub:main.js",
+      "offset": 5416252
+    },
+    {
+      "en": "Workspace URI to switch to",
+      "zh": "要切换到的工作目录 URI",
+      "source": "hub:main.js",
+      "offset": 5416792
+    },
+    {
+      "en": "Workspaces",
+      "zh": "工作目录",
+      "source": "hub:main.js",
+      "offset": 5133057
+    },
+    {
+      "en": "Workspaces are not available for this project",
+      "zh": "此项目不支持工作目录",
+      "source": "hub:main.js",
+      "offset": 9138751
+    },
+    {
+      "en": "Worktree",
+      "zh": "工作树",
+      "source": "hub:main.js",
+      "offset": 8823523
+    },
+    {
+      "en": "Worktree Branches",
+      "zh": "工作树分支",
+      "source": "hub:main.js",
+      "offset": 9019120
+    },
+    {
+      "en": "Worktrees are a git feature. This folder is shared as is.",
+      "zh": "工作树是 Git 的功能，此文件夹将按原样共享。",
+      "source": "hub:main.js",
+      "offset": 9017200
+    },
+    {
+      "en": "Worktrees are available for Git repositories",
+      "zh": "工作树仅适用于 Git 仓库",
+      "source": "hub:main.js",
+      "offset": 9138806
+    },
+    {
+      "en": "Worktrees are not available for this project",
+      "zh": "此项目不支持工作树",
+      "source": "hub:main.js",
+      "offset": 9138853
+    }
+  ],
   "scoped": [
     {
       "scope": "workspace",
       "en": "Add to Chat",
       "zh": "添加到对话",
       "source": "hub:main.js",
-      "offset": 9619967
+      "offset": 1921705
     },
     {
       "scope": "workspace",
       "en": "All",
       "zh": "全部",
       "source": "hub:main.js",
-      "offset": 9519706
+      "offset": 9685889
     },
     {
       "scope": "workspace",
       "en": "Archive conversation",
       "zh": "归档对话",
       "source": "hub:main.js",
-      "offset": 8714149
+      "offset": 8850432
     },
     {
       "scope": "workspace",
       "en": "Archived Only",
       "zh": "只看已归档",
       "source": "hub:main.js",
-      "offset": 9499604
+      "offset": 9665297
     },
     {
       "scope": "workspace",
       "en": "Artifact Comments",
       "zh": "生成文档评论",
       "source": "hub:main.js",
-      "offset": 7242249
+      "offset": 7818554
     },
     {
       "scope": "workspace",
       "en": "Artifact updated by agent",
       "zh": "AI 助手已更新生成文档",
       "source": "hub:main.js",
-      "offset": 7978693
+      "offset": 7842667
     },
     {
       "scope": "workspace",
       "en": "Auto Pin",
       "zh": "自动置顶",
       "source": "hub:main.js",
-      "offset": 9499470
+      "offset": 9665163
     },
     {
       "scope": "workspace",
       "en": "Automations",
       "zh": "自动化",
       "source": "hub:main.js",
-      "offset": 9498150
+      "offset": 1922552
     },
     {
       "scope": "workspace",
       "en": "Background Tasks",
       "zh": "后台任务",
       "source": "hub:main.js",
-      "offset": 9641016
+      "offset": 8008711
     },
     {
       "scope": "workspace",
       "en": "Clear file filter",
       "zh": "清除文件筛选",
       "source": "hub:main.js",
-      "offset": 8518581
+      "offset": 8520180
     },
     {
       "scope": "workspace",
       "en": "Clear filter",
       "zh": "清除筛选",
       "source": "hub:main.js",
-      "offset": 8518664
+      "offset": 7961123
     },
     {
       "scope": "workspace",
       "en": "Connect GitHub",
       "zh": "连接 GitHub",
       "source": "hub:main.js",
-      "offset": 8739674
+      "offset": 3648569
     },
     {
       "scope": "workspace",
       "en": "Connect to SSH Host…",
       "zh": "连接 SSH 主机…",
       "source": "hub:main.js",
-      "offset": 8756320
+      "offset": 1925560
     },
     {
       "scope": "workspace",
       "en": "Couldn't search files",
       "zh": "无法搜索文件",
       "source": "hub:main.js",
-      "offset": 8519024
+      "offset": 8520623
     },
     {
       "scope": "workspace",
       "en": "Create Project",
       "zh": "创建项目",
       "source": "hub:main.js",
-      "offset": 8757026
+      "offset": 8882126
     },
     {
       "scope": "workspace",
       "en": "Creating...",
       "zh": "正在创建…",
       "source": "hub:main.js",
-      "offset": 9487611
+      "offset": 9653099
     },
     {
       "scope": "workspace",
       "en": "Customize Sidebar",
       "zh": "自定义侧栏",
       "source": "hub:main.js",
-      "offset": 9573081
+      "offset": 9688314
     },
     {
       "scope": "workspace",
       "en": "Delete",
       "zh": "删除",
       "source": "hub:main.js",
-      "offset": 7649089
+      "offset": 4948838
     },
     {
       "scope": "workspace",
       "en": "Dismiss artifact update notice",
       "zh": "关闭文档更新提示",
       "source": "hub:main.js",
-      "offset": 7978802
+      "offset": 7843374
     },
     {
       "scope": "workspace",
       "en": "Display",
       "zh": "显示",
       "source": "hub:main.js",
-      "offset": 9498884
+      "offset": 9664472
     },
     {
       "scope": "workspace",
       "en": "Environment",
       "zh": "环境",
       "source": "hub:main.js",
-      "offset": 9519424
+      "offset": 5823397
     },
     {
       "scope": "workspace",
       "en": "Filter",
       "zh": "筛选",
       "source": "hub:main.js",
-      "offset": 9497746
-    },
-    {
-      "scope": "workspace",
-      "en": "Filter and Sort",
-      "zh": "筛选与排序",
-      "source": "hub:main.js",
-      "offset": 9518133
+      "offset": 7374591
     },
     {
       "scope": "workspace",
       "en": "Group By",
       "zh": "分组方式",
       "source": "hub:main.js",
-      "offset": 9495942
+      "offset": 9661529
     },
     {
       "scope": "workspace",
       "en": "Inline PDF preview is not available in this environment.",
       "zh": "当前环境无法直接预览 PDF。",
       "source": "hub:main.js",
-      "offset": 8057294
+      "offset": 7922895
     },
     {
       "scope": "workspace",
       "en": "Last Activity",
       "zh": "最近活动",
       "source": "hub:main.js",
-      "offset": 9518726
+      "offset": 9684950
     },
     {
       "scope": "workspace",
       "en": "Last Prompt",
       "zh": "最近的提示词",
       "source": "hub:main.js",
-      "offset": 7657122
+      "offset": 7374499
     },
     {
       "scope": "workspace",
       "en": "Loading Repositories…",
       "zh": "正在加载仓库…",
       "source": "hub:main.js",
-      "offset": 8739352
+      "offset": 8884024
     },
     {
       "scope": "workspace",
       "en": "Mark All as Read",
       "zh": "全部标为已读",
       "source": "hub:main.js",
-      "offset": 9520816
+      "offset": 1924609
     },
     {
       "scope": "workspace",
       "en": "More options",
       "zh": "更多选项",
       "source": "hub:main.js",
-      "offset": 8699249
+      "offset": 8829528
     },
     {
       "scope": "workspace",
       "en": "New Workspace",
       "zh": "新建工作目录",
       "source": "hub:main.js",
-      "offset": 8753353
+      "offset": 8882851
     },
     {
       "scope": "workspace",
       "en": "Next",
       "zh": "下一步",
       "source": "hub:main.js",
-      "offset": 9487627
+      "offset": 3566478
     },
     {
       "scope": "workspace",
       "en": "No matching files",
       "zh": "没有匹配的文件",
       "source": "hub:main.js",
-      "offset": 8519189
+      "offset": 8520788
     },
     {
       "scope": "workspace",
       "en": "Only Archived",
       "zh": "只看已归档",
       "source": "hub:main.js",
-      "offset": 7657553
+      "offset": 7374930
     },
     {
       "scope": "workspace",
       "en": "Only Automations",
       "zh": "只看自动化",
       "source": "hub:main.js",
-      "offset": 7657733
+      "offset": 7375110
     },
     {
       "scope": "workspace",
       "en": "Only Unread",
       "zh": "只看未读",
       "source": "hub:main.js",
-      "offset": 7657378
+      "offset": 7374755
     },
     {
       "scope": "workspace",
       "en": "Open File",
       "zh": "打开文件",
       "source": "hub:main.js",
-      "offset": 9629179
+      "offset": 8659572
     },
     {
       "scope": "workspace",
       "en": "Pin conversation",
       "zh": "置顶对话",
       "source": "hub:main.js",
-      "offset": 8714403
+      "offset": 8850690
     },
     {
       "scope": "workspace",
       "en": "Plugins",
       "zh": "插件",
       "source": "hub:main.js",
-      "offset": 9498318
+      "offset": 5573842
     },
     {
       "scope": "workspace",
       "en": "Preview is not available for this file type.",
       "zh": "这种文件暂时无法预览。",
       "source": "hub:main.js",
-      "offset": 8063708
+      "offset": 7929307
     },
     {
       "scope": "workspace",
       "en": "Rename",
       "zh": "重命名",
       "source": "hub:main.js",
-      "offset": 8680715
+      "offset": 5738148
     },
     {
       "scope": "workspace",
       "en": "Searching...",
       "zh": "正在搜索…",
       "source": "hub:main.js",
-      "offset": 8518648
+      "offset": 8520247
     },
     {
       "scope": "workspace",
       "en": "Send",
       "zh": "发送",
       "source": "hub:main.js",
-      "offset": 9740874
-    },
-    {
-      "scope": "workspace",
-      "en": "Sort By",
-      "zh": "排序方式",
-      "source": "hub:main.js",
-      "offset": 9520153
-    },
-    {
-      "scope": "workspace",
-      "en": "Sort Conversations",
-      "zh": "对话排序",
-      "source": "hub:main.js",
-      "offset": 9496363
+      "offset": 9922362
     },
     {
       "scope": "workspace",
       "en": "Sort and filter conversations",
       "zh": "排序和筛选对话",
       "source": "hub:main.js",
-      "offset": 7656130
+      "offset": 7373507
+    },
+    {
+      "scope": "workspace",
+      "en": "Sort By",
+      "zh": "排序方式",
+      "source": "hub:main.js",
+      "offset": 9675346
+    },
+    {
+      "scope": "workspace",
+      "en": "Sort Conversations",
+      "zh": "对话排序",
+      "source": "hub:main.js",
+      "offset": 7374174
     },
     {
       "scope": "workspace",
       "en": "Terminals",
       "zh": "终端",
       "source": "hub:main.js",
-      "offset": 9639863
+      "offset": 7964530
     },
     {
       "scope": "workspace",
       "en": "Unpin conversation",
       "zh": "取消置顶",
       "source": "hub:main.js",
-      "offset": 8714381
+      "offset": 8850669
     }
   ],
-  "templates": []
+  "templates": [
+    {
+      "id": "showMore",
+      "en": "Show Less",
+      "zh": "再显示 {n} 项",
+      "source": "hub:main.js",
+      "offset": 5831083
+    },
+    {
+      "id": "seeAll",
+      "en": "See less",
+      "zh": "查看全部 ({n})",
+      "source": "hub:main.js",
+      "offset": 6628376
+    },
+    {
+      "id": "hiddenHosts",
+      "en": "1 hidden host",
+      "zh": "{n} 台隐藏主机",
+      "source": "hub:main.js",
+      "offset": 6437406
+    }
+  ]
 }

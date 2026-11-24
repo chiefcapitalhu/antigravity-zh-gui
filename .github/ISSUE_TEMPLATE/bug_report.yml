@@ -1,0 +1,42 @@
+name: 问题反馈 / 新版本适配（Bug Report）
+description: 反馈汉化失败、降级提示、误翻或新版本 Antigravity 适配需求
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统与芯片架构
+      options:
+        - macOS (Apple Silicon / arm64)
+        - macOS (Intel / amd64)
+        - Windows (x64)
+        - Windows (ARM64)
+    validations:
+      required: true
+  - type: input
+    id: ag_version
+    attributes:
+      label: Antigravity 客户端版本
+      placeholder: 例如 2.35.0
+    validations:
+      required: true
+  - type: input
+    id: tool_version
+    attributes:
+      label: 汉化工具版本
+      placeholder: 例如 v0.2.0 或 commit hash
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述与复现步骤
+      placeholder: 请描述具体现象（如果是误翻，请说明出现在哪个界面位置，注意隐去个人隐私信息）
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 控制台日志或 status 输出（可选）
+      description: 请勿粘贴包含个人敏感路径、账号或对话内容的信息
+      render: text

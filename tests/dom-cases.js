@@ -70,7 +70,6 @@ test('release dictionary covers fixed control captions and accessible names', as
     ["onboarding", "onboarding-last-used-badge", "span", "text", "Last Used"],
     ["onboarding", "onboarding-other-options-toggle", "button", "text", "Other sign-in options"],
     ["workspace", "customize-sidebar-button", "button", "aria-label", "Customize Sidebar"],
-    ["workspace", "filter-sort-button", "button", "aria-label", "Filter and Sort"],
     ["workspace", "filter-environment-all", "button", "text", "All"],
     ["workspace", "filter-mark-all-read", "button", "text", "Mark All as Read"],
     ["workspace", "group-by-submenu-trigger", "span", "text", "Group By"],
@@ -120,7 +119,6 @@ test('release dictionary covers fixed control captions and accessible names', as
     ["settings", "voice-settings-change", "button", "text", "Change"],
     ["settings", "voice-settings-delete-recordings", "button", "text", "Delete all"],
     ["settings", "voice-delete-recordings-confirm", "button", "text", "Delete"],
-    ["permissions", "inline-permission-badge", "span", "text", "Runtime permission"],
     ["permissions", "permissions-advanced-toggle", "button", "text", "Advanced"],
     ["permissions", "computer-permissions-relaunch", "button", "text", "Relaunch ↻"],
     ["permissions", "computer-permissions-continue", "button", "text", "Continue Task →"],
@@ -128,7 +126,6 @@ test('release dictionary covers fixed control captions and accessible names', as
     ["permissions", "declared-permissions-next", "button", "text", "Resolving...", "Next: Review Permissions"],
     ["permissions", "declared-permissions-confirm", "button", "text", "Saving..."],
     ["permissions", "permissions-use-global-settings", "button", "text", "Use Global Settings"],
-    ["permissions", "inline-permission-add-note", "button", "text", "Deny with note"],
     ["permissions", "inline-permission-deny", "button", "text", "Deny"],
     ["permissions", "inline-permission-unsandboxed-warning", "div", "text", "Confirm the command is safe to run outside of the sandbox with full network and disk access."],
     ["permissions", "inline-permission-in-chat", "button", "text", "In chat"],
@@ -160,7 +157,7 @@ test('release dictionary covers fixed control captions and accessible names', as
     ["agents", "subagent-tab-loading", "div", "text", "Loading subagent..."],
     ["agents", "subagent-tab-ended", "div", "text", "Subagent ended"],
     ["agents", "subagent-tab-open-full-view", "button", "text", "Full View"],
-    ["agents", "new-coordinator-button", "button", "aria-label", "New coordinator"],
+    ["agents", "new-coordinator-button", "button", "aria-label", "New agent"],
     ["agents", "create-coordinator-submit", "button", "text", "Create Coordinator"],
     ["agents", "coordinator-settings-save", "button", "text", "Save"],
     ["agents", "marketplace-filter-button", "button", "aria-label", "Filter plugins"],
@@ -526,12 +523,13 @@ test('protected content overrides even a known UI control inside the subtree', a
   });
   const input = element('input', {'data-testid':'new-conversation-button', value:'Save'});
   const textArea = element('textarea', {'data-testid':'new-conversation-button'}, 'Save');
-  const unknown = button('Save', 'unknown-action');
-  const bareButton = element('button', {}, 'Save');
+  const bareProse = element('div', {}, 'Save');
+  const bareSpan = element('span', {}, 'Close');
   const file = button('C:\\Users\\User\\Save.txt');
   const url = button('https://example.invalid/Save');
   const customModel = button('Save', 'model-selector-custom-item');
-  root.append(input, textArea, unknown, bareButton, file, url, customModel);
+  const convoRow = box({}, element('span', {'data-testid':'conversation-row-chat-icon'}), element('div', {}, 'New Conversation'));
+  root.append(input, textArea, bareProse, bareSpan, file, url, customModel, convoRow);
   const guest = element('iframe');
   root.append(guest);
   const guestLabel = guest.contentDocument.createElement('button');
@@ -543,10 +541,170 @@ test('protected content overrides even a known UI control inside the subtree', a
     equal(b.textContent, 'Save', protectedRoots[i].outerText || protectedRoots[i].nodeName);
     equal(b.title, 'Close', 'protected title ' + i);
   }
-  for (const node of [unknown, bareButton, customModel, guestLabel]) equal(node.textContent, 'Save', 'unapproved control');
+  for (const node of [bareProse, customModel, guestLabel]) equal(node.textContent, 'Save', 'protected or ambiguous prose');
+  equal(bareSpan.textContent, 'Close', 'ambiguous short word in bare span');
+  equal(convoRow.lastElementChild.textContent, 'New Conversation', 'conversation list title');
   equal(input.value, 'Save', 'input'); equal(textArea.value, 'Save', 'textarea');
   equal(file.textContent, 'C:\\Users\\User\\Save.txt', 'path');
   equal(url.textContent, 'https://example.invalid/Save', 'URL');
+});
+
+test('v0.2 four-layer engine: unregistered UI, dynamic templates, thinking boundary and zh-en-zh toggle', async () => {
+  // Layer 2: Unregistered UI sentences, normalization (curly quotes / ellipsis / whitespace), attributes & shortcut suffix
+  const heading = element('h2', {}, 'Choose how agents handle commands.');
+  const titleCaseCompat = element('span', {}, 'Choose How Agents Handle Commands.');
+  const curly = element('p', {}, 'It\u2019s ready to run...');
+  const shortcutBtn = element('button', {}, 'Copy (Cmd+C)');
+  const searchInput = element('input', {type: 'text', placeholder: 'Search settings...', value: 'Choose how agents handle commands.'});
+  const tipBtn = element('button', {'aria-label': 'Close (Esc)', title: 'Copy (Cmd+C)'}, 'Save');
+
+  // Layer 3: Ambiguous short words only translate in control context, never in bare prose
+  const proseShort = element('p', {}, 'Save');
+  const menuShort = element('div', {role: 'menuitem'}, 'Delete');
+
+  // Layer 4: Thinking collapsible header vs expanded body, working/steps/permissions/quota/counts/split nodes
+  const thinkingTrigger = element('button', {'data-testid': 'thinking-collapsible-trigger', 'aria-expanded': 'true'}, 'Thought for 12s');
+  const thinkingBody = box({class: 'overflow-y-auto'}, box({}, element('p', {}, 'Choose how agents handle commands.'), element('span', {}, 'Thought for 12s')));
+  const thinkingWrap = box({class: 'relative'}, thinkingTrigger, thinkingBody);
+
+  const dynNodes = [
+    ['Thinking...', '思考中…'],
+    ['Thinking for 5s', '已思考 5 秒'],
+    ['Worked for 1m 20s · 3 updates', '已处理 1 分钟 20 秒 · 3 条更新'],
+    ['Planning...', '规划中…'],
+    ['Explored 3 files, ran 2 commands, edited 1 file', '已探索 3 个文件，已运行 2 条命令，已编辑 1 个文件'],
+    ['Explored 3 files, 2 searches', '已探索 3 个文件，2 次搜索'],
+    ['Explored 3 files, 2 searches, edited 1 file', '已探索 3 个文件，2 次搜索，已编辑 1 个文件'],
+    ['Reading config.go', '正在读取 config.go'],
+    ['Exploring 2 folders', '正在探索 2 个文件夹'],
+    ['Step 2 of 5', '第 2 / 5 步'],
+    ['Turn 1 of 3', '第 1 / 3 轮'],
+    ['Question 2 of 4', '第 2 / 4 个问题'],
+    ['Messaging Codebase Researcher', '正在通知 Codebase Researcher'],
+    ['Messaged Database Debugger', '已通知 Database Debugger'],
+    ['Yes, allow', '是，允许'],
+    ['Yes, always allow github.com', '是，始终允许 github.com'],
+    ["Yes, save rule for 'git status' in this conversation", '是，在当前对话保存“git status”的规则'],
+    ['Allow npm test?', '允许 npm test？'],
+    ['Save rule to always allow ls?', '保存规则以始终允许 ls？'],
+    ['Conflicts with "Copy" (press Enter to replace)', '与“Copy”冲突（按 Enter 替换）'],
+    ['Requires manual confirmation: destructive', '需要手动确认：destructive'],
+    ['Resets in 2h 30m', '2 小时 30 分钟后重置'],
+    ['Resets in <1m', '不到 1 分钟后重置'],
+    ['Refreshes in 15m', '15 分钟后刷新'],
+    ['5-hour limit', '5 小时限额'],
+    ['80% left', '剩余 80%'],
+    ['Available AI Credits: 250', '可用 AI 额度：250'],
+    ['5m ago', '5 分钟前'],
+    ['3d ago', '3 天前'],
+    ['2mo ago', '2 个月前'],
+    ['Show 5 more...', '再显示 5 项…'],
+    ['See all (12)', '查看全部 (12)'],
+    ['8 tools enabled', '已启用 8 个工具'],
+    ['2 tools excluded', '已排除 2 个工具'],
+    ['4 plugins', '4 个插件'],
+    ['3 drafts', '3 份草稿'],
+    ['6 references', '6 处引用'],
+    ['2 hidden hosts', '2 台隐藏主机'],
+    ['No plugins found for "foo"', '未找到与“foo”匹配的插件']
+  ].map(([en, zh]) => ({en, zh, el: element('div', {}, en)}));
+
+  // Split text nodes
+  const splitShowMore = element('button');
+  splitShowMore.append(document.createTextNode('Show '), document.createTextNode('7'), document.createTextNode(' more...'));
+  const splitStep = element('span');
+  splitStep.append(document.createTextNode('Step '), document.createTextNode('2'), document.createTextNode(' of '), document.createTextNode('5'));
+
+  // Additional Layer 1 protected nodes (AI markdown, code, terminal, contenteditable, 2.34.0 user containers)
+  const aiMarkdown = box({'data-testid': 'agent-response'}, box({'data-markdown-root': ''}, element('p', {}, 'Choose how agents handle commands.')));
+  const codeBlock = element('pre', {}, 'Thought for 12s');
+  const termBlock = box({class: 'xterm'}, element('span', {}, 'Choose how agents handle commands.'));
+  const editableBlock = box({contenteditable: 'true'}, element('p', {}, 'Choose how agents handle commands.'));
+
+  const userContainers234 = [
+    'planner-response-text', 'progress-update-response-text',
+    'side-question-followup-user', 'voice-user-message', 'voice-agent-message',
+    'live-user-turn', 'live-agent-turn', 'pending-user-messages',
+    'transcript-line-text', 'voice-transcript-summary-lead', 'voice-transcript-summary-point',
+    'ask-question-header-text', 'ask-question-option-text',
+    'comment-card-text', 'pdf-text-layer', 'csv-file-viewer', 'html-file-preview',
+    'file-title-name', 'project-selector-item', 'project-header', 'project-selector-github-repo-item',
+    'branch-option', 'branch-pill-label', 'webview-prompt-message', 'webview-download-filename',
+    'ssh-host-label', 'setup-script-output',
+    'terminal-surface', 'standalone-terminal-view', 'terminal-tab-surface'
+  ].map(id => ({id, el: box({'data-testid': id}, element('span', {}, 'Choose how agents handle commands.'))}));
+
+  const sidebarIconTitles234 = [
+    'conversation-pinned-icon', 'conversation-scheduled-icon',
+    'conversation-cloud-icon', 'conversation-battle-icon'
+  ].map(id => {
+    const titleDiv = element('div', {}, 'Choose how agents handle commands.');
+    const row = box({}, element('span', {'data-testid': id}), titleDiv);
+    return {id, row, titleDiv};
+  });
+
+  // Adversarial non-step / non-subagent ordinary phrases that must NOT be half-translated
+  const untouchedOrdinary = [
+    'Running Club', 'Reading List', 'Editing Mode',
+    'Messaging platform for teams', 'Messaging App'
+  ].map(text => ({text, el: element('div', {}, text)}));
+
+  root.append(
+    heading, titleCaseCompat, curly, shortcutBtn, searchInput, tipBtn, proseShort, menuShort,
+    thinkingWrap, ...dynNodes.map(x => x.el), splitShowMore, splitStep,
+    aiMarkdown, codeBlock, termBlock, editableBlock,
+    ...userContainers234.map(x => x.el),
+    ...sidebarIconTitles234.map(x => x.row),
+    ...untouchedOrdinary.map(x => x.el)
+  );
+
+  const api = mount({
+    exact: {
+      'Choose how agents handle commands.': '选择 AI 助手处理命令的方式。',
+      "It's ready to run…": '已准备就绪…',
+      'Search settings...': '搜索设置…'
+    },
+    scoped: [{scope: 'controls', entries: {Save: '保存', Close: '关闭', Copy: '复制', Delete: '删除'}}],
+    templates: []
+  });
+
+  for (const mode of ['zh', 'en', 'zh']) {
+    api.setMode(mode);
+    await tick();
+    const zh = mode === 'zh';
+    equal(heading.textContent, zh ? '选择 AI 助手处理命令的方式。' : 'Choose how agents handle commands.', 'unregistered heading');
+    equal(titleCaseCompat.textContent, zh ? '选择 AI 助手处理命令的方式。' : 'Choose How Agents Handle Commands.', 'multi-word case-insensitive 2.34/2.35 compat');
+    equal(curly.textContent, zh ? '已准备就绪…' : 'It\u2019s ready to run...', 'normalized curly quote + ellipsis');
+    equal(shortcutBtn.textContent, zh ? '复制 (Cmd+C)' : 'Copy (Cmd+C)', 'shortcut suffix split');
+    equal(searchInput.placeholder, zh ? '搜索设置…' : 'Search settings...', 'input placeholder');
+    equal(searchInput.value, 'Choose how agents handle commands.', 'input value untouched');
+    equal(tipBtn.textContent, zh ? '保存' : 'Save', 'button short word');
+    equal(tipBtn.getAttribute('aria-label'), zh ? '关闭 (Esc)' : 'Close (Esc)', 'aria-label shortcut split');
+    equal(tipBtn.getAttribute('title'), zh ? '复制 (Cmd+C)' : 'Copy (Cmd+C)', 'title shortcut split');
+    equal(proseShort.textContent, 'Save', 'short word untouched in bare prose');
+    equal(menuShort.textContent, zh ? '删除' : 'Delete', 'short word in menuitem');
+    equal(thinkingTrigger.textContent, zh ? '思考了 12 秒' : 'Thought for 12s', 'thinking trigger button');
+    equal(thinkingBody.querySelector('p').textContent, 'Choose how agents handle commands.', 'expanded thinking body prose untouched');
+    equal(thinkingBody.querySelector('span').textContent, 'Thought for 12s', 'expanded thinking body template untouched');
+    for (const item of dynNodes) {
+      equal(item.el.textContent, zh ? item.zh : item.en, 'dynamic template ' + item.en);
+    }
+    equal(splitShowMore.textContent, zh ? '再显示 7 项…' : 'Show 7 more...', 'split show more');
+    equal(splitStep.textContent, zh ? '第 2 / 5 步' : 'Step 2 of 5', 'split step of');
+    equal(aiMarkdown.textContent, 'Choose how agents handle commands.', 'AI response markdown untouched');
+    equal(codeBlock.textContent, 'Thought for 12s', 'code block untouched');
+    equal(termBlock.textContent, 'Choose how agents handle commands.', 'terminal untouched');
+    equal(editableBlock.textContent, 'Choose how agents handle commands.', 'contenteditable untouched');
+    for (const item of userContainers234) {
+      equal(item.el.textContent, 'Choose how agents handle commands.', 'protected 2.34.0 container ' + item.id);
+    }
+    for (const item of sidebarIconTitles234) {
+      equal(item.titleDiv.textContent, 'Choose how agents handle commands.', 'protected sidebar icon title ' + item.id);
+    }
+    for (const item of untouchedOrdinary) {
+      equal(item.el.textContent, item.text, 'ordinary phrase must not be half-translated: ' + item.text);
+    }
+  }
 });
 
 test('a framework can replace or remove text and attributes during translation', async () => {

@@ -63,7 +63,7 @@ func (d Dictionary) Validate() error {
 	seen := map[string]map[string]bool{}
 	for _, group := range d.Scoped {
 		switch group.Scope {
-		case "toolbar", "workspace", "settings", "onboarding", "permissions", "agents", "model", "sidecar", "application", "context", "tray", "dock":
+		case "toolbar", "workspace", "settings", "onboarding", "permissions", "agents", "model", "sidecar", "controls", "application", "context", "tray", "dock":
 		default:
 			return fmt.Errorf("unknown translation scope %q", group.Scope)
 		}
@@ -83,7 +83,10 @@ func (d Dictionary) Validate() error {
 	templates := map[string]bool{}
 	for _, t := range d.Templates {
 		switch t.ID {
-		case "minutesAgo", "hoursAgo", "itemCount", "quotaRemaining", "permissionCount", "agentsRunning":
+		case "minutesAgo", "hoursAgo", "itemCount", "quotaRemaining", "permissionCount", "agentsRunning",
+			"thoughtFor", "thinkingFor", "workedFor", "updatesCount", "showMore", "seeAll",
+			"toolsEnabled", "toolsExcluded", "pluginsCount", "draftsCount", "referencesCount",
+			"hiddenHosts", "availableCredits", "resetsIn", "refreshesIn", "percentLeft", "hourLimit":
 		default:
 			return fmt.Errorf("unknown translation template %q", t.ID)
 		}

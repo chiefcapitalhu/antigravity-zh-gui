@@ -1,0 +1,26 @@
+name: 漏翻 / 译文优化反馈（Translation）
+description: 反馈界面中尚未汉化的英文原文，或提出更自然的中文译文建议
+labels: ["translation"]
+body:
+  - type: input
+    id: ag_version
+    attributes:
+      label: Antigravity 客户端版本
+      placeholder: 例如 2.35.0
+    validations:
+      required: true
+  - type: textarea
+    id: strings
+    attributes:
+      label: 漏翻英文原文 / 建议译文
+      placeholder: |
+        例如：
+        - 原文：...
+        - 出现位置：设置 → 模型 / 聊天状态条 / 右键菜单
+        - 建议译文（可选）：...
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 界面截图（可选，请先遮盖个人会话与隐私信息）

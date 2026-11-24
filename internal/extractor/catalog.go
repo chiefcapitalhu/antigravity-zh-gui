@@ -40,12 +40,8 @@ func (s *SourceSet) Candidates() (*Catalog, error) {
 	c := &Catalog{Version: s.Version, Sources: maps.Clone(s.hashes), Entries: []Entry{}, Warnings: s.warnings}
 	for name, src := range s.scripts {
 		err := staticLiterals(src, func(start, end int, context string) {
-			switch context {
-			case "label", "title", "placeholder", "aria-label", "child":
-			case "message":
-				if !nativeModules[name] {
-					return
-				}
+			switch {
+			case uiProperty(context) || context == "child" || context == "ternary":
 			default:
 				return
 			}

@@ -459,3 +459,40 @@ func TestRestoreOriginalWithoutOptionalIntegrity(t *testing.T) {
 		t.Fatal("restore audit mismatch")
 	}
 }
+
+func TestMacBackupConflictMessageAndOfficialRestoreCacheCleanup(t *testing.T) {
+	e, i := sample(t, "darwin", updateFixture, wslFixture)
+	old := fileBytes(t, i.Archive)
+	// Create a valid official backup first.
+	if _, err := e.run(i, Options{BackupApp: true}, false); err != nil {
+		t.Fatal(err)
+	}
+	backupDir, _ := e.backupPath()
+
+	// Replace backup's archive with an older version to trigger conflict during apply with BackupApp=true.
+	makeArchive(t, filepath.Join(backupDir, "Contents", "Resources", "app.asar"), updateFixture+"\n// older", wslFixture)
+	_, err := e.run(i, Options{BackupApp: true}, false)
+	if err == nil {
+		t.Fatal("expected backup version conflict")
+	}
+	if !strings.Contains(err.Error(), backupDir) || !strings.Contains(err.Error(), "取消勾选") || !strings.Contains(err.Error(), "移走") {
+		t.Fatalf("conflict error missing path or guidance: %v", err)
+	}
+
+	// Restore matching official backup so restoreOfficialWithReport succeeds.
+	writeFixture(t, filepath.Join(backupDir, "Contents", "Resources", "app.asar"), old)
+
+	// Explicit target: does NOT clear cache.
+	cleared := 0
+	e.clearCache = func(string) error { cleared++; return errors.New("cache locked") }
+	res, err := e.restoreOfficialWithReport(i, i.Root)
+	if err != nil || !res.Committed || len(res.Warnings) != 0 || cleared != 0 {
+		t.Fatalf("explicit target restore: res=%+v cleared=%d err=%v", res, cleared, err)
+	}
+
+	// Default target (""): attempts cache cleanup; failure is recorded as warning without failing commit.
+	res, err = e.restoreOfficialWithReport(i, "")
+	if err != nil || !res.Committed || cleared != 1 || len(res.Warnings) != 1 || res.Warnings[0].Code != "cache_cleanup_incomplete" {
+		t.Fatalf("default target restore: res=%+v cleared=%d err=%v", res, cleared, err)
+	}
+}

@@ -32,6 +32,15 @@ type Preferences struct {
 
 func Defaults() Preferences { return Preferences{Hotkey: true, DefaultLang: "zh", Brand: "keep"} }
 
+// ValidateTarget ensures a non-empty install target is an absolute path without control characters.
+// An empty string means automatic installation detection.
+func ValidateTarget(target string) error {
+	if target != "" && (!filepath.IsAbs(target) || strings.IndexFunc(target, unicode.IsControl) >= 0 || !utf8.ValidString(target)) {
+		return errors.New("安装路径必须是有效的绝对路径")
+	}
+	return nil
+}
+
 func (p Preferences) Validate() error {
 	if p.DefaultLang != "zh" && p.DefaultLang != "en" {
 		return errors.New("界面语言必须为 zh 或 en")
@@ -39,10 +48,7 @@ func (p Preferences) Validate() error {
 	if p.Brand != "keep" && p.Brand != "hide" {
 		return errors.New("品牌选项必须为 keep 或 hide")
 	}
-	if p.Target != "" && (!filepath.IsAbs(p.Target) || strings.IndexFunc(p.Target, unicode.IsControl) >= 0 || !utf8.ValidString(p.Target)) {
-		return errors.New("安装路径必须是有效的绝对路径")
-	}
-	return nil
+	return ValidateTarget(p.Target)
 }
 
 // Stores can be opened independently by different handlers. Coordinate all

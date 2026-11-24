@@ -36,13 +36,59 @@ func (s *SourceSet) add(name string, data []byte) error {
 	return nil
 }
 
+func hasPatchMarker(path string) bool {
+	f, err := os.Open(path)
+	if err != nil {
+		return false
+	}
+	defer f.Close()
+	marker := []byte("/* === ANTIGRAVITY-ZH-GUI RUNTIME BEGIN === */")
+	tail := len(marker) - 1
+	buf := make([]byte, 64*1024+tail)
+	carry := 0
+	for {
+		n, err := f.Read(buf[carry:])
+		window := buf[:carry+n]
+		if bytes.Contains(window, marker) {
+			return true
+		}
+		if errors.Is(err, io.EOF) || err != nil {
+			return false
+		}
+		carry = min(tail, len(window))
+		copy(buf, window[len(window)-carry:])
+	}
+}
+
+var asarMembers = []string{
+	"dist/main.js",
+	"dist/menu.js",
+	"dist/tray.js",
+	"dist/updater.js",
+	"dist/loadingOverlay.js",
+	"dist/ipcHandlers.js",
+	"dist/remote/remoteManager.js",
+	"dist/remote/sshPrompts.js",
+	"dist/deviceChooser.js",
+	"dist/webauthn.js",
+	"dist/webviewPopupSecurity.js",
+	"dist/provisionSplash.js",
+	"dist/ideInstall/wizardHtml.js",
+}
+
 func Load(i detector.Installation) (*SourceSet, error) {
-	if _, err := asar.HeaderHash(i.Archive); err != nil {
+	archive := i.Archive
+	if bak := i.Archive + ".zh-gui.bak"; hasPatchMarker(i.Archive) {
+		if st, err := os.Lstat(bak); err == nil && st.Mode().IsRegular() {
+			archive = bak
+		}
+	}
+	if _, err := asar.HeaderHash(archive); err != nil {
 		return nil, err
 	}
 	s := &SourceSet{Version: i.Version, scripts: map[string][]byte{}, hashes: map[string]string{}}
-	for _, name := range []string{"dist/main.js", "dist/menu.js", "dist/tray.js", "dist/updater.js", "dist/ipcHandlers.js", "dist/provisionSplash.js", "dist/ideInstall/wizardHtml.js"} {
-		data, err := asar.ReadFile(i.Archive, name)
+	for _, name := range asarMembers {
+		data, err := asar.ReadFile(archive, name)
 		if err != nil {
 			s.warnings = append(s.warnings, fmt.Sprintf("%s: %v", name, err))
 			continue
@@ -198,14 +244,84 @@ func embeddedHub(r io.ReaderAt, size int64) ([]byte, error) {
 
 // Only direct, human-facing presentation fields are auto-selected; reviewed
 // literals from other UI construction sites can be added by evidence replay.
-var nativeModules = map[string]bool{"asar:dist/menu.js": true, "asar:dist/main.js": true, "asar:dist/tray.js": true, "asar:dist/updater.js": true}
+var nativeModules = map[string]bool{
+	"asar:dist/main.js":                 true,
+	"asar:dist/menu.js":                 true,
+	"asar:dist/tray.js":                 true,
+	"asar:dist/updater.js":              true,
+	"asar:dist/loadingOverlay.js":       true,
+	"asar:dist/ipcHandlers.js":          true,
+	"asar:dist/remote/remoteManager.js": true,
+	"asar:dist/remote/sshPrompts.js":    true,
+	"asar:dist/deviceChooser.js":        true,
+	"asar:dist/webauthn.js":             true,
+	"asar:dist/webviewPopupSecurity.js": true,
+	"asar:dist/provisionSplash.js":      true,
+	"asar:dist/ideInstall/wizardHtml.js": true,
+}
 
 func displayText(text string) bool {
 	if strings.TrimSpace(text) != text || len(text) == 0 || len(text) > 400 || !strings.ContainsAny(text, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz") {
 		return false
 	}
-	if strings.ContainsAny(text, "\r\n\t{}<>/\\") || strings.Contains(text, "${") || strings.HasPrefix(text, "--") {
+	if strings.ContainsAny(text, "\r\n\t{}\\" ) || strings.Contains(text, "${") || strings.HasPrefix(text, "--") {
 		return false
+	}
+	lower := strings.ToLower(text)
+	if strings.HasPrefix(lower, "http://") || strings.HasPrefix(lower, "https://") ||
+		strings.HasPrefix(lower, "file://") || strings.HasPrefix(lower, "mailto:") ||
+		strings.HasPrefix(lower, "data:") || strings.HasPrefix(lower, "ws://") || strings.HasPrefix(lower, "wss://") {
+		return false
+	}
+	if strings.HasPrefix(text, "/") || strings.HasPrefix(text, "./") || strings.HasPrefix(text, "../") || strings.HasPrefix(text, "~/") {
+		return false
+	}
+	// Reject HTML tags/fragments, while allowing UI copy like "Resets in <1m" or "A -> B".
+	if strings.Contains(text, "</") || strings.Contains(text, "/>") {
+		return false
+	}
+	if idx := strings.IndexByte(text, '<'); idx >= 0 && idx+1 < len(text) {
+		next := text[idx+1]
+		if (next >= 'a' && next <= 'z') || (next >= 'A' && next <= 'Z') || next == '!' {
+			return false
+		}
+	}
+	// Reject single-token identifiers (snake_case, kebab-case, camelCase, dot.paths) and CSS utility lists.
+	fields := strings.Fields(text)
+	if len(fields) == 1 {
+		tok := fields[0]
+		if strings.Contains(tok, "_") || strings.Contains(tok, "::") {
+			return false
+		}
+		if strings.Contains(tok, "/") && !strings.ContainsAny(tok, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
+			return false
+		}
+		// Reject lowercase kebab-case or camelCase single identifiers (e.g. "aria-label", "fooBar", "model.id").
+		if tok[0] >= 'a' && tok[0] <= 'z' {
+			if strings.ContainsAny(tok, "-.") {
+				return false
+			}
+			for i := 1; i < len(tok); i++ {
+				if tok[i] >= 'A' && tok[i] <= 'Z' {
+					return false
+				}
+			}
+		}
+		// Reject ALL_CAPS identifiers or codes longer than 4 chars without spaces unless common acronyms.
+		if len(tok) > 5 && tok == strings.ToUpper(tok) && !strings.ContainsAny(tok, " .,!?") {
+			return false
+		}
+	} else {
+		// Reject Tailwind/CSS utility class lists: e.g. "flex items-center gap-2 text-sm"
+		cssLike := 0
+		for _, f := range fields {
+			if strings.ContainsAny(f, "-:[]") && f == strings.ToLower(f) {
+				cssLike++
+			}
+		}
+		if len(fields) >= 2 && cssLike*2 >= len(fields) && text == strings.ToLower(text) {
+			return false
+		}
 	}
 	return true
 }

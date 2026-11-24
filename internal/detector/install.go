@@ -29,9 +29,13 @@ func Inspect(target string) (Installation, error) {
 	if target != "" {
 		return inspectAt(runtime.GOOS, target)
 	}
+	return inspectCandidates(runtime.GOOS, defaultCandidates(runtime.GOOS))
+}
+
+func defaultCandidates(platform string) []string {
 	home, _ := os.UserHomeDir()
 	var candidates []string
-	switch runtime.GOOS {
+	switch platform {
 	case "darwin":
 		candidates = []string{"/Applications/Antigravity.app"}
 		if home != "" {
@@ -46,14 +50,29 @@ func Inspect(target string) (Installation, error) {
 				candidates = append(candidates, filepath.Join(root, "Antigravity"))
 			}
 		}
-	default:
-		return Installation{}, fmt.Errorf("unsupported platform %q", runtime.GOOS)
 	}
+	return candidates
+}
+
+func inspectCandidates(platform string, candidates []string) (Installation, error) {
+	if platform != "darwin" && platform != "windows" {
+		return Installation{}, fmt.Errorf("unsupported platform %q", platform)
+	}
+	var firstErr error
 	for _, root := range candidates {
 		if _, err := os.Lstat(root); errors.Is(err, os.ErrNotExist) {
 			continue
 		}
-		return inspectAt(runtime.GOOS, root)
+		inst, err := inspectAt(platform, root)
+		if err == nil {
+			return inst, nil
+		}
+		if firstErr == nil {
+			firstErr = err
+		}
+	}
+	if firstErr != nil {
+		return Installation{}, firstErr
 	}
 	return Installation{}, errors.New("未找到 Antigravity，请手动指定安装路径")
 }

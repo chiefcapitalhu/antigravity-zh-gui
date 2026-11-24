@@ -1,319 +1,4458 @@
 {
   "schema": 1,
   "module": "core",
-  "version": "2.34.0",
+  "version": "2.35.0",
   "sources": {
-    "hub:main.js": "d52ce739c15044c02a32e1b9df62bfe39dd8164c70a2ab783540e6ed5e070251"
+    "hub:main.js": "f039eca519f153aeac9a0f1d10abc7afd8ff4b8009ef78d684669a3c7955f54d"
   },
-  "exact": [],
+  "exact": [
+    {
+      "en": "? This action cannot be undone.",
+      "zh": "？此操作无法撤销。",
+      "source": "hub:main.js",
+      "offset": 9303436
+    },
+    {
+      "en": ". Try again.",
+      "zh": "。请重试。",
+      "source": "hub:main.js",
+      "offset": 5395515
+    },
+    {
+      "en": ". Would you like to continue using it or make a new one?",
+      "zh": "。你想继续使用它，还是新建一个？",
+      "source": "hub:main.js",
+      "offset": 9650815
+    },
+    {
+      "en": ". Your use is subject to the",
+      "zh": "。你的使用受以下条款约束：",
+      "source": "hub:main.js",
+      "offset": 5802256
+    },
+    {
+      "en": "1 Comment",
+      "zh": "1 条评论",
+      "source": "hub:main.js",
+      "offset": 3825775
+    },
+    {
+      "en": "1 Draft",
+      "zh": "1 条草稿",
+      "source": "hub:main.js",
+      "offset": 5009662
+    },
+    {
+      "en": "12:00 AM",
+      "zh": "凌晨 12:00",
+      "source": "hub:main.js",
+      "offset": 9305941
+    },
+    {
+      "en": "12:00 PM",
+      "zh": "中午 12:00",
+      "source": "hub:main.js",
+      "offset": 9305959
+    },
+    {
+      "en": "A few things to know, and a couple settings to review.",
+      "zh": "有几件事需要了解，还有几项设置需要确认。",
+      "source": "hub:main.js",
+      "offset": 7398077
+    },
+    {
+      "en": "a HID device",
+      "zh": "一个 HID 设备",
+      "source": "hub:main.js",
+      "offset": 4973248
+    },
+    {
+      "en": "A new version is available.",
+      "zh": "发现新版本。",
+      "source": "hub:main.js",
+      "offset": 11933936
+    },
+    {
+      "en": "A similar",
+      "zh": "类似的",
+      "source": "hub:main.js",
+      "offset": 6448368
+    },
+    {
+      "en": "a USB device",
+      "zh": "一个 USB 设备",
+      "source": "hub:main.js",
+      "offset": 4973273
+    },
+    {
+      "en": "Aborted",
+      "zh": "已中止",
+      "source": "hub:main.js",
+      "offset": 1964286
+    },
+    {
+      "en": "About embedding",
+      "zh": "关于嵌入预览",
+      "source": "hub:main.js",
+      "offset": 4506869
+    },
+    {
+      "en": "Accept",
+      "zh": "接受",
+      "source": "hub:main.js",
+      "offset": 8294075
+    },
+    {
+      "en": "Access restricted",
+      "zh": "访问受限",
+      "source": "hub:main.js",
+      "offset": 7412310
+    },
+    {
+      "en": "Action required",
+      "zh": "需要操作",
+      "source": "hub:main.js",
+      "offset": 6496558
+    },
+    {
+      "en": "Actions",
+      "zh": "操作",
+      "source": "hub:main.js",
+      "offset": 8376880
+    },
+    {
+      "en": "Actual behavior",
+      "zh": "实际表现",
+      "source": "hub:main.js",
+      "offset": 5421967
+    },
+    {
+      "en": "Add a message...",
+      "zh": "添加一条消息...",
+      "source": "hub:main.js",
+      "offset": 7936750
+    },
+    {
+      "en": "Add files",
+      "zh": "添加文件",
+      "source": "hub:main.js",
+      "offset": 9921441
+    },
+    {
+      "en": "Add inline comment",
+      "zh": "添加行内评论",
+      "source": "hub:main.js",
+      "offset": 3573651
+    },
+    {
+      "en": "Add to Chat/Quote",
+      "zh": "添加到对话 / 引用",
+      "source": "hub:main.js",
+      "offset": 5532720
+    },
+    {
+      "en": "Added",
+      "zh": "已添加",
+      "source": "hub:main.js",
+      "offset": 8295934
+    },
+    {
+      "en": "Adding...",
+      "zh": "正在添加...",
+      "source": "hub:main.js",
+      "offset": 8295920
+    },
+    {
+      "en": "Address bar",
+      "zh": "地址栏",
+      "source": "hub:main.js",
+      "offset": 4502398
+    },
+    {
+      "en": "Address bar suggestions",
+      "zh": "地址栏建议",
+      "source": "hub:main.js",
+      "offset": 4503726
+    },
+    {
+      "en": "Alt text:",
+      "zh": "替代文本：",
+      "source": "hub:main.js",
+      "offset": 6678502
+    },
+    {
+      "en": "Always open",
+      "zh": "始终打开",
+      "source": "hub:main.js",
+      "offset": 6543822
+    },
+    {
+      "en": "An embedded page on this page says",
+      "zh": "此页面中嵌入的网页显示",
+      "source": "hub:main.js",
+      "offset": 4981931
+    },
+    {
+      "en": "An error occurred while submitting your feedback. Please try again.",
+      "zh": "提交反馈时出错，请重试。",
+      "source": "hub:main.js",
+      "offset": 5432633
+    },
+    {
+      "en": "An error was thrown.",
+      "zh": "发生了错误。",
+      "source": "hub:main.js",
+      "offset": 4917446
+    },
+    {
+      "en": "Announcements and tips",
+      "zh": "公告与提示",
+      "source": "hub:main.js",
+      "offset": 9632999
+    },
+    {
+      "en": "Answered",
+      "zh": "已回答",
+      "source": "hub:main.js",
+      "offset": 7336674
+    },
+    {
+      "en": "Any error messages",
+      "zh": "相关的报错信息",
+      "source": "hub:main.js",
+      "offset": 5422012
+    },
+    {
+      "en": "Any error messages seen when trying to log in",
+      "zh": "尝试登录时看到的任何报错信息",
+      "source": "hub:main.js",
+      "offset": 5423109
+    },
+    {
+      "en": "Any relevant information",
+      "zh": "其他相关信息",
+      "source": "hub:main.js",
+      "offset": 5422060
+    },
+    {
+      "en": "Any time",
+      "zh": "不限时间",
+      "source": "hub:main.js",
+      "offset": 9681716
+    },
+    {
+      "en": "Apostrophe",
+      "zh": "撇号",
+      "source": "hub:main.js",
+      "offset": 6829230
+    },
+    {
+      "en": "Application Menu",
+      "zh": "应用菜单",
+      "source": "hub:main.js",
+      "offset": 9930602
+    },
+    {
+      "en": "Apply",
+      "zh": "应用",
+      "source": "hub:main.js",
+      "offset": 5417432
+    },
+    {
+      "en": "Are you sure you want to delete this conversation? This action cannot be undone.",
+      "zh": "确定要删除此对话吗？此操作无法撤销。",
+      "source": "hub:main.js",
+      "offset": 7352812
+    },
+    {
+      "en": "Ask about your code or any topic, get clear answers.",
+      "zh": "无论是代码还是其他问题，都能快速获得清晰解答。",
+      "source": "hub:main.js",
+      "offset": 9256135
+    },
+    {
+      "en": "Ask questions, report issues, and discuss features",
+      "zh": "提问答疑、反馈问题并讨论新功能",
+      "source": "hub:main.js",
+      "offset": 5426873
+    },
+    {
+      "en": "at least",
+      "zh": "至少",
+      "source": "hub:main.js",
+      "offset": 2041614
+    },
+    {
+      "en": "Attach a screenshot (optional)",
+      "zh": "附加截图（可选）",
+      "source": "hub:main.js",
+      "offset": 5430642
+    },
+    {
+      "en": "Attach Antigravity server logs",
+      "zh": "附加 Antigravity 服务端日志",
+      "source": "hub:main.js",
+      "offset": 5430750
+    },
+    {
+      "en": "Attaching logs requires an email address",
+      "zh": "附加日志需要填写电子邮箱",
+      "source": "hub:main.js",
+      "offset": 5431061
+    },
+    {
+      "en": "Attackers might be able to see the images you're looking at on this site and trick you by modifying them.",
+      "zh": "攻击者可能能够看到您在此网站上查看的图片，并通过篡改图片来误导您。",
+      "source": "hub:main.js",
+      "offset": 4445982
+    },
+    {
+      "en": "Attackers might be trying to steal your information from",
+      "zh": "攻击者可能正试图窃取您在此网站上的信息：",
+      "source": "hub:main.js",
+      "offset": 4724193
+    },
+    {
+      "en": "Authentication expired",
+      "zh": "身份验证已过期",
+      "source": "hub:main.js",
+      "offset": 6496718
+    },
+    {
+      "en": "Authentication Required",
+      "zh": "需要身份验证",
+      "source": "hub:main.js",
+      "offset": 7406934
+    },
+    {
+      "en": "Authorization code",
+      "zh": "授权码",
+      "source": "hub:main.js",
+      "offset": 9222363
+    },
+    {
+      "en": "Automatically reproduce bugs, trace causes, test fixes.",
+      "zh": "自动复现问题、定位原因并验证修复效果。",
+      "source": "hub:main.js",
+      "offset": 9256004
+    },
+    {
+      "en": "Back 5s (←)",
+      "zh": "快退 5 秒 (←)",
+      "source": "hub:main.js",
+      "offset": 3509195
+    },
+    {
+      "en": "Back to home",
+      "zh": "返回首页",
+      "source": "hub:main.js",
+      "offset": 9495112
+    },
+    {
+      "en": "Back to safety",
+      "zh": "返回安全页面",
+      "source": "hub:main.js",
+      "offset": 4725126
+    },
+    {
+      "en": "Bad response",
+      "zh": "回答不佳",
+      "source": "hub:main.js",
+      "offset": 8250164
+    },
+    {
+      "en": "Block",
+      "zh": "阻止",
+      "source": "hub:main.js",
+      "offset": 11943100
+    },
+    {
+      "en": "Blocked: file type not allowed",
+      "zh": "已拦截：不允许下载此文件类型",
+      "source": "hub:main.js",
+      "offset": 4998368
+    },
+    {
+      "en": "Bounding box",
+      "zh": "边界框",
+      "source": "hub:main.js",
+      "offset": 12502882
+    },
+    {
+      "en": "Build new features",
+      "zh": "开发新功能",
+      "source": "hub:main.js",
+      "offset": 9255856
+    },
+    {
+      "en": "Build with one agent or a team",
+      "zh": "用一个或多个 AI 助手完成任务",
+      "source": "hub:main.js",
+      "offset": 7403097
+    },
+    {
+      "en": "Built to help, not hurt",
+      "zh": "专注助力，守护安全",
+      "source": "hub:main.js",
+      "offset": 7398514
+    },
+    {
+      "en": "By default, agents work in folders you choose and ask before sensitive changes. Adjust this anytime in Settings.",
+      "zh": "默认情况下，AI 助手在你选择的文件夹中工作，做出敏感更改前会先询问。你随时可以在设置里调整。",
+      "source": "hub:main.js",
+      "offset": 7403463
+    },
+    {
+      "en": "by Google",
+      "zh": "由 Google 提供",
+      "source": "hub:main.js",
+      "offset": 5707153
+    },
+    {
+      "en": "By using this app, you agree to its",
+      "zh": "使用本应用即表示您同意其",
+      "source": "hub:main.js",
+      "offset": 5227022
+    },
+    {
+      "en": "Bytes",
+      "zh": "字节数",
+      "source": "hub:main.js",
+      "offset": 8284235
+    },
+    {
+      "en": "Cancel",
+      "zh": "取消",
+      "source": "hub:main.js",
+      "offset": 4949063
+    },
+    {
+      "en": "Cancel (⌃C)",
+      "zh": "取消（⌃C）",
+      "source": "hub:main.js",
+      "offset": 9120222
+    },
+    {
+      "en": "Cancel (Ctrl+D)",
+      "zh": "取消（Ctrl+D）",
+      "source": "hub:main.js",
+      "offset": 9120241
+    },
+    {
+      "en": "Cancel download",
+      "zh": "取消下载",
+      "source": "hub:main.js",
+      "offset": 5006567
+    },
+    {
+      "en": "Cancel questionnaire",
+      "zh": "取消提问表单",
+      "source": "hub:main.js",
+      "offset": 8216334
+    },
+    {
+      "en": "Cancel Render Page Failed",
+      "zh": "取消页面渲染失败",
+      "source": "hub:main.js",
+      "offset": 12414161
+    },
+    {
+      "en": "Cancel Render Thumbnail Failed",
+      "zh": "取消缩略图渲染失败",
+      "source": "hub:main.js",
+      "offset": 12523256
+    },
+    {
+      "en": "Canceled",
+      "zh": "已取消",
+      "source": "hub:main.js",
+      "offset": 4998401
+    },
+    {
+      "en": "Canceling",
+      "zh": "正在取消",
+      "source": "hub:main.js",
+      "offset": 8830658
+    },
+    {
+      "en": "Canvas page · display only",
+      "zh": "画布页面 · 仅展示",
+      "source": "hub:main.js",
+      "offset": 6709100
+    },
+    {
+      "en": "Category",
+      "zh": "分类",
+      "source": "hub:main.js",
+      "offset": 9382186
+    },
+    {
+      "en": "Certificate details",
+      "zh": "证书详情",
+      "source": "hub:main.js",
+      "offset": 4445666
+    },
+    {
+      "en": "Certificate is not valid",
+      "zh": "证书无效",
+      "source": "hub:main.js",
+      "offset": 4445638
+    },
+    {
+      "en": "Certificate is valid",
+      "zh": "证书有效",
+      "source": "hub:main.js",
+      "offset": 4446121
+    },
+    {
+      "en": "Check again",
+      "zh": "重新检查",
+      "source": "hub:main.js",
+      "offset": 8941100
+    },
+    {
+      "en": "Checking access...",
+      "zh": "正在检查访问权限...",
+      "source": "hub:main.js",
+      "offset": 7412478
+    },
+    {
+      "en": "Checking...",
+      "zh": "正在检查...",
+      "source": "hub:main.js",
+      "offset": 8941086
+    },
+    {
+      "en": "Checking…",
+      "zh": "正在检查…",
+      "source": "hub:main.js",
+      "offset": 5741488
+    },
+    {
+      "en": "Choose File…",
+      "zh": "选择文件…",
+      "source": "hub:main.js",
+      "offset": 6438910
+    },
+    {
+      "en": "Choose…",
+      "zh": "请选择…",
+      "source": "hub:main.js",
+      "offset": 10077244
+    },
+    {
+      "en": "Clear cookies and site data",
+      "zh": "清除 Cookie 和网站数据",
+      "source": "hub:main.js",
+      "offset": 4995497
+    },
+    {
+      "en": "Clear search",
+      "zh": "清除搜索",
+      "source": "hub:main.js",
+      "offset": 5388954
+    },
+    {
+      "en": "Clear Search",
+      "zh": "清除搜索",
+      "source": "hub:main.js",
+      "offset": 12551210
+    },
+    {
+      "en": "Click to copy URL",
+      "zh": "点击复制链接",
+      "source": "hub:main.js",
+      "offset": 8988469
+    },
+    {
+      "en": "Click to load",
+      "zh": "点击加载",
+      "source": "hub:main.js",
+      "offset": 8164970
+    },
+    {
+      "en": "Click to open docs",
+      "zh": "点击打开文档",
+      "source": "hub:main.js",
+      "offset": 9620608
+    },
+    {
+      "en": "Click to Open Docs",
+      "zh": "点击打开文档",
+      "source": "hub:main.js",
+      "offset": 9620455
+    },
+    {
+      "en": "Click to view more",
+      "zh": "点击查看更多",
+      "source": "hub:main.js",
+      "offset": 8247527
+    },
+    {
+      "en": "Click to view or edit comment",
+      "zh": "点击查看或编辑评论",
+      "source": "hub:main.js",
+      "offset": 4956736
+    },
+    {
+      "en": "Close (Esc)",
+      "zh": "关闭 (Esc)",
+      "source": "hub:main.js",
+      "offset": 3565543
+    },
+    {
+      "en": "Close (Escape)",
+      "zh": "关闭（Esc）",
+      "source": "hub:main.js",
+      "offset": 8644359
+    },
+    {
+      "en": "Close downloads",
+      "zh": "关闭下载列表",
+      "source": "hub:main.js",
+      "offset": 5003172
+    },
+    {
+      "en": "Close Logs Modal",
+      "zh": "关闭日志窗口",
+      "source": "hub:main.js",
+      "offset": 8381073
+    },
+    {
+      "en": "Close Tab",
+      "zh": "关闭标签页",
+      "source": "hub:main.js",
+      "offset": 1920760
+    },
+    {
+      "en": "Cmd+click to open",
+      "zh": "按住 Cmd 并点击打开",
+      "source": "hub:main.js",
+      "offset": 4802731
+    },
+    {
+      "en": "Collapse All",
+      "zh": "全部折叠",
+      "source": "hub:main.js",
+      "offset": 8566740
+    },
+    {
+      "en": "Collapse questionnaire",
+      "zh": "收起提问表单",
+      "source": "hub:main.js",
+      "offset": 8215887
+    },
+    {
+      "en": "Collapse Questionnaire",
+      "zh": "收起提问表单",
+      "source": "hub:main.js",
+      "offset": 8216187
+    },
+    {
+      "en": "Command",
+      "zh": "命令",
+      "source": "hub:main.js",
+      "offset": 8388605
+    },
+    {
+      "en": "Command Palette",
+      "zh": "命令面板",
+      "source": "hub:main.js",
+      "offset": 9206873
+    },
+    {
+      "en": "Commands",
+      "zh": "命令",
+      "source": "hub:main.js",
+      "offset": 6528867
+    },
+    {
+      "en": "Comment on Selection",
+      "zh": "对选中内容添加批注",
+      "source": "hub:main.js",
+      "offset": 1922041
+    },
+    {
+      "en": "Comment on the plan before your agent starts, and get a walkthrough when it finishes.",
+      "zh": "在 AI 助手动手前给计划提意见，完成后即可查看执行说明。",
+      "source": "hub:main.js",
+      "offset": 7403303
+    },
+    {
+      "en": "Comments",
+      "zh": "评论",
+      "source": "hub:main.js",
+      "offset": 3644349
+    },
+    {
+      "en": "Comments unavailable at this screen size",
+      "zh": "当前屏幕尺寸下无法显示评论",
+      "source": "hub:main.js",
+      "offset": 12543689
+    },
+    {
+      "en": "Complete verification",
+      "zh": "完成验证",
+      "source": "hub:main.js",
+      "offset": 6496446
+    },
+    {
+      "en": "Completed",
+      "zh": "已完成",
+      "source": "hub:main.js",
+      "offset": 4998523
+    },
+    {
+      "en": "Computer",
+      "zh": "电脑",
+      "source": "hub:main.js",
+      "offset": 11913440
+    },
+    {
+      "en": "Confirm",
+      "zh": "确认",
+      "source": "hub:main.js",
+      "offset": 8156550
+    },
+    {
+      "en": "Confirm Selection",
+      "zh": "确认选择",
+      "source": "hub:main.js",
+      "offset": 5216801
+    },
+    {
+      "en": "Confirm Undo",
+      "zh": "确认撤销",
+      "source": "hub:main.js",
+      "offset": 8154041
+    },
+    {
+      "en": "Connect",
+      "zh": "连接",
+      "source": "hub:main.js",
+      "offset": 4981178
+    },
+    {
+      "en": "Connected",
+      "zh": "已连接",
+      "source": "hub:main.js",
+      "offset": 5324353
+    },
+    {
+      "en": "Connecting to language server...",
+      "zh": "正在连接语言服务器...",
+      "source": "hub:main.js",
+      "offset": 5575076
+    },
+    {
+      "en": "Connecting…",
+      "zh": "正在连接…",
+      "source": "hub:main.js",
+      "offset": 3008122
+    },
+    {
+      "en": "Continue",
+      "zh": "继续",
+      "source": "hub:main.js",
+      "offset": 5216821
+    },
+    {
+      "en": "Control",
+      "zh": "控制",
+      "source": "hub:main.js",
+      "offset": 9764375
+    },
+    {
+      "en": "Conversation",
+      "zh": "对话",
+      "source": "hub:main.js",
+      "offset": 7964916
+    },
+    {
+      "en": "Conversation Log",
+      "zh": "对话日志",
+      "source": "hub:main.js",
+      "offset": 8291017
+    },
+    {
+      "en": "Conversation unavailable",
+      "zh": "对话不可用",
+      "source": "hub:main.js",
+      "offset": 7411315
+    },
+    {
+      "en": "Cookies and site data",
+      "zh": "Cookie 和网站数据",
+      "source": "hub:main.js",
+      "offset": 4994831
+    },
+    {
+      "en": "Copied to clipboard",
+      "zh": "已复制到剪贴板",
+      "source": "hub:main.js",
+      "offset": 6739944
+    },
+    {
+      "en": "Copied!",
+      "zh": "已复制！",
+      "source": "hub:main.js",
+      "offset": 8028965
+    },
+    {
+      "en": "Copy as Markdown",
+      "zh": "复制为 Markdown",
+      "source": "hub:main.js",
+      "offset": 6740978
+    },
+    {
+      "en": "Copy code",
+      "zh": "复制代码",
+      "source": "hub:main.js",
+      "offset": 6707851
+    },
+    {
+      "en": "Copy command",
+      "zh": "复制命令",
+      "source": "hub:main.js",
+      "offset": 8028975
+    },
+    {
+      "en": "Copy Command",
+      "zh": "复制命令",
+      "source": "hub:main.js",
+      "offset": 8432890
+    },
+    {
+      "en": "Copy Content",
+      "zh": "复制内容",
+      "source": "hub:main.js",
+      "offset": 8535584
+    },
+    {
+      "en": "Copy debug info",
+      "zh": "复制调试信息",
+      "source": "hub:main.js",
+      "offset": 6494726
+    },
+    {
+      "en": "Copy error messages",
+      "zh": "复制错误信息",
+      "source": "hub:main.js",
+      "offset": 5130040
+    },
+    {
+      "en": "Copy full URL to clipboard",
+      "zh": "复制完整链接到剪贴板",
+      "source": "hub:main.js",
+      "offset": 6678853
+    },
+    {
+      "en": "Copy image",
+      "zh": "复制图片",
+      "source": "hub:main.js",
+      "offset": 3565179
+    },
+    {
+      "en": "Copy link",
+      "zh": "复制链接",
+      "source": "hub:main.js",
+      "offset": 5319865
+    },
+    {
+      "en": "Copy sign-in link",
+      "zh": "复制登录链接",
+      "source": "hub:main.js",
+      "offset": 9224526
+    },
+    {
+      "en": "Copy to clipboard",
+      "zh": "复制到剪贴板",
+      "source": "hub:main.js",
+      "offset": 7939658
+    },
+    {
+      "en": "Could not start.",
+      "zh": "无法启动。",
+      "source": "hub:main.js",
+      "offset": 10107581
+    },
+    {
+      "en": "Couldn't connect",
+      "zh": "无法连接",
+      "source": "hub:main.js",
+      "offset": 3008488
+    },
+    {
+      "en": "Couldn't fetch the Google Drive file's title. The link was kept as-is.",
+      "zh": "无法获取 Google 云端硬盘文件标题，链接已按原样保留。",
+      "source": "hub:main.js",
+      "offset": 9193325
+    },
+    {
+      "en": "Couldn't load Google Drive link title",
+      "zh": "无法加载 Google 云端硬盘链接标题",
+      "source": "hub:main.js",
+      "offset": 9193052
+    },
+    {
+      "en": "Couldn't mark conversations as read",
+      "zh": "无法将对话标记为已读",
+      "source": "hub:main.js",
+      "offset": 7393507
+    },
+    {
+      "en": "Count",
+      "zh": "次数",
+      "source": "hub:main.js",
+      "offset": 8284151
+    },
+    {
+      "en": "Create New",
+      "zh": "新建",
+      "source": "hub:main.js",
+      "offset": 9651065
+    },
+    {
+      "en": "Creating Fork...",
+      "zh": "正在创建分支...",
+      "source": "hub:main.js",
+      "offset": 8232019
+    },
+    {
+      "en": "Ctrl+click to open",
+      "zh": "按住 Ctrl 并点击打开",
+      "source": "hub:main.js",
+      "offset": 4802751
+    },
+    {
+      "en": "Cumulative Total",
+      "zh": "累计总计",
+      "source": "hub:main.js",
+      "offset": 8246624
+    },
+    {
+      "en": "Current Page",
+      "zh": "当前页",
+      "source": "hub:main.js",
+      "offset": 12365188
+    },
+    {
+      "en": "Custom View",
+      "zh": "自定义视图",
+      "source": "hub:main.js",
+      "offset": 8633124
+    },
+    {
+      "en": "Customize Sections",
+      "zh": "自定义分区",
+      "source": "hub:main.js",
+      "offset": 9442639
+    },
+    {
+      "en": "Debug and fix",
+      "zh": "调试与修复",
+      "source": "hub:main.js",
+      "offset": 9255976
+    },
+    {
+      "en": "Decline",
+      "zh": "拒绝",
+      "source": "hub:main.js",
+      "offset": 8717308
+    },
+    {
+      "en": "Delete comment",
+      "zh": "删除评论",
+      "source": "hub:main.js",
+      "offset": 3824614
+    },
+    {
+      "en": "Delete Conversation",
+      "zh": "删除对话",
+      "source": "hub:main.js",
+      "offset": 7352680
+    },
+    {
+      "en": "Describe what you want. Your agent plans and builds it, and brings in other agents when needed.",
+      "zh": "说说你想做什么。AI 助手会制定计划并动手完成，需要时还会请其他助手帮忙。",
+      "source": "hub:main.js",
+      "offset": 7403142
+    },
+    {
+      "en": "Description",
+      "zh": "描述",
+      "source": "hub:main.js",
+      "offset": 5427729
+    },
+    {
+      "en": "Details",
+      "zh": "详情",
+      "source": "hub:main.js",
+      "offset": 10141906
+    },
+    {
+      "en": "Dev",
+      "zh": "开发",
+      "source": "hub:main.js",
+      "offset": 12684601
+    },
+    {
+      "en": "Did restarting the desktop app help?",
+      "zh": "重启桌面应用是否有效？",
+      "source": "hub:main.js",
+      "offset": 5423652
+    },
+    {
+      "en": "Disable",
+      "zh": "禁用",
+      "source": "hub:main.js",
+      "offset": 5674976
+    },
+    {
+      "en": "Disable Text Selection",
+      "zh": "禁用文本选择",
+      "source": "hub:main.js",
+      "offset": 12367250
+    },
+    {
+      "en": "Disabled",
+      "zh": "已禁用",
+      "source": "hub:main.js",
+      "offset": 5656746
+    },
+    {
+      "en": "Discard comment draft",
+      "zh": "丢弃评论草稿",
+      "source": "hub:main.js",
+      "offset": 5009868
+    },
+    {
+      "en": "Disconnected",
+      "zh": "已断开连接",
+      "source": "hub:main.js",
+      "offset": 3008473
+    },
+    {
+      "en": "Disk is full. Search will no longer match in conversation bodies until you clear up space and restart.",
+      "zh": "磁盘空间已满。在清理空间并重启前，搜索功能将无法匹配对话正文内容。",
+      "source": "hub:main.js",
+      "offset": 7371527
+    },
+    {
+      "en": "Dismiss",
+      "zh": "关闭",
+      "source": "hub:main.js",
+      "offset": 5188573
+    },
+    {
+      "en": "Dismiss error",
+      "zh": "关闭错误提示",
+      "source": "hub:main.js",
+      "offset": 5668098
+    },
+    {
+      "en": "Dismiss notification",
+      "zh": "关闭通知",
+      "source": "hub:main.js",
+      "offset": 7324373
+    },
+    {
+      "en": "Dismiss service announcement",
+      "zh": "关闭服务公告",
+      "source": "hub:main.js",
+      "offset": 9491490
+    },
+    {
+      "en": "Dismiss suggestion",
+      "zh": "忽略建议",
+      "source": "hub:main.js",
+      "offset": 9627946
+    },
+    {
+      "en": "Dismiss text selection notice",
+      "zh": "关闭文本选择提示",
+      "source": "hub:main.js",
+      "offset": 12573978
+    },
+    {
+      "en": "Dismiss Tip",
+      "zh": "关闭提示",
+      "source": "hub:main.js",
+      "offset": 9616013
+    },
+    {
+      "en": "Don't show this for 2 days",
+      "zh": "2 天内不再提示",
+      "source": "hub:main.js",
+      "offset": 8939893
+    },
+    {
+      "en": "Download",
+      "zh": "下载",
+      "source": "hub:main.js",
+      "offset": 5671364
+    },
+    {
+      "en": "Download Diagnostics",
+      "zh": "下载诊断信息",
+      "source": "hub:main.js",
+      "offset": 1925413
+    },
+    {
+      "en": "Download image",
+      "zh": "下载图片",
+      "source": "hub:main.js",
+      "offset": 3565326
+    },
+    {
+      "en": "Download PDF",
+      "zh": "下载 PDF",
+      "source": "hub:main.js",
+      "offset": 12543306
+    },
+    {
+      "en": "Download video",
+      "zh": "下载视频",
+      "source": "hub:main.js",
+      "offset": 3565309
+    },
+    {
+      "en": "Downloading...",
+      "zh": "正在下载...",
+      "source": "hub:main.js",
+      "offset": 5671347
+    },
+    {
+      "en": "Downloads",
+      "zh": "下载",
+      "source": "hub:main.js",
+      "offset": 5001440
+    },
+    {
+      "en": "Downloads, in progress",
+      "zh": "下载（进行中）",
+      "source": "hub:main.js",
+      "offset": 5001371
+    },
+    {
+      "en": "Draft documents, emails, and notes that sound like you.",
+      "zh": "起草贴合你风格的文档、邮件和笔记。",
+      "source": "hub:main.js",
+      "offset": 9256255
+    },
+    {
+      "en": "Drag to move",
+      "zh": "拖动以移动",
+      "source": "hub:main.js",
+      "offset": 9919714
+    },
+    {
+      "en": "Drag to resize, double-click to reset",
+      "zh": "拖动可调整大小，双击重置",
+      "source": "hub:main.js",
+      "offset": 8925961
+    },
+    {
+      "en": "Drive",
+      "zh": "云端硬盘",
+      "source": "hub:main.js",
+      "offset": 9125464
+    },
+    {
+      "en": "Drop to attach",
+      "zh": "松开以添加附件",
+      "source": "hub:main.js",
+      "offset": 9921792
+    },
+    {
+      "en": "Edit comment",
+      "zh": "编辑评论",
+      "source": "hub:main.js",
+      "offset": 3824320
+    },
+    {
+      "en": "Edit Comment",
+      "zh": "编辑评论",
+      "source": "hub:main.js",
+      "offset": 4951320
+    },
+    {
+      "en": "Edit title",
+      "zh": "编辑标题",
+      "source": "hub:main.js",
+      "offset": 5807040
+    },
+    {
+      "en": "Empty log",
+      "zh": "日志为空",
+      "source": "hub:main.js",
+      "offset": 8032222
+    },
+    {
+      "en": "Enable",
+      "zh": "启用",
+      "source": "hub:main.js",
+      "offset": 5674986
+    },
+    {
+      "en": "Enable Text Selection",
+      "zh": "启用文本选择",
+      "source": "hub:main.js",
+      "offset": 12367275
+    },
+    {
+      "en": "Enabled",
+      "zh": "已启用",
+      "source": "hub:main.js",
+      "offset": 5656694
+    },
+    {
+      "en": "Enlarged media",
+      "zh": "放大查看媒体",
+      "source": "hub:main.js",
+      "offset": 3562841
+    },
+    {
+      "en": "Enter a URL (e.g. http://localhost:8080)",
+      "zh": "输入网址（例如 http://localhost:8080）",
+      "source": "hub:main.js",
+      "offset": 4502309
+    },
+    {
+      "en": "Enter Fullscreen",
+      "zh": "进入全屏",
+      "source": "hub:main.js",
+      "offset": 12542700
+    },
+    {
+      "en": "Equalize Split Panes",
+      "zh": "均分拆分窗格",
+      "source": "hub:main.js",
+      "offset": 1921107
+    },
+    {
+      "en": "Error",
+      "zh": "错误",
+      "source": "hub:main.js",
+      "offset": 3030782
+    },
+    {
+      "en": "Error Details:",
+      "zh": "错误详情：",
+      "source": "hub:main.js",
+      "offset": 8753073
+    },
+    {
+      "en": "Errors",
+      "zh": "错误",
+      "source": "hub:main.js",
+      "offset": 8292551
+    },
+    {
+      "en": "Exit Fullscreen",
+      "zh": "退出全屏",
+      "source": "hub:main.js",
+      "offset": 12542682
+    },
+    {
+      "en": "Exit fullscreen (f)",
+      "zh": "退出全屏 (f)",
+      "source": "hub:main.js",
+      "offset": 3510621
+    },
+    {
+      "en": "Exit inspect element mode (Esc)",
+      "zh": "退出元素选择模式 (Esc)",
+      "source": "hub:main.js",
+      "offset": 5010548
+    },
+    {
+      "en": "Expand",
+      "zh": "展开",
+      "source": "hub:main.js",
+      "offset": 8778448
+    },
+    {
+      "en": "Expand All",
+      "zh": "全部展开",
+      "source": "hub:main.js",
+      "offset": 8566755
+    },
+    {
+      "en": "Expand message",
+      "zh": "展开消息",
+      "source": "hub:main.js",
+      "offset": 8175942
+    },
+    {
+      "en": "Expand questionnaire",
+      "zh": "展开提问表单",
+      "source": "hub:main.js",
+      "offset": 8215864
+    },
+    {
+      "en": "Expand Questionnaire",
+      "zh": "展开提问表单",
+      "source": "hub:main.js",
+      "offset": 8216164
+    },
+    {
+      "en": "Failed",
+      "zh": "失败",
+      "source": "hub:main.js",
+      "offset": 7351934
+    },
+    {
+      "en": "Failed to fork conversation",
+      "zh": "创建对话分支失败",
+      "source": "hub:main.js",
+      "offset": 8185464
+    },
+    {
+      "en": "Failed to get all annotations",
+      "zh": "获取全部批注失败",
+      "source": "hub:main.js",
+      "offset": 12415975
+    },
+    {
+      "en": "Failed to get annotations",
+      "zh": "获取批注失败",
+      "source": "hub:main.js",
+      "offset": 12415522
+    },
+    {
+      "en": "Failed to load comments",
+      "zh": "加载评论失败",
+      "source": "hub:main.js",
+      "offset": 12493904
+    },
+    {
+      "en": "Failed to load image",
+      "zh": "图片加载失败",
+      "source": "hub:main.js",
+      "offset": 7865887
+    },
+    {
+      "en": "Failed to load media",
+      "zh": "媒体加载失败",
+      "source": "hub:main.js",
+      "offset": 3562565
+    },
+    {
+      "en": "Failed to render diagram",
+      "zh": "图表渲染失败",
+      "source": "hub:main.js",
+      "offset": 12771136
+    },
+    {
+      "en": "Failed to render math",
+      "zh": "数学公式渲染失败",
+      "source": "hub:main.js",
+      "offset": 12345107
+    },
+    {
+      "en": "Failed to send queued message",
+      "zh": "发送排队消息失败",
+      "source": "hub:main.js",
+      "offset": 7723763
+    },
+    {
+      "en": "Featured",
+      "zh": "精选",
+      "source": "hub:main.js",
+      "offset": 9370596
+    },
+    {
+      "en": "Feedback Type",
+      "zh": "反馈类型",
+      "source": "hub:main.js",
+      "offset": 5427173
+    },
+    {
+      "en": "Files",
+      "zh": "文件",
+      "source": "hub:main.js",
+      "offset": 6528925
+    },
+    {
+      "en": "Filters",
+      "zh": "筛选",
+      "source": "hub:main.js",
+      "offset": 9684743
+    },
+    {
+      "en": "Find",
+      "zh": "查找",
+      "source": "hub:main.js",
+      "offset": 8642084
+    },
+    {
+      "en": "Find in Pane",
+      "zh": "在窗格中查找",
+      "source": "hub:main.js",
+      "offset": 1922278
+    },
+    {
+      "en": "Fit",
+      "zh": "适配窗口",
+      "source": "hub:main.js",
+      "offset": 8498906
+    },
+    {
+      "en": "Fit Mode",
+      "zh": "适配模式",
+      "source": "hub:main.js",
+      "offset": 12371624
+    },
+    {
+      "en": "Fit to Page",
+      "zh": "适应页面",
+      "source": "hub:main.js",
+      "offset": 12366935
+    },
+    {
+      "en": "Fit to Width",
+      "zh": "适应宽度",
+      "source": "hub:main.js",
+      "offset": 12366920
+    },
+    {
+      "en": "Fix",
+      "zh": "修复",
+      "source": "hub:main.js",
+      "offset": 8951868
+    },
+    {
+      "en": "Focus Input",
+      "zh": "聚焦输入框",
+      "source": "hub:main.js",
+      "offset": 1922098
+    },
+    {
+      "en": "Fork Conversation",
+      "zh": "创建对话分支",
+      "source": "hub:main.js",
+      "offset": 8231746
+    },
+    {
+      "en": "Fork warning",
+      "zh": "分支警告",
+      "source": "hub:main.js",
+      "offset": 8185207
+    },
+    {
+      "en": "Forward 5s (→)",
+      "zh": "快进 5 秒 (→)",
+      "source": "hub:main.js",
+      "offset": 3509290
+    },
+    {
+      "en": "From",
+      "zh": "来自",
+      "source": "hub:main.js",
+      "offset": 3641572
+    },
+    {
+      "en": "Full Error",
+      "zh": "完整错误信息",
+      "source": "hub:main.js",
+      "offset": 8061151
+    },
+    {
+      "en": "Fullscreen (f)",
+      "zh": "全屏 (f)",
+      "source": "hub:main.js",
+      "offset": 3510643
+    },
+    {
+      "en": "Get started",
+      "zh": "开始使用",
+      "source": "hub:main.js",
+      "offset": 7405864
+    },
+    {
+      "en": "Getting started with Google Antigravity",
+      "zh": "开始使用 Google Antigravity",
+      "source": "hub:main.js",
+      "offset": 7404270
+    },
+    {
+      "en": "Go Back",
+      "zh": "后退",
+      "source": "hub:main.js",
+      "offset": 1922348
+    },
+    {
+      "en": "Go Forward",
+      "zh": "前进",
+      "source": "hub:main.js",
+      "offset": 1922420
+    },
+    {
+      "en": "Go to",
+      "zh": "前往",
+      "source": "hub:main.js",
+      "offset": 8991063
+    },
+    {
+      "en": "Go to Home",
+      "zh": "返回首页",
+      "source": "hub:main.js",
+      "offset": 9387911
+    },
+    {
+      "en": "Go to the machine you are controlling and quit Antigravity. It installs pending updates the next time it starts.",
+      "zh": "前往你正在控制的设备并退出 Antigravity，下次启动时将自动安装待定更新。",
+      "source": "hub:main.js",
+      "offset": 11934179
+    },
+    {
+      "en": "Good response",
+      "zh": "回答不错",
+      "source": "hub:main.js",
+      "offset": 8249924
+    },
+    {
+      "en": "Google Antigravity Terms of Service",
+      "zh": "《Google Antigravity 服务条款》",
+      "source": "hub:main.js",
+      "offset": 5802424
+    },
+    {
+      "en": "Google Docs",
+      "zh": "Google 文档",
+      "source": "hub:main.js",
+      "offset": 3602318
+    },
+    {
+      "en": "Google Drive",
+      "zh": "Google 云端硬盘",
+      "source": "hub:main.js",
+      "offset": 3602601
+    },
+    {
+      "en": "Google Privacy Policy",
+      "zh": "《Google 隐私权政策》",
+      "source": "hub:main.js",
+      "offset": 5802613
+    },
+    {
+      "en": "Google Sheets",
+      "zh": "Google 表格",
+      "source": "hub:main.js",
+      "offset": 3602413
+    },
+    {
+      "en": "Google Slides",
+      "zh": "Google 幻灯片",
+      "source": "hub:main.js",
+      "offset": 3602511
+    },
+    {
+      "en": "Got it",
+      "zh": "知道了",
+      "source": "hub:main.js",
+      "offset": 5802840
+    },
+    {
+      "en": "Grand Total",
+      "zh": "总计金额",
+      "source": "hub:main.js",
+      "offset": 8246610
+    },
+    {
+      "en": "Hand off a feature and come back to working code.",
+      "zh": "把功能需求交给助手，回来就能看到可运行的代码。",
+      "source": "hub:main.js",
+      "offset": 9255889
+    },
+    {
+      "en": "Header",
+      "zh": "标题栏",
+      "source": "hub:main.js",
+      "offset": 8636589
+    },
+    {
+      "en": "Here's how you and your agents work together",
+      "zh": "了解如何与 AI 助手一起工作",
+      "source": "hub:main.js",
+      "offset": 7404498
+    },
+    {
+      "en": "Hide advanced",
+      "zh": "隐藏高级选项",
+      "source": "hub:main.js",
+      "offset": 4724878
+    },
+    {
+      "en": "Hide Error",
+      "zh": "隐藏错误",
+      "source": "hub:main.js",
+      "offset": 4517761
+    },
+    {
+      "en": "Hide Thumbnail Sidebar",
+      "zh": "隐藏缩略图侧边栏",
+      "source": "hub:main.js",
+      "offset": 12364056
+    },
+    {
+      "en": "How this feature would help you and other users",
+      "zh": "这项功能将如何帮助您和其他用户",
+      "source": "hub:main.js",
+      "offset": 5422571
+    },
+    {
+      "en": "Image",
+      "zh": "图片",
+      "source": "hub:main.js",
+      "offset": 9127663
+    },
+    {
+      "en": "Image attachment",
+      "zh": "图片附件",
+      "source": "hub:main.js",
+      "offset": 8164887
+    },
+    {
+      "en": "Image preview not available",
+      "zh": "无法预览图片",
+      "source": "hub:main.js",
+      "offset": 6938320
+    },
+    {
+      "en": "Image URL:",
+      "zh": "图片链接：",
+      "source": "hub:main.js",
+      "offset": 6678716
+    },
+    {
+      "en": "Inline Widget",
+      "zh": "内联小组件",
+      "source": "hub:main.js",
+      "offset": 7261113
+    },
+    {
+      "en": "Insert into main conversation",
+      "zh": "插入到主对话",
+      "source": "hub:main.js",
+      "offset": 8237366
+    },
+    {
+      "en": "Inspect element to comment",
+      "zh": "点选元素添加评论",
+      "source": "hub:main.js",
+      "offset": 5010492
+    },
+    {
+      "en": "Install",
+      "zh": "安装",
+      "source": "hub:main.js",
+      "offset": 5706337
+    },
+    {
+      "en": "Installed",
+      "zh": "已安装",
+      "source": "hub:main.js",
+      "offset": 5707841
+    },
+    {
+      "en": "Installing",
+      "zh": "正在安装",
+      "source": "hub:main.js",
+      "offset": 5708052
+    },
+    {
+      "en": "Internal error",
+      "zh": "内部错误",
+      "source": "hub:main.js",
+      "offset": 7646889
+    },
+    {
+      "en": "Invalid",
+      "zh": "无效",
+      "source": "hub:main.js",
+      "offset": 2041510
+    },
+    {
+      "en": "Invalid input",
+      "zh": "输入无效",
+      "source": "hub:main.js",
+      "offset": 2042197
+    },
+    {
+      "en": "Invalid Media",
+      "zh": "无效的媒体文件",
+      "source": "hub:main.js",
+      "offset": 9178526
+    },
+    {
+      "en": "Issued by",
+      "zh": "颁发机构",
+      "source": "hub:main.js",
+      "offset": 4991484
+    },
+    {
+      "en": "Issued to",
+      "zh": "颁发对象",
+      "source": "hub:main.js",
+      "offset": 4991365
+    },
+    {
+      "en": "Join the Google Chat space",
+      "zh": "加入 Google Chat 交流群",
+      "source": "hub:main.js",
+      "offset": 5426763
+    },
+    {
+      "en": "just now",
+      "zh": "刚刚",
+      "source": "hub:main.js",
+      "offset": 3182798
+    },
+    {
+      "en": "Last 7 days",
+      "zh": "最近 7 天",
+      "source": "hub:main.js",
+      "offset": 5918746
+    },
+    {
+      "en": "Last Updated",
+      "zh": "最近更新",
+      "source": "hub:main.js",
+      "offset": 7374365
+    },
+    {
+      "en": "Last Used",
+      "zh": "上次使用",
+      "source": "hub:main.js",
+      "offset": 9226682
+    },
+    {
+      "en": "Layout",
+      "zh": "布局",
+      "source": "hub:main.js",
+      "offset": 11859233
+    },
+    {
+      "en": "Learn more",
+      "zh": "了解更多",
+      "source": "hub:main.js",
+      "offset": 5366612
+    },
+    {
+      "en": "Learn more about",
+      "zh": "了解更多关于",
+      "source": "hub:main.js",
+      "offset": 5646115
+    },
+    {
+      "en": "Learn more by visiting our",
+      "zh": "如需了解更多，请访问我们的",
+      "source": "hub:main.js",
+      "offset": 9248034
+    },
+    {
+      "en": "Leave a comment",
+      "zh": "添加评论",
+      "source": "hub:main.js",
+      "offset": 4950054
+    },
+    {
+      "en": "Legal Help",
+      "zh": "法律帮助",
+      "source": "hub:main.js",
+      "offset": 5433567
+    },
+    {
+      "en": "Link copied to clipboard.",
+      "zh": "链接已复制到剪贴板。",
+      "source": "hub:main.js",
+      "offset": 7858028
+    },
+    {
+      "en": "Loading",
+      "zh": "加载中",
+      "source": "hub:main.js",
+      "offset": 4404624
+    },
+    {
+      "en": "Loading logs...",
+      "zh": "正在加载日志...",
+      "source": "hub:main.js",
+      "offset": 8379568
+    },
+    {
+      "en": "Loading media...",
+      "zh": "正在加载媒体...",
+      "source": "hub:main.js",
+      "offset": 3563685
+    },
+    {
+      "en": "Loading messages",
+      "zh": "正在加载消息",
+      "source": "hub:main.js",
+      "offset": 9519849
+    },
+    {
+      "en": "Loading messages…",
+      "zh": "正在加载消息…",
+      "source": "hub:main.js",
+      "offset": 9520452
+    },
+    {
+      "en": "Loading newer messages",
+      "zh": "正在加载较新的消息",
+      "source": "hub:main.js",
+      "offset": 9519873
+    },
+    {
+      "en": "Loading newer messages…",
+      "zh": "正在加载较新的消息…",
+      "source": "hub:main.js",
+      "offset": 9521417
+    },
+    {
+      "en": "Loading...",
+      "zh": "正在加载...",
+      "source": "hub:main.js",
+      "offset": 7865702
+    },
+    {
+      "en": "Loading…",
+      "zh": "正在加载…",
+      "source": "hub:main.js",
+      "offset": 3640464
+    },
+    {
+      "en": "Log back in",
+      "zh": "重新登录",
+      "source": "hub:main.js",
+      "offset": 6496834
+    },
+    {
+      "en": "Log in",
+      "zh": "登录",
+      "source": "hub:main.js",
+      "offset": 9125212
+    },
+    {
+      "en": "Logs",
+      "zh": "日志",
+      "source": "hub:main.js",
+      "offset": 8292416
+    },
+    {
+      "en": "Lost connection to the language server. Agent features may not work.",
+      "zh": "与语言服务器的连接已断开。AI 助手功能可能无法正常使用。",
+      "source": "hub:main.js",
+      "offset": 11935312
+    },
+    {
+      "en": "Lost connection to the remote instance. Please wait a minute or refresh the page.",
+      "zh": "与远程实例的连接已断开。请稍候片刻或刷新页面。",
+      "source": "hub:main.js",
+      "offset": 11935228
+    },
+    {
+      "en": "Mark Read",
+      "zh": "标为已读",
+      "source": "hub:main.js",
+      "offset": 8826117
+    },
+    {
+      "en": "Mark Unread",
+      "zh": "标为未读",
+      "source": "hub:main.js",
+      "offset": 8826129
+    },
+    {
+      "en": "Markdown view mode",
+      "zh": "Markdown 视图模式",
+      "source": "hub:main.js",
+      "offset": 6706554
+    },
+    {
+      "en": "Marked 1 conversation as read",
+      "zh": "已将 1 个对话标记为已读",
+      "source": "hub:main.js",
+      "offset": 7393120
+    },
+    {
+      "en": "Match case",
+      "zh": "区分大小写",
+      "source": "hub:main.js",
+      "offset": 8640303
+    },
+    {
+      "en": "Match Case (Aa)",
+      "zh": "区分大小写（Aa）",
+      "source": "hub:main.js",
+      "offset": 8640584
+    },
+    {
+      "en": "Match whole word",
+      "zh": "全字匹配",
+      "source": "hub:main.js",
+      "offset": 8640733
+    },
+    {
+      "en": "Match Whole Word (ab)",
+      "zh": "全字匹配（ab）",
+      "source": "hub:main.js",
+      "offset": 8641012
+    },
+    {
+      "en": "Maximize Pane",
+      "zh": "最大化窗格",
+      "source": "hub:main.js",
+      "offset": 9951846
+    },
+    {
+      "en": "Maximize Width",
+      "zh": "最大化宽度",
+      "source": "hub:main.js",
+      "offset": 6739902
+    },
+    {
+      "en": "Media actions",
+      "zh": "媒体操作",
+      "source": "hub:main.js",
+      "offset": 6745440
+    },
+    {
+      "en": "Members",
+      "zh": "成员",
+      "source": "hub:main.js",
+      "offset": 3641529
+    },
+    {
+      "en": "Method not found",
+      "zh": "未找到方法",
+      "source": "hub:main.js",
+      "offset": 7646154
+    },
+    {
+      "en": "Microphone problem",
+      "zh": "麦克风异常",
+      "source": "hub:main.js",
+      "offset": 9169772
+    },
+    {
+      "en": "Microphone silent",
+      "zh": "麦克风无声音",
+      "source": "hub:main.js",
+      "offset": 9169752
+    },
+    {
+      "en": "Minimize",
+      "zh": "最小化",
+      "source": "hub:main.js",
+      "offset": 6397592
+    },
+    {
+      "en": "Minimize Width",
+      "zh": "最小化宽度",
+      "source": "hub:main.js",
+      "offset": 6739919
+    },
+    {
+      "en": "Mode",
+      "zh": "模式",
+      "source": "hub:main.js",
+      "offset": 2747396
+    },
+    {
+      "en": "More",
+      "zh": "更多",
+      "source": "hub:main.js",
+      "offset": 12368300
+    },
+    {
+      "en": "More actions",
+      "zh": "更多操作",
+      "source": "hub:main.js",
+      "offset": 6481783
+    },
+    {
+      "en": "More toolbar actions",
+      "zh": "更多工具栏操作",
+      "source": "hub:main.js",
+      "offset": 12368230
+    },
+    {
+      "en": "Most popular first",
+      "zh": "按热门排序",
+      "source": "hub:main.js",
+      "offset": 9367388
+    },
+    {
+      "en": "Most popular matches first",
+      "zh": "热门匹配优先",
+      "source": "hub:main.js",
+      "offset": 9367359
+    },
+    {
+      "en": "Mute (m)",
+      "zh": "静音 (m)",
+      "source": "hub:main.js",
+      "offset": 3509460
+    },
+    {
+      "en": "Muted",
+      "zh": "已静音",
+      "source": "hub:main.js",
+      "offset": 3502819
+    },
+    {
+      "en": "Navigation",
+      "zh": "导航",
+      "source": "hub:main.js",
+      "offset": 12371402
+    },
+    {
+      "en": "New Conversation",
+      "zh": "新建对话",
+      "source": "hub:main.js",
+      "offset": 1920650
+    },
+    {
+      "en": "New Tab",
+      "zh": "新建标签页",
+      "source": "hub:main.js",
+      "offset": 1921229
+    },
+    {
+      "en": "Next (→)",
+      "zh": "下一个 (→)",
+      "source": "hub:main.js",
+      "offset": 3566462
+    },
+    {
+      "en": "Next card",
+      "zh": "下一张卡片",
+      "source": "hub:main.js",
+      "offset": 9611945
+    },
+    {
+      "en": "Next match",
+      "zh": "下一个匹配项",
+      "source": "hub:main.js",
+      "offset": 8643522
+    },
+    {
+      "en": "Next Match (Enter)",
+      "zh": "下一个匹配项（Enter）",
+      "source": "hub:main.js",
+      "offset": 8643894
+    },
+    {
+      "en": "Next Page",
+      "zh": "下一页",
+      "source": "hub:main.js",
+      "offset": 12365348
+    },
+    {
+      "en": "Next question",
+      "zh": "下一个问题",
+      "source": "hub:main.js",
+      "offset": 8215651
+    },
+    {
+      "en": "Next Side Panel Tab",
+      "zh": "下一个侧边面板标签页",
+      "source": "hub:main.js",
+      "offset": 1925863
+    },
+    {
+      "en": "No content available for this resource",
+      "zh": "此资源无可用内容",
+      "source": "hub:main.js",
+      "offset": 8759876
+    },
+    {
+      "en": "No description available.",
+      "zh": "暂无描述。",
+      "source": "hub:main.js",
+      "offset": 5671012
+    },
+    {
+      "en": "No internet. Agent features may not work.",
+      "zh": "无网络连接。AI 助手功能可能无法正常使用。",
+      "source": "hub:main.js",
+      "offset": 9955902
+    },
+    {
+      "en": "No links",
+      "zh": "暂无链接",
+      "source": "hub:main.js",
+      "offset": 9422342
+    },
+    {
+      "en": "No logs available.",
+      "zh": "暂无可用日志。",
+      "source": "hub:main.js",
+      "offset": 8379659
+    },
+    {
+      "en": "No longer active",
+      "zh": "已不再活跃",
+      "source": "hub:main.js",
+      "offset": 8138825
+    },
+    {
+      "en": "No matching results",
+      "zh": "没有匹配结果",
+      "source": "hub:main.js",
+      "offset": 4892635
+    },
+    {
+      "en": "No recent downloads",
+      "zh": "暂无近期下载",
+      "source": "hub:main.js",
+      "offset": 5003416
+    },
+    {
+      "en": "No resources available",
+      "zh": "无可用资源",
+      "source": "hub:main.js",
+      "offset": 8760687
+    },
+    {
+      "en": "No results",
+      "zh": "无结果",
+      "source": "hub:main.js",
+      "offset": 9871404
+    },
+    {
+      "en": "No Results",
+      "zh": "无结果",
+      "source": "hub:main.js",
+      "offset": 8642478
+    },
+    {
+      "en": "None",
+      "zh": "无",
+      "source": "hub:main.js",
+      "offset": 9689470
+    },
+    {
+      "en": "Not available",
+      "zh": "不可用",
+      "source": "hub:main.js",
+      "offset": 6937670
+    },
+    {
+      "en": "Not Found",
+      "zh": "未找到",
+      "source": "hub:main.js",
+      "offset": 4576247
+    },
+    {
+      "en": "Not signed in",
+      "zh": "未登录",
+      "source": "hub:main.js",
+      "offset": 5226555
+    },
+    {
+      "en": "Offline",
+      "zh": "离线",
+      "source": "hub:main.js",
+      "offset": 12354066
+    },
+    {
+      "en": "OK",
+      "zh": "确定",
+      "source": "hub:main.js",
+      "offset": 4984158
+    },
+    {
+      "en": "One last thing before getting started…",
+      "zh": "开始之前，还有最后一步…",
+      "source": "hub:main.js",
+      "offset": 7397918
+    },
+    {
+      "en": "Online",
+      "zh": "在线",
+      "source": "hub:main.js",
+      "offset": 12353919
+    },
+    {
+      "en": "Open ↗",
+      "zh": "打开 ↗",
+      "source": "hub:main.js",
+      "offset": 8049546
+    },
+    {
+      "en": "Open Command Palette",
+      "zh": "打开命令面板",
+      "source": "hub:main.js",
+      "offset": 1921409
+    },
+    {
+      "en": "Open Conversation in New Tab",
+      "zh": "在新标签页中打开对话",
+      "source": "hub:main.js",
+      "offset": 5534022
+    },
+    {
+      "en": "Open File Search",
+      "zh": "打开文件搜索",
+      "source": "hub:main.js",
+      "offset": 5530634
+    },
+    {
+      "en": "Open IDE",
+      "zh": "打开 IDE",
+      "source": "hub:main.js",
+      "offset": 9466693
+    },
+    {
+      "en": "Open image preview",
+      "zh": "打开图片预览",
+      "source": "hub:main.js",
+      "offset": 6743741
+    },
+    {
+      "en": "Open in external browser",
+      "zh": "在外部浏览器中打开",
+      "source": "hub:main.js",
+      "offset": 5011422
+    },
+    {
+      "en": "Open in new tab",
+      "zh": "在新标签页中打开",
+      "source": "hub:main.js",
+      "offset": 4424849
+    },
+    {
+      "en": "Open in New Window",
+      "zh": "在新窗口中打开",
+      "source": "hub:main.js",
+      "offset": 7858528
+    },
+    {
+      "en": "Open in Side Pane",
+      "zh": "在侧边栏中打开",
+      "source": "hub:main.js",
+      "offset": 8386616
+    },
+    {
+      "en": "Open in tab",
+      "zh": "在标签页中打开",
+      "source": "hub:main.js",
+      "offset": 7260217
+    },
+    {
+      "en": "Open link",
+      "zh": "打开链接",
+      "source": "hub:main.js",
+      "offset": 6544503
+    },
+    {
+      "en": "Open Mermaid diagram preview",
+      "zh": "打开 Mermaid 图表预览",
+      "source": "hub:main.js",
+      "offset": 12771703
+    },
+    {
+      "en": "Open on another device",
+      "zh": "在其他设备上打开",
+      "source": "hub:main.js",
+      "offset": 9484388
+    },
+    {
+      "en": "Open on phone",
+      "zh": "在手机上打开",
+      "source": "hub:main.js",
+      "offset": 9482145
+    },
+    {
+      "en": "Open Search",
+      "zh": "打开搜索",
+      "source": "hub:main.js",
+      "offset": 12551331
+    },
+    {
+      "en": "Open System Browser",
+      "zh": "打开系统浏览器",
+      "source": "hub:main.js",
+      "offset": 8735669
+    },
+    {
+      "en": "Open the page in system browser",
+      "zh": "在系统浏览器中打开此页面",
+      "source": "hub:main.js",
+      "offset": 4723145
+    },
+    {
+      "en": "Open URL",
+      "zh": "打开链接",
+      "source": "hub:main.js",
+      "offset": 8718449
+    },
+    {
+      "en": "Open video preview",
+      "zh": "打开视频预览",
+      "source": "hub:main.js",
+      "offset": 6743720
+    },
+    {
+      "en": "Open with",
+      "zh": "打开方式",
+      "source": "hub:main.js",
+      "offset": 8622915
+    },
+    {
+      "en": "Optimized for you",
+      "zh": "为你优化",
+      "source": "hub:main.js",
+      "offset": 7398262
+    },
+    {
+      "en": "Optional",
+      "zh": "可选",
+      "source": "hub:main.js",
+      "offset": 10051926
+    },
+    {
+      "en": "Options",
+      "zh": "选项",
+      "source": "hub:main.js",
+      "offset": 5690928
+    },
+    {
+      "en": "Other",
+      "zh": "其他",
+      "source": "hub:main.js",
+      "offset": 8301997
+    },
+    {
+      "en": "Other (write your answer)",
+      "zh": "其他（自行输入回答）",
+      "source": "hub:main.js",
+      "offset": 8206828
+    },
+    {
+      "en": "Other sign-in options",
+      "zh": "其他登录方式",
+      "source": "hub:main.js",
+      "offset": 9227608
+    },
+    {
+      "en": "Output",
+      "zh": "输出",
+      "source": "hub:main.js",
+      "offset": 8292279
+    },
+    {
+      "en": "Overview",
+      "zh": "概览",
+      "source": "hub:main.js",
+      "offset": 3630128
+    },
+    {
+      "en": "Pause",
+      "zh": "暂停",
+      "source": "hub:main.js",
+      "offset": 8161756
+    },
+    {
+      "en": "Pause (k)",
+      "zh": "暂停 (k)",
+      "source": "hub:main.js",
+      "offset": 3506562
+    },
+    {
+      "en": "Pending",
+      "zh": "等待中",
+      "source": "hub:main.js",
+      "offset": 8339763
+    },
+    {
+      "en": "Pin",
+      "zh": "置顶",
+      "source": "hub:main.js",
+      "offset": 8826373
+    },
+    {
+      "en": "Pin / Unpin Conversation",
+      "zh": "置顶 / 取消置顶对话",
+      "source": "hub:main.js",
+      "offset": 5533135
+    },
+    {
+      "en": "Pinned",
+      "zh": "已置顶",
+      "source": "hub:main.js",
+      "offset": 6623628
+    },
+    {
+      "en": "Plan upgrade required",
+      "zh": "需要升级套餐",
+      "source": "hub:main.js",
+      "offset": 6488049
+    },
+    {
+      "en": "Play",
+      "zh": "播放",
+      "source": "hub:main.js",
+      "offset": 8161764
+    },
+    {
+      "en": "Play (k)",
+      "zh": "播放 (k)",
+      "source": "hub:main.js",
+      "offset": 3506574
+    },
+    {
+      "en": "Playback speed (< / >)",
+      "zh": "播放速度 (< / >)",
+      "source": "hub:main.js",
+      "offset": 3510254
+    },
+    {
+      "en": "Please describe the feature you'd like to see. The more detailed the requirements, the easier it will be for our team to incorporate your ideas. Some helpful information includes:",
+      "zh": "请描述您希望新增的功能。需求越具体，团队就越容易采纳您的建议。建议包含以下信息：",
+      "source": "hub:main.js",
+      "offset": 5422140
+    },
+    {
+      "en": "Please describe the issue in detail. The more actionable your feedback, the quicker our team can address your request. Some helpful information includes:",
+      "zh": "请详细描述遇到的问题。反馈越具体，团队就能越快为您处理。建议包含以下信息：",
+      "source": "hub:main.js",
+      "offset": 5421612
+    },
+    {
+      "en": "Please describe your auth or billing issue. More details will help our support team resolve your issue quicker. Some helpful information includes:",
+      "zh": "请描述您遇到的登录认证或账单问题。提供更多细节有助于支持团队更快解决。建议包含以下信息：",
+      "source": "hub:main.js",
+      "offset": 5422675
+    },
+    {
+      "en": "Please fill out all required values to continue.",
+      "zh": "请填写所有必填项以继续。",
+      "source": "hub:main.js",
+      "offset": 8308245
+    },
+    {
+      "en": "Please list the steps to reproduce the issue",
+      "zh": "请列出复现此问题的步骤",
+      "source": "hub:main.js",
+      "offset": 5428700
+    },
+    {
+      "en": "Please provide a more detailed description (at least 10 characters).",
+      "zh": "请提供更详细的描述（至少 10 个字符）。",
+      "source": "hub:main.js",
+      "offset": 5424838
+    },
+    {
+      "en": "Please provide more detailed steps to reproduce (at least 5 characters).",
+      "zh": "请提供更详细的复现步骤（至少 5 个字符）。",
+      "source": "hub:main.js",
+      "offset": 5424978
+    },
+    {
+      "en": "Please sign in using the Antigravity sidebar panel to view this page.",
+      "zh": "请通过 Antigravity 侧边栏面板登录以查看此页面。",
+      "source": "hub:main.js",
+      "offset": 7407017
+    },
+    {
+      "en": "Please verify your account to continue using",
+      "zh": "请验证你的账号以继续使用",
+      "source": "hub:main.js",
+      "offset": 6496115
+    },
+    {
+      "en": "Plugins",
+      "zh": "插件",
+      "source": "hub:main.js",
+      "offset": 5573842
+    },
+    {
+      "en": "Plugins Options",
+      "zh": "插件选项",
+      "source": "hub:main.js",
+      "offset": 9642293
+    },
+    {
+      "en": "Post",
+      "zh": "发布",
+      "source": "hub:main.js",
+      "offset": 12520665
+    },
+    {
+      "en": "Posting...",
+      "zh": "正在发布...",
+      "source": "hub:main.js",
+      "offset": 12520652
+    },
+    {
+      "en": "Preview",
+      "zh": "预览",
+      "source": "hub:main.js",
+      "offset": 6706783
+    },
+    {
+      "en": "Preview unavailable",
+      "zh": "无法预览",
+      "source": "hub:main.js",
+      "offset": 6741512
+    },
+    {
+      "en": "Previous",
+      "zh": "上一个",
+      "source": "hub:main.js",
+      "offset": 3566250
+    },
+    {
+      "en": "Previous (←)",
+      "zh": "上一个 (←)",
+      "source": "hub:main.js",
+      "offset": 3566230
+    },
+    {
+      "en": "Previous card",
+      "zh": "上一张卡片",
+      "source": "hub:main.js",
+      "offset": 9611632
+    },
+    {
+      "en": "Previous match",
+      "zh": "上一个匹配项",
+      "source": "hub:main.js",
+      "offset": 8643007
+    },
+    {
+      "en": "Previous Match (Shift+Enter)",
+      "zh": "上一个匹配项（Shift+Enter）",
+      "source": "hub:main.js",
+      "offset": 8643381
+    },
+    {
+      "en": "Previous Page",
+      "zh": "上一页",
+      "source": "hub:main.js",
+      "offset": 12364654
+    },
+    {
+      "en": "Previous question",
+      "zh": "上一个问题",
+      "source": "hub:main.js",
+      "offset": 8215341
+    },
+    {
+      "en": "Previous Side Panel Tab",
+      "zh": "上一个侧边面板标签页",
+      "source": "hub:main.js",
+      "offset": 1925803
+    },
+    {
+      "en": "Proceed",
+      "zh": "继续",
+      "source": "hub:main.js",
+      "offset": 7938067
+    },
+    {
+      "en": "Proceed Anyway",
+      "zh": "仍然继续",
+      "source": "hub:main.js",
+      "offset": 8940947
+    },
+    {
+      "en": "Processing",
+      "zh": "正在处理",
+      "source": "hub:main.js",
+      "offset": 9074716
+    },
+    {
+      "en": "Prohibited Use Policy",
+      "zh": "《禁止使用政策》",
+      "source": "hub:main.js",
+      "offset": 5802230
+    },
+    {
+      "en": "Protocol",
+      "zh": "协议",
+      "source": "hub:main.js",
+      "offset": 4992031
+    },
+    {
+      "en": "Provide Feedback",
+      "zh": "提交反馈",
+      "source": "hub:main.js",
+      "offset": 1923901
+    },
+    {
+      "en": "Purchase Credits",
+      "zh": "购买额度",
+      "source": "hub:main.js",
+      "offset": 6499886
+    },
+    {
+      "en": "QR code",
+      "zh": "二维码",
+      "source": "hub:main.js",
+      "offset": 5318251
+    },
+    {
+      "en": "Quick Start",
+      "zh": "快速开始",
+      "source": "hub:main.js",
+      "offset": 4425057
+    },
+    {
+      "en": "Raw",
+      "zh": "源码",
+      "source": "hub:main.js",
+      "offset": 6706870
+    },
+    {
+      "en": "Ready",
+      "zh": "就绪",
+      "source": "hub:main.js",
+      "offset": 8339606
+    },
+    {
+      "en": "Recent",
+      "zh": "最近",
+      "source": "hub:main.js",
+      "offset": 6436772
+    },
+    {
+      "en": "Recommended",
+      "zh": "推荐",
+      "source": "hub:main.js",
+      "offset": 5516537
+    },
+    {
+      "en": "Reconnecting…",
+      "zh": "正在重新连接…",
+      "source": "hub:main.js",
+      "offset": 3008008
+    },
+    {
+      "en": "Record voice memo",
+      "zh": "录制语音备忘",
+      "source": "hub:main.js",
+      "offset": 3573957
+    },
+    {
+      "en": "Recording",
+      "zh": "正在录制",
+      "source": "hub:main.js",
+      "offset": 9074704
+    },
+    {
+      "en": "Reject",
+      "zh": "拒绝",
+      "source": "hub:main.js",
+      "offset": 8293996
+    },
+    {
+      "en": "Reload app",
+      "zh": "重新加载应用",
+      "source": "hub:main.js",
+      "offset": 9496184
+    },
+    {
+      "en": "Reload this window.",
+      "zh": "重新加载此窗口。",
+      "source": "hub:main.js",
+      "offset": 11934367
+    },
+    {
+      "en": "Reload Window",
+      "zh": "重新加载窗口",
+      "source": "hub:main.js",
+      "offset": 8797141
+    },
+    {
+      "en": "Remove",
+      "zh": "移除",
+      "source": "hub:main.js",
+      "offset": 5386325
+    },
+    {
+      "en": "Remove audio",
+      "zh": "移除音频",
+      "source": "hub:main.js",
+      "offset": 8162533
+    },
+    {
+      "en": "Remove from history",
+      "zh": "从历史记录中移除",
+      "source": "hub:main.js",
+      "offset": 4504797
+    },
+    {
+      "en": "Remove from history (Shift+Delete)",
+      "zh": "从历史记录中移除 (Shift+Delete)",
+      "source": "hub:main.js",
+      "offset": 4504860
+    },
+    {
+      "en": "Remove from list",
+      "zh": "从列表中移除",
+      "source": "hub:main.js",
+      "offset": 5006980
+    },
+    {
+      "en": "Remove from Split",
+      "zh": "移出分屏",
+      "source": "hub:main.js",
+      "offset": 8823049
+    },
+    {
+      "en": "Removing...",
+      "zh": "正在移除...",
+      "source": "hub:main.js",
+      "offset": 8415764
+    },
+    {
+      "en": "Render failed",
+      "zh": "渲染失败",
+      "source": "hub:main.js",
+      "offset": 12409408
+    },
+    {
+      "en": "Reopen Closed Tab",
+      "zh": "重新打开已关闭的标签页",
+      "source": "hub:main.js",
+      "offset": 1921277
+    },
+    {
+      "en": "Replace",
+      "zh": "替换",
+      "source": "hub:main.js",
+      "offset": 8313133
+    },
+    {
+      "en": "Required",
+      "zh": "必填",
+      "source": "hub:main.js",
+      "offset": 2040267
+    },
+    {
+      "en": "Research anything",
+      "zh": "调研任何主题",
+      "source": "hub:main.js",
+      "offset": 9256103
+    },
+    {
+      "en": "Reset Zoom",
+      "zh": "重置缩放",
+      "source": "hub:main.js",
+      "offset": 1922225
+    },
+    {
+      "en": "Reset zoom (0)",
+      "zh": "重置缩放 (0)",
+      "source": "hub:main.js",
+      "offset": 3513838
+    },
+    {
+      "en": "Resolving link…",
+      "zh": "正在解析链接…",
+      "source": "hub:main.js",
+      "offset": 9477896
+    },
+    {
+      "en": "Response actions",
+      "zh": "回复操作",
+      "source": "hub:main.js",
+      "offset": 8260177
+    },
+    {
+      "en": "Restore Pane",
+      "zh": "还原窗格",
+      "source": "hub:main.js",
+      "offset": 9951831
+    },
+    {
+      "en": "Resume 1 comment draft",
+      "zh": "继续编辑 1 条评论草稿",
+      "source": "hub:main.js",
+      "offset": 5009485
+    },
+    {
+      "en": "Resume comment draft",
+      "zh": "继续编辑评论草稿",
+      "source": "hub:main.js",
+      "offset": 5009516
+    },
+    {
+      "en": "Retry",
+      "zh": "重试",
+      "source": "hub:main.js",
+      "offset": 4426610
+    },
+    {
+      "en": "Review",
+      "zh": "审阅",
+      "source": "hub:main.js",
+      "offset": 7940132
+    },
+    {
+      "en": "Review plans and walkthroughs",
+      "zh": "审阅计划与完成说明",
+      "source": "hub:main.js",
+      "offset": 7403259
+    },
+    {
+      "en": "Right",
+      "zh": "右侧",
+      "source": "hub:main.js",
+      "offset": 5300298
+    },
+    {
+      "en": "Save & Continue",
+      "zh": "保存并继续",
+      "source": "hub:main.js",
+      "offset": 8315501
+    },
+    {
+      "en": "Save Comment",
+      "zh": "保存评论",
+      "source": "hub:main.js",
+      "offset": 4950086
+    },
+    {
+      "en": "Save Image",
+      "zh": "保存图片",
+      "source": "hub:main.js",
+      "offset": 3488274
+    },
+    {
+      "en": "Save Video",
+      "zh": "保存视频",
+      "source": "hub:main.js",
+      "offset": 3488261
+    },
+    {
+      "en": "Saved",
+      "zh": "已保存",
+      "source": "hub:main.js",
+      "offset": 5367751
+    },
+    {
+      "en": "Saved!",
+      "zh": "已保存！",
+      "source": "hub:main.js",
+      "offset": 7859142
+    },
+    {
+      "en": "Saving…",
+      "zh": "正在保存…",
+      "source": "hub:main.js",
+      "offset": 5367553
+    },
+    {
+      "en": "Screen Recording",
+      "zh": "屏幕录制",
+      "source": "hub:main.js",
+      "offset": 9124931
+    },
+    {
+      "en": "Screenshot must be under 10 MB",
+      "zh": "截图大小不能超过 10 MB",
+      "source": "hub:main.js",
+      "offset": 5430365
+    },
+    {
+      "en": "Scroll position",
+      "zh": "滚动位置",
+      "source": "hub:main.js",
+      "offset": 12512147
+    },
+    {
+      "en": "Scrollable table",
+      "zh": "可滚动表格",
+      "source": "hub:main.js",
+      "offset": 6739263
+    },
+    {
+      "en": "Search conversations, commands, and code...",
+      "zh": "搜索对话、命令和代码...",
+      "source": "hub:main.js",
+      "offset": 7387840
+    },
+    {
+      "en": "Search for commands...",
+      "zh": "搜索命令...",
+      "source": "hub:main.js",
+      "offset": 7379721
+    },
+    {
+      "en": "Search for conversations...",
+      "zh": "搜索对话...",
+      "source": "hub:main.js",
+      "offset": 7382731
+    },
+    {
+      "en": "Search results",
+      "zh": "搜索结果",
+      "source": "hub:main.js",
+      "offset": 9871502
+    },
+    {
+      "en": "Searching",
+      "zh": "正在搜索",
+      "source": "hub:main.js",
+      "offset": 4892719
+    },
+    {
+      "en": "Searching older messages",
+      "zh": "正在搜索更早的消息",
+      "source": "hub:main.js",
+      "offset": 9519820
+    },
+    {
+      "en": "Searching…",
+      "zh": "正在搜索…",
+      "source": "hub:main.js",
+      "offset": 4892951
+    },
+    {
+      "en": "Secondary action",
+      "zh": "次要操作",
+      "source": "hub:main.js",
+      "offset": 4490115
+    },
+    {
+      "en": "Sections",
+      "zh": "章节目录",
+      "source": "hub:main.js",
+      "offset": 3630087
+    },
+    {
+      "en": "Security",
+      "zh": "安全",
+      "source": "hub:main.js",
+      "offset": 4994567
+    },
+    {
+      "en": "See all",
+      "zh": "查看全部",
+      "source": "hub:main.js",
+      "offset": 7375291
+    },
+    {
+      "en": "See less",
+      "zh": "收起",
+      "source": "hub:main.js",
+      "offset": 6628376
+    },
+    {
+      "en": "See more",
+      "zh": "查看更多",
+      "source": "hub:main.js",
+      "offset": 9324237
+    },
+    {
+      "en": "See more results",
+      "zh": "查看更多结果",
+      "source": "hub:main.js",
+      "offset": 9374619
+    },
+    {
+      "en": "See our",
+      "zh": "查看我们的",
+      "source": "hub:main.js",
+      "offset": 6497429
+    },
+    {
+      "en": "See plans",
+      "zh": "查看套餐",
+      "source": "hub:main.js",
+      "offset": 6492324
+    },
+    {
+      "en": "See Plans",
+      "zh": "查看套餐",
+      "source": "hub:main.js",
+      "offset": 6500011
+    },
+    {
+      "en": "Seek",
+      "zh": "拖动进度",
+      "source": "hub:main.js",
+      "offset": 3508762
+    },
+    {
+      "en": "Select an option",
+      "zh": "请选择一个选项",
+      "source": "hub:main.js",
+      "offset": 5356869
+    },
+    {
+      "en": "Select an option...",
+      "zh": "请选择一个选项...",
+      "source": "hub:main.js",
+      "offset": 8712420
+    },
+    {
+      "en": "Select category to search...",
+      "zh": "选择要搜索的分类...",
+      "source": "hub:main.js",
+      "offset": 7387886
+    },
+    {
+      "en": "Select Sidebar Item 1",
+      "zh": "选择侧边栏第 1 项",
+      "source": "hub:main.js",
+      "offset": 1922748
+    },
+    {
+      "en": "Select Sidebar Item 2",
+      "zh": "选择侧边栏第 2 项",
+      "source": "hub:main.js",
+      "offset": 1922831
+    },
+    {
+      "en": "Select Sidebar Item 3",
+      "zh": "选择侧边栏第 3 项",
+      "source": "hub:main.js",
+      "offset": 1922913
+    },
+    {
+      "en": "Select Sidebar Item 4",
+      "zh": "选择侧边栏第 4 项",
+      "source": "hub:main.js",
+      "offset": 1922995
+    },
+    {
+      "en": "Select Sidebar Item 5",
+      "zh": "选择侧边栏第 5 项",
+      "source": "hub:main.js",
+      "offset": 1923077
+    },
+    {
+      "en": "Select Sidebar Item 6",
+      "zh": "选择侧边栏第 6 项",
+      "source": "hub:main.js",
+      "offset": 1923159
+    },
+    {
+      "en": "Select Sidebar Item 7",
+      "zh": "选择侧边栏第 7 项",
+      "source": "hub:main.js",
+      "offset": 1923241
+    },
+    {
+      "en": "Select Sidebar Item 8",
+      "zh": "选择侧边栏第 8 项",
+      "source": "hub:main.js",
+      "offset": 1923324
+    },
+    {
+      "en": "Select Sidebar Item 9",
+      "zh": "选择侧边栏第 9 项",
+      "source": "hub:main.js",
+      "offset": 1923406
+    },
+    {
+      "en": "Select...",
+      "zh": "请选择...",
+      "source": "hub:main.js",
+      "offset": 5357114
+    },
+    {
+      "en": "Send Feedback",
+      "zh": "发送反馈",
+      "source": "hub:main.js",
+      "offset": 8797046
+    },
+    {
+      "en": "Sent",
+      "zh": "发送时间",
+      "source": "hub:main.js",
+      "offset": 3641612
+    },
+    {
+      "en": "Sent Message",
+      "zh": "已发送消息",
+      "source": "hub:main.js",
+      "offset": 8378027
+    },
+    {
+      "en": "Set the rules, define the boundaries.",
+      "zh": "设定规则，划清权限范围",
+      "source": "hub:main.js",
+      "offset": 7403411
+    },
+    {
+      "en": "Set up",
+      "zh": "配置",
+      "source": "hub:main.js",
+      "offset": 9125078
+    },
+    {
+      "en": "Settings",
+      "zh": "设置",
+      "source": "hub:main.js",
+      "offset": 3637918
+    },
+    {
+      "en": "Show",
+      "zh": "显示",
+      "source": "hub:main.js",
+      "offset": 8070582
+    },
+    {
+      "en": "Show all",
+      "zh": "显示全部",
+      "source": "hub:main.js",
+      "offset": 10004249
+    },
+    {
+      "en": "Show All",
+      "zh": "显示全部",
+      "source": "hub:main.js",
+      "offset": 5831095
+    },
+    {
+      "en": "Show all resources",
+      "zh": "显示全部资源",
+      "source": "hub:main.js",
+      "offset": 8761549
+    },
+    {
+      "en": "Show Details",
+      "zh": "显示详情",
+      "source": "hub:main.js",
+      "offset": 6430048
+    },
+    {
+      "en": "Show Error",
+      "zh": "显示错误",
+      "source": "hub:main.js",
+      "offset": 4517774
+    },
+    {
+      "en": "Show fewer resources",
+      "zh": "收起部分资源",
+      "source": "hub:main.js",
+      "offset": 8761526
+    },
+    {
+      "en": "Show in folder",
+      "zh": "在文件夹中显示",
+      "source": "hub:main.js",
+      "offset": 5006162
+    },
+    {
+      "en": "Show Less",
+      "zh": "收起",
+      "source": "hub:main.js",
+      "offset": 5831083
+    },
+    {
+      "en": "Show more",
+      "zh": "显示更多",
+      "source": "hub:main.js",
+      "offset": 8738619
+    },
+    {
+      "en": "Show Thumbnail Sidebar",
+      "zh": "显示缩略图侧边栏",
+      "source": "hub:main.js",
+      "offset": 12364081
+    },
+    {
+      "en": "Sidecar View",
+      "zh": "伴生侧栏视图",
+      "source": "hub:main.js",
+      "offset": 8633774
+    },
+    {
+      "en": "Sign in again",
+      "zh": "重新登录",
+      "source": "hub:main.js",
+      "offset": 3008383
+    },
+    {
+      "en": "Sign in in your browser, then paste the authorization code shown on the callback page.",
+      "zh": "请在浏览器中登录，再把返回页面显示的授权码粘贴到这里。",
+      "source": "hub:main.js",
+      "offset": 9222103
+    },
+    {
+      "en": "Sign out",
+      "zh": "退出登录",
+      "source": "hub:main.js",
+      "offset": 5676748
+    },
+    {
+      "en": "Skip",
+      "zh": "跳过",
+      "source": "hub:main.js",
+      "offset": 6547931
+    },
+    {
+      "en": "Skipped",
+      "zh": "已跳过",
+      "source": "hub:main.js",
+      "offset": 8777825
+    },
+    {
+      "en": "Skipping...",
+      "zh": "正在跳过...",
+      "source": "hub:main.js",
+      "offset": 8778167
+    },
+    {
+      "en": "Snooze for 24 Hours",
+      "zh": "24 小时内暂不提醒",
+      "source": "hub:main.js",
+      "offset": 8975484
+    },
+    {
+      "en": "Some non-image binary content was truncated.",
+      "zh": "部分非图片二进制内容已被截断。",
+      "source": "hub:main.js",
+      "offset": 8759755
+    },
+    {
+      "en": "Some sites block embedding (via X-Frame-Options or CSP) and will show a fallback message. Blocked-page detection is best-effort (based on a load timeout), so it may occasionally be wrong. Use \"Open in new tab\" if a page doesn't load.",
+      "zh": "部分网站会禁止嵌入（通过 X-Frame-Options 或 CSP），此时将显示备选提示。拦截检测基于加载超时判断，偶尔可能出现误判。如果页面无法加载，请点击“在新标签页中打开”。",
+      "source": "hub:main.js",
+      "offset": 4507008
+    },
+    {
+      "en": "Something went wrong",
+      "zh": "出错了",
+      "source": "hub:main.js",
+      "offset": 8796712
+    },
+    {
+      "en": "Something went wrong!",
+      "zh": "出错了！",
+      "source": "hub:main.js",
+      "offset": 4517550
+    },
+    {
+      "en": "Something went wrong.",
+      "zh": "出了点问题。",
+      "source": "hub:main.js",
+      "offset": 8131582
+    },
+    {
+      "en": "Source",
+      "zh": "来源",
+      "source": "hub:main.js",
+      "offset": 9326927
+    },
+    {
+      "en": "Split",
+      "zh": "分屏",
+      "source": "hub:main.js",
+      "offset": 8827042
+    },
+    {
+      "en": "Split Down",
+      "zh": "向下分屏",
+      "source": "hub:main.js",
+      "offset": 8822511
+    },
+    {
+      "en": "Split Right",
+      "zh": "向右分屏",
+      "source": "hub:main.js",
+      "offset": 8822379
+    },
+    {
+      "en": "Standalone",
+      "zh": "独立模式",
+      "source": "hub:main.js",
+      "offset": 2013434
+    },
+    {
+      "en": "Start",
+      "zh": "启动",
+      "source": "hub:main.js",
+      "offset": 8392389
+    },
+    {
+      "en": "Start it again.",
+      "zh": "重新启动应用。",
+      "source": "hub:main.js",
+      "offset": 11934321
+    },
+    {
+      "en": "Status",
+      "zh": "状态",
+      "source": "hub:main.js",
+      "offset": 3644222
+    },
+    {
+      "en": "Stay up to date.",
+      "zh": "及时获取更新。",
+      "source": "hub:main.js",
+      "offset": 7400077
+    },
+    {
+      "en": "Steps to Reproduce",
+      "zh": "复现步骤",
+      "source": "hub:main.js",
+      "offset": 5428574
+    },
+    {
+      "en": "Steps to reproduce the issue",
+      "zh": "问题的复现步骤",
+      "source": "hub:main.js",
+      "offset": 5421861
+    },
+    {
+      "en": "Still connecting…",
+      "zh": "仍在连接…",
+      "source": "hub:main.js",
+      "offset": 3008097
+    },
+    {
+      "en": "Stop recording",
+      "zh": "停止录音",
+      "source": "hub:main.js",
+      "offset": 3573940
+    },
+    {
+      "en": "Stop transcription",
+      "zh": "停止转写",
+      "source": "hub:main.js",
+      "offset": 9180543
+    },
+    {
+      "en": "Stopped",
+      "zh": "已停止",
+      "source": "hub:main.js",
+      "offset": 7351875
+    },
+    {
+      "en": "Stream transport error",
+      "zh": "流式传输错误",
+      "source": "hub:main.js",
+      "offset": 11987071
+    },
+    {
+      "en": "Submit",
+      "zh": "提交",
+      "source": "hub:main.js",
+      "offset": 4950101
+    },
+    {
+      "en": "Submit code",
+      "zh": "提交授权码",
+      "source": "hub:main.js",
+      "offset": 9223516
+    },
+    {
+      "en": "Submitting...",
+      "zh": "正在提交...",
+      "source": "hub:main.js",
+      "offset": 5216766
+    },
+    {
+      "en": "Switch To",
+      "zh": "切换到",
+      "source": "hub:main.js",
+      "offset": 12762426
+    },
+    {
+      "en": "Switch to default text direction",
+      "zh": "切换为默认文本方向",
+      "source": "hub:main.js",
+      "offset": 8535021
+    },
+    {
+      "en": "Switch to RTL text direction",
+      "zh": "切换为从右到左文本方向",
+      "source": "hub:main.js",
+      "offset": 8535056
+    },
+    {
+      "en": "System Message",
+      "zh": "系统消息",
+      "source": "hub:main.js",
+      "offset": 8744114
+    },
+    {
+      "en": "Table options",
+      "zh": "表格选项",
+      "source": "hub:main.js",
+      "offset": 6739966
+    },
+    {
+      "en": "Taking longer than usual to load",
+      "zh": "加载时间比平时长",
+      "source": "hub:main.js",
+      "offset": 4426924
+    },
+    {
+      "en": "Target text in PDF...",
+      "zh": "PDF 中的目标文本...",
+      "source": "hub:main.js",
+      "offset": 12519587
+    },
+    {
+      "en": "Terminal",
+      "zh": "终端",
+      "source": "hub:main.js",
+      "offset": 3198302
+    },
+    {
+      "en": "Terminal: Select All",
+      "zh": "终端：全选",
+      "source": "hub:main.js",
+      "offset": 5533726
+    },
+    {
+      "en": "Terms of Service",
+      "zh": "服务条款",
+      "source": "hub:main.js",
+      "offset": 5227233
+    },
+    {
+      "en": "Text Selection",
+      "zh": "文本选择",
+      "source": "hub:main.js",
+      "offset": 12371734
+    },
+    {
+      "en": "Thank you! Your feedback has been submitted successfully.",
+      "zh": "感谢您的反馈！信息已成功提交。",
+      "source": "hub:main.js",
+      "offset": 5432324
+    },
+    {
+      "en": "Thanks for helping make Gemini better! This is a critical part of evaluating and improving our models.",
+      "zh": "感谢你帮助改进 Gemini！这对我们评估和优化模型非常重要。",
+      "source": "hub:main.js",
+      "offset": 8189179
+    },
+    {
+      "en": "Thanks for your feedback!",
+      "zh": "感谢你的反馈！",
+      "source": "hub:main.js",
+      "offset": 8189284
+    },
+    {
+      "en": "The conversation could not be loaded because its data was not found.",
+      "zh": "找不到该对话的数据，因此无法加载。",
+      "source": "hub:main.js",
+      "offset": 7411350
+    },
+    {
+      "en": "The Hub sent an unexpected response.",
+      "zh": "Hub 返回了意外响应。",
+      "source": "hub:main.js",
+      "offset": 6430914
+    },
+    {
+      "en": "The main conversation's input isn't available right now.",
+      "zh": "主对话的输入框目前不可用。",
+      "source": "hub:main.js",
+      "offset": 8232763
+    },
+    {
+      "en": "This link wants to open an app on your device.",
+      "zh": "此链接想要打开你设备上的应用。",
+      "source": "hub:main.js",
+      "offset": 6543137
+    },
+    {
+      "en": "This may take a few minutes",
+      "zh": "这可能需要几分钟",
+      "source": "hub:main.js",
+      "offset": 6510226
+    },
+    {
+      "en": "This page is blocked in the built-in browser by your organization's Context-Aware Access policy.",
+      "zh": "您所在组织的上下文感知访问策略禁止在内置浏览器中打开此页面。",
+      "source": "hub:main.js",
+      "offset": 4722917
+    },
+    {
+      "en": "This page is taking longer than expected to load, or it may be blocking embedded views (via X-Frame-Options or CSP).",
+      "zh": "此页面加载时间超出预期，或者可能禁止了嵌入式查看（通过 X-Frame-Options 或 CSP）。",
+      "source": "hub:main.js",
+      "offset": 4427035
+    },
+    {
+      "en": "This page isn’t working",
+      "zh": "该网页无法正常运作",
+      "source": "hub:main.js",
+      "offset": 5042036
+    },
+    {
+      "en": "This page says",
+      "zh": "此页面显示",
+      "source": "hub:main.js",
+      "offset": 4981968
+    },
+    {
+      "en": "This side question isn't available in this conversation.",
+      "zh": "此分支提问在当前对话中不可用。",
+      "source": "hub:main.js",
+      "offset": 7844382
+    },
+    {
+      "en": "This sidecar failed to start.",
+      "zh": "此伴生侧栏启动失败。",
+      "source": "hub:main.js",
+      "offset": 9311707
+    },
+    {
+      "en": "This site can’t be reached",
+      "zh": "无法访问此网站",
+      "source": "hub:main.js",
+      "offset": 5041900
+    },
+    {
+      "en": "Thumbnails",
+      "zh": "缩略图",
+      "source": "hub:main.js",
+      "offset": 12371286
+    },
+    {
+      "en": "Tilde",
+      "zh": "波浪号",
+      "source": "hub:main.js",
+      "offset": 6854277
+    },
+    {
+      "en": "Timed out fetching the Google Drive file's title. The link was kept as-is.",
+      "zh": "获取 Google 云端硬盘文件标题超时，链接已按原样保留。",
+      "source": "hub:main.js",
+      "offset": 9193248
+    },
+    {
+      "en": "To update:",
+      "zh": "更新步骤：",
+      "source": "hub:main.js",
+      "offset": 11934059
+    },
+    {
+      "en": "Today",
+      "zh": "今天",
+      "source": "hub:main.js",
+      "offset": 8136740
+    },
+    {
+      "en": "Toggle Maximize Side Panel",
+      "zh": "切换最大化侧边面板",
+      "source": "hub:main.js",
+      "offset": 1920508
+    },
+    {
+      "en": "Toggle Overview Panel",
+      "zh": "切换概览面板",
+      "source": "hub:main.js",
+      "offset": 1920583
+    },
+    {
+      "en": "Toggle Side Panel",
+      "zh": "切换侧边面板",
+      "source": "hub:main.js",
+      "offset": 1920438
+    },
+    {
+      "en": "Toggle Sidebar",
+      "zh": "切换侧边栏",
+      "source": "hub:main.js",
+      "offset": 1923834
+    },
+    {
+      "en": "Toggle Thumbnails",
+      "zh": "切换缩略图",
+      "source": "hub:main.js",
+      "offset": 12364155
+    },
+    {
+      "en": "Too many requests, please try again in a bit!",
+      "zh": "请求过于频繁，请稍后再试！",
+      "source": "hub:main.js",
+      "offset": 6491667
+    },
+    {
+      "en": "Total",
+      "zh": "总计",
+      "source": "hub:main.js",
+      "offset": 8243899
+    },
+    {
+      "en": "Transcribing audio…",
+      "zh": "正在转写音频…",
+      "source": "hub:main.js",
+      "offset": 9180426
+    },
+    {
+      "en": "Trouble signing in? Enter authorization code",
+      "zh": "登录遇到问题？输入授权码",
+      "source": "hub:main.js",
+      "offset": 9221141
+    },
+    {
+      "en": "Try again",
+      "zh": "重试",
+      "source": "hub:main.js",
+      "offset": 6503768
+    },
+    {
+      "en": "Try Again",
+      "zh": "重试",
+      "source": "hub:main.js",
+      "offset": 8294418
+    },
+    {
+      "en": "Type your own answer",
+      "zh": "输入你自己的回答",
+      "source": "hub:main.js",
+      "offset": 8141729
+    },
+    {
+      "en": "UI view does not exist.",
+      "zh": "界面视图不存在。",
+      "source": "hub:main.js",
+      "offset": 8625358
+    },
+    {
+      "en": "Unable to resolve audio source URL",
+      "zh": "无法解析音频源链接",
+      "source": "hub:main.js",
+      "offset": 7926462
+    },
+    {
+      "en": "Unarchive",
+      "zh": "取消归档",
+      "source": "hub:main.js",
+      "offset": 7366171
+    },
+    {
+      "en": "Unarchive the main conversation to insert",
+      "zh": "取消归档主对话后才能插入",
+      "source": "hub:main.js",
+      "offset": 8237761
+    },
+    {
+      "en": "Undo",
+      "zh": "撤销",
+      "source": "hub:main.js",
+      "offset": 7361829
+    },
+    {
+      "en": "Unknown",
+      "zh": "未知",
+      "source": "hub:main.js",
+      "offset": 4991677
+    },
+    {
+      "en": "Unknown error",
+      "zh": "未知错误",
+      "source": "hub:main.js",
+      "offset": 8904170
+    },
+    {
+      "en": "Unknown error.",
+      "zh": "未知错误。",
+      "source": "hub:main.js",
+      "offset": 8970488
+    },
+    {
+      "en": "Unmute (m)",
+      "zh": "取消静音 (m)",
+      "source": "hub:main.js",
+      "offset": 3509447
+    },
+    {
+      "en": "Unpin",
+      "zh": "取消置顶",
+      "source": "hub:main.js",
+      "offset": 8826364
+    },
+    {
+      "en": "Unread",
+      "zh": "未读",
+      "source": "hub:main.js",
+      "offset": 8830721
+    },
+    {
+      "en": "Untitled Conversation",
+      "zh": "未命名对话",
+      "source": "hub:main.js",
+      "offset": 7369084
+    },
+    {
+      "en": "Update Available",
+      "zh": "有可用更新",
+      "source": "hub:main.js",
+      "offset": 9455485
+    },
+    {
+      "en": "Updating…",
+      "zh": "正在更新…",
+      "source": "hub:main.js",
+      "offset": 9452909
+    },
+    {
+      "en": "Use Default",
+      "zh": "使用默认",
+      "source": "hub:main.js",
+      "offset": 6439201
+    },
+    {
+      "en": "Use Existing",
+      "zh": "使用现有项",
+      "source": "hub:main.js",
+      "offset": 9651138
+    },
+    {
+      "en": "Use regular expression",
+      "zh": "使用正则表达式",
+      "source": "hub:main.js",
+      "offset": 8641165
+    },
+    {
+      "en": "Use Regular Expression (.*)",
+      "zh": "使用正则表达式（.*）",
+      "source": "hub:main.js",
+      "offset": 8641456
+    },
+    {
+      "en": "Use this form if you cannot connect to Remote Control. If your instance is already connected and you are experiencing issues in the browser, report directly from the Remote Control web page so that relevant logs are included. Some helpful information includes:",
+      "zh": "如果无法连接到远程控制，请填写此表单。若实例已连接但在浏览器中遇到问题，请直接在远程控制网页端提交反馈，以便附带相关日志。建议包含以下信息：",
+      "source": "hub:main.js",
+      "offset": 5423215
+    },
+    {
+      "en": "Valid until",
+      "zh": "有效期至",
+      "source": "hub:main.js",
+      "offset": 4991598
+    },
+    {
+      "en": "Validation failed. Please verify requirements and try again.",
+      "zh": "验证失败，请检查各项要求后重试。",
+      "source": "hub:main.js",
+      "offset": 9195821
+    },
+    {
+      "en": "Validation timed out.",
+      "zh": "验证超时。",
+      "source": "hub:main.js",
+      "offset": 5365215
+    },
+    {
+      "en": "Verification required",
+      "zh": "需要验证",
+      "source": "hub:main.js",
+      "offset": 6496055
+    },
+    {
+      "en": "Video",
+      "zh": "视频",
+      "source": "hub:main.js",
+      "offset": 9127655
+    },
+    {
+      "en": "Video attachment",
+      "zh": "视频附件",
+      "source": "hub:main.js",
+      "offset": 8164867
+    },
+    {
+      "en": "View archived in the sidebar (![tune](icon://tune) Customize Sidebar).",
+      "zh": "在侧边栏中查看已归档内容（![tune](icon://tune) 自定义侧边栏）。",
+      "source": "hub:main.js",
+      "offset": 7362009
+    },
+    {
+      "en": "View comments",
+      "zh": "查看评论",
+      "source": "hub:main.js",
+      "offset": 9130284
+    },
+    {
+      "en": "View could not be opened",
+      "zh": "无法打开视图",
+      "source": "hub:main.js",
+      "offset": 7933173
+    },
+    {
+      "en": "View or edit comment",
+      "zh": "查看或编辑评论",
+      "source": "hub:main.js",
+      "offset": 4956707
+    },
+    {
+      "en": "View site information",
+      "zh": "查看网站信息",
+      "source": "hub:main.js",
+      "offset": 4994070
+    },
+    {
+      "en": "Visit",
+      "zh": "访问",
+      "source": "hub:main.js",
+      "offset": 5433373
+    },
+    {
+      "en": "Voice dictation unavailable",
+      "zh": "语音听写不可用",
+      "source": "hub:main.js",
+      "offset": 9178828
+    },
+    {
+      "en": "Volume",
+      "zh": "音量",
+      "source": "hub:main.js",
+      "offset": 3509738
+    },
+    {
+      "en": "Waiting",
+      "zh": "等待中",
+      "source": "hub:main.js",
+      "offset": 4146376
+    },
+    {
+      "en": "We apologize for the inconvenience. Please try again later.",
+      "zh": "给您带来不便，深表歉意，请稍后再试。",
+      "source": "hub:main.js",
+      "offset": 9245714
+    },
+    {
+      "en": "We recommend attaching logs. Attaching logs will help the Antigravity team act on and prioritize your feedback.",
+      "zh": "建议附加日志，这有助于 Antigravity 团队更快定位问题并优先处理您的反馈。",
+      "source": "hub:main.js",
+      "offset": 5433213
+    },
+    {
+      "en": "WebSocket RPC error",
+      "zh": "WebSocket RPC 错误",
+      "source": "hub:main.js",
+      "offset": 6908535
+    },
+    {
+      "en": "What functionality you expect your account tier to have available that is missing",
+      "zh": "您的账号等级本应支持但目前缺失的功能",
+      "source": "hub:main.js",
+      "offset": 5422998
+    },
+    {
+      "en": "What is missing in your workflow",
+      "zh": "当前工作流中缺少什么",
+      "source": "hub:main.js",
+      "offset": 5422416
+    },
+    {
+      "en": "What quota or feature is being incorrectly limited",
+      "zh": "哪些额度或功能受到了异常限制",
+      "source": "hub:main.js",
+      "offset": 5422918
+    },
+    {
+      "en": "What you would like to see to address this gap in your workflow",
+      "zh": "希望通过什么功能来弥补工作流中的这一缺口",
+      "source": "hub:main.js",
+      "offset": 5422478
+    },
+    {
+      "en": "Whether it never connects or is intermittent/flaky",
+      "zh": "是完全无法连接，还是偶尔断连、不稳定",
+      "source": "hub:main.js",
+      "offset": 5423572
+    },
+    {
+      "en": "Write a comment...",
+      "zh": "写评论...",
+      "source": "hub:main.js",
+      "offset": 12519897
+    },
+    {
+      "en": "Write and edit docs",
+      "zh": "撰写与编辑文档",
+      "source": "hub:main.js",
+      "offset": 9256221
+    },
+    {
+      "en": "Yes, allow",
+      "zh": "是，允许",
+      "source": "hub:main.js",
+      "offset": 8266270
+    },
+    {
+      "en": "Yes, allow this download",
+      "zh": "是，允许此下载",
+      "source": "hub:main.js",
+      "offset": 8266313
+    },
+    {
+      "en": "Yes, allow this time",
+      "zh": "是，仅本次允许",
+      "source": "hub:main.js",
+      "offset": 8266544
+    },
+    {
+      "en": "Yesterday",
+      "zh": "昨天",
+      "source": "hub:main.js",
+      "offset": 8136827
+    },
+    {
+      "en": "You",
+      "zh": "你",
+      "source": "hub:main.js",
+      "offset": 9153440
+    },
+    {
+      "en": "You are in control",
+      "zh": "一切由你掌控",
+      "source": "hub:main.js",
+      "offset": 7398783
+    },
+    {
+      "en": "You don't have access to this Google Drive file, so its title couldn't be added. The link was kept as-is.",
+      "zh": "你没有该 Google 云端硬盘文件的访问权限，无法获取标题，链接已按原样保留。",
+      "source": "hub:main.js",
+      "offset": 9193125
+    },
+    {
+      "en": "You said",
+      "zh": "你说",
+      "source": "hub:main.js",
+      "offset": 8181655
+    },
+    {
+      "en": "You should not enter any sensitive information on this site (for example, passwords or credit cards), because it could be stolen by attackers.",
+      "zh": "请勿在此网站上输入任何敏感信息（例如密码或银行卡号），因为攻击者可能会窃取这些信息。",
+      "source": "hub:main.js",
+      "offset": 4444956
+    },
+    {
+      "en": "Your changes were not saved. Please try again.",
+      "zh": "更改未能保存，请重试。",
+      "source": "hub:main.js",
+      "offset": 10100629
+    },
+    {
+      "en": "Your connection is not private",
+      "zh": "您的连接不是私密连接",
+      "source": "hub:main.js",
+      "offset": 4724078
+    },
+    {
+      "en": "Your information (for example, passwords or credit card numbers) is private when it is sent to this site.",
+      "zh": "您发送至此网站的信息（例如密码或银行卡号）会受到加密保护。",
+      "source": "hub:main.js",
+      "offset": 4446403
+    },
+    {
+      "en": "Your session has expired. Please log back in to continue.",
+      "zh": "你的登录会话已过期，请重新登录以继续。",
+      "source": "hub:main.js",
+      "offset": 6496751
+    },
+    {
+      "en": "Zoom",
+      "zh": "缩放",
+      "source": "hub:main.js",
+      "offset": 3513442
+    },
+    {
+      "en": "Zoom in",
+      "zh": "放大",
+      "source": "hub:main.js",
+      "offset": 8498874
+    },
+    {
+      "en": "Zoom in (+)",
+      "zh": "放大 (+)",
+      "source": "hub:main.js",
+      "offset": 3514217
+    },
+    {
+      "en": "Zoom Level",
+      "zh": "缩放比例",
+      "source": "hub:main.js",
+      "offset": 12366523
+    },
+    {
+      "en": "Zoom out",
+      "zh": "缩小",
+      "source": "hub:main.js",
+      "offset": 8498694
+    },
+    {
+      "en": "Zoom out (-)",
+      "zh": "缩小 (-)",
+      "source": "hub:main.js",
+      "offset": 3513626
+    }
+  ],
   "scoped": [
+    {
+      "scope": "controls",
+      "en": "Add",
+      "zh": "添加",
+      "source": "hub:main.js",
+      "offset": 5386988
+    },
+    {
+      "scope": "controls",
+      "en": "All",
+      "zh": "全部",
+      "source": "hub:main.js",
+      "offset": 9685889
+    },
+    {
+      "scope": "controls",
+      "en": "Back",
+      "zh": "返回",
+      "source": "hub:main.js",
+      "offset": 4989328
+    },
+    {
+      "scope": "controls",
+      "en": "Close",
+      "zh": "关闭",
+      "source": "hub:main.js",
+      "offset": 3536257
+    },
+    {
+      "scope": "controls",
+      "en": "Code",
+      "zh": "代码",
+      "source": "hub:main.js",
+      "offset": 6616187
+    },
+    {
+      "scope": "controls",
+      "en": "Copy",
+      "zh": "复制",
+      "source": "hub:main.js",
+      "offset": 3636334
+    },
+    {
+      "scope": "controls",
+      "en": "Delete",
+      "zh": "删除",
+      "source": "hub:main.js",
+      "offset": 4948838
+    },
+    {
+      "scope": "controls",
+      "en": "Done",
+      "zh": "完成",
+      "source": "hub:main.js",
+      "offset": 5587558
+    },
+    {
+      "scope": "controls",
+      "en": "Edit",
+      "zh": "编辑",
+      "source": "hub:main.js",
+      "offset": 5386072
+    },
+    {
+      "scope": "controls",
+      "en": "File",
+      "zh": "文件",
+      "source": "hub:main.js",
+      "offset": 9920952
+    },
+    {
+      "scope": "controls",
+      "en": "New",
+      "zh": "新建",
+      "source": "hub:main.js",
+      "offset": 5614633
+    },
+    {
+      "scope": "controls",
+      "en": "Next",
+      "zh": "下一步",
+      "source": "hub:main.js",
+      "offset": 3566478
+    },
+    {
+      "scope": "controls",
+      "en": "Open",
+      "zh": "打开",
+      "source": "hub:main.js",
+      "offset": 5650748
+    },
+    {
+      "scope": "controls",
+      "en": "Plan",
+      "zh": "计划",
+      "source": "hub:main.js",
+      "offset": 5477913
+    },
+    {
+      "scope": "controls",
+      "en": "Reset",
+      "zh": "重置",
+      "source": "hub:main.js",
+      "offset": 5400291
+    },
+    {
+      "scope": "controls",
+      "en": "Run",
+      "zh": "运行",
+      "source": "hub:main.js",
+      "offset": 3648095
+    },
+    {
+      "scope": "controls",
+      "en": "Save",
+      "zh": "保存",
+      "source": "hub:main.js",
+      "offset": 5366881
+    },
+    {
+      "scope": "controls",
+      "en": "Search",
+      "zh": "搜索",
+      "source": "hub:main.js",
+      "offset": 7859027
+    },
+    {
+      "scope": "controls",
+      "en": "Send",
+      "zh": "发送",
+      "source": "hub:main.js",
+      "offset": 9922362
+    },
+    {
+      "scope": "controls",
+      "en": "Stop",
+      "zh": "停止",
+      "source": "hub:main.js",
+      "offset": 4406293
+    },
+    {
+      "scope": "controls",
+      "en": "Type",
+      "zh": "类型",
+      "source": "hub:main.js",
+      "offset": 8388384
+    },
+    {
+      "scope": "controls",
+      "en": "View",
+      "zh": "视图",
+      "source": "hub:main.js",
+      "offset": 8685571
+    },
     {
       "scope": "onboarding",
       "en": "Authorization code",
       "zh": "授权码",
       "source": "hub:main.js",
-      "offset": 9075349
+      "offset": 9222363
     },
     {
       "scope": "onboarding",
       "en": "Back",
       "zh": "返回",
       "source": "hub:main.js",
-      "offset": 7677523
+      "offset": 4989328
     },
     {
       "scope": "onboarding",
       "en": "Build with one agent or a team",
       "zh": "用一个或多个 AI 助手完成任务",
       "source": "hub:main.js",
-      "offset": 7685234
+      "offset": 7403097
     },
     {
       "scope": "onboarding",
       "en": "By default, agents work in folders you choose and ask before sensitive changes. Adjust this anytime in Settings.",
       "zh": "默认情况下，AI 助手在你选择的文件夹中工作，做出敏感更改前会先询问。你随时可以在设置里调整。",
       "source": "hub:main.js",
-      "offset": 7685600
+      "offset": 7403463
     },
     {
       "scope": "onboarding",
       "en": "Comment on the plan before your agent starts, and get a walkthrough when it finishes.",
       "zh": "在 AI 助手动手前给计划提意见，完成后即可查看执行说明。",
       "source": "hub:main.js",
-      "offset": 7685440
+      "offset": 7403303
     },
     {
       "scope": "onboarding",
       "en": "Continue with Google",
       "zh": "使用 Google 登录",
       "source": "hub:main.js",
-      "offset": 9078625
+      "offset": 9225641
     },
     {
       "scope": "onboarding",
       "en": "Copied!",
       "zh": "已复制！",
       "source": "hub:main.js",
-      "offset": 9077502
+      "offset": 8028965
     },
     {
       "scope": "onboarding",
       "en": "Copy sign-in link",
       "zh": "复制登录链接",
       "source": "hub:main.js",
-      "offset": 9077512
+      "offset": 9224526
     },
     {
       "scope": "onboarding",
       "en": "Describe what you want. Your agent plans and builds it, and brings in other agents when needed.",
       "zh": "说说你想做什么。AI 助手会制定计划并动手完成，需要时还会请其他助手帮忙。",
       "source": "hub:main.js",
-      "offset": 7685279
+      "offset": 7403142
     },
     {
       "scope": "onboarding",
       "en": "Get started",
       "zh": "开始使用",
       "source": "hub:main.js",
-      "offset": 7688001
+      "offset": 7405864
     },
     {
       "scope": "onboarding",
       "en": "Having trouble signing in?",
       "zh": "登录遇到问题？",
       "source": "hub:main.js",
-      "offset": 9084373
+      "offset": 9231409
     },
     {
       "scope": "onboarding",
       "en": "Here's how you and your agents work together",
       "zh": "了解如何与 AI 助手一起工作",
       "source": "hub:main.js",
-      "offset": 7686635
+      "offset": 7404498
     },
     {
       "scope": "onboarding",
       "en": "Last Used",
       "zh": "上次使用",
       "source": "hub:main.js",
-      "offset": 9079655
+      "offset": 9226682
     },
     {
       "scope": "onboarding",
       "en": "Other sign-in options",
       "zh": "其他登录方式",
       "source": "hub:main.js",
-      "offset": 9080581
+      "offset": 9227608
     },
     {
       "scope": "onboarding",
       "en": "Review plans and walkthroughs",
       "zh": "审阅计划与完成说明",
       "source": "hub:main.js",
-      "offset": 7685396
+      "offset": 7403259
     },
     {
       "scope": "onboarding",
       "en": "Set the rules, define the boundaries.",
       "zh": "设定规则，划清权限范围",
       "source": "hub:main.js",
-      "offset": 7685548
+      "offset": 7403411
     },
     {
       "scope": "onboarding",
       "en": "Sign in in your browser, then paste the authorization code shown on the callback page.",
       "zh": "请在浏览器中登录，再把返回页面显示的授权码粘贴到这里。",
       "source": "hub:main.js",
-      "offset": 9075089
+      "offset": 9222103
     },
     {
       "scope": "onboarding",
       "en": "Submit code",
       "zh": "提交授权码",
       "source": "hub:main.js",
-      "offset": 9076502
+      "offset": 9223516
     },
     {
       "scope": "onboarding",
       "en": "Trouble signing in? Enter authorization code",
       "zh": "登录遇到问题？输入授权码",
       "source": "hub:main.js",
-      "offset": 9074127
+      "offset": 9221141
     },
     {
       "scope": "onboarding",
       "en": "Use Business Account",
       "zh": "使用企业账号",
       "source": "hub:main.js",
-      "offset": 9081003
+      "offset": 9228030
     },
     {
       "scope": "onboarding",
       "en": "Welcome to ${a}!",
       "zh": "欢迎使用 Antigravity！",
       "source": "hub:main.js",
-      "offset": 9097635
+      "offset": 9244671
     },
     {
       "scope": "toolbar",
       "en": "Cancel",
       "zh": "取消",
       "source": "hub:main.js",
-      "offset": 4920830
+      "offset": 4949063
     },
     {
       "scope": "toolbar",
       "en": "Close (Esc)",
       "zh": "关闭 (Esc)",
       "source": "hub:main.js",
-      "offset": 3527283
+      "offset": 3565543
     },
     {
       "scope": "toolbar",
       "en": "Customize Sections",
       "zh": "自定义分区",
       "source": "hub:main.js",
-      "offset": 9285266
+      "offset": 9442639
     },
     {
       "scope": "toolbar",
       "en": "Download image",
       "zh": "下载图片",
       "source": "hub:main.js",
-      "offset": 3527067
+      "offset": 3565326
     },
     {
       "scope": "toolbar",
       "en": "Download video",
       "zh": "下载视频",
       "source": "hub:main.js",
-      "offset": 3527050
+      "offset": 3565309
     },
     {
       "scope": "toolbar",
       "en": "Files",
       "zh": "文件",
       "source": "hub:main.js",
-      "offset": 9289783
+      "offset": 6528925
     },
     {
       "scope": "toolbar",
       "en": "New Conversation",
       "zh": "新建对话",
       "source": "hub:main.js",
-      "offset": 9589623
+      "offset": 1920650
     },
     {
       "scope": "toolbar",
       "en": "Next",
       "zh": "下一步",
       "source": "hub:main.js",
-      "offset": 3528217
+      "offset": 3566478
     },
     {
       "scope": "toolbar",
       "en": "Next (→)",
       "zh": "下一个 (→)",
       "source": "hub:main.js",
-      "offset": 3528201
+      "offset": 3566462
     },
     {
       "scope": "toolbar",
       "en": "OK",
       "zh": "确定",
       "source": "hub:main.js",
-      "offset": 4920937
+      "offset": 4984158
     },
     {
       "scope": "toolbar",
       "en": "Open IDE",
       "zh": "打开 IDE",
       "source": "hub:main.js",
-      "offset": 9309411
+      "offset": 9466693
     },
     {
       "scope": "toolbar",
       "en": "Plugins",
       "zh": "插件",
       "source": "hub:main.js",
-      "offset": 9590892
+      "offset": 5573842
     },
     {
       "scope": "toolbar",
       "en": "Plugins Options",
       "zh": "插件选项",
       "source": "hub:main.js",
-      "offset": 9476804
+      "offset": 9642293
     },
     {
       "scope": "toolbar",
       "en": "Previous",
       "zh": "上一个",
       "source": "hub:main.js",
-      "offset": 3527990
+      "offset": 3566250
     },
     {
       "scope": "toolbar",
       "en": "Previous (←)",
       "zh": "上一个 (←)",
       "source": "hub:main.js",
-      "offset": 3527970
+      "offset": 3566230
     },
     {
       "scope": "toolbar",
       "en": "Reset zoom (0)",
       "zh": "重置缩放 (0)",
       "source": "hub:main.js",
-      "offset": 3497975
+      "offset": 3513838
     },
     {
       "scope": "toolbar",
       "en": "Review",
       "zh": "审阅",
       "source": "hub:main.js",
-      "offset": 9289639
+      "offset": 7940132
     },
     {
       "scope": "toolbar",
       "en": "Settings",
       "zh": "设置",
       "source": "hub:main.js",
-      "offset": 9592991
+      "offset": 3637918
     },
     {
       "scope": "toolbar",
       "en": "Terminal",
       "zh": "终端",
       "source": "hub:main.js",
-      "offset": 9289940
+      "offset": 3198302
     },
     {
       "scope": "toolbar",
       "en": "Update Available",
       "zh": "有可用更新",
       "source": "hub:main.js",
-      "offset": 9301868
+      "offset": 9455485
     },
     {
       "scope": "toolbar",
       "en": "Updating…",
       "zh": "正在更新…",
       "source": "hub:main.js",
-      "offset": 9295536
+      "offset": 9452909
     },
     {
       "scope": "toolbar",
       "en": "Zoom in (+)",
       "zh": "放大 (+)",
       "source": "hub:main.js",
-      "offset": 3498354
+      "offset": 3514217
     },
     {
       "scope": "toolbar",
       "en": "Zoom out (-)",
       "zh": "缩小 (-)",
       "source": "hub:main.js",
-      "offset": 3497763
+      "offset": 3513626
     }
   ],
   "templates": []

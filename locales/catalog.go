@@ -199,6 +199,15 @@ func ValidateCatalogBytes(payloads map[string][]byte) error {
 	return err
 }
 
+var exactScopedOnly = map[string]bool{
+	"on": true, "in": true, "to": true, "by": true, "for": true,
+	"run": true, "open": true, "file": true, "type": true, "use": true,
+	"plan": true, "code": true, "new": true, "edit": true, "all": true,
+	"add": true, "view": true, "back": true, "next": true, "done": true,
+	"stop": true, "send": true, "copy": true, "save": true, "close": true,
+	"delete": true, "reset": true, "search": true, "active": true,
+}
+
 func load(readFile func(string) ([]byte, error), custom map[string]string) (l10n.Dictionary, error) {
 	out := l10n.Dictionary{Exact: map[string]string{}, Custom: map[string]string{}}
 	for en, zh := range custom {
@@ -251,6 +260,9 @@ func load(readFile func(string) ([]byte, error), custom map[string]string) (l10n
 				used[key] = true
 				switch layer.name {
 				case "exact":
+					if exactScopedOnly[strings.ToLower(e.EN)] {
+						return l10n.Dictionary{}, fmt.Errorf("%s: ambiguous short word %q must be placed in scoped", name, e.EN)
+					}
 					out.Exact[e.EN] = e.ZH
 				case "scoped":
 					if scopes[e.Scope] == nil {

@@ -22,6 +22,18 @@ func white(c byte) bool {
 	return c == ' ' || c == '\t' || c == '\r' || c == '\n' || c == '\f' || c == '\v'
 }
 
+func uiProperty(name string) bool {
+	switch name {
+	case "label", "sublabel", "title", "placeholder", "description", "shortDescription",
+		"tooltip", "tooltipText", "tooltipContent", "aria-label", "ariaLabel",
+		"emptyMessage", "emptyText", "errorMessage", "helperText",
+		"confirmText", "cancelText", "buttonText",
+		"heading", "subheading", "subtitle", "header", "content", "message", "detail":
+		return true
+	}
+	return false
+}
+
 // Return the decoded complete static literal. Unsupported or invalid escapes
 // are not evidence. Strings inside comments, regexps and template raw sections
 // are excluded by the scanner.
@@ -128,13 +140,16 @@ type frame struct {
 	interpolation bool
 	statementBody bool
 	classHead     string
+	ternaryDepth  int
+	inChild       bool
+	propContext   string
 }
 
 // Uncertain starts are treated as declarations. This can omit a candidate
 // in a chained division, but avoids accepting quotes inside a following regexp.
 func declarationStart(previous string) bool {
 	switch previous {
-	case "=", "(", "[", ",", ":", "?", "!", "~", "+", "-", "*", "/", "%", "<", ">", "|", "^", "&", "return", "throw", "yield", "await", "void", "typeof", "new", "=>":
+	case "=", "(", "[", ",", ":", "#ternary-colon", "?", "??", "!", "~", "+", "-", "*", "/", "%", "<", ">", "|", "||", "^", "&", "&&", "return", "throw", "yield", "await", "void", "typeof", "new", "=>":
 		return false
 	}
 	return true
@@ -263,25 +278,32 @@ func staticLiterals(src []byte, visit func(start, end int, context string)) erro
 				continue
 			}
 			context := ""
-			if last == ":" {
+			top := &frames[len(frames)-1]
+			if last == "?" || last == "#ternary-colon" {
+				context = "ternary"
+			} else if last == ":" {
 				context = before
+			} else if top.propContext != "" && (last == "||" || last == "&&" || last == "??" || last == "(" || last == "[" || last == ",") {
+				context = top.propContext
 			}
-			if n := len(frames); n > 0 && frames[n-1].delim == '(' && last == "," && frames[n-1].key == "createElement" && frames[n-1].commas >= 2 {
+			if top.delim == '(' && top.key == "createElement" && top.commas >= 2 {
+				context = "child"
+			} else if top.inChild {
 				context = "child"
 			}
-			if n := len(frames); n > 0 && frames[n-1].key == "showErrorBox" && last == "(" {
+			if top.delim == '[' && top.propContext == "buttons" {
+				context = "buttonText"
+			}
+			if top.key == "showErrorBox" && last == "(" {
 				context = "title"
 			}
 			visit(start, i, context)
 			// A quoted property key is useful only for the bounded presentation fields.
 			property := "#"
-			if i-start < 24 {
+			if i-start < 32 {
 				v, ok := decode(src[start:i])
-				if ok {
-					switch v {
-					case "label", "placeholder", "title", "aria-label", "message":
-						property = v
-					}
+				if ok && uiProperty(v) {
+					property = v
 				}
 			}
 			set(property, false)
@@ -327,12 +349,12 @@ func staticLiterals(src []byte, visit func(start, end int, context string)) erro
 		switch c {
 		case '(', '[', '{':
 			statementBody := false
+			parentFrame := &frames[len(frames)-1]
 			if c == '{' {
-				f := &frames[len(frames)-1]
 				switch {
-				case f.classHead != "":
-					statementBody = f.classHead == "#class-declaration"
-					f.classHead = ""
+				case parentFrame.classHead != "":
+					statementBody = parentFrame.classHead == "#class-declaration"
+					parentFrame.classHead = ""
 				case last == "#function-expression", last == "=>":
 				case last == "#function-declaration", last == ")", last == "else", last == "do", last == "try", last == "finally":
 					statementBody = true
@@ -340,7 +362,16 @@ func staticLiterals(src []byte, visit func(start, end int, context string)) erro
 					statementBody = declarationStart(last)
 				}
 			}
-			frames = append(frames, frame{key: last, delim: c, statementBody: statementBody})
+			childCtx := parentFrame.inChild || (parentFrame.delim == '(' && parentFrame.key == "createElement" && parentFrame.commas >= 2)
+			propCtx := ""
+			if c == '[' || c == '(' {
+				if last == ":" && parentFrame.ternaryDepth == 0 && (uiProperty(before) || before == "buttons") {
+					propCtx = before
+				} else if parentFrame.propContext != "" {
+					propCtx = parentFrame.propContext
+				}
+			}
+			frames = append(frames, frame{key: last, delim: c, statementBody: statementBody, inChild: childCtx && c != '{', propContext: propCtx})
 			set(string(c), true)
 		case ')', ']', '}':
 			regex := false
@@ -365,14 +396,50 @@ func staticLiterals(src []byte, visit func(start, end int, context string)) erro
 			}
 			set(string(c), regex)
 		case ',':
-			frames[len(frames)-1].classHead = ""
-			if len(frames) > 0 {
-				frames[len(frames)-1].commas++
+			top := &frames[len(frames)-1]
+			top.classHead = ""
+			top.commas++
+			if top.delim == '{' {
+				top.propContext = ""
+				top.ternaryDepth = 0
 			}
 			set(",", true)
-		case ':', ';':
-			frames[len(frames)-1].classHead = ""
-			set(string(c), true)
+		case '?':
+			if i < len(src) && src[i] == '?' {
+				i++
+				set("??", true)
+			} else if i < len(src) && src[i] == '.' {
+				i++
+				set("?.", false)
+			} else {
+				frames[len(frames)-1].ternaryDepth++
+				set("?", true)
+			}
+		case '&', '|':
+			if i < len(src) && src[i] == c {
+				i++
+				set(string([]byte{c, c}), true)
+			} else {
+				set(string(c), true)
+			}
+		case ':':
+			top := &frames[len(frames)-1]
+			top.classHead = ""
+			if top.ternaryDepth > 0 {
+				top.ternaryDepth--
+				set("#ternary-colon", true)
+			} else {
+				if uiProperty(last) || last == "buttons" {
+					top.propContext = last
+				}
+				set(":", true)
+			}
+		case ';':
+			top := &frames[len(frames)-1]
+			top.classHead = ""
+			top.propContext = ""
+			top.ternaryDepth = 0
+			set(";", true)
 		case '=':
 			if i < len(src) && src[i] == '>' {
 				i++

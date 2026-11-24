@@ -2,6 +2,7 @@ package patcher
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -10,6 +11,7 @@ import (
 
 	"antigravity-zh-gui/internal/asar"
 	"antigravity-zh-gui/internal/config"
+	"antigravity-zh-gui/internal/detector"
 	"antigravity-zh-gui/locales"
 )
 
@@ -22,8 +24,8 @@ func TestReviewedLocalizationSample(t *testing.T) {
 	}
 	p := config.Defaults()
 	change, warnings, err := presentationPlan(archive, "darwin", Options{Preferences: &p, Custom: map[string]string{"New Conversation": "自定义对话"}})
-	if err != nil || len(change) != 5 || len(warnings) != 0 {
-		t.Fatalf("changes=%d warnings=%+v err=%v", len(change), warnings, err)
+	if err != nil || len(change) != len(reviewed) || len(warnings) != 0 {
+		t.Fatalf("changes=%d want=%d warnings=%+v err=%v", len(change), len(reviewed), warnings, err)
 	}
 	dir := t.TempDir()
 	for member, data := range change {
@@ -42,7 +44,7 @@ func TestReviewedLocalizationSample(t *testing.T) {
 	if err := asar.Rewrite(archive, candidate, change); err != nil {
 		t.Fatal(err)
 	}
-	if report, err := asar.VerifyCandidate(archive, candidate, allowed(change)); err != nil || len(report.Changes) != 5 {
+	if report, err := asar.VerifyCandidate(archive, candidate, allowed(change)); err != nil || len(report.Changes) != len(reviewed) {
 		t.Fatal(report, err)
 	}
 	drift := filepath.Join(dir, "platform-variant.asar")
@@ -54,7 +56,7 @@ func TestReviewedLocalizationSample(t *testing.T) {
 		t.Fatal(err)
 	}
 	partial, skipped, err := presentationPlan(drift, "windows", Options{Preferences: &p})
-	if err != nil || len(partial) != 4 || len(skipped) != 1 || skipped[0].Member != member || partial[member] != nil {
+	if err != nil || len(partial) != len(reviewed)-1 || len(skipped) != 1 || skipped[0].Member != member || partial[member] != nil {
 		t.Fatalf("partial=%d skipped=%v err=%v", len(partial), skipped, err)
 	}
 
@@ -133,8 +135,41 @@ func TestStageFiveSkipAndCandidateReceipts(t *testing.T) {
 	if err != nil || !bytes.Contains(english, []byte(`message: "No updates available",`)) || bytes.Contains(english, []byte("已是最新版本")) {
 		t.Fatalf("fallback English reapply: %s %v", english, err)
 	}
-	if _, err = e.run(i, Options{Preferences: &p}, true); err != nil {
-		t.Fatal(err)
+	if res, err := e.run(i, Options{Preferences: &p}, true); err != nil || !res.Committed || len(res.Warnings) != 0 {
+		t.Fatalf("restore after fallback apply: res=%+v err=%v", res, err)
+	}
+}
+
+func TestRestoreNon2340SkipsPresentationPlanAndWarnings(t *testing.T) {
+	for _, platform := range []string{"darwin", "windows"} {
+		t.Run(platform, func(t *testing.T) {
+			e, i := sample(t, platform, updateFixture, wslFixture)
+			i.Version = "2.35.0"
+			original := fileBytes(t, i.Archive)
+			p := config.Defaults()
+
+			// 1. Unpatched non-2.34.0 install: restore should be a clean read-only no-op with zero warnings.
+			res, err := e.run(i, Options{Preferences: &p}, true)
+			if err != nil || res.Committed || len(res.Warnings) != 0 {
+				t.Fatalf("unpatched restore: res=%+v err=%v", res, err)
+			}
+			if !bytes.Equal(original, fileBytes(t, i.Archive)) {
+				t.Fatal("unpatched archive modified during restore")
+			}
+
+			// 2. Fallback-patched non-2.34.0 install: apply produces fallback warnings, then restore succeeds cleanly with zero warnings.
+			applied, err := e.run(i, Options{Preferences: &p}, false)
+			if err != nil || !applied.Committed || len(applied.Warnings) == 0 {
+				t.Fatalf("fallback apply: res=%+v err=%v", applied, err)
+			}
+			restored, err := e.run(i, Options{Preferences: &p}, true)
+			if err != nil || !restored.Committed || len(restored.Warnings) != 0 {
+				t.Fatalf("fallback restore: res=%+v err=%v", restored, err)
+			}
+			if !bytes.Equal(original, fileBytes(t, i.Archive)) {
+				t.Fatal("archive not restored to original bytes")
+			}
+		})
 	}
 }
 
@@ -215,5 +250,57 @@ func TestOnlyReviewedMembersAndUniqueAnchors(t *testing.T) {
 				t.Fatalf("host adapter uses %s", blocked)
 			}
 		}
+	}
+}
+
+func TestMultiVersionBaselinesAndDegradedLocalizationDetection(t *testing.T) {
+	// 1. Both 2.34.0 and 2.35.0 macOS baselines and reviewed multi-hash sets are retained.
+	if h := releaseHash(detector.Installation{Platform: "darwin", Version: "2.34.0"}); h != mac234 {
+		t.Fatalf("2.34.0 baseline=%q want=%q", h, mac234)
+	}
+	if h := releaseHash(detector.Installation{Platform: "darwin", Version: "2.35.0"}); h != mac235 {
+		t.Fatalf("2.35.0 baseline=%q want=%q", h, mac235)
+	}
+	if h := releaseHash(detector.Installation{Platform: "darwin", Version: "2.99.0"}); h != "" {
+		t.Fatalf("unreviewed version should have empty baseline, got %q", h)
+	}
+	for _, name := range []string{mainMember, preloadMember, ipcMember} {
+		if len(reviewed[name]) < 2 {
+			t.Fatalf("%s expected both 2.34.0 and 2.35.0 digests, got %v", name, reviewed[name])
+		}
+	}
+
+	// 2. Fallback-only patch (dist/updater.js marked, dist/preload.js absent/unmarked) reports degraded=true.
+	e, i := sample(t, "windows", updateFixture, wslFixture)
+	loc, deg, err := LocalizedDetail(i)
+	if err != nil || loc || deg {
+		t.Fatalf("unpatched detail: loc=%v deg=%v err=%v", loc, deg, err)
+	}
+	p := config.Defaults()
+	res, err := e.run(i, Options{Preferences: &p}, false)
+	if err != nil || !res.Committed {
+		t.Fatalf("fallback apply: res=%+v err=%v", res, err)
+	}
+	loc, deg, err = LocalizedDetail(i)
+	if err != nil || !loc || !deg {
+		t.Fatalf("fallback install should report localized=true degraded=true, got loc=%v deg=%v err=%v", loc, deg, err)
+	}
+
+	// 3. When dist/preload.js carries the localization marker, degraded=false.
+	fullBody := []byte(begin + "\n// hub\n" + end)
+	fullHdr := []byte(`{"files":{"dist":{"files":{"preload.js":{"size":` + fmt.Sprint(len(fullBody)) + `,"offset":"0"}}}}}`)
+	pad := (len(fullHdr) + 3) &^ 3
+	fullBuf := make([]byte, 16+pad)
+	for j, v := range []uint32{4, uint32(pad + 8), uint32(pad + 4), uint32(len(fullHdr))} {
+		fullBuf[4*j] = byte(v)
+		fullBuf[4*j+1] = byte(v >> 8)
+		fullBuf[4*j+2] = byte(v >> 16)
+		fullBuf[4*j+3] = byte(v >> 24)
+	}
+	copy(fullBuf[16:], fullHdr)
+	writeFixture(t, i.Archive, append(fullBuf, fullBody...))
+	loc, deg, err = LocalizedDetail(i)
+	if err != nil || !loc || deg {
+		t.Fatalf("full install should report localized=true degraded=false, got loc=%v deg=%v err=%v", loc, deg, err)
 	}
 }

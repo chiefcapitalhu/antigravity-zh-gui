@@ -151,8 +151,16 @@ func TestStatusAndRepairWithSyntheticInstallation(t *testing.T) {
 			if err := json.Unmarshal(out.Bytes(), &result); err != nil {
 				t.Fatal(err)
 			}
-			if result.Committed || len(result.Warnings) == 0 {
+			if result.Committed {
+				t.Fatalf("%s committed on an unsupported fixture: %+v", name, result)
+			}
+			// apply must report why it skipped; restoring an untouched
+			// installation is a read-only no-op and must not warn.
+			if name == "apply" && len(result.Warnings) == 0 {
 				t.Fatalf("expected a reported skip, got %+v", result)
+			}
+			if name == "restore" && len(result.Warnings) != 0 {
+				t.Fatalf("restore of an untouched fixture warned: %+v", result)
 			}
 		}
 	}

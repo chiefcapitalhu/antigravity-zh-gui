@@ -6,6 +6,7 @@ import (
 	"errors"
 	"net/http"
 	"net/http/httptest"
+	"path/filepath"
 	"strings"
 	"testing"
 	"time"
@@ -44,7 +45,7 @@ func (f *fixture) EditDictionary(en string, zh *string) (map[string]string, erro
 	return f.dict, nil
 }
 func (f *fixture) Status(target string) (*app.Status, error) {
-	if target == "missing" {
+	if strings.HasSuffix(target, "missing") {
 		return nil, errors.New("找不到客户端")
 	}
 	return &app.Status{Target: target, Version: "2.34.0"}, nil
@@ -122,6 +123,9 @@ func TestPreferencesDictionaryAndExit(t *testing.T) {
 	if w.Code != 200 || !bytes.Contains(w.Body.Bytes(), []byte(`"defaultLang":"zh"`)) {
 		t.Fatal(w.Body.String())
 	}
+	absDir := t.TempDir()
+	missingPath, _ := json.Marshal(filepath.Join(absDir, "missing"))
+	fixturePath, _ := json.Marshal(filepath.Join(absDir, "fixture"))
 	for _, sample := range []struct {
 		path, raw string
 		code      int
@@ -131,7 +135,7 @@ func TestPreferencesDictionaryAndExit(t *testing.T) {
 		{"dictionary", `{"operation":"set","english":"open","chinese":"开"}`, 400},
 		{"dictionary", `{"operation":"set","english":"New window","chinese":"新窗口"}`, 200},
 		{"dictionary", `{"operation":"remove","english":"New window"}`, 200},
-		{"status", `{"target":"missing"}`, 400}, {"status", `{"target":"fixture"}`, 200},
+		{"status", `{"target":` + string(missingPath) + `}`, 400}, {"status", `{"target":` + string(fixturePath) + `}`, 200},
 		{"start", `{"action":"unexpected"}`, 400},
 		{"exit", "{}", 200}, {"dictionary", `{"operation":"set","english":"File picker","chinese":"文件"}`, 409},
 	} {
@@ -179,5 +183,42 @@ func TestJobAndConcurrentWrites(t *testing.T) {
 	}
 	if j.Active || j.ID != 1 || j.Result == nil || j.Result.Changes[0].AfterSHA256 != "after" || len(j.Logs) != 3 || j.Logs[2].Text != "操作结束" || j.Logs[2].Elapsed < j.Logs[1].Elapsed {
 		t.Fatal(j)
+	}
+}
+
+func TestRelativeTargetRejectedConsistently(t *testing.T) {
+	p, f := fixturePanel()
+	close(f.finish)
+	for _, tc := range []struct {
+		path, raw string
+	}{
+		{"status", `{"target":"relative/Antigravity.app"}`},
+		{"preferences", `{"target":"relative/Antigravity.app","defaultLang":"zh","brand":"keep","hotkey":true}`},
+		{"start", `{"action":"verify","preferences":{"target":"relative/Antigravity.app","defaultLang":"zh","brand":"keep","hotkey":true}}`},
+	} {
+		w := send(p, request(p, "/api/"+tc.path, tc.raw))
+		if w.Code != 400 || !strings.Contains(w.Body.String(), "绝对路径") {
+			t.Fatalf("%s with relative path: got %d %s", tc.path, w.Code, w.Body.String())
+		}
+	}
+	// Empty target (auto-detect) is accepted consistently across all three endpoints.
+	if w := send(p, request(p, "/api/status", `{"target":""}`)); w.Code != 200 {
+		t.Fatalf("status empty target: %d %s", w.Code, w.Body.String())
+	}
+	if w := send(p, request(p, "/api/preferences", `{"target":"","defaultLang":"zh","brand":"keep","hotkey":true}`)); w.Code != 200 {
+		t.Fatalf("preferences empty target: %d %s", w.Code, w.Body.String())
+	}
+	if w := send(p, request(p, "/api/start", `{"action":"verify","preferences":{"target":"","defaultLang":"zh","brand":"keep","hotkey":true}}`)); w.Code != 202 {
+		t.Fatalf("start empty target: %d %s", w.Code, w.Body.String())
+	}
+	<-f.began
+	deadline := time.Now().Add(time.Second * 5)
+	for time.Now().Before(deadline) {
+		w := send(p, request(p, "/api/job", "{}"))
+		var j job
+		if err := json.Unmarshal(w.Body.Bytes(), &j); err == nil && !j.Active {
+			break
+		}
+		time.Sleep(time.Millisecond)
 	}
 }

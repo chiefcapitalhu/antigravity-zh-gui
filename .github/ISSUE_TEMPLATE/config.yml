@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 查阅使用说明与常见问题
+    url: https://github.com/chiefcapitalhu/antigravity-zh-gui#readme
+    about: 提交问题前可先核对支持版本、降级提示与还原方法

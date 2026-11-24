@@ -11,7 +11,7 @@ import (
 )
 
 // Version may be set from the release tag at link time.
-var Version = "0.1.0"
+var Version = "0.2.0"
 
 type Service struct {
 	store config.Store
@@ -42,6 +42,7 @@ type Status struct {
 	Platform  string   `json:"platform"`
 	Running   *bool    `json:"running"`
 	Localized *bool    `json:"localized"`
+	Degraded  bool     `json:"degraded,omitempty"`
 	Backup    bool     `json:"backup"`
 	BackupApp bool     `json:"backupApp"`
 	Signature string   `json:"signature"`
@@ -49,6 +50,9 @@ type Status struct {
 }
 
 func (s *Service) Status(target string) (*Status, error) {
+	if err := config.ValidateTarget(target); err != nil {
+		return nil, err
+	}
 	i, err := detector.Inspect(target)
 	if err != nil {
 		return nil, err
@@ -60,11 +64,15 @@ func (s *Service) Status(target string) (*Status, error) {
 	} else {
 		status.Running = &running
 	}
-	localized, err := patcher.Localized(i)
+	localized, degraded, err := patcher.LocalizedDetail(i)
 	if err != nil {
 		status.Warnings = append(status.Warnings, "读取汉化标记失败："+err.Error())
 	} else {
 		status.Localized = &localized
+		status.Degraded = degraded
+		if degraded {
+			status.Warnings = append(status.Warnings, "当前客户端（"+i.Version+"）仅处于降级部分汉化状态：主界面汉化、菜单与快捷键热切换未注入（仅修改了少量原生弹窗），请更新汉化工具以完整适配该版本。")
+		}
 	}
 	present := func(path string, dir bool) bool {
 		st, err := os.Lstat(path)
@@ -125,10 +133,7 @@ func (s *Service) Execute(action string, p config.Preferences, progress func(str
 		return &patcher.Result{AuditReport: report}, nil
 	case "restore-app":
 		progress("核对整包备份的发行方签名和版本并还原")
-		if err := patcher.RestoreOfficialApp(p.Target); err != nil {
-			return nil, err
-		}
-		return &patcher.Result{Committed: true}, nil
+		return patcher.RestoreOfficialAppWithReport(p.Target)
 	default:
 		return nil, errors.New("未知操作")
 	}

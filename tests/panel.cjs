@@ -22,8 +22,10 @@ function fixture() {
                 break;
             case 'status':
                 const running = q.target === '/running';
-                result = { target: q.target || '/fixture', version: '2.34.0', platform: 'darwin', running,
-                    localized: false, backup: true, backupApp: false, signature: '本地测试签名', warnings: [] };
+                const degraded = q.target === '/degraded';
+                result = { target: q.target || '/fixture', version: '2.35.0', platform: 'darwin', running,
+                    localized: degraded, degraded, backup: true, backupApp: false, signature: '本地测试签名',
+                    warnings: degraded ? ['当前客户端（2.35.0）仅处于降级部分汉化状态：主界面汉化、菜单与快捷键热切换未注入。'] : [] };
                 break;
             case 'preferences':
                 Object.assign(settings, q);
@@ -64,7 +66,7 @@ async function verifyPage(narrow) {
     const settle = () => new Promise(resolve => setTimeout(resolve, 5));
     try {
         await settle();
-        expect(byId('clientVersion').textContent === '2.34.0' && !byId('apply').disabled, 'initial status');
+        expect(byId('clientVersion').textContent === '2.35.0' && !byId('apply').disabled, 'initial status');
         const grid = getComputedStyle(document.querySelector('.grid')).gridTemplateColumns.split(' ');
         expect(grid.length === (narrow ? 1 : 2), 'responsive card columns');
         expect(document.documentElement.scrollWidth <= document.documentElement.clientWidth, 'horizontal overflow');
@@ -90,6 +92,12 @@ async function verifyPage(narrow) {
         await settle();
         expect(byId('logs').textContent.includes('0.04 s') && byId('changes').textContent.includes('newhash'), 'log and audit');
         expect(byId('logs').textContent.includes('耗时 37 ms'), 'per-step duration');
+        byId('target').value = '/degraded';
+        byId('target').dispatchEvent(new Event('input'));
+        byId('refresh').click();
+        await settle();
+        expect(byId('localized').textContent.includes('降级') && byId('localized').className === 'bad', 'degraded status badge');
+        expect(byId('health').classList.contains('bad') && byId('health').textContent.includes('降级部分汉化'), 'degraded status warning');
         byId('target').value = '/stopped';
         byId('target').dispatchEvent(new Event('input'));
         byId('refresh').click();
