@@ -1,11 +1,10 @@
 // Run with node tests/browser.cjs. The browser loads only temporary local files.
-const {spawnSync} = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const {pathToFileURL} = require('node:url');
 
-const chromePath = require('./chrome-path.cjs');
+const dumpLocalPage = require('./headless-chrome.cjs');
 
 function catalogFixture() {
   const exact = {}, scopes = new Map(), templates = [];
@@ -24,7 +23,6 @@ function catalogFixture() {
 }
 
 function run() {
-  const chrome = chromePath();
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'ag-zh-dom-'));
   try {
     const resources = path.join(__dirname, '..', 'runtime');
@@ -37,14 +35,7 @@ function run() {
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-offline-test'; style-src 'unsafe-inline'; connect-src 'none'; frame-src about:">
 <title>Local DOM regression tests</title></head><body><main id="root"></main><pre id="result"></pre>
 <script src="runtime.js" nonce="offline-test"></script><script src="cases.js" nonce="offline-test"></script></body></html>`);
-    const browser = spawnSync(chrome, [
-      '--headless', '--dump-dom', '--virtual-time-budget=20000',
-      '--no-first-run', '--no-default-browser-check', '--disable-extensions',
-      '--disable-background-networking', '--disable-component-update', '--disable-sync',
-      '--disable-breakpad', '--disable-crash-reporter', '--disable-default-apps',
-      '--host-resolver-rules=MAP * ~NOTFOUND', '--disable-gpu',
-      '--user-data-dir=' + path.join(temp, 'profile'), pathToFileURL(html).href,
-    ], {encoding: 'utf8', windowsHide: true, timeout: 60000, maxBuffer: 4 * 1024 * 1024});
+    const browser = dumpLocalPage(temp, pathToFileURL(html).href, ['--virtual-time-budget=20000']);
     if (browser.error) throw browser.error;
     const match = browser.stdout.match(/<pre id="result">([^<]+)<\/pre>/);
     if (browser.status !== 0 || !match) {

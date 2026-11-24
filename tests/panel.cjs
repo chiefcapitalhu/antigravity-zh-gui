@@ -3,9 +3,8 @@
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { spawnSync } = require('node:child_process');
 const { pathToFileURL } = require('node:url');
-const chromePath = require('./chrome-path.cjs');
+const dumpLocalPage = require('./headless-chrome.cjs');
 function fixture() {
     sessionStorage.setItem('zh-gui-token', 'fixture');
     let current = {id:0,active:false,logs:[]};
@@ -120,12 +119,10 @@ try {
     const url = pathToFileURL(path.join(temp, 'index.html')).href;
     for (const [width, scheme] of [[1180, 'light'], [390, 'dark']]) {
         fs.writeFileSync(path.join(temp, 'cases.js'), '(' + verifyPage.toString() + ')('+(width < 620)+');');
-        const args = ['--headless', '--dump-dom', '--no-first-run', '--disable-extensions', '--disable-background-networking',
-            '--disable-component-update', '--disable-sync', '--disable-default-apps', '--disable-gpu', '--host-resolver-rules=MAP * ~NOTFOUND',
-            '--virtual-time-budget=3000', '--user-data-dir=' + path.join(temp, 'profile' + width), '--window-size=' + width + ',900'];
+        const args = ['--virtual-time-budget=3000', '--window-size=' + width + ',900'];
         if (scheme === 'dark')
             args.push('--force-dark-mode');
-        const r = spawnSync(chromePath(), [...args, url], { encoding: 'utf8', timeout: 60000, maxBuffer: 2 << 20, windowsHide: true });
+        const r = dumpLocalPage(temp, url, args);
         const result = r.stdout?.match(/data-test-result="([^"]+)"/)?.[1];
         if (r.error || r.status !== 0 || result !== 'pass')
             throw Error(r.error || decodeURIComponent(result || r.stderr?.slice(-900) || 'No test result'));
