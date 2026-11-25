@@ -134,6 +134,26 @@ func TestExactEntryCannotMaskAConflictingScopedEntry(t *testing.T) {
 	}
 }
 
+func TestFeedbackSenderEvidencePreservesLiteralSpace(t *testing.T) {
+	const row = `{"en":"Send feedback as ","zh":"以 {email} 身份发送反馈","source":"hub:main.js","scope":"feedback","offset":5430943}`
+	module := catalog{Module: "core", Sources: map[string]string{"hub:main.js": strings.Repeat("0", 64)}}
+	got, err := parseEntry([]byte(row), "scoped", module)
+	if err != nil || got.EN != "Send feedback as " {
+		t.Fatalf("literal %q, err %v", got.EN, err)
+	}
+	for _, invalid := range []string{
+		strings.Replace(row, "as ", "as  ", 1),
+		strings.Replace(row, "5430943", "5430944", 1),
+		strings.Replace(row, `"feedback"`, `"settings"`, 1),
+		strings.Replace(row, "{email}", "", 1),
+		strings.Replace(row, "{email}", "{email}{email}", 1),
+	} {
+		if _, err := parseEntry([]byte(invalid), "scoped", module); err == nil {
+			t.Fatalf("accepted %s", invalid)
+		}
+	}
+}
+
 func TestUserDictionaryIsIndependent(t *testing.T) {
 	custom := map[string]string{"A label": "个人译文"}
 	first, err := Load(custom)

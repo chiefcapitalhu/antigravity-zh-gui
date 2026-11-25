@@ -37,7 +37,7 @@ type catalog struct {
 }
 
 var versionPattern = regexp.MustCompile(`^2\.[0-9]+\.[0-9]+([+-][A-Za-z0-9.-]+)?$`)
-var sourcePattern = regexp.MustCompile(`^(hub:main\.js|asar:dist/([A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\.js)$`)
+var sourcePattern = regexp.MustCompile(`^(binary:language_server|hub:main\.js|asar:dist/([A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\.js)$`)
 
 // encoding/json normally accepts duplicate object fields and folds case when
 // decoding into structs. Check the token stream and exact schema first.
@@ -135,7 +135,7 @@ var termForms = map[string][]string{
 	"browser agent": {"浏览器助手"}, "token": {"Token"},
 }
 
-func parseEntry(raw json.RawMessage, layer string, sources map[string]string) (entry, error) {
+func parseEntry(raw json.RawMessage, layer string, module catalog) (entry, error) {
 	var e entry
 	fields := []string{"en", "zh", "source", "offset"}
 	switch layer {
@@ -150,10 +150,19 @@ func parseEntry(raw json.RawMessage, layer string, sources map[string]string) (e
 	if err := json.Unmarshal(raw, &e); err != nil {
 		return e, err
 	}
-	if sources[e.Source] == "" || e.Offset == nil || *e.Offset < 0 {
+	if module.Sources[e.Source] == "" || e.Offset == nil || *e.Offset < 0 {
 		return e, errors.New("invalid evidence location")
 	}
-	for _, v := range []string{e.EN, e.ZH} {
+	en := e.EN
+	// This reviewed Hub literal includes the space before the concatenated
+	// email. Keep the original key and offset intact for tokenizer replay.
+	if en == "Send feedback as " && module.Module == "core" && e.Scope == "feedback" && e.Source == "hub:main.js" && *e.Offset == 5430943 {
+		if strings.Count(e.ZH, "{email}") != 1 {
+			return e, errors.New("feedback translation must preserve one {email}")
+		}
+		en = strings.TrimSuffix(en, " ")
+	}
+	for _, v := range []string{en, e.ZH} {
 		if strings.TrimSpace(v) != v || v == "" || strings.IndexFunc(v, unicode.IsControl) >= 0 {
 			return e, errors.New("blank, padded or control-bearing translation")
 		}
@@ -245,7 +254,7 @@ func load(readFile func(string) ([]byte, error), custom map[string]string) (l10n
 			rows []json.RawMessage
 		}{{"exact", m.Exact}, {"scoped", m.Scoped}, {"templates", m.Templates}} {
 			for i, data := range layer.rows {
-				e, err := parseEntry(data, layer.name, m.Sources)
+				e, err := parseEntry(data, layer.name, m)
 				if err != nil {
 					return l10n.Dictionary{}, fmt.Errorf("%s.%s[%d]: %w", name, layer.name, i, err)
 				}

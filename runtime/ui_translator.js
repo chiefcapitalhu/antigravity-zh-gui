@@ -97,6 +97,9 @@
             "sidecar-detail-run-now", "new-sidecar-no-project", "automation-settings-save",
             "automation-settings-cancel"
         ],
+        "settings-detail": [],
+        feedback: [],
+        "marketplace-notice": [],
         controls: []
     };
     for (const [scope, ids] of Object.entries(controls)) {
@@ -130,8 +133,6 @@
     fixedLeaf("workspace", "pane-selection-add-to-chat", "> span:first-child");
     fixedLeaf("workspace", "project-selector-new-workspace", "span.truncate.min-w-0[title]");
     fixedLeaf("settings", "settings-sidebar", "> div:first-child > div:first-child > h1:only-child");
-    fixedLeaf("permissions", "command-permissions-row", "> div:first-child > div:first-child > span:first-child", "> div:first-child > span.whitespace-pre-wrap");
-    fixedLeaf("permissions", "tool-permissions-row", "> div:first-child > div:first-child > span:first-child");
     fixedLeaf("permissions", "computer-permissions-card", "> div:first-child > span:first-child");
     fixedLeaf("model", "model-selector-orchestrator", "> span:first-child");
     fixedLeaf("agents", "workflow-deprecation-banner", "> div > span", "> div > span > button");
@@ -189,7 +190,91 @@
         "Notifications", "Models", "Customizations", "Browser", "Developer", "Running"
     ]);
     const settingsItem = '[data-testid="settings-sidebar"] > div:first-child > div:nth-child(2) > div > button > span:only-child';
+    const sidebarBody = '[data-testid="settings-sidebar"] > div:first-child';
+    const sidebarHeading = sidebarBody + ' > div.px-4.mt-2 > h2:only-child';
+    function sidebarLabel(el) {
+        const text = sourceText(el);
+        if (!text) return;
+        if (el.matches(sidebarHeading) && ["Projects", "Not in Project"].includes(text)) return text;
+        if (el.matches(sidebarBody + ' > div.flex-col > button[type="button"]:last-child') &&
+            ["Show All", "Show Less"].includes(text) && groupTitle(el.parentElement) === "Projects") return text;
+        if (el.matches(sidebarBody + ' > div.flex-col > div:only-child > button[data-testid="settings-nav-item-Conversations"] > span:only-child') &&
+            text === "Conversations" && groupTitle(el.parentElement.parentElement.parentElement) === "Not in Project") return text;
+        if (el.matches(sidebarBody + ' > div.flex-1 + div > button[data-testid="settings-nav-item-Provide Feedback"] > span:only-child') &&
+            text === "Give Feedback") return text;
+    }
+    function groupTitle(group) {
+        const title = group.previousElementSibling?.firstElementChild;
+        if (title?.matches(sidebarHeading)) return sourceText(title);
+    }
     const linkCaption = 'a[data-testid="new-conversation-button"][href] > span.truncate';
+    const sidebarNav = '[data-testid="sidebar-navigation-items"]';
+    function navigationLabel(link) {
+        const caption = link.querySelector(":scope > span.truncate");
+        const label = sourceText(caption);
+        if (label === "Plugins" && link.matches('a[data-testid="plugins-button"]') && link.closest(sidebarNav)) return caption;
+        if (label !== "Customizations" || !link.matches(sidebarNav + ' > a:not([data-testid])')) return;
+        const icon = caption.previousElementSibling;
+        // Hub can render the same HomeRepairServiceIcon as a plain SVG.
+        if (icon?.matches('[data-symbol-name="home_repair_service"]') ||
+            icon?.querySelector('[data-symbol-name="home_repair_service"], svg:not([data-symbol-name]) > path[d^="M480-405.39ZM100-180V-558.46"]')) return caption;
+    }
+    // FCb/lna remove the Hub's /web/<instance> base when they prepend the
+    // embedding application's parentBaseUrl. Bind that base to the real frame.
+    function embeddedRouteBase() {
+        if (win.self === win.top) return;
+        try {
+            const raw = new URLSearchParams(win.location.search).get("parentBaseUrl");
+            if (!raw) return;
+            const base = new URL(raw);
+            if (!["http:", "https:"].includes(base.protocol) || base.username || base.password) return;
+            if (base.origin === win.location.origin) return base;
+            const parentOrigin = win.location.ancestorOrigins?.[0] || (doc.referrer && new URL(doc.referrer).origin);
+            if (base.origin === parentOrigin) return base;
+        } catch { /* No usable embedding base. */ }
+    }
+    const embeddingBase = embeddedRouteBase();
+    const hubSearchKeys = new Set(["workspaceUri", "citcUsername", "citcAlias", "citcId"]);
+    const detailRoute = /^\/customizations\/(?:plugins\/[^/]+|marketplaces\/[^/]+\/(?:plugins|skills)\/[^/]+)$/;
+    function matchesHubRoute(link, expected) {
+        const href = link.getAttribute("href");
+        if (!href || !/^(?:\/(?!\/)|https?:\/\/)/i.test(href) || href.includes("\\")) return false;
+        let url;
+        try { url = new URL(link.href); } catch { return false; }
+        if (url.username || url.password || url.hash) return false;
+        for (const key of url.searchParams.keys()) {
+            if (!hubSearchKeys.has(key) && !(expected === detailRoute && (key === "id" || key === "marketplace"))) return false;
+        }
+        const matches = path => typeof expected === "string" ? path === expected : expected.test(path);
+        if (embeddingBase && url.origin === embeddingBase.origin) {
+            const basePath = embeddingBase.pathname.replace(/\/+$/, "");
+            if (url.pathname.startsWith(basePath + "/") && matches(url.pathname.slice(basePath.length))) return true;
+        }
+        if (url.origin !== win.location.origin) return false;
+        if (url.origin === "null" && !(url.protocol === "file:" && !url.host && href.startsWith("/"))) return false;
+        return matches(url.pathname.replace(/^\/(?:jetski-devs\/)?web\/[^/]+(?=\/)/, ""));
+    }
+    const pluginTabs = 'nav[data-testid="plugins-tabs"]';
+    const featuredActions = '[data-testid="featured-carousel"] [data-testid="featured-carousel-actions"]';
+    function fixedRouteCaption(link) {
+        if (link.localName !== "a" || !link.hasAttribute("href")) return null;
+        if (link.closest(sidebarNav)) {
+            const caption = navigationLabel(link);
+            return caption && matchesHubRoute(link, "/customizations") ? caption : null;
+        }
+        if (link.parentElement?.matches(pluginTabs)) {
+            const label = sourceText(link);
+            const id = link.getAttribute("data-testid");
+            if (label === "Marketplace" && (id === "plugins-tab-browse" || id === "plugins-tab-marketplace") &&
+                matchesHubRoute(link, "/customizations")) return link;
+            if (label === "Installed" && id === "plugins-tab-installed" &&
+                matchesHubRoute(link, "/customizations/installed")) return link;
+        }
+        if (link.matches('a.agy-button[aria-label^="Details for "]') && link.parentElement?.matches(featuredActions) &&
+            sourceText(link) === "Details" && matchesHubRoute(link, detailRoute)) return link;
+        if (accountLink(link) || feedbackLegalLink(link.parentElement) === link) return link;
+        return null;
+    }
     const welcomePage = '[data-testid="onboarding-brand-shell"] > div.flex-shrink-0 > div.transition-all > div.justify-start';
     const authPanel = welcomePage + ' > div.entrance-auth-panel';
     const personalOptions = authPanel + ' > div.bg-card > #other-sign-in-options';
@@ -210,28 +295,57 @@
         }
     }
 
+    const settingsPage = ".settings-modal-container .max-w-2xl.gap-4";
+    const pageHeading = settingsPage + " > .mb-2 > .justify-between > .flex-1 > h2";
+    const projectHeading = pageHeading + " > div.flex.items-center.gap-2.h-7";
+    // CYb's token card is shared by Project, Workspace and Customizations settings.
+    const tokenPanel = ':is([data-testid="project-customizations-content"],' + settingsPage + ') .py-2.px-3.w-full > div:only-child';
+    const tokenGroups = tokenPanel + " > .mt-4 > .flex-col.gap-3 > .flex-col.gap-1:last-child";
+    const tokenGroupRow = tokenGroups + " > .flex-col > .items-center.justify-between.text-sm";
+    const tokenCategory = tokenGroupRow + " > .items-center.gap-2:first-child > span.text-secondary-foreground";
+    const tokenCategoryNames = new Set(["Rules", "Skills", "MCP", "MCP Tools"]);
+    const feedbackSection = settingsPage + " > .gap-8 > .space-y-2";
+    const feedbackSender = feedbackSection + ' > label.leading-relaxed + div > label.leading-relaxed';
+    const feedbackLegal = settingsPage + ' > .gap-8 > .space-y-3 > p.opacity-70:not(.italic)';
     // Layer 1: Strict red-line protected surfaces (highest priority — never translate).
     // Note: Expanded thinking content is protected via `[data-testid="thinking-collapsible-trigger"] ~ div`
     // and `[data-markdown-root]`, while the outer collapsible trigger button itself stays translatable.
+    const responseShell = 'div[data-testid="agent-response"][data-quotable="true"]';
+    const responseSteps = responseShell + ' > :is([data-step-list],[data-step-rows])';
+    const stepTitle = 'div.group.select-none > div.gap-x-1 > .truncate > .shimmer-text-mask > .shimmer-text-content > div';
     const protectedArea = [
         "script", "style", "noscript", "pre", "code", "svg", "math", "canvas",
-        "iframe", "webview", "kbd", 'a[href]:not([data-testid="new-conversation-button"])',
+        "iframe", "webview", "kbd",
         "[data-lexical-editor]", "[data-file-uri]", "[data-sidecar-url]",
-        "[data-bubble-side]", "[data-quotable]", "[data-diff-type]", "[data-markdown-root]",
+        "[data-bubble-side]", "[data-diff-type]", "[data-markdown-root]",
         "[role=log]", ".monaco-editor", ".monaco-diff-editor", ".cm-editor", ".cm-mergeView",
         ".terminal", ".xterm", ".diff-view", ".google-symbols", ".material-symbols-outlined", ".material-icons",
         '[data-testid="thinking-collapsible-trigger"] ~ div',
+        '[data-testid="permission-download-details"] dd',
+        projectHeading + ' > span.truncate.inline-block',
+        projectHeading + ' > input[data-testid="inline-edit-input"]',
+        tokenGroups + ' .min-w-0 > span.truncate',
+        // Uploaded screenshot names are user data.
+        feedbackSection + ' > input[type="file"] + div > span.truncate',
+        // T4 renders the catalog's name (sometimes as a button) and highlighted description.
+        '[data-testid="customization-card"] .font-medium.truncate',
+        '[data-testid="customization-card"] .text-sm.text-muted-foreground.truncate',
+        // Inactive dkd slides have no headline/description test IDs.
+        '[data-testid="featured-carousel"] div[aria-hidden] > :is(h3,p)',
+        stepTitle + ' > span.text-muted-foreground:first-child + span:is(.inline-flex,.text-ellipsis)',
+        '.no-focus-agent-input[tabindex="-1"] > div:first-child > div.flex-col > p.leading-relaxed',
         '[data-testid="conversation-row-chat-icon"] ~ div',
         '[data-testid="conversation-pinned-icon"] ~ div',
         '[data-testid="conversation-scheduled-icon"] ~ div',
         '[data-testid="conversation-cloud-icon"] ~ div',
         '[data-testid="conversation-battle-icon"] ~ div',
-        ...["user-message", "user-message-content", "agent-response",
+        ...["user-message", "user-message-content",
             "planner-response-text", "progress-update-response-text",
             "side-question-followup-user", "voice-user-message", "voice-agent-message",
             "live-user-turn", "live-agent-turn", "pending-user-messages",
             "transcript-line-text", "voice-transcript-summary-lead", "voice-transcript-summary-point",
-            "ask-question-header-text", "ask-question-option-text",
+            "ask-question-option-hover-card",
+            "permission-trigger-command", "permission-app-header", "subagent-permission-source",
             "browser-subagent-thinking", "side-question-followup-thinking",
             "thinking-content", "thought-content", "thinking-body",
             "automation-instructions-markdown", "automation-instructions-text", "automation-name",
@@ -248,6 +362,7 @@
             "model-selector-custom-item", "model-selector-item", "model-selector-orchestrator-model",
             "sidecar-model-option", "automation-model-value",
             "plugin-detail-footer-author", "plugin-detail-footer-version", "media-modal-title",
+            "featured-carousel-headline", "featured-carousel-description", "featured-carousel-member-tile",
             "builtin-browser-download-dir-value",
             "conversation-row-draft", "conversation-title",
             "coordinator-card-title", "coordinator-chat-header"
@@ -324,7 +439,17 @@
         if (!exactCI.has(low)) exactCI.set(low, v);
     }
     const scoped = new Map();
+    const commandDescriptions = new Map();
+    const marketplaceShelves = new Map();
     for (const item of options.scoped ?? []) {
+        if (item?.scope?.startsWith("marketplace-shelf/")) {
+            marketplaceShelves.set(item.scope.slice("marketplace-shelf/".length), new Map(Object.entries(item.entries)));
+            continue;
+        }
+        if (item?.scope?.startsWith("slash-command/")) {
+            commandDescriptions.set(item.scope.slice("slash-command/".length), new Map(Object.entries(item.entries)));
+            continue;
+        }
         if (!item || !Object.hasOwn(controls, item.scope)) continue;
         if (!scoped.has(item.scope)) scoped.set(item.scope, new Map());
         const target = scoped.get(item.scope);
@@ -344,10 +469,12 @@
         if (/^(\d+(?:\.\d+)?)\s*ms$/.test(s)) return s.replace(/^(\d+(?:\.\d+)?)\s*ms$/, "$1 毫秒");
         const parts = [];
         const tokenRe = /(\d+)\s*(days?|d|hours?|hrs?|hr|h|minutes?|mins?|min|m|seconds?|secs?|sec|s)\b/gi;
-        let consumed = "";
+        let end = 0;
         let match;
         while ((match = tokenRe.exec(s)) !== null) {
-            consumed += match[0];
+            const separator = s.slice(end, match.index);
+            if (parts.length ? !/^\s*(?:,\s*)?$/.test(separator) : separator !== "") return null;
+            end = tokenRe.lastIndex;
             const n = match[1];
             const u = match[2].toLowerCase();
             if (u.startsWith("d")) parts.push(n + " 天");
@@ -355,7 +482,7 @@
             else if (u.startsWith("m")) parts.push(n + " 分钟");
             else if (u.startsWith("s")) parts.push(n + " 秒");
         }
-        if (parts.length && consumed.replace(/\s+/g, "") === s.replace(/\s+/g, "")) {
+        if (parts.length && end === s.length) {
             return parts.join(" ");
         }
         return null;
@@ -598,6 +725,31 @@
         m = /^Requires manual confirmation:\s*(.+)$/.exec(key);
         if (m) return "需要手动确认：" + m[1];
 
+        // Group and bucket display names and descriptions arrive via retrieveUserQuotaSummary.
+        // The Hub only exposes their rendering positions, so match the observed RPC text there.
+        if (ctx?.scope === "settings-detail" && ctx.knownText === key) {
+            if (quotaCopy.has(key)) return quotaCopy.get(key);
+            m = /^You have used some of your (weekly|5-hour) limit, it will fully refresh in (.+)\.$/.exec(key);
+            if (m) {
+                const duration = formatDuration(m[2]);
+                if (duration) return quotaPeriods[m[1]] + "额度已使用一部分，将在 " + duration + "后全部恢复。";
+            }
+            m = /^You have hit your (weekly|5-hour) limit, it refreshes in (.+)\. If on a supported paid plan, you can use AI credits in the interim or upgrade to a higher tier\.$/.exec(key);
+            if (m) {
+                const duration = formatDuration(m[2]);
+                if (duration) return quotaPeriods[m[1]] + "额度已用尽，将在 " + duration +
+                    "后恢复。如果你的付费方案支持 AI 积分，可在此期间使用积分，也可以升级到更高等级的方案。";
+            }
+            m = /^You have hit your (weekly|5-hour) limit, the (weekly|5-hour) limit does not currently apply\. Your \1 limit will fully refresh in (.+)\.$/.exec(key);
+            if (m && m[1] !== m[2]) {
+                const duration = formatDuration(m[3]);
+                const period = quotaPeriods[m[1]];
+                if (duration) return period + "额度已用尽，" + quotaPeriods[m[2]] + "额度限制暂不适用。" +
+                    period + "额度将在 " + duration + "后全部恢复。";
+            }
+            if (key === "Manage Antigravity app settings.") return "管理 Antigravity 的应用设置。";
+            if (key === "Learn more.") return "了解更多。";
+        }
         // 4. Model quota, availability & relative time
         m = /^(Resets|Refreshes) in (.+)$/.exec(key);
         if (m) {
@@ -794,14 +946,18 @@
     function isInputOrTextarea(el) {
         return el?.localName === "input" || el?.localName === "textarea";
     }
-    function inProtectedSurface(el, allowInputAttrs) {
+    function inProtectedSurface(el, allowInputAttrs, stepOwner, caption = fixedRouteCaption(el)) {
         return el.matches(protectedArea) ||
+            (el.localName === "span" && el.matches(tokenCategory) &&
+                !(tokenCategoryNames.has(sourceText(el)) && el.nextElementSibling?.matches("span.tabular-nums"))) ||
+            (el !== stepOwner && el.matches('[data-quotable],[data-testid="agent-response"]')) ||
+            (el.matches('a[href]:not([data-testid="new-conversation-button"])') &&
+                !caption && !permissionDocsLink(el)) ||
             (isInputOrTextarea(el) && !allowInputAttrs) ||
             el === toast || el.isContentEditable ||
             (el.hasAttribute("contenteditable") && el.getAttribute("contenteditable").toLowerCase() !== "false");
     }
 
-    const settingsPage = ".settings-modal-container .max-w-2xl.gap-4";
     const pageTitle = ":scope > .mb-2 > .justify-between > .flex-1 > h2";
     const sectionTitle = ":scope > .gap-1 > .justify-between > .gap-1\\.5 > h3";
     const grantRow = ".agy-card > .gap-1 > .justify-between:first-child > div:first-child";
@@ -814,6 +970,22 @@
         ["Allow/deny agent write access to specific files or directories.", "File writes"],
         ["Allow/deny agent read access to specific URLs or domains.", "Read URLs"]
     ]);
+    const permissionRows = new Map([
+        ["tool-permissions-row", {title: "Tool permissions", descriptions: [
+            "Modify permissions for file and terminal tools.", "Modify permissions for file, terminal, and MCP tools."
+        ]}],
+        ["command-permissions-row", {title: "Terminal commands", descriptions: ["Configure allowed terminal commands."]}]
+    ]);
+    function permissionRowContext(row, el) {
+        const source = sourceText(el);
+        if (!source) return null;
+        const fields = permissionRows.get(row.getAttribute("data-testid"));
+        let leaf;
+        if (source === fields.title) leaf = ":scope > div:first-child > div:first-child > span:first-child";
+        else if (fields.descriptions.includes(source)) leaf = ":scope > div:first-child > span.whitespace-pre-wrap";
+        else if (source === "Open") leaf = ":scope > div.shrink-0 > button.agy-button";
+        return leaf && el === row.querySelector(leaf) ? {scope: "permissions", knownText: source, textOnly: true} : null;
+    }
     function sourceText(el) {
         if (!el || el.childNodes.length !== 1 || el.firstChild.nodeType !== 3) return;
         const node = el.firstChild;
@@ -822,6 +994,376 @@
     function rawTextValue(node) {
         return originalText.has(node) && writtenText.get(node) === node.nodeValue
             ? originalText.get(node) : node.nodeValue;
+    }
+
+    const feedbackRadio = '.gap-8 > .space-y-3 > .flex-col.gap-2 > label > input[type="radio"][name="feedbackType"]';
+    const feedbackTypes = new Map([
+        ["bug-report", "Bug Report"], ["feature-request", "Feature Request"],
+        ["auth-and-billing", "Auth and Billing"], ["remote-control-issue", "Remote Control Issue"],
+        ["general-feedback", "General Feedback"]
+    ]);
+    const generalFeedbackHint = "For any feedback that does not fit into the above categories.";
+    const senderPrefix = "Send feedback as ";
+    const legalSuffix = "to ask for content changes for legal reasons.";
+    function feedbackLegalLink(paragraph) {
+        if (!paragraph?.matches(feedbackLegal) || paragraph.childElementCount !== 1 ||
+            sourceText(paragraph.closest(settingsPage).querySelector(pageTitle)) !== "Give Feedback") return;
+        const link = paragraph.firstElementChild;
+        if (!link.matches('a.text-link[target="_blank"][rel~="noopener"][rel~="noreferrer"]') ||
+            link.protocol !== "https:" || link.host !== "support.google.com" ||
+            link.href !== link.origin + "/legal/troubleshooter/1114905?hl=en#ts=1115658" ||
+            link.getAttribute("href") !== link.href || sourceText(link) !== "Legal Help") return;
+        // React renders the spaces as separate text nodes; a renderer may coalesce them.
+        let before = "", after = "", seenLink = false;
+        for (const child of paragraph.childNodes) {
+            if (child === link) seenLink = true;
+            else if (child.nodeType !== 3) return;
+            else if (seenLink) after += rawTextValue(child);
+            else before += rawTextValue(child);
+        }
+        if (before === "Visit " && after === " " + legalSuffix &&
+            exact.has("Visit") && exact.has("Legal Help") && scoped.get("feedback")?.has(legalSuffix)) return link;
+    }
+    attributeLabels("feedback-description", "placeholder",
+        "Describe the bug you encountered...", "Describe the feature you would like to see...",
+        "Describe your auth or billing issue...", "Describe your Remote Control issue...", "Enter your feedback here...");
+    function feedbackContext(el) {
+        const page = el.closest(settingsPage);
+        if (!page) return;
+        const heading = page.querySelector(pageTitle);
+        const sender = el.closest(feedbackSender);
+        if (sender) {
+            const logs = sender.parentElement.previousElementSibling.lastChild;
+            const caption = sender.lastChild;
+            if (sender !== el || sourceText(heading) !== "Give Feedback" ||
+                logs?.nodeType !== 3 || rawTextValue(logs) !== "Attach Antigravity server logs" ||
+                sender.childNodes.length !== 2 || caption.nodeType !== 3 ||
+                !sender.querySelector(':scope > div.relative > input[type="checkbox"]')) return blocked;
+            const source = rawTextValue(caption);
+            const email = source.slice(senderPrefix.length);
+            if (!source.startsWith(senderPrefix) || !/^[^@\s]+@[^@\s]+$/.test(email)) return blocked;
+            const format = scoped.get("feedback")?.get(senderPrefix);
+            return format ? {displayText: format.replace("{email}", () => email), textOnly: true} : blocked;
+        }
+        if (sourceText(heading) !== "Give Feedback") return;
+        const legal = el.closest(feedbackLegal);
+        if (legal) {
+            const link = feedbackLegalLink(legal);
+            if (!link) return blocked;
+            if (el === legal) return {legalNotice: true, textOnly: true};
+            if (el === link) return {scope: "feedback", knownText: "Legal Help", textOnly: true};
+            return blocked;
+        }
+        if (el === heading && page.querySelector(":scope > " + feedbackRadio)) {
+            return {scope: "settings", knownText: "Give Feedback", textOnly: true};
+        }
+        if (el.matches(feedbackRadio + " + span")) {
+            const label = feedbackTypes.get(el.previousElementSibling.value);
+            return label && sourceText(el) === label ? {scope: "feedback", knownText: label, textOnly: true} : null;
+        }
+        if (el.matches(feedbackSection + " > div.opacity-70.mb-2") && sourceText(el) === generalFeedbackHint) {
+            return {scope: "feedback", knownText: generalFeedbackHint, textOnly: true};
+        }
+        if (el.matches(feedbackSection + " > .opacity-70.mb-2 + .relative > textarea")) {
+            return {scope: "feedback", attrOwner: "feedback-description", isInput: true};
+        }
+    }
+
+    const subscriptionSection = settingsPage + " > .gap-8 > .space-y-2";
+    const subscriptionRow = " > div:last-child > .agy-card > div.justify-between.gap-4";
+    const accountRow = subscriptionSection + subscriptionRow;
+    const rowLabel = ":scope > .flex-1 > div:first-child > span:first-child";
+    const rowDescription = ":scope > .flex-1 > span.whitespace-pre-wrap";
+    const planLabel = rowLabel + " > div.font-medium:only-child";
+    const telemetryCopy = 'When toggled on, ${f.product.nameShort} collects usage data to help Google enhance performance and features.';
+    const emailCopy = 'Receive product updates, tips, and promotions from Google ${f.product.nameShort} via email.';
+    const creditOveragesCopy = "When toggled on, ${g} will use your AI credits to fulfill model requests once you're out of model quota. ${g} will always use your model quota first before using AI credits.";
+    const planCopy = 'Your plan: ${I}';
+    // The upgrade sentence is supplied in userTier.upgradeSubscriptionText.
+    const upgradeCopy = "You can upgrade to a {value} plan to receive higher rate limits.";
+    function subscriptionPageName(el) {
+        const heading = el.closest(settingsPage)?.querySelector(pageTitle);
+        if (sourceText(heading) === "Account") return "Account";
+        if (sourceText(heading?.querySelector(":scope > div > span:first-child")) === "Models & Usage") return "Models & Usage";
+    }
+    function currentPlanLabel(row, models) {
+        const label = row?.querySelector(planLabel);
+        // React appends a separate " (ADC)" text node for environment credentials.
+        if (label?.firstChild?.nodeType !== 3) return;
+        const original = rawTextValue(label.firstChild);
+        if (models) {
+            if (original === "Your plan: " && label.childNodes.length === 2 && label.lastChild.nodeType === 3) return label;
+            return;
+        }
+        if (original === "Your plan" || original.startsWith("Your plan: ")) return label;
+    }
+    function accountLink(link) {
+        if (link.protocol !== "https:" || link.username || link.password || link.hash || link.target !== "_blank" ||
+            !link.relList.contains("noreferrer")) return false;
+        const label = sourceText(link);
+        if (label === "Terms of Service") {
+            return link.host === "antigravity.google" && link.href === link.origin + "/terms" &&
+                link.matches(settingsPage + " > .gap-8 > div.mt-auto.pt-4 > a.text-link") && subscriptionPageName(link) === "Account";
+        }
+        if (label !== "Upgrade" || !link.relList.contains("noopener") ||
+            !link.matches(".shrink-0 > a.select-none.bg-primary")) return false;
+        // DK adds this campaign to the subscription URI provided by the service.
+        const row = link.parentElement.parentElement;
+        if (!row?.matches(accountRow) || !["one.google.com", "antigravity.google"].includes(link.host)) return false;
+        const page = subscriptionPageName(row);
+        const models = page === "Models & Usage";
+        const campaign = new URLSearchParams(link.search).getAll("utm_campaign");
+        return (models || page === "Account") && sourceText(row.closest(".space-y-2").querySelector(sectionTitle)) === (models ? "Plan" : "Account") &&
+            campaign.length === 1 && campaign[0] === (models ? "ARGON_MODELS_PAGE" : "ARGON_SETTINGS_PAGE") &&
+            Boolean(currentPlanLabel(row, models));
+    }
+    function accountContext(el) {
+        const desc = el.closest("span.whitespace-pre-wrap");
+        const group = el.closest("div.font-medium");
+        if (!desc && !group) return;
+        const row = el.closest(accountRow);
+        if (!row || (desc && desc !== row.querySelector(rowDescription))) return;
+        const page = subscriptionPageName(row);
+        const models = page === "Models & Usage";
+        if (!models && page !== "Account") return;
+        const section = sourceText(row.closest(".space-y-2").querySelector(sectionTitle));
+        const label = sourceText(row.querySelector(rowLabel));
+        if (models && section === "Model Credits" && el === desc && label === "Enable AI credit overages" &&
+            row.querySelector(':scope > .shrink-0 > button[role="switch"]')) return {accountField: creditOveragesCopy, textOnly: true};
+        if (!models && section === "General" && el === desc) {
+            if (label === "Enable telemetry" && row.dataset.testid === "telemetry-setting-row") return {accountField: telemetryCopy, textOnly: true};
+            if (label === "Marketing emails") return {accountField: emailCopy, textOnly: true};
+        }
+        if (section !== (models ? "Plan" : "Account")) return;
+        if (desc && label === "Email" && sourceText(desc) !== "Managed by Enterprise Gateway") return blocked;
+        const plan = currentPlanLabel(row, models);
+        if (models && group && group === row.querySelector(planLabel) && el !== plan) return blocked;
+        if (!plan) return;
+        if (el === plan) return {accountField: planCopy, textOnly: true};
+        if (desc && el !== desc) return blocked; // The nested span contains the literal project ID.
+        if (el === desc && sourceText(desc) !== "Authenticated via Enterprise Gateway") return {accountField: upgradeCopy, textOnly: true};
+    }
+    function accountText(node, source, field) {
+        if (field === planCopy) {
+            if (node !== node.parentNode.firstChild) return source;
+            if (source === "Your plan") return custom.get(source) ?? exact.get(source) ?? source;
+            // Models renders the plan name as a separate Text sibling. Only write the prefix.
+            if (source === "Your plan: " && node.nextSibling?.nodeType === 3) {
+                return scoped.get("settings-detail")?.get(planCopy)?.replace("{value}", "") ?? source;
+            }
+        }
+        const parts = field.split(/\$\{[\w.]+\}|\{value\}/);
+        // dPb may append a second paragraph when telemetry is disabled by policy.
+        const end = field === telemetryCopy ? source.indexOf("\n\nTelemetry is turned off for your account.") : -1;
+        const line = end < 0 ? source : source.slice(0, end);
+        // All slots refer to the same product in the overage copy. Reconstruct
+        // the entire source before accepting it, including the second occurrence.
+        const width = (line.length - parts.join("").length) / (parts.length - 1);
+        const value = line.slice(parts[0].length, parts[0].length + width);
+        if (!value || parts.join(value) !== line) return source;
+        const format = field === upgradeCopy ? "升级到 {value} 方案可获得更高的用量上限。" : scoped.get("settings-detail")?.get(field);
+        if (!format || !format.includes("{value}")) return source;
+        const override = custom.get(line);
+        const translated = override?.includes(value) ? override : format.replace("{value}", () => value);
+        return translated + source.slice(line.length);
+    }
+
+    const questionForm = '.no-focus-agent-input[tabindex="-1"]';
+    const permissionTitle = '[data-testid="ask-question-header-text"] > div > span[data-testid="permission-title"]';
+    const permissionOption = 'label[data-testid="ask-question-option"] > div[data-testid="ask-question-option-text"]';
+    const writeIn = 'textarea[data-testid="ask-question-writein"]';
+    const writeInHint = "(tell the agent what to do instead)";
+    const composerHint = "Ask anything, @ to mention";
+    const actionsHint = ", / for actions";
+    const composerOverlay = '[data-lexical-editor] + p.pointer-events-none.absolute.select-none';
+    attributeLabels("ask-question-writein", "placeholder", writeInHint);
+
+    // Ordinary questionnaires use the same header and option IDs. Only the
+    // permission renderer supplies a permission-title inside its own header.
+    function permissionForm(el) {
+        const form = el.closest(questionForm);
+        return form && form.querySelector(permissionTitle)?.closest(questionForm) === form;
+    }
+    const fixedPermissionOptions = new Set([
+        "Yes, allow", "Yes, allow this time", "Yes, allow this download",
+        "Yes, allow for this task", "Yes, allow for this conversation", "Yes, allow in this conversation",
+        "Yes, always allow in this project", "Yes, always allow",
+        "Yes, and always allow", "Yes, and always allow in this conversation",
+        "Yes, save rule in this conversation", "Yes, save rule globally"
+    ]);
+    // Fzc renders the command/domain as an emphasized element surrounded by
+    // literal Text siblings. Write only those literals, preserving all bytes
+    // and DOM identity of the argument, even for commands named "Settings".
+    const permissionFrames = [
+        ["Yes, and always allow '", "' in this conversation", "是，在当前对话中始终允许“", "”"],
+        ["Yes, and always allow '", "'", "是，始终允许“", "”"],
+        ["Yes, save rule for '", "' in this conversation", "是，在当前对话中保存“", "”的规则"],
+        ["Yes, save rule for '", "' globally", "是，在全局保存“", "”的规则"],
+        ["Yes, allow downloads from ", " for this run", "是，本次允许从 ", " 下载"],
+        ["Yes, allow downloads from ", " in this conversation", "是，在当前对话中允许从 ", " 下载"],
+        ["Yes, allow ", " in this conversation", "是，在当前对话中允许 ", ""],
+        ["Yes, always allow downloads from ", "", "是，始终允许以下来源的下载：", ""],
+        ["Yes, always allow ", "", "是，始终允许 ", ""]
+    ];
+    function permissionText(node, source, kind) {
+        const children = node.parentElement.childNodes;
+        if (children.length === 1) {
+            if (kind === "title") {
+                const match = /^(Allow |Save rule to always allow )([\s\S]+)\?$/.exec(source);
+                if (match) return (match[1] === "Allow " ? "允许 " : "保存规则以始终允许 ") + match[2] + "？";
+            } else if (fixedPermissionOptions.has(source)) {
+                return translate(source, {scope: "permissions"});
+            } else {
+                for (const [prefix, suffix, zhPrefix, zhSuffix] of permissionFrames) {
+                    if (source.startsWith(prefix) && source.endsWith(suffix) && source.length > prefix.length + suffix.length) {
+                        return zhPrefix + source.slice(prefix.length, source.length - suffix.length) + zhSuffix;
+                    }
+                }
+            }
+        } else if (kind === "option" && children[0].nodeType === 3 &&
+            children[1]?.matches?.("strong,code") && (children.length === 2 ||
+                (children.length === 3 && children[2].nodeType === 3))) {
+            const start = rawTextValue(children[0]);
+            const end = children.length === 3 ? rawTextValue(children[2]) : "";
+            for (const [prefix, suffix, zhPrefix, zhSuffix] of permissionFrames) {
+                if (start === prefix && end === suffix) return node === children[0] ? zhPrefix : zhSuffix;
+            }
+        }
+        return source;
+    }
+    const quotaPeriods = {weekly: "每周", "5-hour": "5 小时"};
+    const quotaCopy = new Map([
+        ["Gemini Models", "Gemini 模型"], ["Claude and GPT models", "Claude 与 GPT 模型"],
+        ["Weekly Limit Remaining", "每周剩余额度"], ["Five Hour Limit Remaining", "5 小时剩余额度"]
+    ]);
+    const quotaSection = settingsPage + " > .gap-8 > .gap-4 > .space-y-2";
+    const quotaGroup = quotaSection + " > .gap-1 > .justify-between > div > h3 > div > span:first-child";
+    const quotaRow = quotaSection + " > div:last-child > .agy-card > .justify-between";
+    const quotaBucket = quotaRow + " > .flex-1 > div > span:first-child > span:only-child";
+    const quotaDescription = quotaRow + " > .flex-1 > span.whitespace-pre-wrap";
+    const layoutOption = '#project4kMode > :is([data-testid="mode-option-non-technical"],[data-testid="mode-option-developer"])';
+    const layoutTitle = layoutOption + " > .mt-2 > span.font-medium";
+    const layoutDescription = layoutOption + " > div[id].leading-snug";
+    const layoutCopy = {
+        "mode-option-non-technical": ["Knowledge Work", "Simplified interface for research, writing, and everyday tasks."],
+        "mode-option-developer": ["Software Engineering", "Full interface for coding, developer tools, and managing agents."]
+    };
+    const queueButton = '[data-slot="toggle-group"] > button[data-tooltip-id]';
+
+    function sourceAttribute(el, name) {
+        const value = el.getAttribute(name);
+        return writtenAttrs.get(el)?.[name] === value ? originalAttrs.get(el)?.[name] : value;
+    }
+
+    const noticeParagraph = 'p[data-testid="third-party-tools-disclaimer"]';
+    const privacyToken = "{privacyPolicyLink}";
+    function marketplaceNotice(el) {
+        // V_c splits the server's marketplace string around a real link. aL
+        // can return the anchor directly or wrap its context menu trigger in a span.
+        if (!el.matches('footer[data-testid="marketplace-footer"] > ' + noticeParagraph)) return blocked;
+        const text = el.firstChild;
+        const wrapper = text?.nextSibling;
+        if (text?.nodeType !== 3 || wrapper?.nodeType !== 1 || wrapper.nextSibling) return blocked;
+        const link = wrapper.localName === "span" && wrapper.childNodes.length === 1 ? wrapper.firstChild : wrapper;
+        if (!link.matches?.('a.text-link[target="_blank"][rel~="noopener"][rel~="noreferrer"]') ||
+            link.protocol !== "https:" || link.host !== "policies.google.com" || link.href !== link.origin + "/privacy" ||
+            link.getAttribute("href") !== link.href || sourceText(link) !== link.href) return blocked;
+        const format = scoped.get("marketplace-notice")?.get(rawTextValue(text) + privacyToken);
+        return format?.endsWith(privacyToken) ? {displayText: format.slice(0, -privacyToken.length), textOnly: true} : blocked;
+    }
+
+    const shelfHeader = 'section:not([data-testid]) > div.flex-col.gap-1.px-3:first-child';
+    function shelfContext(el) {
+        const section = el.matches('section:not([data-testid])') ? el : el.closest(shelfHeader)?.parentElement;
+        if (!section) return;
+        const header = section.firstElementChild;
+        const name = sourceAttribute(section, "aria-label");
+        // The reviewed server IDs use slugified English display names. React keeps
+        // the ID as its key, so require both original fields from that exact ID.
+        const entries = name && marketplaceShelves.get(name.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+        if (!header?.matches(shelfHeader)) return entries ? null : undefined;
+        const heading = header.firstElementChild;
+        const caption = heading?.nextElementSibling;
+        if (!heading?.matches("h2") || !name || name !== sourceText(heading)) return null;
+        if (el !== section && el !== heading && el !== caption) return null;
+        const description = sourceText(caption);
+        // hkd also renders three front-end-owned result headings with this layout.
+        if (!caption && (name === "Plugins" || name === "Skills")) return;
+        if (!caption?.matches("p:last-child")) return null;
+        if (name === "More Plugins" && description === "Explore other marketplace customizations") return;
+        if (name === description || !entries?.has(name) || !entries.has(description)) return null;
+        return {shelfEntries: entries, shelfName: el === section ? name : undefined, textOnly: true};
+    }
+
+    function permissionDocsLink(el) {
+        if (!el?.matches?.('#agent-permissions .space-y-2 > .gap-1 > .leading-relaxed > span > a.text-link.font-medium[target="_blank"][rel~="noopener"][rel~="noreferrer"]') ||
+            !el.closest(settingsPage)) return false;
+        const label = sourceText(el);
+        return (label === "Learn more" || label === "Learn more.") &&
+            el.protocol === "https:" && el.host === "antigravity.google" && el.pathname === "/docs/permissions" &&
+            !el.username && !el.password && !el.search && !el.hash;
+    }
+    const projectSummary = 'Manage ${A.lowercase} ${Ea?"resources":"folders"} and settings.';
+    const showBreakdown = 'Show ${A.length} breakdown${A.length===1?"":"s"}';
+    function projectText(el) {
+        const entries = scoped.get("settings-detail");
+        if (el.localName === "div" && el.matches(pageHeading + " + div.text-muted-foreground")) {
+            const title = el.previousElementSibling.firstElementChild;
+            if (!title?.matches(projectHeading)) return;
+            const source = sourceText(el);
+            const match = /^Manage (project|workspace) (folders|resources) and settings\.$/.exec(source ?? "");
+            if (!match) return;
+            const editor = title.firstElementChild;
+            const edit = editor?.nextElementSibling;
+            if (!editor?.matches('input[data-testid="inline-edit-input"]') &&
+                !(editor?.matches("span.truncate.inline-block") && edit?.localName === "button" &&
+                    sourceAttribute(edit, "aria-label") === "Edit " + match[1] + " name")) return;
+            return entries?.get(projectSummary)?.replace("{kind}", match[1] === "project" ? "项目" : "工作区")
+                .replace("{resource}", match[2] === "folders" ? "文件夹" : "资源");
+        }
+        // zYb keeps the toggle beside the legend; expanded child rows follow their header.
+        if (el.localName !== "button" || !el.matches(tokenGroupRow + " > button.agy-button-sm.text-link:last-child") ||
+            !el.previousElementSibling?.matches(".items-center.gap-2:first-child") ||
+            !el.previousElementSibling.querySelector(":scope > span.tabular-nums")) return;
+        const source = sourceText(el);
+        if (source === "Hide breakdown") return custom.get(source) ?? entries?.get(source);
+        const count = /^Show (0|[1-9][0-9]*) breakdown(s?)$/.exec(source ?? "");
+        if (count && (count[1] === "1") === (count[2] === "")) {
+            return entries?.get(showBreakdown)?.replace("{n}", count[1]);
+        }
+    }
+
+    function settingsDetail(el) {
+        const page = el.closest(settingsPage);
+        if (!page) return;
+        const source = sourceText(el);
+        if (source === "Plan" && el.localName === "h3") {
+            const section = el.closest(subscriptionSection);
+            if (el === section?.querySelector(sectionTitle) && subscriptionPageName(el) === "Models & Usage" &&
+                currentPlanLabel(section.querySelector(":scope" + subscriptionRow), true)) return source;
+        }
+        const name = el.closest(quotaGroup + "," + quotaBucket);
+        if (name || el.matches(quotaDescription)) {
+            const title = page.querySelector(pageTitle + " > div > span:first-child");
+            if (sourceText(title) !== "Models & Usage") return blocked;
+            if (name) {
+                if (el !== name) return blocked;
+                if (el.matches(quotaGroup)) return source === "Gemini Models" || source === "Claude and GPT models" ? source : blocked;
+                return source === "Weekly Limit Remaining" || source === "Five Hour Limit Remaining" ? source : blocked;
+            }
+            if (source?.startsWith("You have used some of your ") || source?.startsWith("You have hit your ")) return source;
+        }
+        const option = el.closest(layoutOption);
+        if (option) {
+            const [title, description] = layoutCopy[option.getAttribute("data-testid")];
+            if (el === option) return title;
+            if (el.matches(layoutTitle) && source === title || el.matches(layoutDescription) && source === description) return source;
+        }
+        if (source === "Queue" && el.matches(queueButton) &&
+            sourceAttribute(el, "aria-label") === "Queue until after the current turn.") return source;
+        if (source === "Manage Antigravity app settings." && el.matches(".mb-2 > .justify-between > .flex-1 > h2 + div.text-muted-foreground") &&
+            sourceText(el.previousElementSibling) === "Application") return source;
+        if (permissionDocsLink(el)) return source;
     }
     function settingsLabel(el) {
         if (!el.matches("h2,h3,span.whitespace-pre-wrap,div.text-secondary-foreground,div > span:first-child") ||
@@ -859,9 +1401,75 @@
     }
     function protectedOwner(owner) {
         for (let p = owner; p; p = parent(p)) {
-            if (p.nodeType === 1 && (closedLightChild(p) || inProtectedSurface(p, false))) return true;
+            if (p.nodeType === 1 && (closedLightChild(p) || inProtectedSurface(p, false) ||
+                p.matches('[data-testid="ask-question-header-text"],[data-testid="ask-question-option-text"]'))) return true;
         }
         return false;
+    }
+
+    // Hub uses the same option component for /commands, @mentions, plugins and files.
+    const mentionOption = '[data-mention-menu][role="listbox"] > div > div[role="option"]';
+    // System commands use the icon from the server registry. The unlabelled
+    // SVGs are the Hub's CodeBlocksIcon (built-in skills) and ChatAddOnIcon (/btw).
+    const systemIcons = {
+        goal: "timer", compact: "collapse_all", schedule: "schedule", plan: "ballot",
+        browser: "language", computer: "computer", "browser-vision": "visibility",
+        "grill-me": "forum", teamwork: "graph_2", learn: "lightbulb_2", boost: "bolt",
+        deepagent: "science", "review-agent": "find_in_page", automation: "schedule",
+        "mcp-app-development": "handyman", swarm: "hub"
+    };
+    function hasCommandIcon(name, label) {
+        const icon = label.previousElementSibling?.firstElementChild;
+        if (!icon) return false;
+        if (name === "swarm" && icon.matches('img.rounded.object-contain[alt=""]')) return true;
+        if (Object.hasOwn(systemIcons, name)) return icon.getAttribute("data-symbol-name") === systemIcons[name];
+        const path = icon.querySelector(":scope > path")?.getAttribute("d");
+        return icon.localName === "svg" && Boolean(path?.startsWith(name === "btw" ?
+            "M130-184.23V-757.69q0-29.83" : "M384-349.85l42.15-42.77"));
+    }
+    function commandText(node, option) {
+        const description = node.parentElement.closest('span[data-testid="menu-option-description"]');
+        if (!description || description.parentElement.parentElement !== option) return;
+        if (description.dir === "rtl" && description.firstElementChild?.dir !== "ltr") return;
+        const label = description.previousElementSibling;
+        if (!label?.matches('span[data-testid="menu-option-label"]') ||
+            description.nextElementSibling || description.parentElement.hasAttribute("data-hover-option-key")) return;
+        const entries = commandDescriptions.get(label.textContent);
+        if (!entries || !hasCommandIcon(label.textContent, label)) return;
+
+        // The fuzzy matcher wraps its text in a span, with optional nested match spans.
+        // Offsets refer to English. Use a single run for Chinese and retain the
+        // original nodes for React updates and switching back.
+        let runs = description.firstElementChild;
+        if (description.childNodes.length !== 1 || runs?.localName !== "span") return;
+        if (runs.dir === "ltr" && runs.childNodes.length === 1) runs = runs.firstElementChild;
+        if (runs?.localName !== "span") return;
+        const nodes = [];
+        for (const part of runs.childNodes) {
+            if (part.nodeType === 3) nodes.push(part);
+            else if (part.nodeType === 1 && part.matches('span[data-testid="fuzzy-match-highlight"]') &&
+                part.childNodes.length === 1 && part.firstChild.nodeType === 3) nodes.push(part.firstChild);
+            else return;
+        }
+        if (!nodes.includes(node)) return;
+        const source = nodes.map(rawTextValue).join("");
+        if (!entries.has(source)) return;
+        const display = nodes.find(n => n.parentElement === runs) || nodes[0];
+        return node === display ? custom.get(source) ?? entries.get(source) : "";
+    }
+
+    // The Hub's step header wraps the fixed prefix separately from its file pill or search query.
+    const stepPrefix = stepTitle + ' > span.text-muted-foreground:first-child';
+    const fileVerbs = new Set(["Analyzed", "Analyzing", "Edited", "Editing", "Created", "Creating", "Deleted", "Deleting"]);
+    const searchVerbs = new Set(["Searched", "Searching"]);
+    function toolVerbs(element) {
+        const prefix = element.closest("span.text-muted-foreground");
+        if (!prefix?.matches(stepPrefix)) return;
+        const content = prefix.nextElementSibling;
+        if (prefix.parentElement.matches(".flex-row.whitespace-nowrap") && content?.matches("span.inline-flex") &&
+            content.querySelector('[data-uri][data-quotable-inline="true"]')) return fileVerbs;
+        if (prefix.parentElement.matches(".group.overflow-hidden") && prefix.matches(".shrink-0") &&
+            content?.matches("span.text-ellipsis.whitespace-nowrap")) return searchVerbs;
     }
 
     function context(element, forTextNode = false) {
@@ -870,24 +1478,37 @@
         if (forTextNode && isInput) return blocked;
 
         let selected = false, scope, row = false, textOnly = false, knownText, attrOwner, alternatives;
-        let strictContainer = false;
+        let strictContainer = false, question, permissionRow, marketplace = false;
         let control = false;
+        let option;
         const sidecarInput = fixedInput(element);
         const allowInputAttrs = isInput && !forTextNode;
+        const verbs = toolVerbs(element);
+        const stepOwner = verbs && element.closest(responseSteps)?.parentElement;
+        let navCaption;
 
-        knownText = settingsLabel(element);
+        const detail = settingsDetail(element);
+        if (detail === blocked) return blocked;
+        knownText = detail || settingsLabel(element);
         if (knownText) {
             selected = true;
-            scope = knownText === "Model Quota" || knownText === quotaEmpty ? "model" : "permissions";
+            scope = detail ? "settings-detail" : knownText === "Model Quota" || knownText === quotaEmpty ? "model" : "permissions";
             textOnly = true;
         }
 
         for (let p = element; p; p = parent(p)) {
             if (p.nodeType !== 1) continue;
-            if (closedLightChild(p) || inProtectedSurface(p, allowInputAttrs && p === element)) return blocked;
+            const caption = fixedRouteCaption(p);
+            if (closedLightChild(p) || inProtectedSurface(p, allowInputAttrs && p === element, stepOwner, caption)) return blocked;
+            if (caption) navCaption = caption;
             if (!control && p.matches(interactiveControlSelector)) control = true;
+            if (p.getAttribute("role") === "option" && p.matches(mentionOption) &&
+                !p.querySelector(':scope > [data-testid="menu-category-row"]')) option = p;
 
             const id = p.getAttribute("data-testid");
+            if (permissionRows.has(id)) permissionRow = p;
+            if (id === "customizations-marketplace") marketplace = true;
+            if (id === "ask-question-header-text" || id === "ask-question-option-text") question = p;
             if (id === "sidecar-row" && p.hasAttribute("data-sidecar-id")) row = true;
             if (id === "onboarding-brand-shell") {
                 strictContainer = true;
@@ -906,7 +1527,15 @@
                 if (id !== "post-onboarding-welcome-modal" && id !== "onboarding-auth-code-panel" && id !== "settings-sidebar") {
                     strictContainer = true;
                 }
-                if (id === "settings-sidebar") strictContainer = true;
+                if (id === "settings-sidebar") {
+                    strictContainer = true;
+                    const label = sidebarLabel(element);
+                    if (label) {
+                        scope = "settings";
+                        knownText = label;
+                        selected = textOnly = true;
+                    }
+                }
                 if (!scope && element.matches(leaf.selector)) {
                     scope = leaf.scope;
                     textOnly = !(id === "artifact-update-notice" && element.localName === "button");
@@ -935,6 +1564,37 @@
             }
         }
 
+        if (permissionRow) return permissionRowContext(permissionRow, element);
+        const project = projectText(element);
+        if (project !== undefined) return {displayText: project, textOnly: true};
+        const account = accountContext(element);
+        if (account !== undefined) return account;
+        if (marketplace) {
+            if (element.closest(noticeParagraph)) return marketplaceNotice(element);
+            const shelf = shelfContext(element);
+            if (shelf !== undefined) return shelf;
+        }
+        if (question) {
+            if (!permissionForm(element)) return blocked;
+            if (element.matches(permissionTitle)) return {permissionKind: "title", textOnly: true};
+            if (element === question && element.matches(permissionOption)) return {permissionKind: "option", textOnly: true};
+            // Descend through the header wrappers to the title only.
+            return question.contains(element) && element.querySelector(permissionTitle) ? null : blocked;
+        }
+        const feedback = feedbackContext(element);
+        if (feedback !== undefined) return feedback;
+        if (option) return {option, textOnly: true};
+        if (navCaption) return element === navCaption ? {scope: "toolbar", knownText: sourceText(navCaption), textOnly: true} : null;
+        if (verbs && (stepOwner || element.closest('[data-testid="view-file-step"], div.flex-row[data-step-index]'))) {
+            return {verbs, textOnly: true};
+        }
+        if (element.matches(writeIn)) {
+            return permissionForm(element) ? {scope: "permissions", attrOwner: "ask-question-writein", isInput: true} : null;
+        }
+        if (element.localName === "span" && element.nextElementSibling?.matches(writeIn)) {
+            return permissionForm(element) ? {scope: "permissions", knownText: "No", textOnly: true} : null;
+        }
+        if (element.matches(composerOverlay)) return {composerHint: true, textOnly: true};
         const brand = element.localName === "span" && element.childNodes.length === 1 &&
             element.firstChild.nodeType === 3 &&
             element.previousElementSibling?.getAttribute("data-testid") === "sidebar-header-logo";
@@ -998,13 +1658,44 @@
         const pages = new Set(), sections = new Set();
         for (const r of records) {
             const target = r.target.nodeType === 1 ? r.target : r.target.parentElement;
+            const tokenRow = target?.closest(tokenGroupRow);
+            if (tokenRow) enqueue(tokenRow);
+            // A changed link invalidates the previously translated sibling text.
+            const notice = target?.closest(noticeParagraph);
+            if (notice) enqueue(notice);
+            // React can update the heading and caption separately when reusing a shelf.
+            const shelf = target?.matches('section:not([data-testid])') ? target : target?.closest(shelfHeader)?.parentElement;
+            if (shelf?.closest('[data-testid="customizations-marketplace"]')) enqueue(shelf);
+            const navigation = target?.closest("a[href]");
+            if (navigation?.closest(sidebarNav + "," + pluginTabs + "," + featuredActions)) enqueue(navigation);
+            const title = target?.closest(stepTitle);
+            if (title) enqueue(title);
+            const option = target?.closest(mentionOption);
+            if (option) enqueue(option);
+            // Sibling option eligibility follows the header when React reuses
+            // the form, including when just the permission marker changes.
+            const form = target?.closest(questionForm);
+            if (form) enqueue(form);
+            if (target?.localName === "a") enqueue(target.nextSibling);
+            if (target?.localName === "input" && target.parentElement?.localName === "label") enqueue(target.nextElementSibling);
             const page = target?.closest(settingsPage);
             if (page) {
                 pages.add(page);
+                const legal = target.closest(feedbackLegal);
+                if (legal) enqueue(legal);
+                const checks = target.closest(feedbackSection);
+                if (checks?.firstElementChild?.matches("label.leading-relaxed")) enqueue(checks);
+                if (target === page || target.closest(".mb-2")) enqueue(page);
                 const section = target.closest(".space-y-2");
                 if (section) sections.add(section);
+                const row = target.closest(accountRow);
+                if (row) enqueue(row);
+                if (section && (section === target || section.firstElementChild?.contains(target))) enqueue(section);
             }
-            if (target?.matches('[data-testid="settings-sidebar"] > div:first-child')) enqueue(target);
+            // The group heading and spacer determine which adjacent rows are UI.
+            const sidebar = target?.closest(sidebarBody);
+            if (sidebar && (target === sidebar || target.parentElement === sidebar ||
+                target.parentElement?.parentElement === sidebar)) enqueue(sidebar);
             if (r.type === "characterData") {
                 originalText.delete(r.target);
                 writtenText.delete(r.target);
@@ -1043,8 +1734,10 @@
     const observer = new win.MutationObserver(records => ingest(records));
     const watch = {
         subtree: true, childList: true, characterData: true, attributes: true,
-        attributeFilter: [...attrs, "class", "contenteditable", "role", "href", "slot", "name",
-            "data-testid", "aria-describedby", "id", "data-lexical-editor", "data-file-uri", "data-diff-type", "data-sidecar-url",
+        attributeFilter: [...attrs, "class", "contenteditable", "role", "href", "slot", "name", "type", "value",
+            "data-mention-menu", "data-hover-option-key", "data-symbol-name", "d", "dir",
+            "data-step-list", "data-step-rows", "data-step-index", "data-quotable-inline", "data-uri",
+            "target", "rel", "data-slot", "data-testid", "aria-describedby", "id", "data-lexical-editor", "data-file-uri", "data-diff-type", "data-sidecar-url",
             "data-bubble-side", "data-quotable", "data-sidecar-id", "data-tooltip-id", "data-markdown-root"]
     };
     function ownWrite(node, name, value) {
@@ -1084,13 +1777,36 @@
         const source = owned && writtenText.get(node) === current ? originalText.get(node) : current;
         let next = source;
         if (ctx && active && mode === "zh") {
-            if (ctx.brand && options.brand === "hide" && source.trim() === "Antigravity") next = "";
+            const verb = source.trim();
+            if (ctx.displayText !== undefined) next = ctx.displayText;
+            else if (ctx.legalNotice) {
+                if (node === node.parentNode.firstChild) next = custom.get("Visit") ?? exact.get("Visit");
+                else if (node === node.parentNode.lastChild) next = scoped.get("feedback").get(legalSuffix);
+                else next = "";
+            } else if (ctx.accountField) next = accountText(node, source, ctx.accountField);
+            else if (ctx.shelfEntries) {
+                if (!ctx.shelfName) next = custom.get(source) ?? ctx.shelfEntries.get(source) ?? source;
+            } else if (ctx.verbs) {
+                if (ctx.verbs.has(verb)) next = source.replace(verb, () => custom.get(verb) ?? exact.get(verb) ?? stepVerbMap[verb.toLowerCase()]);
+            } else if (ctx.option) next = commandText(node, ctx.option) ?? source;
+            else if (ctx.permissionKind) next = permissionText(node, source, ctx.permissionKind);
+            else if (ctx.composerHint) {
+                if (source === composerHint || source === composerHint + actionsHint) {
+                    const entries = scoped.get("workspace");
+                    const base = entries?.get(composerHint);
+                    const suffix = source === composerHint ? "" : entries?.get(actionsHint);
+                    if (base && suffix !== undefined) next = base + suffix;
+                }
+            } else if (source === "." && permissionDocsLink(node.previousSibling)) next = "。";
+            else if (ctx.brand && options.brand === "hide" && source.trim() === "Antigravity") next = "";
             else if (ctx.scope) {
                 if ((!ctx.knownText || source.trim() === ctx.knownText) &&
                     (!ctx.alternatives || ctx.alternatives.includes(source.trim()))) {
                     next = translate(source, ctx);
                 }
-            } else if (ctx.general) {
+            } else if (ctx.general && !fileVerbs.has(verb) && !searchVerbs.has(verb)) {
+                // The exact dictionary also contains standalone tool verbs. Only
+                // their audited text leaves may use those translations in prose.
                 next = translate(source, ctx);
             }
         }
@@ -1100,7 +1816,7 @@
     // Layer 4.6: High-frequency split text nodes (React splits numbers/elements into adjacent text nodes).
     // Only rewrites pure Text nodeValue and records every node in originalText/writtenText for lossless toggle.
     function translateSplitChildren(el, ctx) {
-        if (!ctx || !active || mode !== "zh" || ctx.isInput || ctx.brand) return false;
+        if (!ctx || !active || mode !== "zh" || ctx.isInput || ctx.brand || ctx.permissionKind || ctx.composerHint || ctx.option || ctx.verbs || ctx.shelfEntries || ctx.accountField || ctx.legalNotice || ctx.displayText !== undefined) return false;
         const kids = el.childNodes;
         if (kids.length < 2 || kids.length > 10) return false;
 
@@ -1193,12 +1909,19 @@
                 ? original : current;
             let next = source;
             if (active && mode === "zh" && ctx) {
-                if (ctx.input) {
+                if (ctx.shelfEntries) {
+                    if (name === "aria-label" && source === ctx.shelfName) {
+                        next = custom.get(source) ?? ctx.shelfEntries.get(source);
+                    }
+                } else if (ctx.input) {
                     // Audited fixed sidecar input preserves strict metadata allowlist.
                     if ((name === "placeholder" && source === "Untitled") ||
                         (name === "aria-label" && source === "Name")) {
                         next = translate(source, {scope: "sidecar", control: true});
                     }
+                } else if (ctx.scope === "settings-detail" && name === "aria-label" &&
+                    element.matches(layoutOption) && source === ctx.knownText) {
+                    next = translate(source, ctx);
                 } else if (ctx.scope === "onboarding" && ctx.knownText === googleSignIn &&
                     name === "title" && source === googleSignIn) {
                     next = translate(source, ctx);
@@ -1245,7 +1968,14 @@
             }
             if (node.nodeType === 1) {
                 const ctx = context(node, false);
-                if (ctx === blocked && !touched.has(node)) continue;
+                if (ctx === blocked && !touched.has(node)) {
+                    // Skip the response body. Visit only candidate header leaves;
+                    // context() still checks every ancestor, including Markdown and thinking.
+                    if (active && mode === "zh" && (node.matches(responseShell) || node.closest(responseSteps))) {
+                        for (const prefix of node.querySelectorAll(stepPrefix)) stack.push(prefix);
+                    }
+                    continue;
+                }
                 attributes(node, ctx === blocked ? null : ctx);
                 if (ctx && ctx !== blocked && mode === "zh" && active && translateSplitChildren(node, ctx)) {
                     splitHandled.add(node);

@@ -3,9 +3,16 @@
   "module": "agents",
   "version": "2.35.0",
   "sources": {
-    "hub:main.js": "f039eca519f153aeac9a0f1d10abc7afd8ff4b8009ef78d684669a3c7955f54d"
+    "hub:main.js": "f039eca519f153aeac9a0f1d10abc7afd8ff4b8009ef78d684669a3c7955f54d",
+    "binary:language_server": "7235d144514112b8dc86b38253590c69de306c32ba98408bd061bf36d532848b"
   },
   "exact": [
+    {
+      "en": "(Optional) Tell us more or type your reason...",
+      "zh": "（可选）请补充说明或填写原因…",
+      "source": "hub:main.js",
+      "offset": 8939757
+    },
     {
       "en": "? This removes it from your config directory.",
       "zh": "？这会将其从你的配置目录中移除。",
@@ -359,12 +366,6 @@
       "zh": "确定要删除这条支线提问吗？此操作无法撤销。",
       "source": "hub:main.js",
       "offset": 9423416
-    },
-    {
-      "en": "Ask a quick question without interrupting the main conversation.",
-      "zh": "快速提个小问题，不会打断当前主对话。",
-      "source": "hub:main.js",
-      "offset": 8456040
     },
     {
       "en": "Ask a side question without interrupting the main conversation",
@@ -3529,6 +3530,12 @@
       "offset": 8765556
     },
     {
+      "en": "Search by name or username",
+      "zh": "按姓名或用户名搜索",
+      "source": "hub:main.js",
+      "offset": 10009776
+    },
+    {
       "en": "Search Conversations",
       "zh": "搜索对话",
       "source": "hub:main.js",
@@ -5107,6 +5114,125 @@
       "offset": 9057497
     },
     {
+      "scope": "marketplace-notice",
+      "en": "Google does not control the availability or functionality of third party developer tools. Your data from third party developer tools connected to your Antigravity instance may be shared with Google. Google will protect any such data in accordance with the Google Privacy Policy, found here: {privacyPolicyLink}",
+      "zh": "Google 无法控制第三方开发者工具的可用性或功能。连接到你的 Antigravity 实例的第三方开发者工具可能会与 Google 共享你的数据。Google 将依照《Google 隐私权政策》保护这些数据，详见 {privacyPolicyLink}",
+      "source": "binary:language_server",
+      "offset": 156685585
+    },
+    {
+      "scope": "marketplace-shelf/google-workspace",
+      "en": "Google Workspace",
+      "zh": "Google Workspace",
+      "source": "binary:language_server",
+      "offset": 156671491
+    },
+    {
+      "scope": "marketplace-shelf/google-workspace",
+      "en": "Connect to Google Workspace, including Docs, Sheets, Slides, Drive, Calendar, and Gmail.",
+      "zh": "连接 Google Workspace，可使用 Docs、Sheets、Slides、Drive、Calendar 和 Gmail。",
+      "source": "binary:language_server",
+      "offset": 156671533
+    },
+    {
+      "scope": "marketplace-shelf/build-with-google",
+      "en": "Build with Google",
+      "zh": "结合 Google 工具开发",
+      "source": "binary:language_server",
+      "offset": 156672059
+    },
+    {
+      "scope": "marketplace-shelf/build-with-google",
+      "en": "Build on Google's developer platforms, including Android, Chrome, Gemini, and Google Cloud.",
+      "zh": "使用 Google 的开发者平台构建应用，包括 Android、Chrome、Gemini 和 Google Cloud。",
+      "source": "binary:language_server",
+      "offset": 156672102
+    },
+    {
+      "scope": "marketplace-shelf/design-creative-media",
+      "en": "Design, Creative & Media",
+      "zh": "设计、创意与媒体",
+      "source": "binary:language_server",
+      "offset": 156673276
+    },
+    {
+      "scope": "marketplace-shelf/design-creative-media",
+      "en": "Design, creative, and media tools.",
+      "zh": "用于设计、创作和媒体制作的工具。",
+      "source": "binary:language_server",
+      "offset": 156673331
+    },
+    {
+      "scope": "marketplace-shelf/science",
+      "en": "Science",
+      "zh": "科学研究",
+      "source": "binary:language_server",
+      "offset": 156673683
+    },
+    {
+      "scope": "marketplace-shelf/science",
+      "en": "Agent skills, databases, and interactive viewers for scientific research.",
+      "zh": "面向科研的 AI 助手技能、数据库和交互式查看器。",
+      "source": "binary:language_server",
+      "offset": 156673716
+    },
+    {
+      "scope": "marketplace-shelf/productivity-project-management",
+      "en": "Productivity & Project Management",
+      "zh": "工作效率与项目管理",
+      "source": "binary:language_server",
+      "offset": 156674227
+    },
+    {
+      "scope": "marketplace-shelf/productivity-project-management",
+      "en": "Plan work, track issues, sign documents, and manage your notes and files.",
+      "zh": "规划工作、跟踪问题、签署文档，管理笔记和文件。",
+      "source": "binary:language_server",
+      "offset": 156674291
+    },
+    {
+      "scope": "marketplace-shelf/cloud-hosting-deployment",
+      "en": "Cloud Hosting & Deployment",
+      "zh": "云托管与部署",
+      "source": "binary:language_server",
+      "offset": 156675036
+    },
+    {
+      "scope": "marketplace-shelf/cloud-hosting-deployment",
+      "en": "Deploy and host your apps, sites, and their backends.",
+      "zh": "部署和托管应用、网站及其后端服务。",
+      "source": "binary:language_server",
+      "offset": 156675093
+    },
+    {
+      "scope": "marketplace-shelf/developer-tools",
+      "en": "Developer Tools",
+      "zh": "开发者工具",
+      "source": "binary:language_server",
+      "offset": 156675648
+    },
+    {
+      "scope": "marketplace-shelf/developer-tools",
+      "en": "APIs, services, and tools to build, test, secure, and run your apps.",
+      "zh": "用于构建、测试、保护和运行应用的 API、服务和工具。",
+      "source": "binary:language_server",
+      "offset": 156675689
+    },
+    {
+      "scope": "marketplace-shelf/business",
+      "en": "Business",
+      "zh": "商业服务",
+      "source": "binary:language_server",
+      "offset": 156677861
+    },
+    {
+      "scope": "marketplace-shelf/business",
+      "en": "Payments, CRM, accounting, data, identity, customer support, marketing, and workflow automation.",
+      "zh": "涵盖支付、客户关系管理（CRM）、会计、数据、身份管理、客户支持、营销和工作流自动化。",
+      "source": "binary:language_server",
+      "offset": 156677895
+    },
+    {
       "scope": "sidecar",
       "en": "Add schedule",
       "zh": "添加定时计划",
@@ -5245,6 +5371,181 @@
       "zh": "查看日志",
       "source": "hub:main.js",
       "offset": 8377604
+    },
+    {
+      "scope": "slash-command/agy-customizations",
+      "en": "Comprehensive guide and reference for the Antigravity Customization System. Use to explain how customizations work, their loading priority, discovery mechanisms, and to guide the creation of skills, rules, plugins, hooks, and MCP servers.",
+      "zh": "查阅 Antigravity 自定义功能指南，了解各类配置的工作方式、加载顺序和发现机制，并按指引创建技能、规则、插件、钩子和 MCP 服务。",
+      "source": "binary:language_server",
+      "offset": 60482323
+    },
+    {
+      "scope": "slash-command/antigravity-guide",
+      "en": "Provides a comprehensive guide, quick reference, and sitemap for Google Antigravity (AGY), including the Antigravity CLI (agy), Antigravity 2.0, Antigravity IDE, Python SDK, slash commands, keybindings, and customizations (skills, rules, MCP, sidecars). Activate this skill when the user asks questions about how to use, configure, or customize Antigravity, AGY, the agy CLI, the Antigravity IDE, or Antigravity 2.0.",
+      "zh": "查阅 Google Antigravity（AGY）使用指南、速查表和文档索引。涵盖命令行工具 agy、Antigravity 2.0、Antigravity IDE、Python SDK、斜杠命令、快捷键，以及技能、规则、MCP 和伴生侧栏等自定义功能。适合查询各版本及工具的使用、配置和定制方法。",
+      "source": "binary:language_server",
+      "offset": 60155403
+    },
+    {
+      "scope": "slash-command/automation",
+      "en": "Interactive guide to design and create a scheduled background automation. Use this skill when the user wants to create an automated or recurring scheduled task (e.g. \"summarize my emails every morning\", \"every Monday send me a to-do list\"). Also triggered by the /automation slash command.",
+      "zh": "逐步设计并创建定时运行的后台自动化任务。适合一次性或周期性任务，例如“每天早上总结我的邮件”或“每周一发给我一份待办清单”。也可输入 /automation 调用。",
+      "source": "binary:language_server",
+      "offset": 61179429
+    },
+    {
+      "scope": "slash-command/boost",
+      "en": "Invoke the Boost multi-agent orchestrator for complex tasks.",
+      "zh": "调用 Boost 协调多个 AI 助手处理复杂任务。",
+      "source": "binary:language_server",
+      "offset": 58643333
+    },
+    {
+      "scope": "slash-command/browser",
+      "en": "Invoke a browser agent for web tasks.",
+      "zh": "调用浏览器助手处理网页任务。",
+      "source": "binary:language_server",
+      "offset": 58183469
+    },
+    {
+      "scope": "slash-command/browser-vision",
+      "en": "[Teamfood] Invoke a browser with computer-use tools only with experimental model.",
+      "zh": "[内部试用] 使用实验模型，让浏览器助手仅通过电脑操作工具完成任务。",
+      "source": "binary:language_server",
+      "offset": 58858518
+    },
+    {
+      "scope": "slash-command/btw",
+      "en": "Ask a quick question without interrupting the main conversation.",
+      "zh": "快速提个小问题，不会打断当前主对话。",
+      "source": "hub:main.js",
+      "offset": 8456040
+    },
+    {
+      "scope": "slash-command/compact",
+      "en": "Compact the conversation now (summarize history to free up the context window).",
+      "zh": "立即压缩对话，将历史消息整理成摘要，腾出上下文空间。",
+      "source": "binary:language_server",
+      "offset": 58846709
+    },
+    {
+      "scope": "slash-command/computer",
+      "en": "Invoke a computer-use agent to operate apps on this Mac.",
+      "zh": "调用电脑操作助手，操作这台 Mac 上的应用。",
+      "source": "binary:language_server",
+      "offset": 58581213
+    },
+    {
+      "scope": "slash-command/deepagent",
+      "en": "Experimental. Invoke the deep agent to plan, build, verify complex coding tasks.",
+      "zh": "实验功能。调用深度助手为复杂编程任务制定计划、编写代码并验证结果。",
+      "source": "binary:language_server",
+      "offset": 58852176
+    },
+    {
+      "scope": "slash-command/generative_ui",
+      "en": "How to render rich interactive HTML widgets inline in the chat or as standalone artifacts. Use this skill when you want to show the user diagrams, data visualizations, interactive controls, educational walkthroughs, or any rich visual content beyond plain text and markdown.",
+      "zh": "在聊天中嵌入可交互的 HTML 组件，也可将其作为独立生成文档展示。适合展示图表、数据可视化、交互控件、教学演示，以及纯文本和 Markdown 难以呈现的内容。",
+      "source": "binary:language_server",
+      "offset": 60583636
+    },
+    {
+      "scope": "slash-command/goal",
+      "en": "Run until the specified goal is completely finished.",
+      "zh": "持续执行，直到指定目标全部完成。",
+      "source": "binary:language_server",
+      "offset": 58517493
+    },
+    {
+      "scope": "slash-command/grill-me",
+      "en": "Interview me to align on a plan.",
+      "zh": "通过提问和我一起敲定计划。",
+      "source": "binary:language_server",
+      "offset": 58027341
+    },
+    {
+      "scope": "slash-command/learn",
+      "en": "Reflect on recent successes or corrections to capture reusable skills or rules.",
+      "zh": "回顾最近的成功经验和纠正意见，提炼可复用的技能或规则。",
+      "source": "binary:language_server",
+      "offset": 58846788
+    },
+    {
+      "scope": "slash-command/mcp-app-development",
+      "en": "Build, package, and debug MCP Apps for Antigravity: MCP server tools whose results render as interactive UI in the conversation, in the side pane, or full-page from the sidebar. Use when adding a UI to an MCP tool, building or theming the app itself, packaging it as a plugin, or debugging an app that doesn't render or behave as expected.",
+      "zh": "为 Antigravity 构建、打包和调试 MCP 应用，让 MCP 服务工具的结果以交互界面呈现在对话中、侧边面板或从侧栏打开的整页中。适合给工具添加界面、开发应用或调整主题、打包成插件，以及排查显示或交互异常。",
+      "source": "binary:language_server",
+      "offset": 61205165
+    },
+    {
+      "scope": "slash-command/migrate-agent-settings",
+      "en": "Migrates the user's MCP servers, skills, slash commands, subagents, and instruction files from other coding agents (Claude Code, Codex, Cursor, Gemini CLI) into one new Antigravity plugin. Use when the user wants to bring over, import, or migrate their setup or config from another agent or tool. Don't use for installing Marketplace plugins or authoring a new plugin from scratch (use the plugin skill).",
+      "zh": "将其他编程助手（Claude Code、Codex、Cursor、Gemini CLI）的 MCP 服务、技能、斜杠命令、子助手和指令文件迁入一个新的 Antigravity 插件。适合导入已有配置。安装市场插件或从头编写插件请使用 plugin 技能。",
+      "source": "binary:language_server",
+      "offset": 60969440
+    },
+    {
+      "scope": "slash-command/migrate-workflows",
+      "en": "Automatically migrate legacy workflows to modern skills across global and workspace configurations. Scans for existing workflows, creates target SKILL.md files, and safely archives old workflow files.",
+      "zh": "扫描全局和工作目录中的旧版工作流，将其转换为技能，生成相应的 SKILL.md 文件，再安全归档旧工作流文件。",
+      "source": "binary:language_server",
+      "offset": 60540413
+    },
+    {
+      "scope": "slash-command/permissioned-github",
+      "en": "Guidelines for interacting with GitHub and request permissions from the user when commands fail due to restrictions in the agent environment.",
+      "zh": "了解如何与 GitHub 交互，以及命令因 AI 助手的环境限制而失败时如何向用户申请权限。",
+      "source": "binary:language_server",
+      "offset": 60816288
+    },
+    {
+      "scope": "slash-command/plan",
+      "en": "Plan carefully before executing a task.",
+      "zh": "执行任务前先仔细制定计划。",
+      "source": "binary:language_server",
+      "offset": 58236947
+    },
+    {
+      "scope": "slash-command/plugin",
+      "en": "How to manage and create plugins — namespaced bundles of skills, agents, rules, MCP servers and hooks that install, enable and disable as a single unit. Use this skill when the user wants to enable, disable, install or uninstall a plugin, when they want to create a new plugin, or when a new customization should be packaged into a plugin rather than left loose. Also triggered by the /plugin slash command. Don't use for the underlying customization system itself — discovery roots, loading priority, or authoring a standalone skill, agent, rule, hook or MCP server outside a plugin; see the customizations guide skill for those.",
+      "zh": "管理和创建插件。插件将技能、助手、规则、MCP 服务和钩子归入独立的命名空间，可一起安装、启用或停用。需要管理或卸载插件、创建新插件，或将自定义功能打包时，可使用此技能，也可输入 /plugin 调用。要了解自定义功能的扫描目录、加载顺序，或在插件外单独编写上述组件，请查阅自定义功能指南。",
+      "source": "binary:language_server",
+      "offset": 61504602
+    },
+    {
+      "scope": "slash-command/review-agent",
+      "en": "Experimental. Invoke the review agent to audit code changes, surface bugs, and verify correctness.",
+      "zh": "实验功能。调用审查助手检查代码改动、找出缺陷并验证正确性。",
+      "source": "binary:language_server",
+      "offset": 58927269
+    },
+    {
+      "scope": "slash-command/run-workflow",
+      "en": "How to write and run a dynamic workflow script with the `run_workflow` tool: a Python script that orchestrates many agents with `agent`, `parallel`, `pipeline`, and `phase`. Use when a task splits into many independent or staged pieces of agent work (fan out over files, modules, bugs, or review angles, then aggregate), or when the user asks for a workflow. Don't use for a single delegated task (use a subagent) or for legacy workflow files (see migrate-workflows).",
+      "zh": "使用 run_workflow 工具编写和运行动态工作流。通过 Python 脚本中的 agent、parallel、pipeline 和 phase 协调多个 AI 助手。适合按文件、模块、缺陷或审查角度拆分任务、分阶段执行并汇总结果，也适用于用户指定使用工作流的情形。单项委派请使用子助手，旧工作流文件请参阅 migrate-workflows。",
+      "source": "binary:language_server",
+      "offset": 60917620
+    },
+    {
+      "scope": "slash-command/schedule",
+      "en": "Run an instruction on a recurring schedule or as a one-time timer.",
+      "zh": "按周期执行指令，或设置定时器只执行一次。",
+      "source": "binary:language_server",
+      "offset": 58725314
+    },
+    {
+      "scope": "slash-command/swarm",
+      "en": "(Preview & Quota Heavy) Run a swarm: several agents working in parallel on one task, each in its own conversation, collaborating through a shared message board. Use when the work splits into pieces that can be done at the same time, or when a second pair of eyes should check the first pair's work.",
+      "zh": "（预览功能，配额消耗较高）让多个 AI 助手并行处理同一任务。每个助手都有独立对话，通过共享留言板协作。适合可拆分并行的工作，也可让另一位助手复核已有结果。",
+      "source": "binary:language_server",
+      "offset": 61998701
+    },
+    {
+      "scope": "slash-command/teamwork",
+      "en": "Invoke a team of agents to autonomously tackle large projects.",
+      "zh": "调用一组 AI 助手，自主协作完成大型项目。",
+      "source": "binary:language_server",
+      "offset": 58671564
     }
   ],
   "templates": [

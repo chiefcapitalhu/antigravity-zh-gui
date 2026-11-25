@@ -5,9 +5,9 @@
 <br/>
 
 [![Core Tests](https://github.com/chiefcapitalhu/antigravity-zh-gui/actions/workflows/ci.yml/badge.svg)](https://github.com/chiefcapitalhu/antigravity-zh-gui/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-v0.2.0-38bdf8?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.2.1-38bdf8?style=flat-square)
 ![macOS](https://img.shields.io/badge/macOS-Antigravity%202.34%20%2F%202.35-6366f1?style=flat-square)
-![Catalog](https://img.shields.io/badge/原创词条-3%2C107%20条-10b981?style=flat-square)
+![Catalog](https://img.shields.io/badge/原创词条-3%2C182%20条-10b981?style=flat-square)
 ![Zero Deps](https://img.shields.io/badge/Go%20标准库-零外部依赖-f59e0b?style=flat-square)
 [![License: MIT](https://img.shields.io/badge/License-MIT-64748b?style=flat-square)](LICENSE)
 
@@ -34,7 +34,7 @@
 
 | 特性 | 说明 |
 |---|---|
-| **3,107 条 100% Clean-Room 原创词条** | 所有英文原文均以只读方式提取自官方 Antigravity 客户端，中文译文全部原创且逐条记录 `source` 与字节 `offset`，支持 `extract --verify` 全量原位重放验证。 |
+| **3,186 条 100% Clean-Room 原创词条** | 所有英文原文均以只读方式提取自官方 Antigravity 客户端，中文译文全部原创且逐条记录 `source` 与字节 `offset`，支持 `extract --verify` 全量原位重放验证。 |
 | **四层安全 DOM 匹配引擎** | 严密保护用户消息、AI 回复、**展开后的思考过程正文**（放行外层折叠标题按钮）、代码、终端、Diff、输入框、会话标题、Git 分支与 PDF 文本层；保护区外全 UI 查表、短词作用域守卫与完整动态模板。 |
 | **完整聊天工作与思考状态条** | 覆盖 `Thinking...`、`Thought for <时长>`、`Worked for <时长> · N updates`、`Explored N files, M searches`、聊天内权限审批选项、模型配额/相对时间及 React 拆分文本节点。 |
 | **一键中英文无损热切换** | 本地 Hub 窗口内按 **`Cmd + Shift + L`**（macOS）或 **`Ctrl + Shift + L`**（Windows）即时切换中英文，基于 `WeakMap` 精确恢复原始文本与属性，不破坏节点引用。 |
@@ -62,7 +62,7 @@
 
 | 平台 | Antigravity 版本 | 核验状态 | 说明 |
 |---|---|---|---|
-| **macOS**（Apple Silicon / Intel） | `2.34.0`、`2.35.0` | ✅ **已完整基线核验并实机验收** | 13 个主进程模块 + 完整 Hub 渲染层 + 3,107 词条 + 官方整包备份还原 |
+| **macOS**（Apple Silicon / Intel） | `2.34.0`、`2.35.0` | ✅ **已完整基线核验并实机验收** | 13 个主进程模块 + 完整 Hub 渲染层 + 3,186 词条 + 官方整包备份还原 |
 | **Windows**（x64 / ARM64） | `2.x` | 🚧 **提供源码与基础构建支持** | 已具备宿主完整性策略校验与 CI 构建/单测，**尚未完成官方 Windows 实机基线验收** |
 
 > **版本升级保护**：当官方客户端升级到尚未复核的新版本时，工具绝不会盲目写入未知字节。如仅触发基础弹窗降级补丁（`hub_skipped`，未注入主界面与热切换），`status` 与控制台会明确标红提示 **「部分汉化（已降级）」**，提醒等待或更新汉化工具。
@@ -142,6 +142,8 @@ flowchart LR
 ./antigravity-zh-gui extract --target "/Applications/Antigravity.app" --verify ./locales/zh-CN --out /tmp/ag-reviewed
 ./antigravity-zh-gui extract --target "/path/to/newer/Antigravity.app" --diff /tmp/ag-report/candidates.json --out /tmp/ag-diff
 ```
+
+v0.2.1 的完整词典证据基线是 macOS arm64 版 Antigravity 2.35.0。除 ASAR 和 Hub 脚本外，提取器还会核对 `bin/language_server` 的完整 SHA-256，再按字节偏移重放 45 个静态字段，涵盖 24 条斜杠命令说明、4 条界面布局文案、8 组内置插件货架的标题和说明，以及市场底部的第三方工具声明。运行时使用内嵌译文，配额服务下发的时长和额度说明按卡片中的固定句式匹配。
 
 词典目录位于 [`locales/zh-CN/`](locales/zh-CN/)（`core`、`workspace`、`settings`、`agents`、`menus_dialogs` 五个模块），设计文档与历次验收回执见 [`docs/`](docs/) 与 [`CHANGELOG.md`](CHANGELOG.md)。
 

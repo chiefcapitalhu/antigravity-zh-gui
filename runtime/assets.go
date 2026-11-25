@@ -5,6 +5,7 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"regexp"
 	"strings"
 	"unicode/utf8"
 
@@ -51,6 +52,8 @@ func validEntries(entries map[string]string) error {
 	return nil
 }
 
+var qualifiedScope = regexp.MustCompile(`^(slash-command|marketplace-shelf)/[a-z][a-z0-9_-]*$`)
+
 // Validate checks the dictionaries and matching scopes accepted by the presentation runtimes.
 func (d Dictionary) Validate() error {
 	for _, entries := range []map[string]string{d.Custom, d.Exact} {
@@ -63,9 +66,11 @@ func (d Dictionary) Validate() error {
 	seen := map[string]map[string]bool{}
 	for _, group := range d.Scoped {
 		switch group.Scope {
-		case "toolbar", "workspace", "settings", "onboarding", "permissions", "agents", "model", "sidecar", "controls", "application", "context", "tray", "dock":
+		case "toolbar", "workspace", "settings", "settings-detail", "feedback", "onboarding", "permissions", "agents", "marketplace-notice", "model", "sidecar", "controls", "application", "context", "tray", "dock":
 		default:
-			return fmt.Errorf("unknown translation scope %q", group.Scope)
+			if !qualifiedScope.MatchString(group.Scope) {
+				return fmt.Errorf("unknown translation scope %q", group.Scope)
+			}
 		}
 		if err := validEntries(group.Entries); err != nil {
 			return err

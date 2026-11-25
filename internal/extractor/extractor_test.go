@@ -4,9 +4,11 @@ import (
 	"archive/zip"
 	"bytes"
 	"context"
+	"crypto/sha256"
 	"encoding/binary"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"net/http"
 	"os"
@@ -140,8 +142,11 @@ func TestLiteralProof(t *testing.T) {
 		}
 	}
 }
+
+const welcomeLiteral = "`" + welcomeText + "`"
+
 func TestVerifyLocales(t *testing.T) {
-	s := &SourceSet{"2.34.0", map[string][]byte{}, map[string]string{}, nil}
+	s := &SourceSet{Version: "2.34.0", scripts: map[string][]byte{}, hashes: map[string]string{}}
 	src := "const x='inside \"Save\"'; // 'Save'\n const f={label:'Save'};"
 	src += "const plain='" + welcomeText + "'; /* " + welcomeLiteral + " */ const title=" + welcomeLiteral + ";"
 	other := "const x='Save'"
@@ -209,7 +214,7 @@ func TestWelcomeTemplateIsReviewOnly(t *testing.T) {
 		"const ui={title:" + welcomeLiteral + "};"
 	var positions []int
 	err := staticLiterals([]byte(src), func(start, end int, context string) {
-		if context == welcomeContext {
+		if context == reviewedTemplateContext {
 			if src[start:end] != welcomeLiteral {
 				t.Errorf("unreviewed template %q", src[start:end])
 			}
@@ -223,6 +228,35 @@ func TestWelcomeTemplateIsReviewOnly(t *testing.T) {
 	c, err := s.Candidates()
 	if err != nil || len(c.Entries) != 0 {
 		t.Fatalf("unexpected automatic candidates %+v, err %v", c, err)
+	}
+}
+
+func TestSettingsTemplatesRequireCompleteBacktickLiterals(t *testing.T) {
+	for text, site := range reviewedHubTemplates {
+		if site.module != "settings" {
+			continue
+		}
+		t.Run(text, func(t *testing.T) {
+			literal := "`" + text + "`"
+			quoted, err := json.Marshal(text)
+			if err != nil {
+				t.Fatal(err)
+			}
+			src := "// " + literal + "\nconst copy=" + string(quoted) + "; const similar=" +
+				strings.Replace(literal, "${", "${other.", 1) + "; const ui=" + literal + ";"
+			var found []int
+			err = staticLiterals([]byte(src), func(start, end int, context string) {
+				if context == reviewedTemplateContext {
+					found = append(found, start)
+					if src[start:end] != literal {
+						t.Errorf("unexpected template %q", src[start:end])
+					}
+				}
+			})
+			if err != nil || !reflect.DeepEqual(found, []int{strings.LastIndex(src, literal)}) {
+				t.Fatalf("matched offsets %v, error %v", found, err)
+			}
+		})
 	}
 }
 func TestBlockRegexpAndLineContinuation(t *testing.T) {
@@ -386,6 +420,125 @@ E.createElement("button", null, ok ? "Retry Now" : "Try Later");
 	for _, noise := range []string{"flex items-center gap-2 text-sm", "https://example.invalid/docs", "/usr/local/bin/tool", "some_snake_case"} {
 		if got[noise] {
 			t.Errorf("noise string leaked into candidates: %q", noise)
+		}
+	}
+}
+
+func TestBinaryFieldReplay(t *testing.T) {
+	// Go literals can touch on both ends. A SKILL.md folded description
+	// displays on one line even though its byte length includes indentation.
+	const shelfTitle = `Science \u0026 Design`
+	const notice = "Privacy notice: {privacyPolicyLink}"
+	const shelfOffset = len("leftAsk it.XXXRun a\n  swarm.\x00private")
+	const noticeOffset = shelfOffset + len(shelfTitle)
+	const data = "leftAsk it.XXXRun a\n  swarm.\x00private" + shelfTitle + notice
+	fields := []binaryField{
+		{"settings-detail", 4, len("Ask it.")},
+		{"slash-command/swarm", 14, len("Run a\n  swarm.")},
+		{"marketplace-shelf/science", shelfOffset, len(shelfTitle)},
+		{"marketplace-notice", noticeOffset, len(notice)},
+	}
+	values, digest, err := readBinaryFields(strings.NewReader(data), int64(len(data)), fields)
+	if err != nil || digest != fmt.Sprintf("%x", sha256.Sum256([]byte(data))) {
+		t.Fatalf("digest %q, err %v", digest, err)
+	}
+	if values[14].text != "Run a swarm." || len(values) != len(fields) {
+		t.Fatalf("unexpected evidence %#v", values)
+	}
+	if _, _, err := readBinaryFields(strings.NewReader(data[:10]), int64(len(data)), fields); err == nil {
+		t.Fatal("accepted a truncated stream")
+	}
+	s := SourceSet{Version: "2.35.0", scripts: map[string][]byte{}, hashes: map[string]string{serverSource: digest}, binaryFields: values}
+	js := "const title='Other label';"
+	if err := s.add("hub:main.js", []byte(js)); err != nil {
+		t.Fatal(err)
+	}
+	catalog, err := s.Candidates()
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := []Entry{{"Ask it.", serverSource, 4}, {"Run a swarm.", serverSource, 14}, {"Science & Design", serverSource, shelfOffset}, {notice, serverSource, noticeOffset}}
+	if !reflect.DeepEqual(catalog.Entries, want) {
+		t.Fatalf("binary candidates: got %+v, want %+v", catalog.Entries, want)
+	}
+	translation := "示例"
+	verify := func(module, scope, en, entrySource, sha string, offset int) error {
+		t.Helper()
+		dir := t.TempDir()
+		for idx, name := range modules {
+			source, hash, pos, text, group := "hub:main.js", s.hashes["hub:main.js"], strings.Index(js, "'"), "Other label", []string{"workspace", "agents", "settings", "model", "application"}[idx]
+			if name == module {
+				source, hash, pos, text, group = entrySource, sha, offset, en, scope
+			}
+			row := map[string]any{"source": source, "offset": pos, "en": text, "scope": group, "zh": translation}
+			doc := map[string]any{"schema": 1, "module": name, "version": s.Version, "sources": map[string]string{source: hash}, "exact": []any{}, "scoped": []any{row}, "templates": []any{}}
+			b, err := json.Marshal(doc)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(filepath.Join(dir, name+".json"), b, 0600); err != nil {
+				t.Fatal(err)
+			}
+		}
+		_, err := s.VerifyLocales(dir)
+		return err
+	}
+	tests := []struct {
+		module, scope, text, hash string
+		offset                    int
+		ok                        bool
+	}{
+		{"agents", "slash-command/swarm", "Run a swarm.", digest, 14, true},
+		{"settings", "settings-detail", "Ask it.", digest, 4, true},
+		{"agents", "marketplace-shelf/science", "Science & Design", digest, shelfOffset, true},
+		{"agents", "marketplace-shelf/business", "Science & Design", digest, shelfOffset, false},
+		{"agents", "marketplace-shelf/science", "Science", digest, shelfOffset, false},
+		{"agents", "slash-command/swarm", "Run a swarm", digest, 14, false},
+		{"agents", "slash-command/swarm", "un a swarm.", digest, 15, false},
+		{"agents", "slash-command/goal", "Run a swarm.", digest, 14, false},
+		{"core", "slash-command/swarm", "Run a swarm.", digest, 14, false},
+		{"agents", "slash-command/swarm", "private", digest, strings.Index(data, "private"), false},
+		{"agents", "slash-command/swarm", "Run a swarm.", strings.Repeat("a", 64), 14, false},
+	}
+	for _, tc := range tests {
+		err := verify(tc.module, tc.scope, tc.text, serverSource, tc.hash, tc.offset)
+		if (err == nil) != tc.ok {
+			t.Errorf("case %+v: %v", tc, err)
+		}
+	}
+	if err := verify("agents", "marketplace-notice", notice, serverSource, digest, noticeOffset); err == nil {
+		t.Fatal("accepted a translated notice that lost the privacy link")
+	}
+	translation = "详见 {privacyPolicyLink}"
+	if err := verify("agents", "marketplace-notice", notice, serverSource, digest, noticeOffset); err != nil {
+		t.Fatal(err)
+	}
+	// Even a valid JS literal with a matching resource digest cannot prove
+	// a shelf or RPC command. The local /btw description has one reviewed Hub site.
+	jsPos := strings.Index(js, "'")
+	for _, scope := range []string{"slash-command/swarm", "slash-command/btw", "marketplace-shelf/science", "marketplace-notice"} {
+		if err := verify("agents", scope, "Other label", "hub:main.js", s.hashes["hub:main.js"], jsPos); err == nil {
+			t.Fatalf("accepted unrelated JS literal in scope %q", scope)
+		}
+	}
+	copyJS := "const copy='" + sideQuestionDescription.En + "';"
+	if err := s.add("hub:main.js", []byte(js+copyJS)); err != nil {
+		t.Fatal(err)
+	}
+	if err := verify("agents", "slash-command/btw", sideQuestionDescription.En, "hub:main.js",
+		s.hashes["hub:main.js"], len(js)+strings.Index(copyJS, "'")); err == nil {
+		t.Fatal("accepted a different copy of the /btw description")
+	}
+	const plan = "Your plan: ${I}"
+	js += "const plan=`" + plan + "`;"
+	if err := s.add("hub:main.js", []byte(js)); err != nil {
+		t.Fatal(err)
+	}
+	pos := strings.Index(js, "`")
+	for _, translation = range []string{"当前方案", "{value} / {value}", "当前方案：{value}"} {
+		err := verify("settings", "settings-detail", plan, "hub:main.js", s.hashes["hub:main.js"], pos)
+		if (err == nil) != (strings.Count(translation, "{value}") == 1) {
+			t.Errorf("plan format %q: %v", translation, err)
 		}
 	}
 }

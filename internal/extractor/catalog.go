@@ -38,6 +38,9 @@ func sortEntries(entries []Entry) {
 }
 func (s *SourceSet) Candidates() (*Catalog, error) {
 	c := &Catalog{Version: s.Version, Sources: maps.Clone(s.hashes), Entries: []Entry{}, Warnings: s.warnings}
+	for offset, field := range s.binaryFields {
+		c.Entries = append(c.Entries, Entry{field.text, serverSource, offset})
+	}
 	for name, src := range s.scripts {
 		err := staticLiterals(src, func(start, end int, context string) {
 			switch {
@@ -87,6 +90,13 @@ func regularBytes(path string, limit int64) ([]byte, error) {
 	return b, nil
 }
 
+// In 2.35.0 the Hub constructs /btw locally alongside the RPC-supplied rows.
+var sideQuestionDescription = Entry{
+	En:     "Ask a quick question without interrupting the main conversation.",
+	Source: "hub:main.js",
+	Offset: 8456040,
+}
+
 // VerifyLocales replays each offset against the tokenizer, including strings
 // missed by automatic UI classification. Locale files cannot request new
 // source paths. Replayed entries carry the actual decoded source text.
@@ -106,7 +116,7 @@ func (s *SourceSet) VerifyLocales(dir string) ([]Entry, error) {
 	}
 	type localeEntry struct {
 		Entry
-		Scope string
+		Scope, ZH string
 	}
 	for _, module := range modules {
 		data := files[module+".json"]
@@ -129,8 +139,29 @@ func (s *SourceSet) VerifyLocales(dir string) ([]Entry, error) {
 		}
 		for _, group := range [][]localeEntry{doc.Exact, doc.Scoped, doc.Templates} {
 			for _, e := range group {
-				if e.En == welcomeText && (module != "core" || e.Scope != "onboarding" || e.Source != "hub:main.js") {
-					return nil, fmt.Errorf("%s: 欢迎模板只适用于 Hub 的 onboarding 作用域", module)
+				if site, ok := reviewedHubTemplates[e.En]; ok {
+					if module != site.module || e.Scope != site.scope || e.Source != "hub:main.js" {
+						return nil, fmt.Errorf("%s: 模板只适用于 Hub 的 %s/%s 作用域", module, site.module, site.scope)
+					}
+					for _, token := range site.placeholders {
+						if strings.Count(e.ZH, token) != 1 {
+							return nil, fmt.Errorf("%s:%d: 译文必须保留一个 %s", e.Source, e.Offset, token)
+						}
+					}
+				}
+				if e.Scope == "marketplace-notice" && (!strings.HasSuffix(e.ZH, "{privacyPolicyLink}") || strings.Count(e.ZH, "{privacyPolicyLink}") != 1) {
+					return nil, fmt.Errorf("%s:%d: 市场声明译文必须保留末尾的隐私政策链接", e.Source, e.Offset)
+				}
+				if e.Source == serverSource {
+					field, ok := s.binaryFields[e.Offset]
+					if !ok || field.text != e.En || field.scope != e.Scope || field.module() != module {
+						return nil, fmt.Errorf("%s: 未通过语言服务字段校验 %s:%d", module, e.Source, e.Offset)
+					}
+				} else if strings.HasPrefix(e.Scope, "marketplace-shelf/") || e.Scope == "marketplace-notice" {
+					return nil, fmt.Errorf("%s: 市场文案缺少对应的语言服务证据 %s:%d", module, e.Source, e.Offset)
+				} else if strings.HasPrefix(e.Scope, "slash-command/") &&
+					(module != "agents" || e.Scope != "slash-command/btw" || e.Entry != sideQuestionDescription) {
+					return nil, fmt.Errorf("%s: 斜杠命令说明缺少对应的原文证据 %s:%d", module, e.Source, e.Offset)
 				}
 				if _, ok := doc.Sources[e.Source]; !ok || e.Offset < 0 || e.En == "" {
 					return nil, fmt.Errorf("%s: 证据不完整 %+v", module, e)
@@ -147,11 +178,18 @@ func (s *SourceSet) VerifyLocales(dir string) ([]Entry, error) {
 	}
 	var verified []Entry
 	for name, positions := range wanted {
+		if name == serverSource {
+			for pos := range positions {
+				verified = append(verified, Entry{s.binaryFields[pos].text, name, pos})
+			}
+			continue
+		}
 		src := s.scripts[name]
 		err := staticLiterals(src, func(start, end int, context string) {
 			expected, ok := positions[start]
 			// Static quoted copies cannot stand in for the official template.
-			if !ok || (expected == welcomeText) != (context == welcomeContext) {
+			_, reviewed := reviewedHubTemplates[expected]
+			if !ok || reviewed != (context == reviewedTemplateContext) {
 				return
 			}
 			if en, ok := decode(src[start:end]); ok && en == expected {

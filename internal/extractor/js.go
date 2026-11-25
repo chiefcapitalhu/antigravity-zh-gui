@@ -9,11 +9,25 @@ import (
 	"unicode/utf8"
 )
 
-// This single Hub onboarding literal is archived as source text. The
-// expression is never evaluated, and no interpolation syntax is generalized.
+// Only these complete Hub template literals have reviewed display sites.
+// Replay their original bytes without evaluating interpolation expressions.
 const welcomeText = "Welcome to ${a}!"
-const welcomeLiteral = "`" + welcomeText + "`"
-const welcomeContext = "#reviewed-welcome-template"
+const reviewedTemplateContext = "#reviewed-hub-template"
+
+type templateSite struct {
+	module, scope string
+	placeholders  []string
+}
+
+var reviewedHubTemplates = map[string]templateSite{
+	welcomeText: {"core", "onboarding", nil},
+	"When toggled on, ${f.product.nameShort} collects usage data to help Google enhance performance and features.": {"settings", "settings-detail", []string{"{value}"}},
+	"Receive product updates, tips, and promotions from Google ${f.product.nameShort} via email.":                  {"settings", "settings-detail", []string{"{value}"}},
+	"Your plan: ${I}": {"settings", "settings-detail", []string{"{value}"}},
+	"When toggled on, ${g} will use your AI credits to fulfill model requests once you're out of model quota. ${g} will always use your model quota first before using AI credits.": {"settings", "settings-detail", []string{"{value}"}},
+	`Manage ${A.lowercase} ${Ea?"resources":"folders"} and settings.`: {"settings", "settings-detail", []string{"{kind}", "{resource}"}},
+	`Show ${A.length} breakdown${A.length===1?"":"s"}`:                {"settings", "settings-detail", []string{"{n}"}},
+}
 
 func ident(c byte) bool {
 	return c == '_' || c == '$' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= 128
@@ -242,11 +256,16 @@ func staticLiterals(src []byte, visit func(start, end int, context string)) erro
 		}
 		if c == '"' || c == '\'' || c == 0x60 {
 			start := i
-			if c == 0x60 && bytes.HasPrefix(src[i:], []byte(welcomeLiteral)) {
-				i += len(welcomeLiteral)
-				visit(start, i, welcomeContext)
-				set("#", false)
-				continue
+			if c == '`' {
+				if n := bytes.IndexByte(src[start+1:], '`'); n >= 0 {
+					end := start + 1 + n
+					if _, ok := reviewedHubTemplates[string(src[start+1:end])]; ok {
+						i = end + 1
+						visit(start, i, reviewedTemplateContext)
+						set("#", false)
+						continue
+					}
+				}
 			}
 			i++
 			finished := false

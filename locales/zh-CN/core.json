@@ -3993,6 +3993,97 @@
   ],
   "scoped": [
     {
+      "scope": "feedback",
+      "en": "Send feedback as ",
+      "zh": "以 {email} 身份发送反馈",
+      "source": "hub:main.js",
+      "offset": 5430943
+    },
+    {
+      "scope": "feedback",
+      "en": "to ask for content changes for legal reasons.",
+      "zh": "，提交因法律原因更改内容的申请。",
+      "source": "hub:main.js",
+      "offset": 5433585
+    },
+    {
+      "scope": "feedback",
+      "en": "Bug Report",
+      "zh": "报告错误",
+      "source": "hub:main.js",
+      "offset": 5421390
+    },
+    {
+      "scope": "feedback",
+      "en": "Feature Request",
+      "zh": "功能建议",
+      "source": "hub:main.js",
+      "offset": 5421421
+    },
+    {
+      "scope": "feedback",
+      "en": "Auth and Billing",
+      "zh": "身份验证与账单",
+      "source": "hub:main.js",
+      "offset": 5421458
+    },
+    {
+      "scope": "feedback",
+      "en": "Remote Control Issue",
+      "zh": "远程控制问题",
+      "source": "hub:main.js",
+      "offset": 5421500
+    },
+    {
+      "scope": "feedback",
+      "en": "General Feedback",
+      "zh": "其他反馈",
+      "source": "hub:main.js",
+      "offset": 5421542
+    },
+    {
+      "scope": "feedback",
+      "en": "For any feedback that does not fit into the above categories.",
+      "zh": "如果您的反馈不属于以上类别，请在此填写。",
+      "source": "hub:main.js",
+      "offset": 5423713
+    },
+    {
+      "scope": "feedback",
+      "en": "Describe the bug you encountered...",
+      "zh": "请描述您遇到的错误…",
+      "source": "hub:main.js",
+      "offset": 5423796
+    },
+    {
+      "scope": "feedback",
+      "en": "Describe the feature you would like to see...",
+      "zh": "请描述您希望新增的功能…",
+      "source": "hub:main.js",
+      "offset": 5423852
+    },
+    {
+      "scope": "feedback",
+      "en": "Describe your auth or billing issue...",
+      "zh": "请描述您遇到的身份验证或账单问题…",
+      "source": "hub:main.js",
+      "offset": 5423919
+    },
+    {
+      "scope": "feedback",
+      "en": "Describe your Remote Control issue...",
+      "zh": "请描述您遇到的远程控制问题…",
+      "source": "hub:main.js",
+      "offset": 5423983
+    },
+    {
+      "scope": "feedback",
+      "en": "Enter your feedback here...",
+      "zh": "请在此填写反馈…",
+      "source": "hub:main.js",
+      "offset": 5424043
+    },
+    {
       "scope": "controls",
       "en": "Add",
       "zh": "添加",
@@ -4294,6 +4385,48 @@
       "offset": 9244671
     },
     {
+      "scope": "permissions",
+      "en": "(tell the agent what to do instead)",
+      "zh": "（告诉助手接下来该怎么做）",
+      "source": "hub:main.js",
+      "offset": 9567434
+    },
+    {
+      "scope": "permissions",
+      "en": "No",
+      "zh": "否",
+      "source": "hub:main.js",
+      "offset": 9567410
+    },
+    {
+      "scope": "permissions",
+      "en": "Yes, allow for this task",
+      "zh": "是，允许本次任务使用",
+      "source": "hub:main.js",
+      "offset": 8266490
+    },
+    {
+      "scope": "permissions",
+      "en": "Yes, allow in this conversation",
+      "zh": "是，在当前对话中允许",
+      "source": "hub:main.js",
+      "offset": 8262409
+    },
+    {
+      "scope": "permissions",
+      "en": "Yes, always allow",
+      "zh": "是，始终允许",
+      "source": "hub:main.js",
+      "offset": 8262534
+    },
+    {
+      "scope": "permissions",
+      "en": "Yes, always allow in this project",
+      "zh": "是，在当前项目中始终允许",
+      "source": "hub:main.js",
+      "offset": 8262471
+    },
+    {
       "scope": "toolbar",
       "en": "Cancel",
       "zh": "取消",
@@ -4453,6 +4586,20 @@
       "zh": "缩小 (-)",
       "source": "hub:main.js",
       "offset": 3513626
+    },
+    {
+      "scope": "workspace",
+      "en": ", / for actions",
+      "zh": "，输入 / 查看操作",
+      "source": "hub:main.js",
+      "offset": 9165033
+    },
+    {
+      "scope": "workspace",
+      "en": "Ask anything, @ to mention",
+      "zh": "想问什么都可以，输入 @ 提及内容",
+      "source": "hub:main.js",
+      "offset": 9165001
     }
   ],
   "templates": []

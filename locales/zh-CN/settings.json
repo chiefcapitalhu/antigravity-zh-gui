@@ -3,6 +3,7 @@
   "module": "settings",
   "version": "2.35.0",
   "sources": {
+    "binary:language_server": "7235d144514112b8dc86b38253590c69de306c32ba98408bd061bf36d532848b",
     "hub:main.js": "f039eca519f153aeac9a0f1d10abc7afd8ff4b8009ef78d684669a3c7955f54d"
   },
   "exact": [
@@ -1999,12 +2000,6 @@
       "offset": 5696211
     },
     {
-      "en": "Hide breakdown",
-      "zh": "隐藏明细",
-      "source": "hub:main.js",
-      "offset": 5551368
-    },
-    {
       "en": "Hide token",
       "zh": "隐藏 Token",
       "source": "hub:main.js",
@@ -3529,6 +3524,18 @@
       "offset": 5711558
     },
     {
+      "en": "Search shortcuts",
+      "zh": "搜索快捷键",
+      "source": "hub:main.js",
+      "offset": 5388409
+    },
+    {
+      "en": "Search shortcuts...",
+      "zh": "搜索快捷键…",
+      "source": "hub:main.js",
+      "offset": 5388375
+    },
+    {
       "en": "Search sites",
       "zh": "搜索网站",
       "source": "hub:main.js",
@@ -4773,6 +4780,76 @@
   ],
   "scoped": [
     {
+      "scope": "settings-detail",
+      "en": "Plan",
+      "zh": "订阅方案",
+      "source": "hub:main.js",
+      "offset": 5477913
+    },
+    {
+      "scope": "settings-detail",
+      "en": "When toggled on, ${g} will use your AI credits to fulfill model requests once you're out of model quota. ${g} will always use your model quota first before using AI credits.",
+      "zh": "开启后，{value} 会优先使用模型配额。模型配额用尽后，才会使用你的 AI 积分处理模型请求。",
+      "source": "hub:main.js",
+      "offset": 5478596
+    },
+    {
+      "scope": "settings-detail",
+      "en": "When toggled on, ${f.product.nameShort} collects usage data to help Google enhance performance and features.",
+      "zh": "开启后，{value} 会收集使用数据，帮助 Google 改进性能和功能。",
+      "source": "hub:main.js",
+      "offset": 5224090
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Receive product updates, tips, and promotions from Google ${f.product.nameShort} via email.",
+      "zh": "通过电子邮件接收 Google {value} 的产品更新、使用技巧和促销信息。",
+      "source": "hub:main.js",
+      "offset": 5224290
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Your plan: ${I}",
+      "zh": "当前方案：{value}",
+      "source": "hub:main.js",
+      "offset": 5224594
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Knowledge Work",
+      "zh": "知识工作",
+      "source": "binary:language_server",
+      "offset": 156684190
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Simplified interface for research, writing, and everyday tasks.",
+      "zh": "精简界面，适合研究、写作和日常任务。",
+      "source": "binary:language_server",
+      "offset": 156684240
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Software Engineering",
+      "zh": "软件工程",
+      "source": "binary:language_server",
+      "offset": 156684372
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Full interface for coding, developer tools, and managing agents.",
+      "zh": "完整界面，支持编程、使用开发工具和管理 AI 助手。",
+      "source": "binary:language_server",
+      "offset": 156684428
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Queue",
+      "zh": "排队",
+      "source": "hub:main.js",
+      "offset": 5135520
+    },
+    {
       "scope": "permissions",
       "en": "Advanced",
       "zh": "高级选项",
@@ -5198,6 +5275,27 @@
       "zh": "检查",
       "source": "hub:main.js",
       "offset": 5367111
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Manage ${A.lowercase} ${Ea?\"resources\":\"folders\"} and settings.",
+      "zh": "管理{kind}{resource}和设置。",
+      "source": "hub:main.js",
+      "offset": 5822728
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Hide breakdown",
+      "zh": "隐藏明细",
+      "source": "hub:main.js",
+      "offset": 5551368
+    },
+    {
+      "scope": "settings-detail",
+      "en": "Show ${A.length} breakdown${A.length===1?\"\":\"s\"}",
+      "zh": "展开 {n} 项明细",
+      "source": "hub:main.js",
+      "offset": 5551385
     }
   ],
   "templates": [

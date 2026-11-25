@@ -3069,6 +3069,13 @@
   ],
   "scoped": [
     {
+      "scope": "settings",
+      "en": "Give Feedback",
+      "zh": "提供反馈",
+      "source": "hub:main.js",
+      "offset": 5150766
+    },
+    {
       "scope": "workspace",
       "en": "Add to Chat",
       "zh": "添加到对话",

@@ -21,10 +21,11 @@ import (
 const maxScript = 32 << 20
 
 type SourceSet struct {
-	Version  string
-	scripts  map[string][]byte
-	hashes   map[string]string
-	warnings []string
+	Version      string
+	scripts      map[string][]byte
+	hashes       map[string]string
+	warnings     []string
+	binaryFields map[int]binaryLiteral
 }
 
 func (s *SourceSet) add(name string, data []byte) error {
@@ -131,6 +132,16 @@ func Load(i detector.Installation) (*SourceSet, error) {
 			return nil, err
 		}
 		data, err := embeddedHub(f, st.Size())
+		if err == nil && i.Platform == "darwin" && i.Version == "2.35.0" && st.Size() == reviewedServerSize {
+			// embeddedHub uses ReadAt, so f still starts at byte zero.
+			var digest string
+			s.binaryFields, digest, err = readBinaryFields(f, st.Size(), serverFields)
+			if err == nil && digest == reviewedServerSHA {
+				s.hashes[serverSource] = digest
+			} else {
+				s.binaryFields = nil
+			}
+		}
 		f.Close()
 		if err != nil {
 			return nil, fmt.Errorf("%s: %w", n, err)

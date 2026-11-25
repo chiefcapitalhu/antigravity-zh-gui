@@ -40,7 +40,7 @@
   <g transform="translate(0, 214)" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif" font-size="14" font-weight="600">
     <g transform="translate(233, 0)">
       <rect width="152" height="34" rx="17" fill="#10b981" fill-opacity="0.18" stroke="#34d399" stroke-opacity="0.5"/>
-      <text x="76" y="17" text-anchor="middle" dominant-baseline="central" fill="#6ee7b7">3,107 原创词条</text>
+      <text x="76" y="17" text-anchor="middle" dominant-baseline="central" fill="#6ee7b7">3,186 原创词条</text>
     </g>
     <g transform="translate(399, 0)">
       <rect width="186" height="34" rx="17" fill="#14b8a6" fill-opacity="0.16" stroke="#2dd4bf" stroke-opacity="0.45"/>
@@ -56,5 +56,5 @@
     </g>
   </g>
 
-  <text x="600" y="290" text-anchor="middle" fill="#5e877d" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, monospace" font-size="13">antigravity-zh-gui · v0.2.0 · MIT License</text>
+  <text x="600" y="290" text-anchor="middle" fill="#5e877d" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, monospace" font-size="13">antigravity-zh-gui · v0.2.1 · MIT License</text>
 </svg>
