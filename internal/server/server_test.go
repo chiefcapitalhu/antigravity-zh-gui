@@ -127,8 +127,8 @@ func TestEmbeddedHeroImages(t *testing.T) {
 		t.Fatal("unexpected image policy")
 	}
 	for path, digest := range map[string]string{
-		"/hero-workshop.jpg":    "b2fb52c6a7353126eada4b2234347a82a3bd309bd17ac2040b61aa6e40694ca4",
-		"/hero-antigravity.jpg": "4364d1415393ce0f9c64188519a37349d4c1e69055827cfa95be559688e40f1f",
+		"/hero-workshop.jpg":    "fe126d36b42e14910e157fe4401ae013103f9c359621e3fd844268414979804d",
+		"/hero-antigravity.jpg": "5a111e062f082969595d4a811b0779faa6f929fb1903bed8a5762f2646c06e2c",
 	} {
 		t.Run(path[1:], func(t *testing.T) {
 			url := "http://" + p.host + path
@@ -140,7 +140,7 @@ func TestEmbeddedHeroImages(t *testing.T) {
 				t.Fatalf("incorrect image at %s: %s", path, sum)
 			}
 			cfg, err := jpeg.DecodeConfig(image.Body)
-			if err != nil || cfg.Width != 1024 || cfg.Height != 319 {
+			if err != nil || cfg.Width != 2048 || cfg.Height != 638 {
 				t.Fatalf("JPEG dimensions: %dx%d, %v", cfg.Width, cfg.Height, err)
 			}
 			head := send(p, httptest.NewRequest("HEAD", url, nil))

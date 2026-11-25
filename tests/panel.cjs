@@ -8,6 +8,7 @@ const { Worker, isMainThread, parentPort } = require('node:worker_threads');
 const { once } = require('node:events');
 const dumpLocalPage = require('./headless-chrome.cjs');
 function fixture() {
+    const version = '0.2.3';
     const browserErrors = window.panelTestErrors = [];
     window.addEventListener('error', e => browserErrors.push(e.message || 'Failed resource: ' + e.target.src), true);
     window.addEventListener('unhandledrejection', e => browserErrors.push(String(e.reason)));
@@ -20,8 +21,9 @@ function fixture() {
             const img = el('heroImage');
             const dark = matchMedia('(prefers-color-scheme: dark)').matches;
             const expected = dark ? '/hero-antigravity.jpg' : '/hero-workshop.jpg';
-            const ready = img.complete && img.naturalWidth === 1024 && img.naturalHeight === 319 &&
+            const ready = img.complete && img.naturalWidth === 2048 && img.naturalHeight === 638 &&
                 new URL(img.currentSrc).pathname === expected && !browserErrors.length &&
+                el('version').textContent === 'v' + version &&
                 el('target').value === '/Applications/Antigravity.app' && el('clientVersion').textContent === '2.35.0' &&
                 el('chip-catalog').textContent.includes('3,186 条') && el('changes').textContent.includes('SHA-256');
             document.documentElement.dataset.screenshotReady = String(ready);
@@ -41,7 +43,7 @@ function fixture() {
         let result;
         switch (url.slice(5)) {
             case 'bootstrap':
-                result = { preferences: settings, dictionary: dict, version: '0.2.2', platform: 'darwin' };
+                result = { preferences: settings, dictionary: dict, version, platform: 'darwin' };
                 break;
             case 'status':
                 const running = q.target === '/running';
@@ -124,7 +126,7 @@ async function verifyPage(width, dark) {
             const img = byId('heroImage');
             await img.decode();
             expect(new URL(img.currentSrc).pathname === '/' + name, 'hero selection ' + name);
-            expect(img.complete && img.naturalWidth === 1024 && img.naturalHeight === 319, 'decoded hero ' + name);
+            expect(img.complete && img.naturalWidth === 2048 && img.naturalHeight === 638, 'decoded hero ' + name);
             const response = await fetch(img.currentSrc);
             expect(response.status === 200 && response.headers.get('Content-Type') === 'image/jpeg', 'JPEG response ' + name);
         }

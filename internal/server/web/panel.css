@@ -147,7 +147,7 @@ main { padding-block: 20px 48px; }
   box-shadow: var(--shadow);
   isolation: isolate;
 }
-.hero img { width: 100%; height: auto; aspect-ratio: 1024 / 319; display: block; object-fit: cover; object-position: center; }
+.hero img { width: 100%; height: auto; aspect-ratio: 2048 / 638; display: block; object-fit: cover; object-position: center; }
 #heroToggle {
   position: absolute;
   right: 12px;

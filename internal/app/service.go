@@ -11,7 +11,7 @@ import (
 )
 
 // Version may be set from the release tag at link time.
-var Version = "0.2.2"
+var Version = "0.2.3"
 
 type Service struct {
 	store config.Store
