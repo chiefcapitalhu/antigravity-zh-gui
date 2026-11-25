@@ -387,6 +387,7 @@ test('main sidebar translates both app links with Hub route prefixes', async () 
   const otherRoutes = [
     'https://hub.google.com/unrelated/customizations',
     'https://elsewhere.google.com/u/0/remote/customizations',
+    'https://frame.example/C:/web/dev/customizations',
     '//external.example/web/dev/customizations',
     'https://user:secret@frame.example/web/dev/customizations',
     '/my-project/customizations',
@@ -421,8 +422,13 @@ test('marketplace tabs and featured Details links translate only their fixed cap
   const browse = tab('browse','Marketplace','/web/dev/customizations');
   const marketplace = tab('marketplace','Marketplace','/customizations');
   const installed = tab('installed','Installed','/customizations/installed');
+  // Exercise Windows file URL pathnames even when the test runs on macOS.
+  const windowsBrowse = tab('browse','Marketplace','/C:/web/dev/customizations');
+  const windowsInstalled = tab('installed','Installed','/d:/jetski-devs/web/dev/customizations/installed');
   const wrongPath = tab('installed','Installed','/customizations');
   const wrongHost = tab('browse','Marketplace','https://external.example/customizations');
+  const explicitFile = tab('browse','Marketplace','file:///C:/web/dev/customizations');
+  const wrongDrive = tab('browse','Marketplace','/CD:/web/dev/customizations');
   const wrongText = tab('installed','Marketplace','/customizations/installed');
   const outside = tab('installed','Installed','/customizations/installed');
   const copied = tabs(browse.cloneNode(true));
@@ -453,11 +459,12 @@ test('marketplace tabs and featured Details links translate only their fixed cap
   }
   const carousel = box({'data-testid':'customizations-marketplace'},...details.concat(otherLinks).map(carouselFor));
   const freeLink = detail('/customizations/plugins/calendar');
-  root.append(tabs(browse,installed,wrongPath,wrongHost,wrongText),tabs(marketplace),outside,freeLink,
+  root.append(tabs(browse,installed,windowsBrowse,windowsInstalled,wrongPath,wrongHost,explicitFile,wrongDrive,wrongText),tabs(marketplace),outside,freeLink,
     box({'data-markdown-root':''},copied),carousel);
   const positive = [[browse,'Marketplace','扩展市场'],[marketplace,'Marketplace','扩展市场'],[installed,'Installed','已安装'],
+    [windowsBrowse,'Marketplace','扩展市场'],[windowsInstalled,'Installed','已安装'],
     ...details.map(link => [link,'Details','详情'])].map(([link,en,zh]) => ({link,en,zh,node:link.firstChild,href:link.getAttribute('href')}));
-  const negative = [wrongPath,wrongHost,wrongText,outside,copied.firstChild,freeLink,...otherLinks].map(link => [link,link.textContent]);
+  const negative = [wrongPath,wrongHost,explicitFile,wrongDrive,wrongText,outside,copied.firstChild,freeLink,...otherLinks].map(link => [link,link.textContent]);
   const api = mount(releaseLocale);
   for (const mode of ['zh','en','zh']) {
     api.setMode(mode); await tick();

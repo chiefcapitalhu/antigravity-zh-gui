@@ -251,8 +251,13 @@
             if (url.pathname.startsWith(basePath + "/") && matches(url.pathname.slice(basePath.length))) return true;
         }
         if (url.origin !== win.location.origin) return false;
-        if (url.origin === "null" && !(url.protocol === "file:" && !url.host && href.startsWith("/"))) return false;
-        return matches(url.pathname.replace(/^\/(?:jetski-devs\/)?web\/[^/]+(?=\/)/, ""));
+        let path = url.pathname;
+        // Chromium can serialize a local file origin as "file://" instead of "null".
+        if (url.origin === "null" || url.origin === "file://") {
+            if (url.protocol !== "file:" || url.host || !href.startsWith("/")) return false;
+            path = path.replace(/^\/[A-Za-z]:(?=\/)/, "");
+        }
+        return matches(path.replace(/^\/(?:jetski-devs\/)?web\/[^/]+(?=\/)/, ""));
     }
     const pluginTabs = 'nav[data-testid="plugins-tabs"]';
     const featuredActions = '[data-testid="featured-carousel"] [data-testid="featured-carousel-actions"]';
