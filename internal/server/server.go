@@ -28,6 +28,7 @@ import (
 )
 
 //go:embed web/index.html web/panel.js web/panel.css
+//go:embed web/hero-workshop.jpg web/hero-antigravity.jpg
 var resources embed.FS
 
 type service interface {
@@ -149,9 +150,11 @@ func body(w http.ResponseWriter, r *http.Request, dst any) bool {
 }
 
 var assets = map[string][2]string{
-	"/":          {"web/index.html", "text/html; charset=utf-8"},
-	"/panel.css": {"web/panel.css", "text/css; charset=utf-8"},
-	"/panel.js":  {"web/panel.js", "application/javascript; charset=utf-8"},
+	"/":                     {"web/index.html", "text/html; charset=utf-8"},
+	"/panel.css":            {"web/panel.css", "text/css; charset=utf-8"},
+	"/panel.js":             {"web/panel.js", "application/javascript; charset=utf-8"},
+	"/hero-workshop.jpg":    {"web/hero-workshop.jpg", "image/jpeg"},
+	"/hero-antigravity.jpg": {"web/hero-antigravity.jpg", "image/jpeg"},
 }
 
 func (p *panel) ServeHTTP(w http.ResponseWriter, r *http.Request) {
@@ -162,7 +165,7 @@ func (p *panel) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	h.Set("X-Frame-Options", "DENY")
 	h.Set("Cross-Origin-Resource-Policy", "same-origin")
 	h.Set("Cross-Origin-Opener-Policy", "same-origin")
-	h.Set("Content-Security-Policy", "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'")
+	h.Set("Content-Security-Policy", "default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; form-action 'none'; frame-ancestors 'none'; base-uri 'none'")
 	if r.Host != p.host {
 		fail(w, 403, errors.New("本机地址校验失败"))
 		return

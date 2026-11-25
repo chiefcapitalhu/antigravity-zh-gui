@@ -2,8 +2,11 @@ package server
 
 import (
 	"bytes"
+	"crypto/sha256"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"image/jpeg"
 	"net/http"
 	"net/http/httptest"
 	"path/filepath"
@@ -117,6 +120,43 @@ func TestSessionBoundaries(t *testing.T) {
 		}
 	}
 }
+func TestEmbeddedHeroImages(t *testing.T) {
+	p, _ := fixturePanel()
+	page := send(p, httptest.NewRequest("GET", "http://"+p.host+"/", nil))
+	if !strings.Contains(page.Header().Get("Content-Security-Policy"), "; img-src 'self' data:;") {
+		t.Fatal("unexpected image policy")
+	}
+	for path, digest := range map[string]string{
+		"/hero-workshop.jpg":    "b2fb52c6a7353126eada4b2234347a82a3bd309bd17ac2040b61aa6e40694ca4",
+		"/hero-antigravity.jpg": "4364d1415393ce0f9c64188519a37349d4c1e69055827cfa95be559688e40f1f",
+	} {
+		t.Run(path[1:], func(t *testing.T) {
+			url := "http://" + p.host + path
+			image := send(p, httptest.NewRequest("GET", url, nil))
+			if image.Code != http.StatusOK || image.Header().Get("Content-Type") != "image/jpeg" {
+				t.Fatalf("GET: %d %v", image.Code, image.Header())
+			}
+			if sum := fmt.Sprintf("%x", sha256.Sum256(image.Body.Bytes())); sum != digest {
+				t.Fatalf("incorrect image at %s: %s", path, sum)
+			}
+			cfg, err := jpeg.DecodeConfig(image.Body)
+			if err != nil || cfg.Width != 1024 || cfg.Height != 319 {
+				t.Fatalf("JPEG dimensions: %dx%d, %v", cfg.Width, cfg.Height, err)
+			}
+			head := send(p, httptest.NewRequest("HEAD", url, nil))
+			if head.Code != http.StatusOK || head.Body.Len() != 0 || head.Header().Get("Content-Type") != "image/jpeg" {
+				t.Fatalf("HEAD: %d %v (%d bytes)", head.Code, head.Header(), head.Body.Len())
+			}
+			if post := send(p, httptest.NewRequest("POST", url, nil)); post.Code != http.StatusMethodNotAllowed {
+				t.Fatalf("POST: %d", post.Code)
+			}
+			if foreign := send(p, httptest.NewRequest("GET", "http://other.invalid"+path, nil)); foreign.Code != http.StatusForbidden {
+				t.Fatalf("foreign host: %d", foreign.Code)
+			}
+		})
+	}
+}
+
 func TestPreferencesDictionaryAndExit(t *testing.T) {
 	p, f := fixturePanel()
 	w := send(p, request(p, "/api/bootstrap", "{}"))

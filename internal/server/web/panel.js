@@ -1,5 +1,43 @@
 'use strict';
 const $ = id => document.getElementById(id);
+const darkTheme = matchMedia('(prefers-color-scheme: dark)');
+const banners = {
+    workshop: ['/hero-workshop.jpg', '温暖工坊里的四位 AI 伙伴'],
+    antigravity: ['/hero-antigravity.jpg', '反重力少女在深蓝色穹顶下失重飞翔']
+};
+function readAppearance(key) {
+    try { return localStorage.getItem('zh-gui-' + key); } catch { return null; }
+}
+function saveAppearance(key, value) {
+    try { localStorage.setItem('zh-gui-' + key, value); } catch { /* Keep the choice in this tab. */ }
+}
+let skin = readAppearance('skin') === 'minimal' ? 'minimal' : 'anime';
+let banner = readAppearance('banner');
+function currentBanner() {
+    return Object.hasOwn(banners, banner) ? banner : darkTheme.matches ? 'antigravity' : 'workshop';
+}
+function paintAppearance() {
+    const anime = skin === 'anime';
+    document.documentElement.dataset.skin = skin;
+    $('skinToggle').textContent = anime ? '✦ 二次元风' : '○ 极简模式';
+    $('skinToggle').setAttribute('aria-pressed', String(anime));
+    $('skinToggle').title = anime ? '切换到极简模式' : '切换到二次元风';
+    const [src, alt] = banners[currentBanner()];
+    if ($('heroImage').getAttribute('src') !== src) $('heroImage').src = src;
+    $('heroImage').alt = alt;
+}
+$('skinToggle').addEventListener('click', () => {
+    skin = skin === 'anime' ? 'minimal' : 'anime';
+    saveAppearance('skin', skin);
+    paintAppearance();
+});
+$('heroToggle').addEventListener('click', () => {
+    banner = currentBanner() === 'workshop' ? 'antigravity' : 'workshop';
+    saveAppearance('banner', banner);
+    paintAppearance();
+});
+darkTheme.addEventListener('change', paintAppearance);
+paintAppearance();
 const url = new URL(location.href);
 let token = url.searchParams.get('token') || '';
 if (token)
@@ -46,6 +84,8 @@ function prefs() {
 function showFact(id, text, tone = '') {
     $(id).textContent = text;
     $(id).className = tone;
+    const chip = $('chip-' + id);
+    if (chip) chip.querySelector('dd').textContent = text;
 }
 function showStatus(value, warning) {
     health = value;
@@ -53,12 +93,14 @@ function showStatus(value, warning) {
     if (value?.running === true)
         $('health').textContent += '\n请手动完全退出 Antigravity 后再修改客户端。';
     $('health').classList.toggle('bad', !value || value.running !== false || Boolean(value.degraded) || Boolean(value.warnings?.length));
-    $('detected').textContent = value?.target || '';
+    $('detected').textContent = value?.target && value.target !== prefs().target ? '检测到 ' + value.target : '';
     $('restoreApp').hidden = !(value?.platform === 'darwin' && value.backupApp);
     const flag = (v, yes, no) => typeof v === 'boolean' ? (v ? yes : no) : '待确认';
     showFact('clientVersion', value?.version || '待确认');
     showFact('running', flag(value?.running, '运行中', '已退出'), value?.running === false ? 'ok' : 'bad');
     showFact('localized', value?.degraded ? '部分汉化（已降级）' : flag(value?.localized, '已汉化', '英文原版'), value?.degraded ? 'bad' : value?.localized ? 'ok' : '');
+    $('chip-running').dataset.tone = value?.running === true ? 'warning' : '';
+    $('chip-localized').dataset.tone = value?.degraded ? 'danger' : '';
     showFact('backup', flag(value?.backup, '已备份', '无备份'), value?.backup ? 'ok' : '');
     showFact('signature', value?.signature || '待确认');
     lockUI();

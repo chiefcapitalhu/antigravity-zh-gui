@@ -5,9 +5,9 @@
 <br/>
 
 [![Core Tests](https://github.com/chiefcapitalhu/antigravity-zh-gui/actions/workflows/ci.yml/badge.svg)](https://github.com/chiefcapitalhu/antigravity-zh-gui/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-v0.2.1-38bdf8?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.2.2-38bdf8?style=flat-square)
 ![macOS](https://img.shields.io/badge/macOS-Antigravity%202.34%20%2F%202.35-6366f1?style=flat-square)
-![Catalog](https://img.shields.io/badge/原创词条-3%2C182%20条-10b981?style=flat-square)
+![Catalog](https://img.shields.io/badge/原创词条-3%2C186%20条-10b981?style=flat-square)
 ![Zero Deps](https://img.shields.io/badge/Go%20标准库-零外部依赖-f59e0b?style=flat-square)
 [![License: MIT](https://img.shields.io/badge/License-MIT-64748b?style=flat-square)](LICENSE)
 
@@ -46,7 +46,7 @@
 
 ## 控制台预览
 
-> 根据你的 GitHub 亮/暗主题自动切换预览（双击单文件即在浏览器打开，纯本地运行）：
+控制台默认采用二次元风格，亮色显示工坊合照，暗色显示反重力少女。点击「切换头图」可更换插画，点击导航栏的「✦ 二次元风」可切换到极简模式。同一控制台地址刷新后会保留选择。
 
 <div align="center">
   <picture>
@@ -143,7 +143,7 @@ flowchart LR
 ./antigravity-zh-gui extract --target "/path/to/newer/Antigravity.app" --diff /tmp/ag-report/candidates.json --out /tmp/ag-diff
 ```
 
-v0.2.1 的完整词典证据基线是 macOS arm64 版 Antigravity 2.35.0。除 ASAR 和 Hub 脚本外，提取器还会核对 `bin/language_server` 的完整 SHA-256，再按字节偏移重放 45 个静态字段，涵盖 24 条斜杠命令说明、4 条界面布局文案、8 组内置插件货架的标题和说明，以及市场底部的第三方工具声明。运行时使用内嵌译文，配额服务下发的时长和额度说明按卡片中的固定句式匹配。
+v0.2.2 的完整词典证据基线是 macOS arm64 版 Antigravity 2.35.0。除 ASAR 和 Hub 脚本外，提取器还会核对 `bin/language_server` 的完整 SHA-256，再按字节偏移重放 45 个静态字段，涵盖 24 条斜杠命令说明、4 条界面布局文案、8 组内置插件货架的标题和说明，以及市场底部的第三方工具声明。运行时使用内嵌译文，配额服务下发的时长和额度说明按卡片中的固定句式匹配。
 
 词典目录位于 [`locales/zh-CN/`](locales/zh-CN/)（`core`、`workspace`、`settings`、`agents`、`menus_dialogs` 五个模块），设计文档与历次验收回执见 [`docs/`](docs/) 与 [`CHANGELOG.md`](CHANGELOG.md)。
 
