@@ -2,6 +2,12 @@
 
 本项目所有重要变更均记录于此文档。
 
+## [0.2.4] - 2026-11-26
+
+- 修复 macOS 开启 iCloud「桌面与文稿」同步时，官方整包备份因 Finder 信息等扩展属性导致验签失败的问题。复制应用包时会跳过资源派生与扩展属性。
+- 新备份保存在 `~/Library/Application Support/antigravity-zh-gui/Antigravity-Official-Backup.app`。检测与还原优先使用新位置，也兼容仅在 `~/Documents/Antigravity-Official-Backup.app` 留有备份的旧版用户。
+- macOS 用户已在 Antigravity 2.35.2 上实测兼容。
+
 ## [0.2.3] - 2026-11-26
 
 - 将控制台的工坊与反重力头图升级为 2048×638 Retina 高清 JPG。仓库首页使用同一组插画，随 GitHub 亮暗主题切换。

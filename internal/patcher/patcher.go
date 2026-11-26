@@ -52,7 +52,6 @@ func LocalizedDetail(i detector.Installation) (localized bool, degraded bool, er
 	}
 	return true, false, nil
 }
-func OfficialBackupPath() (string, error) { return officialBackup() }
 
 type Options struct {
 	BackupApp   bool
@@ -89,12 +88,11 @@ type engine struct {
 	sign       func(string) error
 	copyBundle func(string, string) error
 	exchange   func(string, string) error
-	backupPath func() (string, error)
 	clearCache func(string) error
 }
 
 func defaults() engine {
-	return engine{windowsHost, detector.Running, detector.VerifyOfficial, releaseHash, signBundle, copyApp, swapBundle, officialBackup, ClearCaches}
+	return engine{windowsHost, detector.Running, detector.VerifyOfficial, releaseHash, signBundle, copyApp, swapBundle, ClearCaches}
 }
 func command(name string, args ...string) error {
 	cmd := exec.Command(name, args...)
@@ -113,14 +111,52 @@ func signBundle(path string) error {
 	}
 	return command("/usr/bin/codesign", "--verify", "--deep", "--strict", path)
 }
-func copyApp(src, dst string) error { return command("/usr/bin/ditto", src, dst) }
-func officialBackup() (string, error) {
+func dittoArgs(src, dst string) []string {
+	return []string{"--norsrc", "--noextattr", src, dst}
+}
+
+func copyApp(src, dst string) error {
+	return command("/usr/bin/ditto", dittoArgs(src, dst)...)
+}
+
+const officialBackupName = "Antigravity-Official-Backup.app"
+
+type backupLocations struct {
+	current, legacy string
+}
+
+func officialBackupPaths() (backupLocations, error) {
 	home, err := os.UserHomeDir()
+	if err != nil {
+		return backupLocations{}, err
+	}
+	return backupLocations{
+		current: filepath.Join(home, "Library", "Application Support", "antigravity-zh-gui", officialBackupName),
+		legacy:  filepath.Join(home, "Documents", officialBackupName),
+	}, nil
+}
+
+// An existing entry at the current location takes precedence, even if invalid.
+func (paths backupLocations) existing() (string, error) {
+	for _, path := range []string{paths.current, paths.legacy} {
+		if _, err := os.Lstat(path); err == nil {
+			return path, nil
+		} else if !os.IsNotExist(err) {
+			return "", err
+		}
+	}
+	return paths.current, nil
+}
+
+// OfficialBackupPath looks up the backup for status and restoration without creating it.
+func OfficialBackupPath() (string, error) {
+	paths, err := officialBackupPaths()
 	if err != nil {
 		return "", err
 	}
-	return filepath.Join(home, "Documents", "Antigravity-Official-Backup.app"), nil
+	return paths.existing()
 }
+
 func hashFile(path string) (string, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -420,7 +456,7 @@ func (e engine) run(i detector.Installation, opt Options, restore bool) (*Result
 		return nil, err
 	}
 	opt.log("检查客户端进程与备份位置")
-	if err := e.protectBackup(i); err != nil {
+	if err := protectBackup(i); err != nil {
 		return nil, err
 	}
 	if err := e.idle(i); err != nil {
@@ -761,12 +797,17 @@ func safeBundle(root string) error {
 	})
 }
 func (e engine) backup(i detector.Installation, s snapshot) error {
-	dst, err := e.backupPath()
+	paths, err := officialBackupPaths()
 	if err != nil {
 		return err
 	}
-	if err = checkDir(filepath.Dir(dst)); err != nil {
-		return err
+	dst := paths.current
+	if s.patched {
+		// Reuse a verified legacy backup when the installation is already patched.
+		dst, err = paths.existing()
+		if err != nil {
+			return err
+		}
 	}
 	if filepath.Clean(dst) == filepath.Clean(i.Root) {
 		return errors.New("备份路径与当前安装相同")
@@ -774,6 +815,10 @@ func (e engine) backup(i detector.Installation, s snapshot) error {
 	// An existing verified, matching backup can be reused even after patching.
 	if rel, err := filepath.Rel(i.Root, dst); err == nil && filepath.IsLocal(rel) {
 		return errors.New("备份目的地位于安装目录内")
+	}
+	parent := filepath.Dir(dst)
+	if err := checkDir(parent); err != nil && !os.IsNotExist(err) {
+		return err
 	}
 	if _, err = os.Lstat(dst); err == nil {
 		existing := relocate(i, dst)
@@ -799,7 +844,16 @@ func (e engine) backup(i detector.Installation, s snapshot) error {
 	if err = safeBundle(i.Root); err != nil {
 		return err
 	}
-	temp, err := os.MkdirTemp(filepath.Dir(dst), ".ag-zh-backup-")
+	if err := os.MkdirAll(parent, 0700); err != nil {
+		return err
+	}
+	if err := checkDir(parent); err != nil {
+		return err
+	}
+	if err := os.Chmod(parent, 0700); err != nil {
+		return err
+	}
+	temp, err := os.MkdirTemp(parent, ".ag-zh-backup-")
 	if err != nil {
 		return err
 	}
@@ -856,6 +910,9 @@ func (e engine) restoreOfficial(i detector.Installation) error {
 	if err := validate(i); err != nil {
 		return err
 	}
+	if err := protectBackup(i); err != nil {
+		return err
+	}
 	if err := e.idle(i); err != nil {
 		return err
 	}
@@ -878,12 +935,9 @@ func (e engine) restoreOfficial(i detector.Installation) error {
 	if err2 != nil {
 		return err2
 	}
-	backup, err := e.backupPath()
+	backup, err := OfficialBackupPath()
 	if err != nil {
 		return err
-	}
-	if backup == i.Root {
-		return errors.New("备份与安装路径相同")
 	}
 	src := relocate(i, backup)
 	if err = validate(src); err != nil {
@@ -891,13 +945,6 @@ func (e engine) restoreOfficial(i detector.Installation) error {
 	}
 	if err = safeBundle(backup); err != nil {
 		return err
-	}
-	if err = e.official(src); err != nil {
-		return err
-	}
-	ver, err := packageVersion(src.Archive)
-	if err != nil || ver != i.Version {
-		return errors.New("整包备份版本不匹配")
 	}
 	expected, err := hashFile(src.Archive)
 	if err != nil {
@@ -916,8 +963,17 @@ func (e engine) restoreOfficial(i detector.Installation) error {
 	if err = validate(clone); err != nil {
 		return err
 	}
+	// Verify the exact bundle being installed after ditto drops any iCloud
+	// metadata on a legacy backup. The Google signature is still mandatory.
+	if err = safeBundle(stage); err != nil {
+		return err
+	}
 	if err = e.official(clone); err != nil {
 		return err
+	}
+	ver, err := packageVersion(clone.Archive)
+	if err != nil || ver != i.Version {
+		return errors.New("整包备份版本不匹配")
 	}
 	if h, err := hashFile(clone.Archive); err != nil || h != expected {
 		return errors.New("备份复制结果不符")
@@ -928,21 +984,13 @@ func (e engine) restoreOfficial(i detector.Installation) error {
 	return e.exchange(stage, i.Root)
 }
 
-func (e engine) protectBackup(i detector.Installation) error {
-	if i.Platform != "darwin" {
+func protectBackup(i detector.Installation) error {
+	// Inspect resolves the target's symlinks. Both protected directories have
+	// the same basename, so ordinary installs need no access to Documents.
+	if i.Platform != "darwin" || !strings.EqualFold(filepath.Base(i.Root), officialBackupName) {
 		return nil
 	}
-	dst, err := e.backupPath()
-	if err != nil {
-		return err
-	}
-	if strings.EqualFold(filepath.Clean(dst), filepath.Clean(i.Root)) {
-		return errors.New("官方备份路径不可用作补丁目标")
-	}
-	info, err := os.Stat(dst)
-	if os.IsNotExist(err) {
-		return nil
-	}
+	paths, err := officialBackupPaths()
 	if err != nil {
 		return err
 	}
@@ -950,8 +998,17 @@ func (e engine) protectBackup(i detector.Installation) error {
 	if err != nil {
 		return err
 	}
-	if os.SameFile(live, info) {
-		return errors.New("安装目标与官方备份是同一文件")
+	for _, dst := range []string{paths.current, paths.legacy} {
+		info, err := os.Stat(dst)
+		if os.IsNotExist(err) {
+			continue
+		}
+		if err != nil {
+			return err
+		}
+		if os.SameFile(live, info) {
+			return errors.New("官方备份路径不可用作补丁或还原目标")
+		}
 	}
 	return nil
 }

@@ -11,8 +11,10 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
+	"slices"
 	"strings"
 	"testing"
 )
@@ -134,7 +136,6 @@ func sample(t *testing.T, p, update, wsl string) (engine, detector.Installation)
 	e.copyBundle = testClone
 	e.exchange = testSwap
 	e.sign = func(string) error { return nil }
-	e.backupPath = func() (string, error) { return filepath.Join(sandbox, "Official.app"), nil }
 	return e, i
 }
 func TestWindowsAllowlistAndRestore(t *testing.T) {
@@ -306,7 +307,7 @@ func TestMacBackupRecoveryAndPlist(t *testing.T) {
 	if runtime.GOOS != "windows" && st.Mode().Perm() != 0644 {
 		t.Fatal("archive permissions changed")
 	}
-	b, _ := e.backupPath()
+	b, _ := OfficialBackupPath()
 	if _, err = e.run(relocate(i, b), Options{}, false); err == nil {
 		t.Fatal("modified official backup")
 	}
@@ -320,6 +321,141 @@ func TestMacBackupRecoveryAndPlist(t *testing.T) {
 		t.Fatal("full restore failed")
 	}
 }
+func TestOfficialBackupLocationsAndRestore(t *testing.T) {
+	e, i := sample(t, "darwin", updateFixture, wslFixture)
+	home, err := os.UserHomeDir()
+	if err != nil {
+		t.Fatal(err)
+	}
+	current := filepath.Join(home, "Library", "Application Support", "antigravity-zh-gui", "Antigravity-Official-Backup.app")
+	legacy := filepath.Join(home, "Documents", "Antigravity-Official-Backup.app")
+	expectPath := func(want string) {
+		t.Helper()
+		if got, err := OfficialBackupPath(); err != nil || got != want {
+			t.Fatalf("backup lookup = %q, %v; want %q", got, err, want)
+		}
+	}
+	expectPath(current)
+	if _, err := os.Stat(filepath.Dir(current)); !os.IsNotExist(err) {
+		t.Fatalf("lookup created a backup directory: %v", err)
+	}
+	if err := os.MkdirAll(filepath.Dir(legacy), 0755); err != nil {
+		t.Fatal(err)
+	}
+	if err := testClone(i.Root, legacy); err != nil {
+		t.Fatal(err)
+	}
+	marker := filepath.Join("Contents", "Resources", "legacy-marker")
+	writeFixture(t, filepath.Join(legacy, marker), []byte("legacy"))
+	expectPath(legacy)
+
+	// A fresh backup must stage and publish under Application Support even
+	// when there is an older backup available in Documents.
+	copyParents := []string{}
+	e.copyBundle = func(src, dst string) error {
+		copyParents = append(copyParents, filepath.Dir(filepath.Dir(dst)))
+		return testClone(src, dst)
+	}
+	if _, err := e.run(i, Options{BackupApp: true}, false); err != nil {
+		t.Fatal(err)
+	}
+	if len(copyParents) == 0 || copyParents[0] != filepath.Dir(current) {
+		t.Fatalf("unexpected backup staging directories %v", copyParents)
+	}
+	st, err := os.Stat(filepath.Dir(current))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if runtime.GOOS != "windows" && st.Mode().Perm() != 0700 {
+		t.Fatalf("backup directory permissions %v", st.Mode().Perm())
+	}
+	expectPath(current)
+	if err := e.restoreOfficial(relocate(i, legacy)); err == nil {
+		t.Fatal("legacy backup accepted as restore target with both backups present")
+	}
+	if err := e.restoreOfficial(i); err != nil {
+		t.Fatal(err)
+	}
+	if _, err := os.Stat(filepath.Join(i.Root, marker)); !os.IsNotExist(err) {
+		t.Fatalf("restored from the wrong backup: %v", err)
+	}
+
+	// An invalid new backup must surface an error instead of silently choosing the old one.
+	if err := os.RemoveAll(current); err != nil {
+		t.Fatal(err)
+	}
+	writeFixture(t, current, []byte("invalid"))
+	expectPath(current)
+	if err := e.restoreOfficial(i); err == nil {
+		t.Fatal("restored despite invalid preferred backup")
+	}
+	if err := os.Remove(current); err != nil {
+		t.Fatal(err)
+	}
+	expectPath(legacy)
+	badSignature := errors.New("invalid staged signature")
+	e.official = func(detector.Installation) error { return badSignature }
+	if err := e.restoreOfficial(i); !errors.Is(err, badSignature) {
+		t.Fatalf("expected signature failure, got %v", err)
+	}
+	if _, err := os.Stat(filepath.Join(i.Root, marker)); !os.IsNotExist(err) {
+		t.Fatalf("failed verification replaced the installation: %v", err)
+	}
+	e.official = func(copy detector.Installation) error {
+		if copy.Root == legacy {
+			return errors.New("Finder metadata on legacy source")
+		}
+		return nil
+	}
+	if err := e.restoreOfficial(i); err != nil {
+		t.Fatal(err)
+	}
+	if got := string(fileBytes(t, filepath.Join(i.Root, marker))); got != "legacy" {
+		t.Fatalf("legacy restore marker = %q", got)
+	}
+}
+
+func TestCopyAppOmitsMacMetadata(t *testing.T) {
+	tmp := t.TempDir()
+	src := filepath.Join(tmp, "Source Bundle.app")
+	dst := filepath.Join(tmp, "Clean Copy.app")
+	if got := dittoArgs(src, dst); !slices.Equal(got, []string{"--norsrc", "--noextattr", src, dst}) {
+		t.Fatalf("ditto args = %q", got)
+	}
+	if runtime.GOOS != "darwin" {
+		return
+	}
+	rel := filepath.Join("Contents", "_CodeSignature", "CodeResources")
+	seal := filepath.Join(src, rel)
+	writeFixture(t, seal, []byte("test seal"))
+	if err := command("/usr/bin/xattr", "-wx", "com.apple.FinderInfo", "0000000000000000040000000000000000000000000000000000000000000000", seal); err != nil {
+		t.Fatal(err)
+	}
+	if err := command("/usr/bin/xattr", "-w", "com.apple.quarantine", "0083;5f000000;Test;", seal); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(seal, "..namedfork", "rsrc"), []byte("test fork"), 0600); err != nil {
+		t.Fatal(err)
+	}
+	if err := copyApp(src, dst); err != nil {
+		t.Fatal(err)
+	}
+	if !bytes.Equal(fileBytes(t, filepath.Join(dst, rel)), fileBytes(t, seal)) {
+		t.Fatal("signature resource changed in the copy")
+	}
+	for _, path := range []string{seal, filepath.Join(dst, rel)} {
+		attrs, err := exec.Command("/usr/bin/xattr", path).Output()
+		if err != nil {
+			t.Fatal(err)
+		}
+		for _, name := range []string{"com.apple.FinderInfo", "com.apple.quarantine", "com.apple.ResourceFork"} {
+			if slices.Contains(strings.Fields(string(attrs)), name) != (path == seal) {
+				t.Fatalf("unexpected attributes on %s: %s", path, attrs)
+			}
+		}
+	}
+}
+
 func TestWindowsUpdaterRestartsDuringBuild(t *testing.T) {
 	e, i := sample(t, "windows", updateFixture, wslFixture)
 	old := fileBytes(t, i.Archive)
@@ -467,7 +603,7 @@ func TestMacBackupConflictMessageAndOfficialRestoreCacheCleanup(t *testing.T) {
 	if _, err := e.run(i, Options{BackupApp: true}, false); err != nil {
 		t.Fatal(err)
 	}
-	backupDir, _ := e.backupPath()
+	backupDir, _ := OfficialBackupPath()
 
 	// Replace backup's archive with an older version to trigger conflict during apply with BackupApp=true.
 	makeArchive(t, filepath.Join(backupDir, "Contents", "Resources", "app.asar"), updateFixture+"\n// older", wslFixture)

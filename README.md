@@ -9,7 +9,7 @@
 <h1 align="center">Antigravity 可视化汉化工具</h1>
 
 [![Core Tests](https://github.com/chiefcapitalhu/antigravity-zh-gui/actions/workflows/ci.yml/badge.svg)](https://github.com/chiefcapitalhu/antigravity-zh-gui/actions/workflows/ci.yml)
-![Version](https://img.shields.io/badge/version-v0.2.3-38bdf8?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.2.4-38bdf8?style=flat-square)
 ![macOS](https://img.shields.io/badge/macOS-Antigravity%202.34%20%2F%202.35-6366f1?style=flat-square)
 ![Catalog](https://img.shields.io/badge/原创词条-3%2C186%20条-10b981?style=flat-square)
 ![Zero Deps](https://img.shields.io/badge/Go%20标准库-零外部依赖-f59e0b?style=flat-square)
@@ -67,6 +67,7 @@
 | 平台 | Antigravity 版本 | 核验状态 | 说明 |
 |---|---|---|---|
 | **macOS**（Apple Silicon / Intel） | `2.34.0`、`2.35.0` | ✅ **已完整基线核验并实机验收** | 13 个主进程模块 + 完整 Hub 渲染层 + 3,186 词条 + 官方整包备份还原 |
+| **macOS** | `2.35.2` | 用户实机验证兼容 | 完整词典的证据基线仍为 macOS arm64 版 2.35.0。 |
 | **Windows**（x64 / ARM64） | `2.x` | 🚧 **提供源码与基础构建支持** | 已具备宿主完整性策略校验与 CI 构建/单测，**尚未完成官方 Windows 实机基线验收** |
 
 > **版本升级保护**：当官方客户端升级到尚未复核的新版本时，工具绝不会盲目写入未知字节。如仅触发基础弹窗降级补丁（`hub_skipped`，未注入主界面与热切换），`status` 与控制台会明确标红提示 **「部分汉化（已降级）」**，提醒等待或更新汉化工具。
@@ -82,7 +83,7 @@
 2. **完全退出 Antigravity**：先保存工作并彻底退出客户端（macOS 按 **`Cmd + Q`**）。
 3. **打开控制台并体检**：双击（或终端运行）汉化工具，浏览器会自动打开本地控制台，确认「环境体检」中显示 **已退出** 与正确的客户端版本。
 4. **勾选整包备份并一键汉化**：
-   - 首次在 macOS 上操作时，强烈建议勾选 **「保留官方签名的 .app 整包备份」**（备份至 `~/Documents/Antigravity-Official-Backup.app`），便于日后一键恢复 Google 原版签名。
+   - 首次在 macOS 上操作时，强烈建议勾选 **「保留官方签名的 .app 整包备份」**（备份至 `~/Library/Application Support/antigravity-zh-gui/Antigravity-Official-Backup.app`），便于日后一键恢复 Google 原版签名。
    - 选好默认语言、快捷键与左上角品牌显示方式后，点击 **「一键汉化 / 更新」**；完成后可展开 **「安全透明审计」** 核对每个修改文件的前后大小与 SHA-256。
 5. **启动体验 & 热切换**：重新启动 Antigravity 即可看到简体中文界面，随时按 **`Cmd + Shift + L`**（Mac）/ **`Ctrl + Shift + L`**（Windows）中英文热切换。
 6. **个人自定义词条**：可在控制台底部增删个人译文（例如把 `New Conversation` 改为「开始新对话」），保存后再次点击「一键汉化 / 更新」生效。使用完毕后点击右上角 **「退出工具」** 关闭本地服务。
@@ -92,7 +93,8 @@
 如果你希望先不改动 `/Applications/Antigravity.app` 本体：
 
 ```bash
-ditto /Applications/Antigravity.app ~/Desktop/Antigravity-Test.app
+mkdir -p ~/Applications
+ditto --norsrc --noextattr /Applications/Antigravity.app ~/Applications/Antigravity-Test.app
 ```
 
 1. 退出所有 Antigravity 进程，在控制台路径框填入副本的完整绝对路径，点击 **「重新检测」**。
@@ -147,7 +149,7 @@ flowchart LR
 ./antigravity-zh-gui extract --target "/path/to/newer/Antigravity.app" --diff /tmp/ag-report/candidates.json --out /tmp/ag-diff
 ```
 
-v0.2.3 的完整词典证据基线是 macOS arm64 版 Antigravity 2.35.0。除 ASAR 和 Hub 脚本外，提取器还会核对 `bin/language_server` 的完整 SHA-256，再按字节偏移重放 45 个静态字段，涵盖 24 条斜杠命令说明、4 条界面布局文案、8 组内置插件货架的标题和说明，以及市场底部的第三方工具声明。运行时使用内嵌译文，配额服务下发的时长和额度说明按卡片中的固定句式匹配。
+v0.2.4 的完整词典证据基线是 macOS arm64 版 Antigravity 2.35.0。除 ASAR 和 Hub 脚本外，提取器还会核对 `bin/language_server` 的完整 SHA-256，再按字节偏移重放 45 个静态字段，涵盖 24 条斜杠命令说明、4 条界面布局文案、8 组内置插件货架的标题和说明，以及市场底部的第三方工具声明。运行时使用内嵌译文，配额服务下发的时长和额度说明按卡片中的固定句式匹配。
 
 词典目录位于 [`locales/zh-CN/`](locales/zh-CN/)（`core`、`workspace`、`settings`、`agents`、`menus_dialogs` 五个模块），设计文档与历次验收回执见 [`docs/`](docs/) 与 [`CHANGELOG.md`](CHANGELOG.md)。
 
@@ -215,7 +217,7 @@ bash scripts/build-release.sh dist
 <summary><strong>4. 配置文件、备份与缓存分别放在哪里？</strong></summary>
 
 - **归档备份**：客户端包内 `app.asar.zh-gui.bak`
-- **macOS 官方整包备份**：`~/Documents/Antigravity-Official-Backup.app`
+- **macOS 官方整包备份**保存在 `~/Library/Application Support/antigravity-zh-gui/Antigravity-Official-Backup.app`，避开 iCloud「桌面与文稿」同步。检测和还原优先使用此处的备份。如果新位置没有备份，工具会读取旧位置 `~/Documents/Antigravity-Official-Backup.app`。
 - **偏好与自定义词典**：macOS 为 `~/.config/antigravity-zh-gui/`，Windows 为 `%APPDATA%\antigravity-zh-gui\`
 - **缓存清理**：仅在默认探测安装提交成功后清理预定义的 Chromium 渲染缓存，绝不触碰会话、数据库与凭据目录；指定副本路径时不清理真实缓存。
 
